@@ -88,6 +88,7 @@ Version: 1.0
 	//background: #ffffff;
 	background-color: #CCCCCC;
 	border: 1px solid #AAA;
+	border-top:0;
     filter:alpha(opacity=97); 
     -moz-opacity: 0.97; 
     opacity: 0.97;
@@ -132,7 +133,7 @@ Version: 1.0
 
 #panel {
 	width: 100%;
-	height: 200px;
+	height: 330px;
 	color: #444444;
 	//background: #FFFFFF;
 	background-color: #CCCCCC;
