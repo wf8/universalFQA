@@ -9,16 +9,12 @@
 		
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
-		<script src="js/slide.js" type="text/javascript"></script>
-		
+		<script type="text/javascript" src="js/slide.js"></script>
+		<script type="text/javascript" src="js/fqa.js"></script>
 		<script type="text/javascript">
 			$(function(){
-
-
 				// Tabs
 				$('#tabs').tabs();
-
-
 			});
 		</script>
 		<style type="text/css">
@@ -45,33 +41,36 @@
 			</div>
 			<div class="left">
 				<!-- Register Form -->
-				<form action="#" method="post">
+				<!-- <form action="#" method="post"> -->
 					<h1>Create an account!</h1>				
 					<label class="grey" for="signup">First name:</label>
-					<input class="field" type="text" name="signup" id="signup" value="" size="23" />
+					<input class="field" type="text" name="signup" id="register_first_name" value="" size="23" />
 					<label class="grey" for="signup">Last name:</label>
-					<input class="field" type="text" name="signup" id="signup" value="" size="23" />
+					<input class="field" type="text" name="signup" id="register_last_name" value="" size="23" />
 					<label class="grey" for="email">Email:</label>
-					<input class="field" type="text" name="email" id="email" size="23" />
+					<input class="field" type="text" name="email" id="register_email" size="23" />
 					<label class="grey" for="pwd">Password:</label>
-					<input class="field" type="password" name="pwd" id="pwd" size="23" />
+					<input class="field" type="password" name="pwd" id="register_password1" size="23" />
 					<label class="grey" for="pwd">Password (again):</label>
-					<input class="field" type="password" name="pwd" id="pwd" size="23" />
-					<input type="submit" name="submit" value="Register" class="bt_login" />
-				</form>
+					<input class="field" type="password" name="pwd" id="register_password2" size="23" /><br><br>
+					<button class="bt_login" onClick="register();">Register</button> 
+					<!-- <input type="submit" name="submit" value="Register" class="bt_login" onClick="register();" /> -->
+			<!--	</form> -->
 			</div>
 			<div class="left right">	
 				<!-- Login Form -->
-				<form class="clearfix" action="#" method="post">
+<!--				<form class="clearfix" action="#" method="post"> -->
 					<h1>Already have an account?</h1>
 					<label class="grey" for="log">Email:</label>
-					<input class="field" type="text" name="log" id="log" value="" size="23" />
+					<input class="field" type="text" name="log" id="login_email" value="" size="23" />
 					<label class="grey" for="pwd">Password:</label>
-					<input class="field" type="password" name="pwd" id="pwd" size="23" />
-        			<div class="clear"></div>
-					<input type="submit" name="submit" value="Login" class="bt_login" />
-					<a class="lost-pwd" href="#">Lost your password?</a>
-				</form>		
+					<input class="field" type="password" name="pwd" id="login_password" size="23" />
+        			<!--<div class="clear"></div>-->
+        			
+					<!-- <input type="submit" name="submit" value="Login" class="bt_login" /> -->
+					<a class="lost-pwd" href="#">Lost your password?</a><br><br>
+					<button class="bt_login" onClick="login();">Log In</button> 
+				<!--</form>	 -->	
 
 			</div>
 		</div>
@@ -86,7 +85,8 @@
 			<li class="sep">|</li> -->
 			<li id="toggle">
 				<a id="open" class="open" href="#">Log In | Register</a>
-				<a id="close" style="display: none;" class="close" href="#">Close Panel</a>			
+				<a id="close" style="display: none;" class="close" href="#">Close Panel</a>	
+				<a id="log_out" style="display: none;" class="log_out" href="#">Log Out</a>			
 			</li>
 			<li class="right">&nbsp;</li>
 		</ul> 
