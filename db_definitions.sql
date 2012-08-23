@@ -5,7 +5,7 @@ CREATE TABLE `fqa` (
  `citation` TEXT NOT NULL,
  `user_id` INT NOT NULL,
 PRIMARY KEY (  `id` )
-) ENGINE = INNODB;
+);
 
 CREATE TABLE `taxa` (
  `id` INT NOT NULL AUTO_INCREMENT,
@@ -20,7 +20,7 @@ CREATE TABLE `taxa` (
  `duration` VARCHAR(10) NULL,
 PRIMARY KEY (  `id` ),
 INDEX (`fqa_id`)
-)  ENGINE = INNODB;
+);
 
 CREATE TABLE `inventory` (
  `id` INT NOT NULL AUTO_INCREMENT,
@@ -28,7 +28,7 @@ CREATE TABLE `inventory` (
  `name` VARCHAR(256) NOT NULL,
  `notes` TEXT NULL,
 PRIMARY KEY (  `id` )
-)  ENGINE = INNODB;
+);
 
 CREATE TABLE `inventory_taxa` (
  `id` INT NOT NULL AUTO_INCREMENT,
@@ -37,7 +37,7 @@ CREATE TABLE `inventory_taxa` (
  `percent_coverage` INT NULL,
 INDEX (`inventory_id`, `taxa_id`),
 PRIMARY KEY (  `id` )
-)  ENGINE = INNODB;
+);
 
 CREATE TABLE `transect` (
  `id` INT NOT NULL AUTO_INCREMENT,
@@ -45,7 +45,7 @@ CREATE TABLE `transect` (
  `name` VARCHAR(256) NOT NULL,
  `notes` TEXT NULL,
 PRIMARY KEY (  `id` )
-)  ENGINE = INNODB;
+);
 
 CREATE TABLE `transect_inventory` (
  `id` INT NOT NULL AUTO_INCREMENT,
@@ -53,7 +53,7 @@ CREATE TABLE `transect_inventory` (
  `inventory_id` INT NOT NULL,
 INDEX (`transect_id`, `inventory_id`),
 PRIMARY KEY (  `id` )
-)  ENGINE = INNODB;
+);
 
 CREATE TABLE `user` (
  `id` INT NOT NULL AUTO_INCREMENT,
@@ -63,4 +63,4 @@ CREATE TABLE `user` (
  `password` VARCHAR(64) NOT NULL,
  `salt` VARCHAR(3) NOT NULL,
 PRIMARY KEY (  `id` )
-)  ENGINE = INNODB;
+);

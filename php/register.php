@@ -23,11 +23,25 @@ $pass2 = $_POST['password2'];
 
 // check that the 2 passwords are the same
 if($pass1 != $pass2) 
-    echo "Passwords are not the same. User not added.";
+    echo "The passwords don't match. Please try again.";
 else
 {
+	// check that variables are right length
+	if(strlen($email) < 3) {
+		echo "Please enter a valid email address.";
+		exit;
+	} else if(strlen($first_name) < 1) {
+		echo "Please enter a first name.";
+		exit;
+	} else if(strlen($last_name) < 1) {
+		echo "Please enter a last name.";
+		exit;
+	} else if(strlen($pass1) < 5) {
+		echo "Please use a longer password.";
+		exit;
+	} 
 
-	// check that email is valid
+	// check that email is valid....
 
 	// get salt and hash
 	$temp_string = md5(uniqid(rand(), true));
@@ -56,7 +70,7 @@ else
 			$query = "INSERT INTO user (email, first_name, last_name, password, salt) VALUES ('$email', '$first_name', '$last_name', '$hash', '$salt')";
 			$result = mysql_query($query, $connection);
 			if (!$result) 
-		  		echo 'Error: ' . mysql_error();
+		  		echo 'Database error: ' . mysql_error();
 		  	else {
 		  		// now login the user
 				// first get the new user id

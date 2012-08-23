@@ -3,10 +3,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<title>Universal Floristic Quality Assessment Tool</title>
-		
 		<link type="text/css" href="css/custom-theme/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/slide.css" type="text/css" media="screen" />
-		
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
 		<script type="text/javascript" src="js/slide.js"></script>
@@ -29,73 +27,60 @@
 		</style>
 	</head>
 	<body>
-	
-<!-- Panel -->
-<div id="toppanel">
-	<div id="panel">
-		<div class="content clearfix">
-			<div class="left">
-				<h1>Welcome to the Universal Floristic Quality Assessment Tool</h1>
-				<h2>Please register:</h2>		
-				<p class="grey">To save site inventory and transect FQA studies, or to upload and share regional FQA databases you will need to create an account.</p>
-			</div>
-			<div class="left">
-				<!-- Register Form -->
-				<!-- <form action="#" method="post"> -->
-					<h1>Create an account!</h1>				
-					<label class="grey" for="signup">First name:</label>
-					<input class="field" type="text" name="signup" id="register_first_name" value="" size="23" />
-					<label class="grey" for="signup">Last name:</label>
-					<input class="field" type="text" name="signup" id="register_last_name" value="" size="23" />
-					<label class="grey" for="email">Email:</label>
-					<input class="field" type="text" name="email" id="register_email" size="23" />
-					<label class="grey" for="pwd">Password:</label>
-					<input class="field" type="password" name="pwd" id="register_password1" size="23" />
-					<label class="grey" for="pwd">Password (again):</label>
-					<input class="field" type="password" name="pwd" id="register_password2" size="23" /><br><br>
-					<button class="bt_login" onClick="register();">Register</button> 
-					<!-- <input type="submit" name="submit" value="Register" class="bt_login" onClick="register();" /> -->
-			<!--	</form> -->
-			</div>
-			<div class="left right">	
-				<!-- Login Form -->
-<!--				<form class="clearfix" action="#" method="post"> -->
+		<!-- Panel -->
+		<div id="toppanel">
+			<div id="panel">
+				<div class="content clearfix">
+					<div class="left">
+						<h1>Welcome to the Universal Floristic Quality Assessment Tool</h1>
+						<h2>Please register:</h2>
+						<p class="grey">To save site inventory and transect FQA studies, or to upload and share regional FQA databases you will need to create an account.</p>
+					</div>
+					<div class="left">
+					<!-- Register Form -->
+						<h1>Create an account!</h1>				
+						<label class="grey" for="signup">First name:</label>
+						<input class="field" type="text" name="signup" id="register_first_name" value="" size="23" />
+						<label class="grey" for="signup">Last name:</label>
+						<input class="field" type="text" name="signup" id="register_last_name" value="" size="23" />
+						<label class="grey" for="email">Email:</label>
+						<input class="field" type="text" name="email" id="register_email" size="23" />
+						<label class="grey" for="pwd">Password:</label>
+						<input class="field" type="password" name="pwd" id="register_password1" size="23" />
+						<label class="grey" for="pwd">Password (again):</label>
+						<input class="field" type="password" name="pwd" id="register_password2" size="23" /><br><br>
+						<button class="bt_login" onClick="register();">Register</button> 
+					</div>
+					<div class="left right">	
+					<!-- Login Form -->
 					<h1>Already have an account?</h1>
-					<label class="grey" for="log">Email:</label>
-					<input class="field" type="text" name="log" id="login_email" value="" size="23" />
-					<label class="grey" for="pwd">Password:</label>
-					<input class="field" type="password" name="pwd" id="login_password" size="23" />
-        			<!--<div class="clear"></div>-->
-        			
-					<!-- <input type="submit" name="submit" value="Login" class="bt_login" /> -->
-					<a class="lost-pwd" href="#">Lost your password?</a><br><br>
-					<button class="bt_login" onClick="login();">Log In</button> 
-				<!--</form>	 -->	
-
+						<label class="grey" for="log">Email:</label>
+						<input class="field" type="text" name="log" id="login_email" value="" size="23" />
+						<label class="grey" for="pwd">Password:</label>
+						<input class="field" type="password" name="pwd" id="login_password" size="23" />
+						<br><br><button class="bt_login" onClick="login();">Log In</button><br>
+						<a class="lost-pwd" href="#">Lost your password?</a><br><br>
+						 
+					</div>
 			</div>
-		</div>
 
-</div> <!-- /login -->	
+		</div> <!-- /login -->	
 
-	<!-- The tab on top -->	
-	<div class="tab">
-		<ul class="login">
-		<!--	<li class="left">&nbsp;</li>
-			<li>Hello Guest!</li>
-			<li class="sep">|</li> -->
-			<li id="toggle">
-				<a id="open" class="open" href="#">Log In | Register</a>
-				<a id="close" style="display: none;" class="close" href="#">Close Panel</a>	
-				<a id="log_out" style="display: none;" class="log_out" href="#">Log Out</a>			
-			</li>
-			<li class="right">&nbsp;</li>
-		</ul> 
-	</div> <!-- / top -->
+		<!-- The tab on top -->	
+		<div class="tab">
+			<ul class="login">
+				<li id="toggle">
+					<a id="open" class="open" href="#">Log In | Register</a>
+					<a id="close" style="display: none;" class="close" href="#">Close Panel</a>		
+				</li>
+				<li class="right">&nbsp;</li>
+			</ul> 
+		</div> <!-- / top -->
 	
-</div> <!--panel -->
+	</div> <!--panel -->
 
 
-		<img style="float: left; margin: 0 10px 10px 0;" src="images/blue-eyed.jpg" height="200">
+	<img style="float: left; margin: 0 10px 10px 0;" src="images/blue-eyed.jpg" height="200">
 
 
 	<img src="images/header4.png">
@@ -108,7 +93,7 @@
 	<p style="font-size: 1.2em; line-height: 1.5; margin: 1em 0; width: 600px;">
 	This tool provides a framework to calculate FQAs for site inventory and transect studies in any region. Help expand this tool by uploading your region's list of species and their coefficients of conservatism.
 	</p>
-<div style="clear: both;"> </div>
+	<div style="clear: both;"> </div>
 
 
 
@@ -245,7 +230,6 @@ Indiana<br>
 			
 			</div>
 		</div>
-
 
 	</body>
 </html>

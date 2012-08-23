@@ -11,7 +11,7 @@ if (!$connection)
 // Sets the active MySQL database.
 $db_selected = mysql_select_db($db_database, $connection);
 if (!$db_selected) 
-	die ('Can\'t use db : ' . mysql_error());
+	die ('Database error: ' . mysql_error());
 
 $email = $_POST['email'];
 $login_password = $_POST['password'];
