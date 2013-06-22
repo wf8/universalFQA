@@ -1,293 +1,65 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title>Universal Floristic Quality Assessment Tool</title>
-		<link type="text/css" href="css/custom-theme/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
-		<link type="text/css" href="css/slide.css" rel="stylesheet" media="screen" />
-		<link type="text/css" href="css/fqa.css" rel="stylesheet" />
-		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-		<script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
-		<script type="text/javascript" src="js/slide.js"></script>
-		<script type="text/javascript" src="js/fqa.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				// Tabs
-				$('#tabs').tabs();
-			});
-		</script>
-		<style type="text/css">
-			/*demo page css*/
-			body{ font: 62.5% "Helvetica", arial, sans-serif; margin: 50px;}
-			.demoHeaders { margin-top: 2em; }
-			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
-			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
-			ul#icons {margin: 0; padding: 0;}
-			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
-			ul#icons span.ui-icon {float: left; margin: 0 4px;}
-		</style>
-	</head>
-	<body>
-		<!-- Panel -->
-		<div id="toppanel">
-			<div id="panel">
-				<div class="content clearfix">
-					<div class="left">
-						<h1>Welcome to the Universal Floristic Quality Assessment Tool</h1>
-						<h2>Please register:</h2>
-						<p class="grey">To save site inventory and transect FQA studies, or to upload and share regional FQA databases you will need to create an account.</p>
-					</div>
-					<div class="left">
-					<!-- Register Form -->
-						<h1>Create an account!</h1>				
-						<label class="grey" for="signup">First name:</label>
-						<input class="field" type="text" name="signup" id="register_first_name" value="" size="23" />
-						<label class="grey" for="signup">Last name:</label>
-						<input class="field" type="text" name="signup" id="register_last_name" value="" size="23" />
-						<label class="grey" for="email">Email:</label>
-						<input class="field" type="text" name="email" id="register_email" size="23" />
-						<label class="grey" for="pwd">Password:</label>
-						<input class="field" type="password" name="pwd" id="register_password1" size="23" />
-						<label class="grey" for="pwd">Password (again):</label>
-						<input class="field" type="password" name="pwd" id="register_password2" size="23" /><br><br>
-						<button class="bt_login" onClick="register();">Register</button> 
-					</div>
-					<div class="left right">	
-					<!-- Login Form -->
-					<h1>Already have an account?</h1>
-						<label class="grey" for="log">Email:</label>
-						<input class="field" type="text" name="log" id="login_email" value="" size="23" />
-						<label class="grey" for="pwd">Password:</label>
-						<input class="field" type="password" name="pwd" id="login_password" size="23" />
-						<br><br><button class="bt_login" onClick="login();">Log In</button><br>
-						<a class="lost-pwd" href="#">Lost your password?</a><br><br>
-						 
-					</div>
-			</div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Universal Floristic Quality Assessment Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-		</div> <!-- /login -->	
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/css/fqa.css" rel="stylesheet">
+    
+    <script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/fqa.js"></script>
+  </head>
 
-		<!-- The tab on top -->	
-		<div class="tab">
-			<ul class="login">
-				<li id="toggle">
-					<a id="open" class="open" href="#">Log In | Register</a>
-					<a id="close" style="display: none;" class="close" href="#">Close Panel</a>		
-				</li>
-				<li class="right">&nbsp;</li>
-			</ul> 
-		</div> <!-- / top -->
-	
-	</div> <!--panel -->
+  <body>
 
-
-	<img style="float: left; margin: 0 10px 10px 0;" src="images/blue-eyed.jpg" height="200">
-
-
-	<img src="images/header4.png">
-	<!--<h1>Universal Floristic Quality Assessment Tool</h1> -->
-	
-	<br><br><br><br><br>
-	<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 600px;">
-	Floristic Quality Assessments (FQAs) are a measurement of a natural area's habitat condition or quality.
-	</p>
-	<p style="font-size: 1.2em; line-height: 1.5; margin: 1em 0; width: 600px;">
-	This tool provides a framework to calculate FQAs for site inventory and transect studies in any region. Help expand this tool by uploading your region's list of species and their coefficients of conservatism.
-	</p>
-	<div style="clear: both;"> </div>
-
-
-
-
-		<!-- Tabs -->
-		<div id="tabs">
-			<ul>
-				<li><a href="#tabs-1">New site inventory FQA</a></li>
-				<li><a href="#tabs-2">New transect FQA</a></li>
-				<li><a href="#tabs-3">View saved FQAs</a></li>
-				<li><a href="#tabs-4">Compare regional FQA coefficients</a></li>
-				<li><a href="#tabs-5">Upload/Download regional FQA databases</a></li>
-				<li><a href="#tabs-6">About</a></li>
-			</ul>
-			<div id="tabs-1">
-			
-				<h2 class="demoHeaders">Pick your region</h2>
-				<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			Illinois<br>
-Chicago<br>
-Iowa<br>
-Michigan<br>
-N. & S. Dakota<br>
-Ohio<br>
-Missouri<br>
-Kansas<br>
-Minnesota<br>
-New Jersey<br>
-Pennsylvania<br>
-Mississippi<br>
-Florida<br>
-West Virginia<br>
-Louisiana<br>
-Indiana<br>
-			</p>
-			
-					<!-- Autocomplete -->
-				<h2 class="demoHeaders">Enter species:</h2>
-				<div>
-					<input id="autocomplete" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    	<div class="navbar-inner">
+        	<div class="container pull-right">
+          		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            		<span class="icon-bar"></span>
+          		</button>
+          		<div class="nav-collapse collapse pull-right">
+            		<ul class="nav">
+              			<li><a href="php/login.php">Login / Register</a></li>
+            		</ul>
+          		</div>
+        	</div>
+      	</div>
+    </div>
+	<br>
+    <div class="container">
+		<div class="nice_margins">
+			<div class="row-fluid">
+				<div class="span3">
+					<img src="images/blue-eyed.jpg">
 				</div>
-				
-			
-			</div>
-		<div id="tabs-2">
-			
-				<h2 class="demoHeaders">Pick your region</h2>
-				<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			Illinois<br>
-Chicago<br>
-Iowa<br>
-Michigan<br>
-N. & S. Dakota<br>
-Ohio<br>
-Missouri<br>
-Kansas<br>
-Minnesota<br>
-New Jersey<br>
-Pennsylvania<br>
-Mississippi<br>
-Florida<br>
-West Virginia<br>
-Louisiana<br>
-Indiana<br>
-			</p>
-			
-					<!-- Autocomplete -->
-				<h2 class="demoHeaders">Enter species:</h2>
-				<div>
-					<input id="autocomplete" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
-				</div>
-				
-			
-			</div>
-			<div id="tabs-3">
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			Login to view saved FQAs.....
-			</p>
-			</div>
-			<div id="tabs-4">
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			Compare the coefficients used for a certain species in different regional FQAs:
-			</p>
-			
-			
-			
-			</div>
-			<div id="tabs-5">
-			
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			<b>To download a regional FQA database as a spreadsheet file (CSV):</b>
-			</p>
-
-				<div style="margin-left: 40px;" id="database_selector">
-					<select><option>Select FQA Database</option></select>
-				</div>
-				<button style="margin-left: 40px;" onClick="download_database();">Download</button>
-			
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			<b>To upload a new regional FQA database:</b>
-			</p>
-			
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			1: Log in to your account by clicking the "Log In" at the top of the window. You must be logged in to upload a database.
-			</p>
-			
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			2: Enter the region, year, and full citation for the database:
-			</p>
-			
-			<p style="margin-left: 40px;">
-				Region: (Be brief, but descriptive. For example "Illinois" or "Chicago region")<br>
-				<input type"text" maxlength="40" size="40" id="upload_region" size="23" /><br>
-				Year published:<br>
-				<input type"text" maxlength="4" size="4" id="upload_year" size="40" /><br>
-				Full citation: (in ... format, provide example)<br>
-				<textarea id="upload_citation" cols="40" rows="6"></TEXTAREA><br>
-			</p>
-			
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			3: Format the database into a comma-separated file (CSV) spreadsheet file. 
-			</p>
-				<div style="margin-left: 40px;">
-				The columns should be organized as follows:<br><br>
-				<pre>
-				<b>scientific name</b>, common name, acronym, <b>nativity</b>, <b>coefficient of conservatism</b>, coefficient of wetness, physiognomy, duration<br>
-				</pre>
-				Only the <b>scientific name</b>, <b>nativity</b>, and <b>coefficient of conservatism</b> columns are required.
-				The other columns may be left blank. <br>
-				<br>
-				- <b>scientific name</b> must be standard binomial nomenclature.<br>			
-				- <b>acronym</b> can be a 3-8 letter acronym that is commonly used in field work to abbreviate the scientific name.<br>	
-				- <b>nativity</b> must be either "native" or "non-native". Other terms such as "introduced", "alien", "adventive" will not be recognized.<br>	
-				- <b>coefficient of conservatism</b> must be an integer from 0-10.<br>	
-				- <b>coefficient of wetness</b> can be an integer from 0-10.<br>	
-				- <b>physiognomy</b> can be any of the following terms: "fern", "forb", "grass", "nonvascular" (which includes hornworts, liverworts, and mosses), "sedge", "shrub", "tree", "vine". Other terms won't be recognized.<br>	
-				- <b>duration</b> can be "annual", "biennial", or "perennial". Other terms won't be recognized.<br>	
-				<br>
-				Here are some examples:<br>
-				<br>
-				<pre>
-				Adiantum pedatum, maidenhair fern, ADIPED, native, 6, 1, fern, perennial (ferns perennials?)****
-				Alliaria petiolata, garlic mustard, ALLPET, non-native, 0, 0, forb, biennial
-				</pre>
-				or:
-				<pre>
-				Adiantum pedatum,,, native, 6,,,
-				Alliaria petiolata,,, non-native, 0,,,
-				</pre>				
-				</div>
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			4: Select your CSV file and upload it			
-
-				<form style="margin-left: 40px;" action="php/upload_database.php" method="post" enctype="multipart/form-data" target="database_upload_target" onsubmit="upload_database();">
-					<input type="file" name="upload_file" id="upload_file"><br>
-					<input type="submit" name="submit" value="Upload">
-				</form>
-
-			</p>
-			
-			
-			</div>
-			<div id="tabs-6">
-			
-			
-			<h2 class="demoHeaders">About FQA</h2>
-					<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-					Floristic Quality Assessment (FQA) is a metric the uses both the aggregate conservatism and species richness of the plant community to derive a measure of habitat condition or quality (Swink and Wilhelm 1979, 1994). Conservatism coefficients differ between regions, so each region must calculate its FQA ...
-					
-					Researchers have found that FQA effectively differentiates wetlands across disturbance gradients in Pennsylvania (Miller and Wardrop 2006) and Virginia (Nichols et al. 2006, DeBerry 2006). Rewrite all this...
+				<div class="span9">
+					<img src="images/header4.png">
+					<br><br><br><br><br>
+					<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0;">
+						Floristic Quality Assessments (FQAs) are a measurement of a natural area's habitat condition or quality.
 					</p>
-					<p style="font-size: 1.2em; line-height: 1.5; margin: 1em 0; width: 50%;">
-					This tool provides the framework to easily calculate regional FQAs. Regional species lists with coefficients of conservatism may freely be uploaded. Comparitive FQA....
+					<p style="font-size: 1.2em; line-height: 1.5; margin: 1em 0;">
+					This tool will calculate FQAs for site inventory and transect studies. Any existing FQA database can be used or modified, and as new FQA databases are developed they can be uploaded.
+					Help expand this tool by uploading your region's list of species and their coefficients of conservatism.
 					</p>
-					
-			<h2 class="demoHeaders">About this website</h2>
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			Picture of <i>Sisyrinchium angustifolium</i> (stout blue-eyed grass) by Lisa Culp.
-			</p>
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			The Universal Floristic Quality Assessment Tool is an open source project licensed for use under <a href="http://www.gnu.org/licenses/">GPLv3</a>. Get the code on GitHub.
-			</p>
-<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			Questions/comments should be sent to willfreyman at gmail dot com.
-			</p>
-
-			
+					<ul class="nav nav-pills">
+						<li class="active"><a href="php/login.php">Login / Register</a></li>
+					</ul>
+				</div>
 			</div>
+			<br><br><br><br><br><br><br><br><br>
 		</div>
-	
-		<iframe id="database_upload_target" name="database_upload_target3" src="#"></iframe> 
+		<div class="footer">
+        	<p><a href="http://universalFQA.org">universalFQA.org</a> | <a href="about.html">About this site</a></p>
+      	</div>
+    </div> 
 
-	</body>
+  </body>
 </html>
-
-

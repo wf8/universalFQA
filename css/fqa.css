@@ -1,6 +1,6 @@
-#database_upload_target {
-	display: none;
-	width:0;
-	height:0;
-	border:1px solid red;
+
+body {
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-weight: 300;
 }
