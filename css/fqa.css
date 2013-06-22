@@ -1,0 +1,6 @@
+#database_upload_target {
+	display: none;
+	width:0;
+	height:0;
+	border:1px solid red;
+}

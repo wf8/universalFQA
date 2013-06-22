@@ -113,3 +113,13 @@ function clear_login_forms() {
 	document.getElementById("login_email").value = "";
 	document.getElementById("login_password").value = "";
 }
+/**
+ * ---------------------------------------------------------
+ * upload/download FQA databases functions
+ *
+ * ---------------------------------------------------------
+ */
+ function upload_database() {
+ }
+ function download_database() {
+ }

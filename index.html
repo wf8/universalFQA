@@ -4,7 +4,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<title>Universal Floristic Quality Assessment Tool</title>
 		<link type="text/css" href="css/custom-theme/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
-		<link rel="stylesheet" href="css/slide.css" type="text/css" media="screen" />
+		<link type="text/css" href="css/slide.css" rel="stylesheet" media="screen" />
+		<link type="text/css" href="css/fqa.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
 		<script type="text/javascript" src="js/slide.js"></script>
@@ -184,21 +185,74 @@ Indiana<br>
 			<div id="tabs-5">
 			
 			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			Download a regional FQA database as a spreadsheet file:
+			<b>To download a regional FQA database as a spreadsheet file (CSV):</b>
+			</p>
+
+				<div style="margin-left: 40px;" id="database_selector">
+					<select><option>Select FQA Database</option></select>
+				</div>
+				<button style="margin-left: 40px;" onClick="download_database();">Download</button>
+			
+			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
+			<b>To upload a new regional FQA database:</b>
 			</p>
 			
 			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			To upload:
+			1: Log in to your account by clicking the "Log In" at the top of the window. You must be logged in to upload a database.
 			</p>
 			
 			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			1: Format data into a comma-separate file (CSV) spreadsheet file
+			2: Enter the region, year, and full citation for the database:
 			</p>
-			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			2: Enter author, year, publishing info
+			
+			<p style="margin-left: 40px;">
+				Region: (Be brief, but descriptive. For example "Illinois" or "Chicago region")<br>
+				<input type"text" maxlength="40" size="40" id="upload_region" size="23" /><br>
+				Year published:<br>
+				<input type"text" maxlength="4" size="4" id="upload_year" size="40" /><br>
+				Full citation: (in ... format, provide example)<br>
+				<textarea id="upload_citation" cols="40" rows="6"></TEXTAREA><br>
 			</p>
+			
 			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
-			3: Select your CSV file and upload it
+			3: Format the database into a comma-separated file (CSV) spreadsheet file. 
+			</p>
+				<div style="margin-left: 40px;">
+				The columns should be organized as follows:<br><br>
+				<pre>
+				<b>scientific name</b>, common name, acronym, <b>nativity</b>, <b>coefficient of conservatism</b>, coefficient of wetness, physiognomy, duration<br>
+				</pre>
+				Only the <b>scientific name</b>, <b>nativity</b>, and <b>coefficient of conservatism</b> columns are required.
+				The other columns may be left blank. <br>
+				<br>
+				- <b>scientific name</b> must be standard binomial nomenclature.<br>			
+				- <b>acronym</b> can be a 3-8 letter acronym that is commonly used in field work to abbreviate the scientific name.<br>	
+				- <b>nativity</b> must be either "native" or "non-native". Other terms such as "introduced", "alien", "adventive" will not be recognized.<br>	
+				- <b>coefficient of conservatism</b> must be an integer from 0-10.<br>	
+				- <b>coefficient of wetness</b> can be an integer from 0-10.<br>	
+				- <b>physiognomy</b> can be any of the following terms: "fern", "forb", "grass", "nonvascular" (which includes hornworts, liverworts, and mosses), "sedge", "shrub", "tree", "vine". Other terms won't be recognized.<br>	
+				- <b>duration</b> can be "annual", "biennial", or "perennial". Other terms won't be recognized.<br>	
+				<br>
+				Here are some examples:<br>
+				<br>
+				<pre>
+				Adiantum pedatum, maidenhair fern, ADIPED, native, 6, 1, fern, perennial (ferns perennials?)****
+				Alliaria petiolata, garlic mustard, ALLPET, non-native, 0, 0, forb, biennial
+				</pre>
+				or:
+				<pre>
+				Adiantum pedatum,,, native, 6,,,
+				Alliaria petiolata,,, non-native, 0,,,
+				</pre>				
+				</div>
+			<p style="font-size: 1.3em; line-height: 1.5; margin: 1em 0; width: 50%;">
+			4: Select your CSV file and upload it			
+
+				<form style="margin-left: 40px;" action="php/upload_database.php" method="post" enctype="multipart/form-data" target="database_upload_target" onsubmit="upload_database();">
+					<input type="file" name="upload_file" id="upload_file"><br>
+					<input type="submit" name="submit" value="Upload">
+				</form>
+
 			</p>
 			
 			
@@ -230,6 +284,8 @@ Indiana<br>
 			
 			</div>
 		</div>
+	
+		<iframe id="database_upload_target" name="database_upload_target3" src="#"></iframe> 
 
 	</body>
 </html>
