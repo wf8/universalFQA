@@ -1,6 +1,10 @@
 
 body {
-	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	/* padding-top: 60px; 60px to make the container go all the way to the bottom of the topbar */
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: 300;
+}
+
+.padding-top {
+	padding-top: 60px;
 }
