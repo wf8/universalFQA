@@ -8,3 +8,9 @@ body {
 .padding-top {
 	padding-top: 60px;
 }
+
+.nice-text {
+	font-size: 1.3em; 
+	line-height: 1.5; 
+	margin: 1em 0;
+}
