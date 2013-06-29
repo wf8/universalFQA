@@ -1,3 +1,17 @@
+<?php
+session_start(); 
+require('fqa_config.php');
+if( !$_SESSION['valid'] ) {
+	header( "Location: login.php" );
+	exit;
+} 
+$connection = mysql_connect($db_server, $db_username, $db_password);
+if (!$connection) 
+	die('Not connected : ' . mysql_error());
+$db_selected = mysql_select_db($db_database, $connection);
+if (!$db_selected) 
+	die ('Database error: ' . mysql_error());
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,9 +33,19 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
     	<div class="navbar-inner">
         	<div class="container">
+          		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+          		</button>
           		<a class="brand" href="../index.html">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
-            		<ul class="nav">
+            		<ul class="nav pull-right">
+            			<li><a href="assessments.php">Assessments</a></li>
+            			<li><a href="databases.php">FQA Databases</a></li>
+            			<li><a href="account.php">Account Info</a></li>
+            			<li><a href="../help.html">Help</a></li>
+              			<li><a href="logout.php">Logout</a></li>
             		</ul>
           		</div>
         	</div>
@@ -31,39 +55,28 @@
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
-				<div class="span2">
+				<div class="span1">
 					<img src="../images/blue-eyed.jpg" class="img-rounded">
 					<br><br>
 				</div>
-				<div class="span10">
+				<div class="span11">
 					<br>
-					<h1>Welcome to the Universal FQA Calculator</h1>
-					<p class="nice-text">To save site inventory and transect FQA studies, or to upload and share regional FQA databases you will need to login to your account.</p>
+					<h1>Account Info</h1>
 				</div>
 			</div>
 			<div class="row-fluid">
-				<div class="span6">
-					<h2>Already have an account?</h2>
-					<label class="small-text" for="log">Email:</label>
-					<input class="field" type="text" name="log" id="login_email" value="" size="23" />
-					<label class="small-text" for="pwd">Password:</label>
-					<input class="field" type="password" name="pwd" id="login_password" size="23" />
-					<br><br><button class="btn btn-info" onClick="login();">Log In</button><br><br>
-					<a class="lost-pwd" href="#">Lost your password?</a><br><br>
-				</div>
-				<div class="span6">
-					<h2>Create new account:</h2>
+				<div class="span12">
 					<label class="small-text" for="signup">First name:</label>
-					<input class="field" type="text" name="signup" id="register_first_name" value="" size="23" />
+					<input class="field" type="text" name="signup" id="change_first_name" value="<?php echo $_SESSION['first_name']; ?>" size="23" />
 					<label class="small-text" for="signup">Last name:</label>
-					<input class="field" type="text" name="signup" id="register_last_name" value="" size="23" />
+					<input class="field" type="text" name="signup" id="change_last_name" value="<?php echo $_SESSION['last_name']; ?>" size="23" />
 					<label class="small-text" for="email">Email:</label>
-					<input class="field" type="text" name="email" id="register_email" size="23" />
+					<input class="field" type="text" name="email" id="change_email" value="<?php echo $_SESSION['email']; ?>"size="23" />
 					<label class="small-text" for="pwd">Password:</label>
-					<input class="field" type="password" name="pwd" id="register_password1" size="23" />
+					<input class="field" type="password" name="pwd" id="change_password1" value="" size="23" />
 					<label class="small-text" for="pwd">Password (again):</label>
-					<input class="field" type="password" name="pwd" id="register_password2" size="23" /><br><br>
-					<button class="btn btn-info" onClick="register();">Register</button> 
+					<input class="field" type="password" name="pwd" id="change_password2" value="" size="23" /><br><br>
+					<button class="btn btn-info" onClick="save_account_changes();">Save Changes</button> 
 				</div>
 			</div>
 			<br><br>

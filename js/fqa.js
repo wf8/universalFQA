@@ -1,6 +1,6 @@
 /**
  * ---------------------------------------------------------
- * login/logout/register functions
+ * login/logout/register/change account functions
  *
  * ---------------------------------------------------------
  */
@@ -67,6 +67,35 @@ function clear_login_forms() {
 	document.getElementById("login_email").value = "";
 	document.getElementById("login_password").value = "";
 }
+
+function save_account_changes() {
+	//setup new AJAX request 
+	var ajaxRequest  = new XMLHttpRequest();
+	// prepare POST parameters
+	var email = document.getElementById("change_email").value;
+	var last_name = document.getElementById("change_last_name").value;
+	var first_name = document.getElementById("change_first_name").value;
+	var password1 = document.getElementById("change_password1").value;
+	var password2 = document.getElementById("change_password2").value;
+	var params = "email=" + email + "&password1=" + password1 + "&password2=" + password2 + "&last_name=" + last_name + "&first_name=" + first_name;
+	// send the new request 
+	var url = "../php/change_user_info.php";
+	ajaxRequest.onreadystatechange=function() {
+		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
+			var response = ajaxRequest.responseText;
+			if (response.indexOf("success") != -1) {
+				alert("Changes saved!");
+			} else {
+				alert(response);
+			}
+		}
+	}			
+	ajaxRequest.open("POST", url, true);				
+	// Send the proper header information along with the request 
+	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajaxRequest.send(params);
+}
+
 /**
  * ---------------------------------------------------------
  * upload/download FQA databases functions

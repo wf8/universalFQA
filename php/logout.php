@@ -52,7 +52,7 @@ session_destroy();
 					<input class="field" type="text" name="log" id="login_email" value="" size="23" />
 					<label class="small-text" for="pwd">Password:</label>
 					<input class="field" type="password" name="pwd" id="login_password" size="23" />
-					<br><br><button class="btn" onClick="login();">Log In</button><br><br>
+					<br><br><button class="btn btn-info" onClick="login();">Log In</button><br><br>
 				</div>
 			</div>
 			<br><br><br><br>

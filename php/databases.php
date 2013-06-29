@@ -12,7 +12,6 @@ $db_selected = mysql_select_db($db_database, $connection);
 if (!$db_selected) 
 	die ('Database error: ' . mysql_error());
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -62,35 +61,22 @@ if (!$db_selected)
 				</div>
 				<div class="span11">
 					<br>
-					<h1>Assessments</h1>
-					Make a new: <a href="new_inventory.php">inventory assessment</a> / 
-					<a href="new_transect.php">transect assessment</a>
+					<h1>FQA Databases</h1>
+					<a href="new_database.php">Upload a new FQA database</a>
 				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
-					<h2>Your Inventories</h2>
+					<h2>Databases</h2>
 						<table class="table table-hover">
 							<tr>
-								<td>You have not made any inventory assessments.</td>
+								<td>There are no FQA databases available.</td>
 							</tr>
 						</table>
-					<h2>Your Transects</h2>
+					<h2>Your Custom Databases</h2>
 						<table class="table table-hover">
 							<tr>
-								<td>You have not made any transect assessments.</td>
-							</tr>
-						</table>
-					<h2>Public Inventories</h2>
-						<table class="table table-hover">
-							<tr>
-								<td>There are no public inventory assessments available.</td>
-							</tr>
-						</table>
-					<h2>Public Transects</h2>
-						<table class="table table-hover">
-							<tr>
-								<td>There are no public transect assessments available.</td>
+								<td>You have not made any custom FQA databases.</td>
 							</tr>
 						</table>
 				</div>
