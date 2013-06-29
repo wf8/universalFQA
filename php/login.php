@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Universal Floristic Quality Assessment Calculator</title>
+    <title>Universal FQA Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -38,7 +38,7 @@
 				<div class="span10">
 					<br>
 					<h1>Welcome to the Universal FQA Calculator</h1>
-					<p class="nice-text">To save site inventory and transect FQA studies, or to upload and share regional FQA databases you will need to login to your account.</p>
+					<p class="nice-text">To save site inventory and transect FQA studies, or to upload and share regional FQA databases you will need to create a free account.</p>
 				</div>
 			</div>
 			<div class="row-fluid">
