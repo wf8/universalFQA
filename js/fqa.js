@@ -16,17 +16,12 @@ function register() {
 	
 	var params = "email=" + email + "&password1=" + password1 + "&password2=" + password2 + "&last_name=" + last_name + "&first_name=" + first_name;
 	// send the new request 
-	var url = "php/register.php";
+	var url = "../php/register_user.php";
 	ajaxRequest.onreadystatechange=function() {
 		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
 			var response = ajaxRequest.responseText;
 			if (response.indexOf("success") != -1) {
-
-				$("#toggle a").toggle();
-				$("div#panel").slideUp("slow");
-				clear_login_forms();
-				document.getElementById("toggle").innerHTML = '<a id="log_out" onClick="logout();" href="#">Log Out</a>';
-
+				window.location='../php/assessments.php';
 			} else {
 				alert(response);
 			}
@@ -38,42 +33,6 @@ function register() {
 	ajaxRequest.send(params);
 }
 
-function logout() {
-	//setup new AJAX request 
-	var ajaxRequest  = new XMLHttpRequest();
-	var params = "";
-	var url = "php/logout.php";	
-	ajaxRequest.onreadystatechange=function() {
-		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
-			var response = ajaxRequest.responseText;
-			if (response == "success logout") {				
-				document.getElementById("toggle").innerHTML = '<a id="open" class="open" href="#">Log In | Register</a><a id="close" style="display: none;" class="close" href="#">Close Panel</a>';
-
-				$("#open").click(function(){
-					$("div#panel").slideDown("slow");
-				});	
-
-				$("#close").click(function(){
-					$("div#panel").slideUp("slow");	
-				});		
-	
-	
-				
-				$("#toggle a").click(function () {
-
-					$("#toggle a").toggle();
-	
-				});	
-			}
-		}
-	}		
-	ajaxRequest.open("POST", url, true);				
-	// Send the proper header information along with the request 
-	ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	// send the new request 
-	ajaxRequest.send(params);
-}
-
 function login() {
 	//setup new AJAX request 
 	var ajaxRequest  = new XMLHttpRequest();
@@ -82,17 +41,12 @@ function login() {
 	var login_password = document.getElementById("login_password").value;
 	var params = "email=" + email + "&password=" + login_password;
 	// send the new request 
-	var url = "php/login.php";
+	var url = "../php/login_user.php";
 	ajaxRequest.onreadystatechange=function() {
 		if (ajaxRequest.readyState==4 && ajaxRequest.status==200) {
 			var response = ajaxRequest.responseText;
 			if (response.indexOf("success") != -1) {
-
-				$("#toggle a").toggle();
-				$("div#panel").slideUp("slow");
-				clear_login_forms();
-				document.getElementById("toggle").innerHTML = '<a id="log_out" onClick="logout();" href="#">Log Out</a>';
-
+				window.location='../php/assessments.php';
 			} else {
 				alert(response);
 			}

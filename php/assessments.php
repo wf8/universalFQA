@@ -1,10 +1,12 @@
 <?php
 session_start(); 
 require('fqa_config.php');
-
-//destroy all of the session variables
-$_SESSION = array(); 
-session_destroy();
+$connection = mysql_connect($db_server, $db_username, $db_password);
+if (!$connection) 
+	die('Not connected : ' . mysql_error());
+$db_selected = mysql_select_db($db_database, $connection);
+if (!$db_selected) 
+	die ('Database error: ' . mysql_error());
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +30,19 @@ session_destroy();
     <div class="navbar navbar-inverse navbar-fixed-top">
     	<div class="navbar-inner">
         	<div class="container">
-          		<a class="brand" href="../index.html">Universal FQA</a>
+          		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+          		</button>
+          		<a class="brand" href="index.html">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
-            		<ul class="nav">
+            		<ul class="nav pull-right">
+            			<li><a href="assessments.php">Assessments</a></li>
+            			<li><a href="databases.php">FQA Databases</a></li>
+            			<li><a href="account.php">Account Info</a></li>
+            			<li><a href="../help.html">Help</a></li>
+              			<li><a href="logout.php">Logout</a></li>
             		</ul>
           		</div>
         	</div>
@@ -40,22 +52,21 @@ session_destroy();
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
-				<div class="span3">
+				<div class="span2">
 					<img src="../images/blue-eyed.jpg" class="img-rounded">
 					<br><br>
 				</div>
-				<div class="span9">
+				<div class="span10">
 					<br>
-					<p class="nice-text">You are now logged out. Thanks for using the Universal FQA Calculator!</p>
-					<h2>Log back in:</h2>
-					<label class="small-text" for="log">Email:</label>
-					<input class="field" type="text" name="log" id="login_email" value="" size="23" />
-					<label class="small-text" for="pwd">Password:</label>
-					<input class="field" type="password" name="pwd" id="login_password" size="23" />
-					<br><br><button class="btn" onClick="login();">Log In</button><br><br>
+					<h1>Assessments</h1>
 				</div>
 			</div>
-			<br><br><br><br>
+			<div class="row-fluid">
+				<div class="span12">
+
+				</div>
+			</div>
+			<br><br>
 		</div>
 		<footer class="footer">
 			<div class="container">

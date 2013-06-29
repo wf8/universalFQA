@@ -68,7 +68,7 @@ else
 		  	else {
 		  		// now login the user
 				// first get the new user id
-				$query = "SELECT id FROM user WHERE email = '$email'";
+				$query = "SELECT * FROM user WHERE email = '$email'";
 				$result = mysql_query($query);
 				$userData = mysql_fetch_assoc($result);
 				// set the session variables
@@ -78,10 +78,10 @@ else
 		    	$_SESSION['valid'] = 1;
 		    	$_SESSION['email'] = $email;
 		    	$_SESSION['user_id'] = $userData['id'];
-		    //	$_SESSION['admin'] = $userData['admin'];
+		    	$_SESSION['admin'] = $userData['admin'];
+		    	$_SESSION['editor'] = $userData['editor'];
 		    	$_SESSION['first_name'] = $first_name;
 		    	$_SESSION['last_name'] = $last_name;
-		  			
 				echo "success";
 		  	}
   		}

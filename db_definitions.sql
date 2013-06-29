@@ -75,7 +75,7 @@ CREATE TABLE `inventory` (
  `fqa_id` INT NOT NULL,
  `site_id` INT NOT NULL,
  `date` DATE NOT NULL,
- `private` BOOLEAN NOT NULL,
+ `private` BOOLEAN NOT NULL DEFAULT 0,
  `practitioner` TEXT NOT NULL,
  `latitude` VARCHAR(256) NULL,
  `longitude` VARCHAR(256) NULL,
@@ -103,7 +103,7 @@ CREATE TABLE `transect` (
  `fqa_id` INT NOT NULL,
  `site_id` INT NOT NULL,
  `date` DATE NOT NULL,
- `private` BOOLEAN NOT NULL,
+ `private` BOOLEAN NOT NULL DEFAULT 0,
  `practitioner` TEXT NOT NULL,
  `latitude` VARCHAR(256) NULL,
  `longitude` VARCHAR(256) NULL,
@@ -143,7 +143,7 @@ CREATE TABLE `user` (
  `last_name` TEXT NULL ,
  `password` VARCHAR(64) NOT NULL,
  `salt` VARCHAR(3) NOT NULL,
- `editor` BOOLEAN NOT NULL,
- `admin` BOOLEAN NOT NULL,
+ `editor` BOOLEAN NOT NULL DEFAULT 0,
+ `admin` BOOLEAN NOT NULL DEFAULT 0,
 PRIMARY KEY (  `id` )
 );
