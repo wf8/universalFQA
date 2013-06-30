@@ -69,25 +69,25 @@ if (!$db_selected)
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
-					<h2>Your Inventories</h2>
+					<h2>Your Inventory Assessments</h2>
 						<table class="table table-hover">
 							<tr>
 								<td>You have not made any inventory assessments.</td>
 							</tr>
 						</table>
-					<h2>Your Transects</h2>
+					<h2>Your Transect Assessments</h2>
 						<table class="table table-hover">
 							<tr>
 								<td>You have not made any transect assessments.</td>
 							</tr>
 						</table>
-					<h2>Public Inventories</h2>
+					<h2>Public Inventory Assessments</h2>
 						<table class="table table-hover">
 							<tr>
 								<td>There are no public inventory assessments available.</td>
 							</tr>
 						</table>
-					<h2>Public Transects</h2>
+					<h2>Public Transect Assessments</h2>
 						<table class="table table-hover">
 							<tr>
 								<td>There are no public transect assessments available.</td>

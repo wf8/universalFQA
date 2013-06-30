@@ -62,21 +62,21 @@ if (!$db_selected)
 				<div class="span11">
 					<br>
 					<h1>FQA Databases</h1>
-					<a href="new_database.php">Upload a new FQA database</a>
+					<a href="new_database.php">Upload a new public FQA database</a>
 				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
-					<h2>Databases</h2>
+					<h2>Public Databases</h2>
 						<table class="table table-hover">
 							<tr>
 								<td>There are no FQA databases available.</td>
 							</tr>
 						</table>
-					<h2>Your Custom Databases</h2>
+					<h2>Your Customized Databases</h2>
 						<table class="table table-hover">
 							<tr>
-								<td>You have not made any custom FQA databases.</td>
+								<td>You have not made any customized FQA databases.</td>
 							</tr>
 						</table>
 				</div>
