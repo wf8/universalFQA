@@ -80,13 +80,13 @@ if (!$db_selected)
 					<button class="btn btn-info" onClick="save_account_changes();">Save Changes</button> 
 				</div>
 			</div>
-			<br><br>
 		</div>
-		<footer class="footer">
-			<div class="container">
-        		<p><a href="http://universalFQA.org">universalFQA.org</a> | <a href="../about.html">About this site</a></p>
-      		</div>
-      	</footer>
     </div> 
+    <br><br>
+	<footer class="footer">
+		<div class="container">
+			<p><a href="http://universalFQA.org">universalFQA.org</a> | <a href="../about.html">About this site</a></p>
+		</div>
+	</footer>
   </body>
 </html>

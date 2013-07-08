@@ -12,7 +12,6 @@ $db_selected = mysql_select_db($db_database, $connection);
 if (!$db_selected) 
 	die ('Database error: ' . mysql_error());
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -97,13 +96,13 @@ if (!$db_selected)
 					</table>
 				</div>
 			</div>
-			<br><br>
 		</div>
-		<footer class="footer">
-			<div class="container">
-        		<p><a href="http://universalFQA.org">universalFQA.org</a> | <a href="../about.html">About this site</a></p>
-      		</div>
-      	</footer>
     </div> 
+    <br><br>
+	<footer class="footer">
+		<div class="container">
+			<p><a href="http://universalFQA.org">universalFQA.org</a> | <a href="../about.html">About this site</a></p>
+		</div>
+	</footer>
   </body>
 </html>
