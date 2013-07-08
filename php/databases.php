@@ -24,6 +24,7 @@ if (!$db_selected)
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="../css/fqa.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     
     <script src="../js/jquery-1.9.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
@@ -68,17 +69,17 @@ if (!$db_selected)
 			<div class="row-fluid">
 				<div class="span12">
 					<h2>Public Databases</h2>
-						<table class="table table-hover">
-							<tr>
-								<td>There are no FQA databases available.</td>
-							</tr>
-						</table>
+					<table class="table table-hover">
+						<tr>
+							<td>There are no FQA databases available.</td>
+						</tr>
+					</table>
 					<h2>Your Customized Databases</h2>
-						<table class="table table-hover">
-							<tr>
-								<td>You have not made any customized FQA databases.</td>
-							</tr>
-						</table>
+					<table class="table table-hover">
+						<tr>
+							<td>You have not made any customized FQA databases.</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<br><br>

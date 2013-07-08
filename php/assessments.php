@@ -25,6 +25,8 @@ if (!$db_selected)
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="../css/fqa.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
     
     <script src="../js/jquery-1.9.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
@@ -70,29 +72,29 @@ if (!$db_selected)
 			<div class="row-fluid">
 				<div class="span12">
 					<h2>Your Inventory Assessments</h2>
-						<table class="table table-hover">
-							<tr>
-								<td>You have not made any inventory assessments.</td>
-							</tr>
-						</table>
+					<table class="table table-hover">
+						<tr>
+							<td>You have not made any inventory assessments.</td>
+						</tr>
+					</table>
 					<h2>Your Transect Assessments</h2>
-						<table class="table table-hover">
-							<tr>
-								<td>You have not made any transect assessments.</td>
-							</tr>
-						</table>
+					<table class="table table-hover">
+						<tr>
+							<td>You have not made any transect assessments.</td>
+						</tr>
+					</table>
 					<h2>Public Inventory Assessments</h2>
-						<table class="table table-hover">
-							<tr>
-								<td>There are no public inventory assessments available.</td>
-							</tr>
-						</table>
+					<table class="table table-hover">
+						<tr>
+							<td>There are no public inventory assessments available.</td>
+						</tr>
+					</table>
 					<h2>Public Transect Assessments</h2>
-						<table class="table table-hover">
-							<tr>
-								<td>There are no public transect assessments available.</td>
-							</tr>
-						</table>
+					<table class="table table-hover">
+						<tr>
+							<td>There are no public transect assessments available.</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<br><br>
