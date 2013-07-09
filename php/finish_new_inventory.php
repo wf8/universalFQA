@@ -64,7 +64,7 @@ if (!$db_selected)
 					<br>
 					<h1>New Inventory Assessment</h1>
 					<button class="btn btn-info" onclick="javascript:window.location = 'view_inventory.php';return false;">Save</button> 
-					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
+					<button class="btn btn-info" onclick="javascript:window.location = 'assessments.php';return false;">Cancel</button><br>
 				</div>
 			</div>
 			<br>
