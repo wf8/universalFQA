@@ -49,10 +49,10 @@ session_destroy();
 					<br>
 					<p class="nice-text">You are now logged out. Thanks for using the Universal FQA Calculator!</p>
 					<h2>Log back in:</h2>
-					<label class="small-text" for="log">Email:</label>
-					<input class="field" type="text" name="log" id="login_email" value="" size="23" />
-					<label class="small-text" for="pwd">Password:</label>
-					<input class="field" type="password" name="pwd" id="login_password" size="23" />
+					<label class="small-text">Email:</label>
+					<input class="field" type="email" placeholder="hello@something.com" id="login_email" value="" size="23" />
+					<label class="small-text">Password:</label>
+					<input class="field" type="password" id="login_password" size="23" />
 					<br><br><button class="btn btn-info" onClick="login();">Log In</button><br><br>
 				</div>
 			</div>

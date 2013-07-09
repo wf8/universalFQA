@@ -24,8 +24,7 @@ if (!$db_selected)
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="../css/fqa.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>    
     
     <script src="../js/jquery-1.9.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
@@ -63,41 +62,22 @@ if (!$db_selected)
 				</div>
 				<div class="span11">
 					<br>
-					<h1>Your Assessments</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'new_inventory.php';return false;">New Inventory</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'new_transect.php';return false;">New Transect</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'new_transect.php';return false;">Download Summary</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'public_assessments.php';return false;">View All Public Assessments</button>
+					<h1>Site: Somme Prairie Grove</h1>
+					<button class="btn btn-info" onclick="javascript:window.location = 'edit_site.php';return false;">Edit Site</button>
+					<button class="btn btn-info" onClick="asdf_changes();">Download Site Assessments Summary</button> 
+					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Done</button>
 				</div>
 			</div>
-			<div class="row-fluid">
-				<div class="span12">
-					<h2>Your Inventory Assessments</h2>
-					<table class="table table-hover">
-						<tr>
-							<!-- <td>You have not made any inventory assessments.</td> -->
-							<td><a href="view_inventory.php?assessment=1">Coyote Hill 1</a></td>
-							<td>7/23/2010</td>
-							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
-							<td>Private</td>
-						</tr>
-						<tr>
-							<td><a href="view_inventory.php?assessment=1">Coyote Hill 2</a></td>
-							<td>6/9/2013</td>
-							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
-							<td>Public</td>
-						</tr>
-					</table>
-					<h2>Your Transect Assessments</h2>
-					<table class="table table-hover">
-						<tr>
-							<!-- <td>You have not made any transect assessments.</td> -->
-							<td><a href="view_transect.php?assessment=1">Pothole Pond</a></td>
-							<td>6/8/2013</td>
-							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
-							<td>Private</td>
-						</tr>
-					</table>
+			<br><br>
+			<div class="row-fluid">	
+				<div class="span4">	
+					Northbrook<br>
+					Cook, Illinois, USA<br>
+					<br><br>
+				</div>
+				<div class="span8">
+					Location:<br>
+					Notes:<br>
 				</div>
 			</div>
 		</div>

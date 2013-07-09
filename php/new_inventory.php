@@ -26,7 +26,6 @@ if (!$db_selected)
     <link href="../css/fqa.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-    
     <script src="../js/jquery-1.9.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/fqa.js"></script>
@@ -63,41 +62,18 @@ if (!$db_selected)
 				</div>
 				<div class="span11">
 					<br>
-					<h1>Your Assessments</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'new_inventory.php';return false;">New Inventory</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'new_transect.php';return false;">New Transect</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'new_transect.php';return false;">Download Summary</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'public_assessments.php';return false;">View All Public Assessments</button>
+					<h1>New Inventory Assessment</h1>
 				</div>
 			</div>
+			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<h2>Your Inventory Assessments</h2>
-					<table class="table table-hover">
-						<tr>
-							<!-- <td>You have not made any inventory assessments.</td> -->
-							<td><a href="view_inventory.php?assessment=1">Coyote Hill 1</a></td>
-							<td>7/23/2010</td>
-							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
-							<td>Private</td>
-						</tr>
-						<tr>
-							<td><a href="view_inventory.php?assessment=1">Coyote Hill 2</a></td>
-							<td>6/9/2013</td>
-							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
-							<td>Public</td>
-						</tr>
-					</table>
-					<h2>Your Transect Assessments</h2>
-					<table class="table table-hover">
-						<tr>
-							<!-- <td>You have not made any transect assessments.</td> -->
-							<td><a href="view_transect.php?assessment=1">Pothole Pond</a></td>
-							<td>6/8/2013</td>
-							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
-							<td>Private</td>
-						</tr>
-					</table>
+					<h3>Select the FQA database:</h3>
+					<select>
+  						<option selected>Chicago, 1994</option>
+					</select><br>
+					<button class="btn btn-info" onclick="javascript:window.location = 'finish_new_inventory.php';return false;">OK</button>
+					<button class="btn btn-info" onclick="javascript:window.location = 'assessments.php';return false;">Cancel</button>
 				</div>
 			</div>
 		</div>

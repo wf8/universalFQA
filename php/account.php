@@ -67,17 +67,19 @@ if (!$db_selected)
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
-					<label class="small-text" for="signup">First name:</label>
-					<input class="field" type="text" name="signup" id="change_first_name" value="<?php echo $_SESSION['first_name']; ?>" size="23" />
-					<label class="small-text" for="signup">Last name:</label>
-					<input class="field" type="text" name="signup" id="change_last_name" value="<?php echo $_SESSION['last_name']; ?>" size="23" />
-					<label class="small-text" for="email">Email:</label>
-					<input class="field" type="text" name="email" id="change_email" value="<?php echo $_SESSION['email']; ?>"size="23" />
-					<label class="small-text" for="pwd">Password:</label>
-					<input class="field" type="password" name="pwd" id="change_password1" value="" size="23" />
-					<label class="small-text" for="pwd">Password (again):</label>
-					<input class="field" type="password" name="pwd" id="change_password2" value="" size="23" /><br><br>
+					<label class="small-text">First name: <font class="red">*</font></label>
+					<input class="field" type="text" id="change_first_name" value="<?php echo $_SESSION['first_name']; ?>" size="23" required />
+					<label class="small-text">Last name: <font class="red">*</font></label>
+					<input class="field" type="text" id="change_last_name" value="<?php echo $_SESSION['last_name']; ?>" size="23" required />
+					<label class="small-text">Email: <font class="red">*</font></label>
+					<input class="field" type="email" id="change_email" value="<?php echo $_SESSION['email']; ?>"size="23" required />
+					<label class="small-text">Password: <font class="red">*</font></label>
+					<input class="field" type="password" id="change_password1" value="" size="23" required />
+					<label class="small-text">Password (again): <font class="red">*</font></label>
+					<input class="field" type="password" id="change_password2" value="" size="23" required /><br><br>
 					<button class="btn btn-info" onClick="save_account_changes();">Save Changes</button> 
+					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Done</button><br>
+					<font class="red">* required</font>
 				</div>
 			</div>
 		</div>

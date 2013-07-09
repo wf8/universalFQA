@@ -21,3 +21,17 @@ body {
 	line-height: 0.1; 
 	margin: 1em 0;
 }
+
+.red {
+	color: red;
+}
+
+/*
+#site_location {
+	height:75px;
+}
+
+#site_notes {
+	height:75px;
+}
+*/
