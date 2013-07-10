@@ -197,16 +197,16 @@ if (!$db_selected)
 					<table class="table table-hover">
 <tr>
 <td></td>
-<td><b>Scientific Name</b></td>
-<!-- <td><b>Family</b></td> -->
-<td><b>Acronym</b></td>
-<td><b>Native?</b></td>
-<td><b>C</b></td>
-<td><b>W</b></td>
-<td><b>Wetland Status</b></td>
-<td><b>Physiognomy</b></td>
-<td><b>Duration</b></td>
-<td><b>Common Name</b></td>
+<td><strong>Scientific Name</strong></td>
+<!-- <td><strong>Family</strong></td> -->
+<td><strong>Acronym</strong></td>
+<td><strong>Native?</strong></td>
+<td><strong>C</strong></td>
+<td><strong>W</strong></td>
+<td><strong>Wetland Status</strong></td>
+<td><strong>Physiognomy</strong></td>
+<td><strong>Duration</strong></td>
+<td><strong>Common Name</strong></td>
 </tr>                    
 <tr>
 <td colspan=10>You have not entered any species yet.</td>

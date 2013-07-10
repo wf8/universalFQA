@@ -79,12 +79,14 @@ if (!$db_selected)
 							<td><a href="view_inventory.php?assessment=1">Coyote Hill 1</a></td>
 							<td>7/23/2010</td>
 							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
+							<td>Native FQI: 45.5</td>
 							<td>Private</td>
 						</tr>
 						<tr>
 							<td><a href="view_inventory.php?assessment=1">Coyote Hill 2</a></td>
 							<td>6/9/2013</td>
 							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
+							<td>Native FQI: 51.5</td>
 							<td>Public</td>
 						</tr>
 					</table>
@@ -95,6 +97,7 @@ if (!$db_selected)
 							<td><a href="view_transect.php?assessment=1">Pothole Pond</a></td>
 							<td>6/8/2013</td>
 							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
+							<td>Native FQI: 40.0</td>
 							<td>Private</td>
 						</tr>
 					</table>

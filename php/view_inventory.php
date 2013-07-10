@@ -78,14 +78,14 @@ if (!$db_selected)
 			<div class="row-fluid">
 				<div class="span6">
 					<p>
-					<b>&#187; Date & Location:</b><br>
+					<h4>&#187; Date & Location:</h4>
 					7/23/2010<br>
 					Somme Prairie Grove<br>
 					Northbrook<br>
 					Cook, Illinois, USA<br>					
 				</div>	
 				<div class="span6">
-					<b>&#187; FQA Database:</b><br>
+					<h4>&#187; FQA Database:</h4>
 					Region: Chicago<br>
 					Year Published: 1994<br>
 					Description: Swink and Wilhelm
@@ -95,7 +95,7 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<b>&#187; Details:</b><br>				
+					<h4>&#187; Details:</h4>			
 					Practitioner: Stephen and crew<br>
  					Latitude:<br>
  					Longitude:<br>
@@ -110,33 +110,33 @@ if (!$db_selected)
 			<div class="row-fluid">
 				<div class="span6">
 					<p>
-					<b>&#187; Floristic Quality Data:</b><br>
-					Total Species: <b>44</b><br>
-					Native Species: <b>37 (84.1%)</b><br>
-					Non-native Species: <b>7 (15.9%)</b><br>
-					Total Mean C: <b>4.5</b><br>
-					Native Mean C: <b>5.5</b><br>
-					Total FQI: <b>30.5</b><br>
-					Native FQI: <b>45.5</b><br>
-					Mean W: <b>-2</b><br>
-					Mean Wetland Status: <b>Facultative Wetland- (FACW-)</b></p>
+					<h4>&#187; Floristic Quality Data:</h4>
+					Total Species: <strong>44</strong><br>
+					Native Species: <strong>37 (84.1%)</strong><br>
+					Non-native Species: <strong>7 (15.9%)</strong><br>
+					Total Mean C: <strong>4.5</strong><br>
+					Native Mean C: <strong>5.5</strong><br>
+					Total FQI: <strong>30.5</strong><br>
+					Native FQI: <strong>45.5</strong><br>
+					Mean W: <strong>-2</strong><br>
+					Mean Wetland Status: <strong>Facultative Wetland- (FACW-)</strong></p>
 				</div>
 				<div class="span3">
-					<b>&#187; Physiognomy Data:</b><br>
-					Tree: <b>0 (0.0%)   </b><br>
-					Shrub: <b>1     (2.3%) </b><br>    
-					Vine: <b>1     (2.3%)  </b><br>
-					Forb: <b>22    (50.0%)      </b><br>
-					Grass: <b>6    (13.6%) </b><br>
-					Sedge: <b>7    (15.9%) </b><br>
-					Fern: <b>0     (0.0%) </b><br>
-					Other: <b>0     (0.0%)      </b><br>  
+					<h4>&#187; Physiognomy Data:</h4>
+					Tree: <strong>0 (0.0%)   </strong><br>
+					Shrub: <strong>1     (2.3%) </strong><br>    
+					Vine: <strong>1     (2.3%)  </strong><br>
+					Forb: <strong>22    (50.0%)      </strong><br>
+					Grass: <strong>6    (13.6%) </strong><br>
+					Sedge: <strong>7    (15.9%) </strong><br>
+					Fern: <strong>0     (0.0%) </strong><br>
+					Other: <strong>0     (0.0%)      </strong><br>  
 				</div>
 				<div class="span3">
-					<b>&#187; Duration Data:</b><br>
-					Annual: <b>22 (50.0%)</b><br>
-					Perennial: <b>22 (50.0%)</b><br>
-					Biennial: <b>0 (0.0%)</b><br>			
+					<h4>&#187; Duration Data:</h4>
+					Annual: <strong>22 (50.0%)</strong><br>
+					Perennial: <strong>22 (50.0%)</strong><br>
+					Biennial: <strong>0 (0.0%)</strong><br>			
 				</div>	
 			</div>
 			<br>
@@ -144,16 +144,16 @@ if (!$db_selected)
 				<div class="span12">	
 					<table class="table table-hover">
 <tr>
-<td><b>Scientific Name</b></td>
-<!-- <td><b>Family</b></td> -->
-<td><b>Acronym</b></td>
-<td><b>Native?</b></td>
-<td><b>C</b></td>
-<td><b>W</b></td>
-<td><b>Wetland Status</b></td>
-<td><b>Physiognomy</b></td>
-<td><b>Duration</b></td>
-<td><b>Common Name</b></td>
+<td><strong>Scientific Name</strong></td>
+<!-- <td><strong>Family</strong></td> -->
+<td><strong>Acronym</strong></td>
+<td><strong>Native?</strong></td>
+<td><strong>C</strong></td>
+<td><strong>W</strong></td>
+<td><strong>Wetland Status</strong></td>
+<td><strong>Physiognomy</strong></td>
+<td><strong>Duration</strong></td>
+<td><strong>Common Name</strong></td>
 </tr>                    
 <tr>
 <td>Acorus calamus</td>

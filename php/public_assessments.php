@@ -77,6 +77,7 @@ if (!$db_selected)
 							<td><a href="view_public_inventory.php?assessment=1">Coyote Hill 2</a></td>
 							<td>6/9/2013</td>
 							<td>Somme Prairie Grove</td>
+							<td>Native FQI: 51.5</td>
 							<td>Will Freyman</td>							
 						</tr>
 					</table>
