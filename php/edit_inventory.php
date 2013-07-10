@@ -63,7 +63,7 @@ if (!$db_selected)
 				<div class="span11">
 					<br>
 					<h1>Edit Inventory Assessment</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'view_inventory.php';return false;">Save Changes</button> 
+					<button class="btn btn-info" onclick="javascript:window.location = 'view_inventory.php';return false;">Save Changes and View Results</button> 
 					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
 				</div>
 			</div>
@@ -195,7 +195,7 @@ if (!$db_selected)
 <td><strong>Scientific Name</strong></td>
 <!-- <td><strong>Family</strong></td> -->
 <td><strong>Acronym</strong></td>
-<td><strong>Native?</strong></td>
+<td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
 <td><strong>W</strong></td>
 <td><strong>Wetland Status</strong></td>
@@ -207,7 +207,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -219,7 +219,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -231,7 +231,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -243,7 +243,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -255,7 +255,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -267,7 +267,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -279,7 +279,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -291,7 +291,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -303,7 +303,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -315,7 +315,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -327,7 +327,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -339,7 +339,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -351,7 +351,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -363,7 +363,7 @@ if (!$db_selected)
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -375,9 +375,17 @@ if (!$db_selected)
 <button class="btn btn-info" onclick="javascript:window.location = 'view_site.php';return false;">Remove Selected Species</button>
 				</div>
 			</div>
+			<br><br>
+			<div class="row-fluid">
+				<div class="span12">				
+					<h4>Finished making changes?</h4>
+					<button class="btn btn-info" onclick="javascript:window.location = 'view_inventory.php';return false;">Save Changes and View Results</button> 
+					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
+				</div>
+			</div>
 		</div>
     </div> 
-    <br><br>
+    					    <br><br>
 	<footer class="footer">
 		<div class="container">
 			<p><a href="http://universalFQA.org">universalFQA.org</a> | <a href="../about.html">About this site</a></p>

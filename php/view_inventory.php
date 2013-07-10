@@ -108,21 +108,31 @@ if (!$db_selected)
  			</div>
 			<br>
 			<div class="row-fluid">
-				<div class="span6">
+				<div class="span3">
 					<p>
-					<h4>&#187; Floristic Quality Data:</h4>
+					<h4>&#187; Conservatism-Based Metrics:</h4>
+					Total Mean C: <strong>4.5</strong><br>
+					Native Mean C: <strong>5.5</strong><br>
+					Native Tree Mean C: <strong>5.5</strong><br>
+					Native Shrub Mean C: <strong>5.5</strong><br>
+					Native Herbaceous Mean C: <strong>5.5</strong><br>
+					Total FQI: <strong>30.5</strong><br>
+					Native FQI: <strong>45.5</strong><br>
+					Adjusted FQI: <strong>45.5</strong><br>
+					% C value 0-3:  <strong>0%</strong><br>
+					% C value 4-6:  <strong>0%</strong><br>
+					% C value 7-10:  <strong>0%</strong><br>
+				</div>
+				<div class="span3">	
+					<h4>&#187; Species Richness and Wetness:</h4>
 					Total Species: <strong>44</strong><br>
 					Native Species: <strong>37 (84.1%)</strong><br>
 					Non-native Species: <strong>7 (15.9%)</strong><br>
-					Total Mean C: <strong>4.5</strong><br>
-					Native Mean C: <strong>5.5</strong><br>
-					Total FQI: <strong>30.5</strong><br>
-					Native FQI: <strong>45.5</strong><br>
-					Mean W: <strong>-2</strong><br>
-					Mean Wetland Status: <strong>Facultative Wetland- (FACW-)</strong></p>
+					Mean Wetness: <strong>-2</strong><br>
+					Native Mean Wetness: <strong>-2</strong><br>
 				</div>
 				<div class="span3">
-					<h4>&#187; Physiognomy Data:</h4>
+					<h4>&#187; Physiognomy Metrics:</h4>
 					Tree: <strong>0 (0.0%)   </strong><br>
 					Shrub: <strong>1     (2.3%) </strong><br>    
 					Vine: <strong>1     (2.3%)  </strong><br>
@@ -133,10 +143,14 @@ if (!$db_selected)
 					Other: <strong>0     (0.0%)      </strong><br>  
 				</div>
 				<div class="span3">
-					<h4>&#187; Duration Data:</h4>
+					<h4>&#187; Duration Metrics:</h4>
 					Annual: <strong>22 (50.0%)</strong><br>
 					Perennial: <strong>22 (50.0%)</strong><br>
-					Biennial: <strong>0 (0.0%)</strong><br>			
+					Biennial: <strong>0 (0.0%)</strong><br>
+					<br>	
+					Native Annual: <strong>22 (50.0%)</strong><br>
+					Native Perennial: <strong>22 (50.0%)</strong><br>
+					Native Biennial: <strong>0 (0.0%)</strong><br>
 				</div>	
 			</div>
 			<br>
@@ -147,7 +161,7 @@ if (!$db_selected)
 <td><strong>Scientific Name</strong></td>
 <!-- <td><strong>Family</strong></td> -->
 <td><strong>Acronym</strong></td>
-<td><strong>Native?</strong></td>
+<td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
 <td><strong>W</strong></td>
 <td><strong>Wetland Status</strong></td>
@@ -158,7 +172,7 @@ if (!$db_selected)
 <tr>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -169,7 +183,7 @@ if (!$db_selected)
 <tr>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -180,7 +194,7 @@ if (!$db_selected)
 <tr>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -191,7 +205,7 @@ if (!$db_selected)
 <tr>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -202,7 +216,7 @@ if (!$db_selected)
 <tr>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -213,7 +227,7 @@ if (!$db_selected)
 <tr>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -224,7 +238,7 @@ if (!$db_selected)
 <tr>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -235,7 +249,7 @@ if (!$db_selected)
 <tr>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -246,7 +260,7 @@ if (!$db_selected)
 <tr>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -257,7 +271,7 @@ if (!$db_selected)
 <tr>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -268,7 +282,7 @@ if (!$db_selected)
 <tr>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -279,7 +293,7 @@ if (!$db_selected)
 <tr>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>
@@ -290,7 +304,7 @@ if (!$db_selected)
 <tr>
 <td>Acorus calamus</td>
 <td>ACOCAL</td>
-<td>Yes</td>
+<td>Native</td>
 <td>7</td>
 <td>-5</td>
 <td>OBL</td>
@@ -301,7 +315,7 @@ if (!$db_selected)
 <tr>
 <td>Alisma subcordatum</td>
 <td>ALISUB</td>
-<td>Yes</td>
+<td>Native</td>
 <td>4</td>
 <td>-5</td>
 <td>OBL</td>

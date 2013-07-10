@@ -63,7 +63,7 @@ if (!$db_selected)
 				<div class="span11">
 					<br>
 					<h1>New Inventory Assessment</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'view_inventory.php';return false;">Save</button> 
+					<button class="btn btn-info" onclick="javascript:window.location = 'view_inventory.php';return false;">Save and View Results</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = 'assessments.php';return false;">Cancel</button><br>
 				</div>
 			</div>
@@ -213,6 +213,14 @@ if (!$db_selected)
 </tr>
 </table>
 <button class="btn btn-info" onclick="javascript:window.location = 'view_site.php';return false;">Remove Selected Species</button>
+				</div>
+			</div>
+			<br><br>
+			<div class="row-fluid">
+				<div class="span12">				
+					<h4>Finished?</h4>
+					<button class="btn btn-info" onclick="javascript:window.location = 'view_inventory.php';return false;">Save and View Results</button> 
+					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
 				</div>
 			</div>
 		</div>
