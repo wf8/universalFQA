@@ -63,15 +63,15 @@ if (!$db_selected)
 				<div class="span11">
 					<br>
 					<h1>Edit Transect Assessment</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'view_inventory.php';return false;">Save Changes and View Results</button> 
-					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
+					<button class="btn btn-info" onclick="javascript:window.location = 'view_transect.php';return false;">Save Changes and View Results</button> 
+					<button class="btn btn-info" onclick="javascript:window.location = 'assessments.php';return false;">Cancel</button><br>
 				</div>
 			</div>
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
 					<label class="small-text">Name: <font class="red">*</font></label>
-					<input class="field" type="text" id="change_first_name" value="Coyote Hill 1" maxlength="256" required />
+					<input class="field" type="text" id="change_first_name" value="Pothole Pond" maxlength="256" required />
 				</div>
 			</div>
 			<br>
@@ -145,237 +145,62 @@ if (!$db_selected)
  				</div>
  			</div>
 			<br>
-			<div class="row-fluid">
-				<div class="span12">
-				<h3>FQA Database: Chicago, 1994</h3>
-				<br>
-				<h4>To Add Species Individually:</h4>
-				</div>
-			</div>
-			<div class="row-fluid">
-				<div class="span4">
-					<label class="small-text">Search by Scientific Name:</label>
-					<div class="input-append">
- 					 	<input class="input-medium" id="appendedInputButton" type="text">
-  						<button class="btn btn-info" type="button">Add</button>
-					</div>
-				</div>
-				<div class="span4">
-					<label class="small-text">Search by Acronym:</label>
- 					<div class="input-append">
- 					 	<input class="input-medium" id="appendedInputButton" type="text">
-  						<button class="btn btn-info" type="button">Add</button>
-					</div>
-				</div>
-				<div class="span4">
-					<label class="small-text">Search by Common Name:</label>
-					<div class="input-append">
- 					 	<input class="input-medium" id="appendedInputButton" type="text">
-  						<button class="btn btn-info" type="button">Add</button>
-					</div>
-				</div>	
-			</div>
-			<div class="row-fluid">
-				<div class="span12">
-				<h4>To Add Species In Bulk:</h4>
-				List each species separated by a comma. For example: "Acorus calamus, Alisma subcordatum, Anemone virginiana, etc." Species not found will be ignored.<br>
-				<textarea class="input-xxlarge" rows="3" id="items_location7"></textarea><br>
-				<button class="btn btn-info" type="button">Add Species</button><br>
-				</div>
-			</div>
-			<br>
+
 			<div class="row-fluid">
 				<div class="span12">	
-					<h4>To Remove Species:</h4>
-					Select the species to remove and click remove at the bottom of the list.<br>
+					<h4>Active Quadrats:</h4>
+					Select which quadrats you want actively included in the FQA calculations. The unselected quadrats will remain saved here if you wish to include them in the future.<br>
 					<br>
 					<table class="table table-hover">
+
 <tr>
+<td>Active?</td>
+<td><strong>Quadrat</strong></td>
+<td><strong>Species Richness</strong></td>
+<td><strong>Latitude</strong></td>
+<td><strong>Longitude</strong></td>
 <td></td>
-<td><strong>Scientific Name</strong></td>
-<!-- <td><strong>Family</strong></td> -->
-<td><strong>Acronym</strong></td>
-<td><strong>Nativity</strong></td>
-<td><strong>C</strong></td>
-<td><strong>W</strong></td>
-<td><strong>Wetland Status</strong></td>
-<td><strong>Physiognomy</strong></td>
-<td><strong>Duration</strong></td>
-<td><strong>Common Name</strong></td>
-</tr>                    
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
 </tr>
+<!-- 
+<tr><td colspan=6>You have not added any quadrats yet.</td></tr>
+ -->                  
 <tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>ALISUB</td>
-<td>Native</td>
+<td><input type="checkbox" id="checkbox1" value="option1" checked></td>
+<td>1</td>
 <td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
+<td>n/a</td>
+<td>n/a</td>
+<td><a href="edit_quadrat.php">Edit</a> | <a href="delete_quadrat.php">Delete</a></td>
 </tr>
 <tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>ACOCAL</td>
-<td>Native</td>
+<td><input type="checkbox" id="checkbox1" value="option1" checked></td>
+<td>2</td>
 <td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
+<td>n/a</td>
+<td>n/a</td>
+<td><a href="edit_quadrat.php">Edit</a> | <a href="delete_quadrat.php">Delete</a></td>
 </tr>
 <tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>ALISUB</td>
-<td>Native</td>
+<td><input type="checkbox" id="checkbox1" value="option1" checked></td>
+<td>3</td>
+<td>2</td>
+<td>n/a</td>
+<td>n/a</td>
+<td><a href="edit_quadrat.php">Edit</a> | <a href="delete_quadrat.php">Delete</a></td>
+</tr>
+<tr>
+<td><input type="checkbox" id="checkbox1" value="option1" checked></td>
 <td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
+<td>13</td>
+<td>n/a</td>
+<td>n/a</td>
+<td><a href="edit_quadrat.php">Edit</a> | <a href="delete_quadrat.php">Delete</a></td>
+</tr>	
+
 </table>
-<button class="btn btn-info" onclick="javascript:window.location = 'view_site.php';return false;">Remove Selected Species</button>
-				</div>
-			</div>
-			<br><br>
+			<button class="btn btn-info" onclick="javascript:window.location = 'new_quadrat.php';return false;">Create New Quadrat</button>
+	
+			<br><br><br>
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>Finished making changes?</h4>

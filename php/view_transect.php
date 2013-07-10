@@ -153,7 +153,7 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<h4>&#187; Metrics by Quadrat:</h4>
+					<h4>&#187; Quadrat Level Metrics:</h4>
 
 <table class="table table-hover">
 <tr>
@@ -167,6 +167,8 @@ if (!$db_selected)
 <td><strong>Adjusted FQI</strong></td>
 <td><strong>Mean Wetness</strong></td>
 <td><strong>Mean Native Wetness</strong></td>
+<td><strong>Latitude</strong></td>
+<td><strong>Longitude</strong></td>
 </tr>                    
 <tr>
 <td>1</td>
@@ -179,6 +181,8 @@ if (!$db_selected)
 <td>67</td>
 <td>-2</td>
 <td>-2</td>
+<td>n/a</td>
+<td>n/a</td>
 </tr>
 <tr>
 <td>2</td>
@@ -191,6 +195,8 @@ if (!$db_selected)
 <td>67</td>
 <td>-2</td>
 <td>-2</td>
+<td>n/a</td>
+<td>n/a</td>
 </tr>
 <tr>
 <td>3</td>
@@ -203,6 +209,22 @@ if (!$db_selected)
 <td>67</td>
 <td>-2</td>
 <td>-2</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>7</td>
+<td>56</td>
+<td>67</td>
+<td>67</td>
+<td>-2</td>
+<td>-2</td>
+<td>n/a</td>
+<td>n/a</td>
 </tr>
 </table>
 

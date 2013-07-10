@@ -81,6 +81,7 @@ if (!$db_selected)
 							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
 							<td>Native FQI: 45.5</td>
 							<td>Private</td>
+							<td><a href="edit_inventory.php">Edit</a> | <a href="delete_inventory.php">Delete</a></td>
 						</tr>
 						<tr>
 							<td><a href="view_inventory.php?assessment=1">Coyote Hill 2</a></td>
@@ -88,6 +89,7 @@ if (!$db_selected)
 							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
 							<td>Native FQI: 51.5</td>
 							<td>Public</td>
+							<td><a href="edit_inventory.php">Edit</a> | <a href="delete_inventory.php">Delete</a></td>
 						</tr>
 					</table>
 					<h2>Your Transect Assessments</h2>
@@ -99,6 +101,7 @@ if (!$db_selected)
 							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
 							<td>Native FQI: 40.0</td>
 							<td>Private</td>
+							<td><a href="edit_transect.php">Edit</a> | <a href="delete_transect.php">Delete</a></td>
 						</tr>
 					</table>
 				</div>
