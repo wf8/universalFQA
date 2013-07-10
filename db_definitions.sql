@@ -120,6 +120,7 @@ CREATE TABLE `quadrat` (
  `transect_id` INT NOT NULL,
  `site_id` INT NOT NULL,
  `fqa_id` INT NOT NULL,
+ `name` VARCHAR(256) NOT NULL,
  `latitude` VARCHAR(256) NULL,
  `longitude` VARCHAR(256) NULL,
 INDEX (`transect_id` ),

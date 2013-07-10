@@ -77,7 +77,6 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span6">
-					<p>
 					<h4>&#187; Date & Location:</h4>
 					7/23/2010<br>
 					Somme Prairie Grove<br>
@@ -89,7 +88,6 @@ if (!$db_selected)
 					Region: Chicago<br>
 					Year Published: 1994<br>
 					Description: Swink and Wilhelm
-					</p>
 				</div>		
 			</div>
 			<br>
@@ -109,7 +107,6 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span3">
-					<p>
 					<h4>&#187; Conservatism-Based Metrics:</h4>
 					Total Mean C: <strong>4.5</strong><br>
 					Native Mean C: <strong>5.5</strong><br>
@@ -156,6 +153,7 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span12">	
+					<h4>&#187; Species:</h4>
 					<table class="table table-hover">
 <tr>
 <td><strong>Scientific Name</strong></td>
