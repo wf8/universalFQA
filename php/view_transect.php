@@ -115,6 +115,8 @@ if (!$db_selected)
 					Native Herbaceous Mean C: <strong>5.5</strong><br>
 					Total FQI: <strong>30.5</strong><br>
 					Native FQI: <strong>45.5</strong><br>
+					Cover-weighted FQI: <strong>30.5</strong><br>
+					Cover-weighted Native FQI: <strong>45.5</strong><br>
 					Adjusted FQI: <strong>45.5</strong><br>
 					% C value 0-3:  <strong>0%</strong><br>
 					% C value 4-6:  <strong>0%</strong><br>
@@ -164,6 +166,8 @@ if (!$db_selected)
 <td><strong>Native Mean C</strong></td>
 <td><strong>Total FQI</strong></td>
 <td><strong>Native FQI</strong></td>
+<td><strong>Cover-weighted FQI</strong></td>
+<td><strong>Cover-weighted Native FQI</strong></td>
 <td><strong>Adjusted FQI</strong></td>
 <td><strong>Mean Wetness</strong></td>
 <td><strong>Mean Native Wetness</strong></td>
@@ -176,6 +180,8 @@ if (!$db_selected)
 <td>4</td>
 <td>6</td>
 <td>7</td>
+<td>56</td>
+<td>67</td>
 <td>56</td>
 <td>67</td>
 <td>67</td>
@@ -192,6 +198,8 @@ if (!$db_selected)
 <td>7</td>
 <td>56</td>
 <td>67</td>
+<td>56</td>
+<td>67</td>
 <td>67</td>
 <td>-2</td>
 <td>-2</td>
@@ -206,6 +214,8 @@ if (!$db_selected)
 <td>7</td>
 <td>56</td>
 <td>67</td>
+<td>56</td>
+<td>67</td>
 <td>67</td>
 <td>-2</td>
 <td>-2</td>
@@ -218,6 +228,8 @@ if (!$db_selected)
 <td>4</td>
 <td>6</td>
 <td>7</td>
+<td>56</td>
+<td>67</td>
 <td>56</td>
 <td>67</td>
 <td>67</td>
