@@ -127,6 +127,7 @@ if (!$db_selected)
 <tr>
 <td></td>
 <td><strong>Scientific Name</strong></td>
+<td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
 <td><strong>% Cover</strong></td>
 <td><strong>Nativity</strong></td>
@@ -137,11 +138,12 @@ if (!$db_selected)
 <td><strong>Duration</strong></td>
 <td><strong>Common Name</strong></td>
 </tr> 
-<tr><td colspan=11>You have not added any species yet.</td></tr>   
+<tr><td colspan=12>You have not added any species yet.</td></tr>   
 <!--                 
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td><input class="input-mini" id="percentCover" type="text" value="23"></td>
 <td>Native</td>

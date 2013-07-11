@@ -249,7 +249,7 @@ if (!$db_selected)
 					<table class="table table-hover">
 <tr>
 <td><strong>Scientific Name</strong></td>
-<!-- <td><strong>Family</strong></td> -->
+<td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
@@ -261,6 +261,7 @@ if (!$db_selected)
 </tr>                    
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -272,6 +273,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -283,6 +285,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -302,7 +305,7 @@ if (!$db_selected)
 					<table class="table table-hover">
 <tr>
 <td><strong>Scientific Name</strong></td>
-<!-- <td><strong>Family</strong></td> -->
+<td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
@@ -314,6 +317,7 @@ if (!$db_selected)
 </tr>                    
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -325,6 +329,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -336,6 +341,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -347,6 +353,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -358,6 +365,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -369,6 +377,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -388,7 +397,7 @@ if (!$db_selected)
 					<table class="table table-hover">
 <tr>
 <td><strong>Scientific Name</strong></td>
-<!-- <td><strong>Family</strong></td> -->
+<td><strong>Family</strong></td> 
 <td><strong>Acronym</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
@@ -400,6 +409,7 @@ if (!$db_selected)
 </tr> 
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -411,6 +421,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -422,6 +433,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -441,7 +453,7 @@ if (!$db_selected)
 					<table class="table table-hover">
 <tr>
 <td><strong>Scientific Name</strong></td>
-<!-- <td><strong>Family</strong></td> -->
+<td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
@@ -453,6 +465,7 @@ if (!$db_selected)
 </tr> 
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -464,6 +477,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
