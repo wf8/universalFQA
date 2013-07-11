@@ -198,7 +198,7 @@ if (!$db_selected)
 <tr>
 <td></td>
 <td><strong>Scientific Name</strong></td>
-<!-- <td><strong>Family</strong></td> -->
+<td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
 <td><strong>Native?</strong></td>
 <td><strong>C</strong></td>
@@ -209,7 +209,7 @@ if (!$db_selected)
 <td><strong>Common Name</strong></td>
 </tr>                    
 <tr>
-<td colspan=10>You have not entered any species yet.</td>
+<td colspan=11>You have not entered any species yet.</td>
 </tr>
 </table>
 <button class="btn btn-info" onclick="javascript:window.location = 'view_site.php';return false;">Remove Selected Species</button>
