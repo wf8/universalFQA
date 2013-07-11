@@ -157,7 +157,7 @@ if (!$db_selected)
 					<table class="table table-hover">
 <tr>
 <td><strong>Scientific Name</strong></td>
-<!-- <td><strong>Family</strong></td> -->
+<td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
@@ -169,6 +169,7 @@ if (!$db_selected)
 </tr>                    
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -180,6 +181,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -191,6 +193,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -202,6 +205,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -213,6 +217,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -224,6 +229,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -235,6 +241,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -246,6 +253,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -257,6 +265,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -268,6 +277,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -279,6 +289,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -290,6 +301,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -301,6 +313,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -312,6 +325,7 @@ if (!$db_selected)
 </tr>
 <tr>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -321,54 +335,103 @@ if (!$db_selected)
 <td>Perennial</td>
 <td>COMMON WATER PLANTAIN </td>
 </tr>
-
-</table>
-<!--                  
-ALISUB     4 Alisma subcordatum                          -5 OBL      Nt P-Forb   COMMON WATER PLANTAIN          
-ANEVIR     5 Anemone virginiana                           5 UPL      Nt P-Forb   TALL ANEMONE                   
-ASCINC     4 Asclepias incarnata                         -5 OBL      Nt P-Forb   SWAMP MILKWEED                 
-ASTLAT     4 Aster lateriflorus                          -2 FACW-    Nt P-Forb   SIDE-FLOWERING ASTER           
-ASTUMB     9 Aster umbellatus                            -3 FACW     Nt P-Forb   FLAT-TOP ASTER                 
-BROLAT     5 Bromus latiglumis                           -2 FACW-    Nt P-Grass  EAR-LEAVED BROME               
-BROPUB     5 Bromus pubescens                             2 FACU+    Nt P-Grass  WOODLAND BROME                 
-CXGRAY     7 Carex grayi                                 -4 FACW+    Nt P-Sedge  COMMON BUR SEDGE               
-CXPELL     4 Carex pellita                               -5 OBL      Nt P-Sedge  BROAD-LEAVED WOOLLY SEDGE      
-CXSHOR    10 Carex shortiana                              0 [FAC]    Nt P-Sedge  SHORT'S SEDGE                  
-CXSQUA    10 Carex squarrosa                             -5 OBL      Nt P-Sedge  NARROW-LEAVED CATTAIL SEDGE    
-CXVULP     2 Carex vulpinoidea                           -5 OBL      Nt P-Sedge  BROWN FOX SEDGE                
-CICMAC     6 Cicuta maculata                             -5 OBL      Nt P-Forb   WATER HEMLOCK                  
-CIRLUC     1 Circaea lutetiana canadensis                 3 FACU     Nt P-Forb   ENCHANTER'S NIGHTSHADE         
-COROBL     6 Cornus obliqua                              -4 FACW+    Nt Shrub    BLUE-FRUITED DOGWOOD           
-CRYCAN     2 Cryptotaenia canadensis                      0 FAC      Nt P-Forb   HONEWORT                       
-DACGLO     0 DACTYLIS GLOMERATA                           3 FACU     Ad P-Grass  ORCHARD GRASS                  
-EUPPER     4 Eupatorium perfoliatum                      -4 FACW+    Nt P-Forb   COMMON BONESET                 
-FESELA     0 FESTUCA ELATIOR                              2 FACU+    Ad P-Grass  TALL FESCUE                    
-GALOBT     5 Galium obtusum                              -4 FACW+    Nt P-Forb   WILD MADDER                    
-GENFLA     9 Gentiana flavida                             3 FACU     Nt P-Forb   YELLOWISH GENTIAN              
-GLYSTR     4 Glyceria striata                            -3 [FACW]   Nt P-Grass  FOWL MANNA GRASS               
-HERMAX     5 Heracleum maximum                            5 UPL      Nt P-Forb   COW PARSNIP                    
-HYSPAT     5 Hystrix patula                               5 UPL      Nt P-Grass  BOTTLEBRUSH GRASS              
-JUNDUD     4 Juncus dudleyi                               0 [FAC]    Nt P-Forb   DUDLEY'S RUSH                  
-LOBSIP     6 Lobelia siphilitica                         -4 FACW+    Nt P-Forb   GREAT BLUE LOBELIA             
-LONPRO     7 Lonicera prolifera                           5 UPL      Nt W-Vine   YELLOW HONEYSUCKLE             
-OXYRIG     7 Oxypolis rigidior                           -5 OBL      Nt P-Forb   COWBANE                        
-PANIMP     2 Panicum implicatum                           1 FAC-     Nt P-Grass  OLD-FIELD PANIC GRASS          
-PHAARU     0 PHALARIS ARUNDINACEA                        -4 FACW+    Ad P-Grass  REED CANARY GRASS              
-PHLPRA     0 PHLEUM PRATENSE                              3 FACU     Ad P-Grass  TIMOTHY                        
-PHYVIS     7 Physostegia virginiana speciosa             -3 [FACW]   Nt P-Forb   SHOWY OBEDIENT PLANT           
-POACOM     0 POA COMPRESSA                                2 FACU+    Ad P-Grass  CANADA BLUE GRASS              
-POAPAS     9 Poa palustris                               -4 FACW+    Nt P-Grass  MARSH BLUE GRASS               
-POAPRA     0 POA PRATENSIS                                1 FAC-     Ad P-Grass  KENTUCKY BLUE GRASS            
-RUMALT     2 Rumex altissimus                            -2 FACW-    Nt P-Forb   PALE DOCK                      
-RUMCRI     0 RUMEX CRISPUS                               -1 FAC+     Ad P-Forb   CURLY DOCK                     
-SAG ?      & Sagittaria sp.                              -5 OBL      Nt P-Forb   ARROWHEAD         
-SCIATR     4 Scirpus atrovirens                          -5 OBL      Nt P-Sedge  DARK GREEN RUSH                
-SCIPEN     4 Scirpus pendulus                            -5 OBL      Nt P-Sedge  RED BULRUSH                    
-SIUSUA     7 Sium suave                                  -5 OBL      Nt P-Forb   TALL WATER PARSNIP             
-SOLALT     1 Solidago altissima                           3 FACU     Nt P-Forb   TALL GOLDENROD                 
-VERSCU    10 Veronica scutellata                         -5 [OBL]    Nt P-Forb   MARSH SPEEDWELL  
-	-->					
-						
+<tr>
+<td>Acorus calamus</td>
+<td>n/a</td>
+<td>ACOCAL</td>
+<td>Native</td>
+<td>7</td>
+<td>-5</td>
+<td>OBL</td>
+<td>Forb</td>
+<td>Perennial</td>
+<td>SWEET FLAG</td>
+</tr>
+<tr>
+<td>Alisma subcordatum</td>
+<td>n/a</td>
+<td>ALISUB</td>
+<td>Native</td>
+<td>4</td>
+<td>-5</td>
+<td>OBL</td>
+<td>Forb</td>
+<td>Perennial</td>
+<td>COMMON WATER PLANTAIN </td>
+</tr>
+<tr>
+<td>Acorus calamus</td>
+<td>n/a</td>
+<td>ACOCAL</td>
+<td>Native</td>
+<td>7</td>
+<td>-5</td>
+<td>OBL</td>
+<td>Forb</td>
+<td>Perennial</td>
+<td>SWEET FLAG</td>
+</tr>
+<tr>
+<td>Alisma subcordatum</td>
+<td>n/a</td>
+<td>ALISUB</td>
+<td>Native</td>
+<td>4</td>
+<td>-5</td>
+<td>OBL</td>
+<td>Forb</td>
+<td>Perennial</td>
+<td>COMMON WATER PLANTAIN </td>
+</tr>
+<tr>
+<td>Acorus calamus</td>
+<td>n/a</td>
+<td>ACOCAL</td>
+<td>Native</td>
+<td>7</td>
+<td>-5</td>
+<td>OBL</td>
+<td>Forb</td>
+<td>Perennial</td>
+<td>SWEET FLAG</td>
+</tr>
+<tr>
+<td>Alisma subcordatum</td>
+<td>n/a</td>
+<td>ALISUB</td>
+<td>Native</td>
+<td>4</td>
+<td>-5</td>
+<td>OBL</td>
+<td>Forb</td>
+<td>Perennial</td>
+<td>COMMON WATER PLANTAIN </td>
+</tr>
+<tr>
+<td>Acorus calamus</td>
+<td>n/a</td>
+<td>ACOCAL</td>
+<td>Native</td>
+<td>7</td>
+<td>-5</td>
+<td>OBL</td>
+<td>Forb</td>
+<td>Perennial</td>
+<td>SWEET FLAG</td>
+</tr>
+<tr>
+<td>Alisma subcordatum</td>
+<td>n/a</td>
+<td>ALISUB</td>
+<td>Native</td>
+<td>4</td>
+<td>-5</td>
+<td>OBL</td>
+<td>Forb</td>
+<td>Perennial</td>
+<td>COMMON WATER PLANTAIN </td>
+</tr>
+</table>						
 				</div>
 			</div>
 		</div>

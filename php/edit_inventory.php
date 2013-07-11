@@ -193,7 +193,7 @@ if (!$db_selected)
 <tr>
 <td></td>
 <td><strong>Scientific Name</strong></td>
-<!-- <td><strong>Family</strong></td> -->
+<td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
@@ -206,6 +206,7 @@ if (!$db_selected)
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -218,6 +219,7 @@ if (!$db_selected)
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -230,6 +232,7 @@ if (!$db_selected)
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -242,6 +245,7 @@ if (!$db_selected)
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -251,9 +255,11 @@ if (!$db_selected)
 <td>Perennial</td>
 <td>COMMON WATER PLANTAIN </td>
 </tr>
+<tr>
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -266,6 +272,7 @@ if (!$db_selected)
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -275,9 +282,10 @@ if (!$db_selected)
 <td>Perennial</td>
 <td>COMMON WATER PLANTAIN </td>
 </tr>
-<tr>
+<tr><tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -290,6 +298,7 @@ if (!$db_selected)
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -299,9 +308,10 @@ if (!$db_selected)
 <td>Perennial</td>
 <td>COMMON WATER PLANTAIN </td>
 </tr>
-<tr>
+<tr><tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -314,6 +324,7 @@ if (!$db_selected)
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -323,9 +334,10 @@ if (!$db_selected)
 <td>Perennial</td>
 <td>COMMON WATER PLANTAIN </td>
 </tr>
-<tr>
+<tr><tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -338,6 +350,7 @@ if (!$db_selected)
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -347,9 +360,10 @@ if (!$db_selected)
 <td>Perennial</td>
 <td>COMMON WATER PLANTAIN </td>
 </tr>
-<tr>
+<tr><tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Acorus calamus</td>
+<td>n/a</td>
 <td>ACOCAL</td>
 <td>Native</td>
 <td>7</td>
@@ -362,6 +376,7 @@ if (!$db_selected)
 <tr>
 <td><input type="checkbox" id="checkbox1" value="option1"></td>
 <td>Alisma subcordatum</td>
+<td>n/a</td>
 <td>ALISUB</td>
 <td>Native</td>
 <td>4</td>
@@ -371,6 +386,7 @@ if (!$db_selected)
 <td>Perennial</td>
 <td>COMMON WATER PLANTAIN </td>
 </tr>
+<tr>
 </table>
 <button class="btn btn-info" onclick="javascript:window.location = 'view_site.php';return false;">Remove Selected Species</button>
 				</div>
