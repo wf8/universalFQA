@@ -72,13 +72,24 @@ if (!$db_selected)
 				<div class="span12">
 					<h2>Public Inventory Assessments</h2>
 					<table class="table table-hover">
+						<!-- <tr>
+							<td>There are no public inventory assessments available.</td> 
+						</tr> -->
 						<tr>
-							<!-- <td>There are no public inventory assessments available.</td> -->
+							<td><strong>Name</strong></td>
+							<td><strong>Date</strong></td>
+							<td><strong>Site</strong></td>
+							<td><strong>Native FQI</strong></td>
+							<td><strong>Created By</strong></td>	
+							<td><strong>Options</strong></td>						
+						</tr>
+						<tr>
 							<td><a href="view_public_inventory.php?assessment=1">Coyote Hill 2</a></td>
 							<td>6/9/2013</td>
 							<td>Somme Prairie Grove</td>
-							<td>Native FQI: 51.5</td>
-							<td>Will Freyman</td>							
+							<td>51.5</td>
+							<td>Will Freyman</td>	
+							<td><a href="view_public_inventory.php">View</a> | <a href="download_public_inventory.php">Download</a></td>						
 						</tr>
 					</table>
 					<h2>Public Transect Assessments</h2>
@@ -86,6 +97,14 @@ if (!$db_selected)
 						<tr>
 							<td>There are no public transect assessments available.</td>
 						</tr>
+					<!--	<tr>
+							<td><strong>Name</strong></td>
+							<td><strong>Date</strong></td>
+							<td><strong>Site</strong></td>
+							<td><strong>Native FQI</strong></td>
+							<td><strong>Created By</strong></td>
+							<td><strong>Options</strong></td>							
+						</tr>  -->
 					</table>
 				</div>
 			</div>

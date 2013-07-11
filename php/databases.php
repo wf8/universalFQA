@@ -63,7 +63,7 @@ if (!$db_selected)
 				<div class="span11">
 					<br>
 					<h1>FQA Databases</h1>
-					<a href="new_database.php">Upload a new public FQA database</a>
+					<button class="btn btn-info" onclick="javascript:window.location = 'new_database.php';return false;">Upload New Public FQA Database</button>
 				</div>
 			</div>
 			<div class="row-fluid">
@@ -71,13 +71,42 @@ if (!$db_selected)
 					<h2>Public Databases</h2>
 					<table class="table table-hover">
 						<tr>
-							<td>There are no FQA databases available.</td>
+							<td><strong>Region</strong></td>
+							<td><strong>Year Published</strong></td>
+							<td><strong>Description</strong></td>
+							<td><strong>Options</strong></td>
+						</tr>
+						<tr>
+							<!-- <td>There are no FQA databases available.</td> -->
+							<td><a href="view_database.php">Chicago</a></td>
+							<td>1994</td>
+							<td>Swink & Wilhelm</td>
+							<td><a href="view_database.php">View</a> | <a href="customize_database.php">Customize</a> | <a href="download_database.php">Download</a></td>
+						</tr>
+						</tr>
+						<tr>
+							<td><a href="view_database.php">Chicago</a></td>
+							<td>2013</td>
+							<td>US Army Corps of Engineers</td>
+							<td><a href="view_database.php">View</a> | <a href="customize_database.php">Customize</a> | <a href="download_database.php">Download</a></td>
+						</tr>
 						</tr>
 					</table>
 					<h2>Your Customized Databases</h2>
 					<table class="table table-hover">
 						<tr>
-							<td>You have not made any customized FQA databases.</td>
+							<td><strong>Name</strong></td>
+							<td><strong>Description</strong></td>
+							<td><strong>Orginal FQA Database</strong></td>
+							<td><strong>Options</strong></td>
+						</tr>
+						<tr>
+							<!-- <td>You have not made any customized FQA databases.</td> -->
+							<td><a href="edit_custom_database.php">My Custom Chi-town</a></td>
+							<td>updated some taxonomy</td>
+							<td>Chicago, 1994</td>
+							<td><a href="edit_custom_database.php">Edit</a> | <a href="download_custom_database.php">Download</a> | <a href="delete_custom_database.php">Delete</a></td>
+
 						</tr>
 					</table>
 				</div>
