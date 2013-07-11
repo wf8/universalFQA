@@ -135,6 +135,7 @@ if (!$db_selected)
 					Forb: <strong>22    (50.0%)      </strong><br>
 					Grass: <strong>6    (13.6%) </strong><br>
 					Sedge: <strong>7    (15.9%) </strong><br>
+					Rush: <strong>0     (0.0%) </strong><br>
 					Fern: <strong>0     (0.0%) </strong><br>
 					Other: <strong>0     (0.0%)      </strong><br>  
 				</div>
