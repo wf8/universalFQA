@@ -121,6 +121,7 @@ CREATE TABLE `quadrat` (
  `site_id` INT NOT NULL,
  `fqa_id` INT NOT NULL,
  `name` VARCHAR(256) NOT NULL,
+ `active` BOOLEAN NOT NULL DEFAULT 1,
  `latitude` VARCHAR(256) NULL,
  `longitude` VARCHAR(256) NULL,
 INDEX (`transect_id` ),
