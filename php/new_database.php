@@ -5,12 +5,6 @@ if( !$_SESSION['valid'] ) {
 	header( "Location: login.php" );
 	exit;
 } 
-$connection = mysql_connect($db_server, $db_username, $db_password);
-if (!$connection) 
-	die('Not connected : ' . mysql_error());
-$db_selected = mysql_select_db($db_database, $connection);
-if (!$db_selected) 
-	die ('Database error: ' . mysql_error());
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,12 +65,13 @@ if (!$db_selected)
 			<div class="row-fluid">
 				<div class="span12">
 					<h4>&#187; 1. Enter the FQA Database Details:</h4>
+					<form action="database_import.php" method="post" enctype="multipart/form-data" target="upload_target" onsubmit="start_database_upload();">
 					<label class="small-text">Region Name: (What region does this database cover?)<font class="red">*</font></label>
-					<input class="medium" type="text" id="change_first_name" value="" maxlength="256" required />
+					<input class="medium" type="text" name="region" value="" maxlength="256" required />
 					<label class="small-text">Year Published: (When was this database originally developed?)<font class="red">*</font></label>
-					<input class="medium" type="text" id="change_first_name" value="" maxlength="4" required />
+					<input class="medium" type="text" name="year" value="" maxlength="4" required />
 					<label class="small-text">Description: (Who or what organization developed this database?)<font class="red">*</font></label>
-					<input class="medium" type="text" id="change_first_name" value="" maxlength="256" required />
+					<input class="medium" type="text" name="description" value="" maxlength="256" required />
 				</div>
 			</div>
 			<br>
@@ -139,20 +134,22 @@ Alliaria petiolata,,, non-native, 0,,,,,
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>&#187; 3. Upload the spreadsheet:</h4>
-					<form action="upload_file.php" method="post" enctype="multipart/form-data">
-					<input type="file" id="file"><br>
+					<input type="file" id="upload_file" name="upload_file"><br>
 					<button type="submit" class="btn btn-info">Upload</button>
 					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Cancel</button>
 					</form>
+					<br><br>
+					<div id="upload_error"></div>
+					<br><br>
 				</div>
 			</div>
 		</div>
     </div> 
-    <br><br>
 	<footer class="footer">
 		<div class="container">
 			<p><a href="http://universalFQA.org">universalFQA.org</a> | <a href="../about.html">About this site</a></p>
 		</div>
 	</footer>
+	<iframe id="upload_target" name="upload_target" src="#"></iframe>
   </body>
 </html>

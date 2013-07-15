@@ -102,7 +102,18 @@ function save_account_changes() {
  *
  * ---------------------------------------------------------
  */
- function upload_database() {
- }
- function download_database() {
- }
+ 
+ function start_database_upload() {
+	$( "#upload_error" ).html( "Uploading..." );
+	return true;
+}
+function stop_database_upload( msg ){	
+	if ( msg.indexOf("Error:") != -1 ) {
+		$( "#upload_error" ).html( msg );
+	} else {
+		$( "#upload_error" ).html( "Data successfully uploaded." );
+	} 
+}
+ 
+function download_database() {
+}

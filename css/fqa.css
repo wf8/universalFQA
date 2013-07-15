@@ -26,6 +26,17 @@ body {
 	color: red;
 }
 
+#upload_target {
+	display: none;
+	width:0;
+	height:0;
+	border:1px solid red;
+}
+
+#upload_error {
+	color: red;
+}
+
 /*
 #site_location {
 	height:75px;
