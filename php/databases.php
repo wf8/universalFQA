@@ -82,7 +82,7 @@ $fqa_databases = mysql_query($sql);
 if (mysql_num_rows($fqa_databases) == 0) {
 ?>
 						<tr>
-							<td colspan='4'>There are no FQA databases available.</td>
+							<td colspan="4">There are no FQA databases available.</td>
 						</tr>
 <?php
 } else {
@@ -98,7 +98,6 @@ if (mysql_num_rows($fqa_databases) == 0) {
 							<td><?php echo $description; ?></td>
 							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>">View</a> | <a href="customize_database.php?id=<?php echo $fqa_id; ?>">Customize</a> | <a href="download_database.php?id=<?php echo $fqa_id; ?>">Download</a></td>
 						</tr>
-						</tr>
 <?php
 	}
 }
@@ -113,14 +112,42 @@ if (mysql_num_rows($fqa_databases) == 0) {
 							<td><strong>Orginal FQA Database</strong></td>
 							<td><strong>Options</strong></td>
 						</tr>
+<?php
+$user_id = $_SESSION['user_id'];
+// need to rework customized_fqa table structure!!!
+$sql = "SELECT * FROM customized_fqa WHERE user_id='$user_id' ORDER BY region_name, publication_year";
+$fqa_databases = mysql_query($sql);
+if (mysql_num_rows($fqa_databases) == 0) {
+?>
 						<tr>
-							<!-- <td colspan="4">You have not made any customized FQA databases.</td> -->
+							<td colspan="4">You have not made any customized FQA databases.</td>
+						</tr>
+<?php
+} else {
+	while ($fqa_database = mysql_fetch_assoc($fqa_databases)) {
+		$fqa_id = $fqa_database['id'];
+		$region = $fqa_database['region_name'];
+		$year = $fqa_database['publication_year'];
+		$description = $fqa_database['description'];
+?>
+						<tr>
+							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>"><?php echo $region; ?></a></td>
+							<td><?php echo $year; ?></td>
+							<td><?php echo $description; ?></td>
+							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>">View</a> | <a href="customize_database.php?id=<?php echo $fqa_id; ?>">Customize</a> | <a href="download_database.php?id=<?php echo $fqa_id; ?>">Download</a></td>
+						</tr>
+<?php
+	}
+}
+?>
+<!--
+						<tr>
 							<td><a href="edit_custom_database.php">My Custom Chi-town</a></td>
 							<td>updated some taxonomy</td>
 							<td>Chicago, 1994</td>
 							<td><a href="edit_custom_database.php">Edit</a> | <a href="download_custom_database.php">Download</a> | <a href="delete_custom_database.php">Delete</a></td>
-
 						</tr>
+-->
 					</table>
 				</div>
 			</div>
