@@ -5,12 +5,6 @@ if( !$_SESSION['valid'] ) {
 	header( "Location: login.php" );
 	exit;
 } 
-$connection = mysql_connect($db_server, $db_username, $db_password);
-if (!$connection) 
-	die('Not connected : ' . mysql_error());
-$db_selected = mysql_select_db($db_database, $connection);
-if (!$db_selected) 
-	die ('Database error: ' . mysql_error());
 ?>
 <!DOCTYPE html>
 <html lang="en">
