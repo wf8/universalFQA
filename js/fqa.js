@@ -42,7 +42,6 @@ function login() {
 	});
 }
 
-
 function save_account_changes() {
 	$.ajax({
 		url: "../php/change_user_info.php",
@@ -73,13 +72,9 @@ function save_account_changes() {
  
  function start_database_upload() {
 	$( "#upload_error" ).html( "Uploading..." );
-	return true;
 }
 function stop_database_upload( msg ){	
-	if ( msg.indexOf("Error:") != -1 ) 
-		$( "#upload_error" ).html( msg );
-	else 
-		$( "#upload_error" ).html( "Data successfully uploaded." );
+	$( "#upload_error" ).html( msg );
 }
  
 function download_database() {

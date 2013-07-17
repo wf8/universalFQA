@@ -17,34 +17,156 @@ $region = mysql_real_escape_string($_POST["region"]);
 $year = mysql_real_escape_string($_POST["year"]);
 $description = mysql_real_escape_string($_POST["description"]);
 
-if ($_FILES["upload_file"]["error"] == 4)
+/*
+CREATE TABLE `fqa` (
+ `id` INT NOT NULL AUTO_INCREMENT,
+ `region_name` VARCHAR(128) NOT NULL,
+ `description` TEXT NOT NULL,
+ `publication_year` VARCHAR(4) NOT NULL,
+ `created` DATE NOT NULL,
+ `user_id` INT NOT NULL,
+PRIMARY KEY (  `id` )
+);
+CREATE TABLE `taxa` (
+ `id` INT NOT NULL AUTO_INCREMENT,
+ `fqa_id` INT NOT NULL,
+ `scientific_name` VARCHAR(256) NOT NULL,
+ `family` VARCHAR(256) NULL,
+ `common_name` VARCHAR(256) NULL,
+ `acronym` VARCHAR(8) NULL,
+ `c_o_c` INT NOT NULL,
+ `c_o_w` INT NULL,
+ `native` BOOLEAN NOT NULL,
+ `physiognomy` VARCHAR(10) NULL,
+ `duration` VARCHAR(10) NULL,
+PRIMARY KEY (  `id` ),
+INDEX (`fqa_id`)
+);
+*/
+$result = "";
+if (!is_numeric( $year ) || ($year < 1950) || (3000 < $year)) {
+	$result = "Error: Please enter a valid year.";
+} else if ($_FILES["upload_file"]["error"] == 4)
 	$result = "Error: Please select a file.";
 else if ($_FILES["upload_file"]["error"] > 0)
 	$result = "Error: " . $_FILES["upload_file"]["error"];
 else if	($_FILES["upload_file"]["size"] > 10490000) // 1.049e+7 bytes = 10 mb restriction
-		$result = "Error: File must be under 10 mb.";
+	$result = "Error: File must be under 10 mb.";
 else {
 	if (($handle = fopen($_FILES['upload_file']['tmp_name'], "r")) !== FALSE) {
+		$taxa_inserted = 0;
+		$new_fqa = true;
 		while (($data = fgetcsv($handle, 0, ",", '"')) !== FALSE) {
-			// do not insert if there is already an FQA database with that region and year
-			// WORK HERE!!
-			// $sql = "SELECT * FROM observations WHERE location_id='$data[0]' AND year='$data[17]'";
-			// $existing_observation = mysql_query($sql);
-			if (mysql_num_rows($existing_observation) == 0) {
-				// skip the header row
-				if (trim($data[0]) !== "scientific name") {
-					// $sql="INSERT INTO observations (location_id, percent_grass, percent_forbs, grass_to_forb_ration, percent_rosa, percent_woody_knee, percent_woody_knee_waist, percent_woody_1_meter, percent_woody_waist_head, percent_woody_head, percent_woody_total, bl_ss_habitat_suitability, m_habitat_suitability, gs_habitat_suitability, 4_spp_habitat_suitability, comments, date_recorded, year) VALUES ('$data[0]', '$data[1]', '$data[2]', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]', '$data[8]', '$data[9]', '$data[10]', '$data[11]', '$data[12]', '$data[13]', '$data[14]', '$data[15]', '$data[16]', '$data[17]')";
-					// WORK HERE!!
-					//
+			if ($new_fqa == true) {
+				$new_fqa = false;
+				// do not insert if there is already an FQA database with that region and year
+				$sql = "SELECT * FROM fqa WHERE region_name='$region' AND publication_year='$year'";
+				$existing_fqa = mysql_query($sql);
+				if (mysql_num_rows($existing_fqa) == 0) {
+					$date = date('Y-m-d');
+					$user_id = $_SESSION['user_id'];
+					$sql = "INSERT INTO fqa (region_name, description, publication_year, created, user_id) VALUES ('$region', '$description', '$year', '$date', '$user_id')";
 					mysql_query($sql);	
+					$fqa_id = mysql_insert_id();
+				} else {
+					$result = "Error: An FQA database for that region and year already exist.";
+					break;
 				}
-			} else {
-				$result = "Error: An FQA database for that region and year already exist.";
-				break;
+			}
+			// skip the header row
+			if (trim(strtolower($data[0])) !== "scientific name") {
+				//scientific name, family, acronym, nativity, coefficient of conservatism, coefficient of wetness, wetland status, physiognomy, duration, common name
+				$scientific_name = mysql_real_escape_string(ucfirst(trim($data[0])));
+				$family = mysql_real_escape_string(ucfirst(trim($data[1])));
+				$acronym = mysql_real_escape_string(strtoupper(trim($data[2])));
+				$native = mysql_real_escape_string(strtolower(trim($data[3])));
+				$c_o_c = mysql_real_escape_string(trim($data[4]));
+				$c_o_w = mysql_real_escape_string(trim($data[5]));
+				$wet = mysql_real_escape_string(strtoupper(trim($data[6])));
+				$physiognomy = mysql_real_escape_string(strtolower(trim($data[7])));
+				$duration = mysql_real_escape_string(strtolower(trim($data[8])));
+				$common_name = mysql_real_escape_string(strtolower(trim($data[9])));
+				// check that c_o_c and c_o_w are integers
+				if (!is_numeric( $c_o_c ) || ($c_o_c < 0) || (10 < $c_o_c)) {
+					$result = "Error: The coefficient of conservatism must be an integer from 0-10.";
+					break;
+				}
+				if (($c_o_w !== '') && (!is_numeric( $c_o_w ) || ($c_o_w < -5) || (5 < $c_o_w))) {
+					$result = "Error: The coefficient of wetness must be an integer from 0-10.";
+					break;
+				}
+				// check native/non-native
+				if ($native !== 'native' && $native !== 'non-native') {
+					$result = "Error: The column native must be either 'native' or 'non-native'.";
+					break;
+				}
+				// check physiognomy "fern", "forb", "grass", "rush", "sedge", "shrub", "tree", "vine", or "other"
+				if (($physiognomy !== '') && ($physiognomy !== 'fern' && $physiognomy !== 'forb' && $physiognomy !== 'grass' && $physiognomy !== 'rush' && $physiognomy !== 'sedge' && $physiognomy !== 'shrub' && $physiognomy !== 'tree' && $physiognomy !== 'vine' && $physiognomy !== 'other')) {
+					$result = "Error: Please enter a valid term for physiognomy.";
+					break;
+				}
+				// check duration  "annual", "biennial", or "perennial"
+				if (($duration !== '') && ($duration !== 'annual' && $duration !== 'biennial' && $duration !== 'perennial')) {
+					$result = "Error: Please enter a valid term for duration (either annual, biennial, or perennial).";
+					break;
+				}
+				// only c_o_w goes in database, not wetness--so make sure they are correct
+				if ( $c_o_w == '' && $wet !== '') {
+					if ($wet == 'OBL')
+						$c_o_w = -5;
+					else if ($wet == 'FACW+')
+						$c_o_w = -4;
+					else if ($wet == 'FACW')
+						$c_o_w = -3;
+					else if ($wet == 'FACW-')
+						$c_o_w = -2;
+					else if ($wet == 'FAC+')
+						$c_o_w = -1;
+					else if ($wet == 'FAC')
+						$c_o_w = 0;
+					else if ($wet == 'FAC-')
+						$c_o_w = 1;
+					else if ($wet == 'FACU+')
+						$c_o_w = 2;
+					else if ($wet == 'FACU')
+						$c_o_w = 3;
+					else if ($wet == 'FACU-')
+						$c_o_w = 4;
+					else if ($wet == 'UPL')
+						$c_o_w = 5;
+				} 
+				if ($family == '')
+					$family = null;
+				if ($acronym == '')
+					$acronym = null;
+				if ($common_name == '')
+					$common_name = null;
+				if ($c_o_w == '')
+					$c_o_w = null;
+				if ($physiognomy == '')
+					$physiognomy = null;
+				if ($duration == '')
+					$duration = null;
+				// do not insert if there is already a taxa with this sci name for this fqa db
+				$sql = "SELECT * FROM taxa WHERE scientific_name='$scientific_name' AND fqa_id='$fqa_id'";
+				$existing_taxa = mysql_query($sql);
+				if (mysql_num_rows($existing_taxa) == 0) {
+					$sql = "INSERT INTO taxa (fqa_id, scientific_name, family, common_name, acronym, c_o_c, c_o_w, native, physiognomy, duration) VALUES ('$fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$c_o_w', '$native', '$physiognomy', '$duration')";
+					mysql_query($sql);
+					$taxa_inserted++;
+				}	
 			}
 		}
-		fclose($handle);
-		$result = "";
+		if ($result == "") {
+			$result = "Successfully inserted new " . $region . ", " . $year . " FQA database with " . $taxa_inserted . " taxa.";
+			mail('willfreyman@gmail.com', 'FQA: new database', $result);
+		} else {
+			// delete any partially inserted databases
+			$sql = "DELETE FROM fqa WHERE id='$fqa_id'";
+			mysql_query($sql);
+			$sql = "DELETE FROM taxa WHERE fqa_id='$fqa_id'";
+			mysql_query($sql);
+		}
 	}
 }
 ?> 
