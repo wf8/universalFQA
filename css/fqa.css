@@ -37,6 +37,10 @@ body {
 	color: red;
 }
 
+.btn {
+	margin-bottom: 3px;
+}
+
 /*
 #site_location {
 	height:75px;
