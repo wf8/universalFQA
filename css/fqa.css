@@ -1,9 +1,11 @@
-
 body {
-	/* padding-top: 60px; 60px to make the container go all the way to the bottom of the topbar 
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+	/* font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
+}
+
+.btn {
+	margin-bottom: 3px;
 }
 
 .padding-top {
@@ -36,17 +38,3 @@ body {
 #upload_error {
 	color: red;
 }
-
-.btn {
-	margin-bottom: 3px;
-}
-
-/*
-#site_location {
-	height:75px;
-}
-
-#site_notes {
-	height:75px;
-}
-*/
