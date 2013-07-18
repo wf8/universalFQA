@@ -100,6 +100,10 @@ else {
 					$result = "Error: The column native must be either 'native' or 'non-native'.";
 					break;
 				}
+				if ($native == 'native')
+					$native = 1;
+				if ($native == 'non-native')
+					$native = 0;
 				// check physiognomy "fern", "forb", "grass", "rush", "sedge", "shrub", "tree", "vine", or "other"
 				if (($physiognomy !== '') && ($physiognomy !== 'fern' && $physiognomy !== 'forb' && $physiognomy !== 'grass' && $physiognomy !== 'rush' && $physiognomy !== 'sedge' && $physiognomy !== 'shrub' && $physiognomy !== 'tree' && $physiognomy !== 'vine' && $physiognomy !== 'other')) {
 					$result = "Error: Please enter a valid term for physiognomy.";
