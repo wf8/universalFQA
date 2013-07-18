@@ -166,8 +166,9 @@ else {
 			}
 		}
 		if ($result == "") {
-			$result = "Successfully inserted new " . $region . ", " . $year . " FQA database with " . $taxa_inserted . " taxa.";
-			mail('willfreyman@gmail.com', 'FQA: new database', $result);
+			$message = "Successfully inserted new " . $region . ", " . $year . " FQA database with " . $taxa_inserted . " taxa.";
+			mail('willfreyman@gmail.com', 'FQA: new database', $message);
+			$result = $fqa_id . "";
 		} else {
 			// delete any partially inserted databases
 			$sql = "DELETE FROM fqa WHERE id='$fqa_id'";

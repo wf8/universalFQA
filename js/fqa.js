@@ -70,11 +70,14 @@ function save_account_changes() {
  * ---------------------------------------------------------
  */
  
- function start_database_upload() {
+function start_database_upload() {
 	$( "#upload_error" ).html( "Uploading..." );
 }
 function stop_database_upload( msg ){	
-	$( "#upload_error" ).html( msg );
+	if (msg.indexOf("Error") == -1)
+		window.location='../php/view_database.php?id=' + msg;
+	else
+		$( "#upload_error" ).html( msg );
 }
  
 function download_database() {
