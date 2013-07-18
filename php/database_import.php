@@ -17,32 +17,6 @@ $region = mysql_real_escape_string($_POST["region"]);
 $year = mysql_real_escape_string($_POST["year"]);
 $description = mysql_real_escape_string($_POST["description"]);
 
-/*
-CREATE TABLE `fqa` (
- `id` INT NOT NULL AUTO_INCREMENT,
- `region_name` VARCHAR(128) NOT NULL,
- `description` TEXT NOT NULL,
- `publication_year` VARCHAR(4) NOT NULL,
- `created` DATE NOT NULL,
- `user_id` INT NOT NULL,
-PRIMARY KEY (  `id` )
-);
-CREATE TABLE `taxa` (
- `id` INT NOT NULL AUTO_INCREMENT,
- `fqa_id` INT NOT NULL,
- `scientific_name` VARCHAR(256) NOT NULL,
- `family` VARCHAR(256) NULL,
- `common_name` VARCHAR(256) NULL,
- `acronym` VARCHAR(8) NULL,
- `c_o_c` INT NOT NULL,
- `c_o_w` INT NULL,
- `native` BOOLEAN NOT NULL,
- `physiognomy` VARCHAR(10) NULL,
- `duration` VARCHAR(10) NULL,
-PRIMARY KEY (  `id` ),
-INDEX (`fqa_id`)
-);
-*/
 $result = "";
 if (!is_numeric( $year ) || ($year < 1950) || (3000 < $year)) {
 	$result = "Error: Please enter a valid year.";
