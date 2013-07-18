@@ -32,11 +32,13 @@ CREATE TABLE `customized_fqa` (
  `id` INT NOT NULL AUTO_INCREMENT,
  `fqa_id` INT NOT NULL,
  `region_name` VARCHAR(128) NOT NULL,
- `description` TEXT NOT NULL,
  `publication_year` VARCHAR(4) NOT NULL,
+ `customized_name` TEXT NULL,
+ `customized_description` TEXT NULL,
  `created` DATE NOT NULL,
  `user_id` INT NOT NULL,
-PRIMARY KEY ( `id`, `user_id` )
+PRIMARY KEY ( `id` ),
+INDEX (`user_id`)
 );
 
 CREATE TABLE `customized_taxa` (
