@@ -183,7 +183,7 @@ if (!$db_selected)
 			<div class="row-fluid">
 				<div class="span12">
 				<h4>To Add Species In Bulk:</h4>
-				List each species separated by a comma. For example: "Acorus calamus, Alisma subcordatum, Anemone virginiana, etc." Species not found will be ignored.<br>
+				List each species separated by a comma. For example: "Acorus calamus, Alisma subcordatum, Anemone virginiana, etc."<br>
 				<textarea class="input-xxlarge" rows="3" id="items_location7"></textarea><br>
 				<button class="btn btn-info" type="button">Add Species</button><br>
 				</div>

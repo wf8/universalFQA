@@ -145,7 +145,19 @@ if (!$db_selected)
  				</div>
  			</div>
 			<br>
-
+			<div class="row-fluid">
+				<div class="span12">
+					<br>
+					<h3>FQA Database: Chicago, 1994</h3>
+					<form class="form-inline">
+						<select>
+							<option selected>Chicago, 1994</option>
+						</select>
+						<button class="btn btn-info" onclick="javascript:window.location = 'change.php';return false;">Change FQA Database</button>
+					</form>
+					<br>
+				</div>
+			</div>
 			<div class="row-fluid">
 				<div class="span12">	
 					<h4>Active Quadrats:</h4>

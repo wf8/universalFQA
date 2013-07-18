@@ -147,9 +147,16 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-				<h3>FQA Database: Chicago, 1994</h3>
-				<br>
-				<h4>To Add Species Individually:</h4>
+					<br>
+					<h3>FQA Database: Chicago, 1994</h3>
+					<form class="form-inline">
+						<select>
+							<option selected>Chicago, 1994</option>
+						</select>
+						<button class="btn btn-info" onclick="javascript:window.location = 'change.php';return false;">Change FQA Database</button>
+					</form>
+					<br>
+					<h4>To Add Species Individually:</h4>
 				</div>
 			</div>
 			<div class="row-fluid">
@@ -178,7 +185,7 @@ if (!$db_selected)
 			<div class="row-fluid">
 				<div class="span12">
 				<h4>To Add Species In Bulk:</h4>
-				List each species separated by a comma. For example: "Acorus calamus, Alisma subcordatum, Anemone virginiana, etc." Species not found will be ignored.<br>
+				List each species separated by a comma. For example: "Acorus calamus, Alisma subcordatum, Anemone virginiana, etc."<br>
 				<textarea class="input-xxlarge" rows="3" id="items_location7"></textarea><br>
 				<button class="btn btn-info" type="button">Add Species</button><br>
 				</div>
