@@ -177,6 +177,10 @@ if (mysql_num_rows($taxa) == 0) {
 		$family = $taxon['family'];
 		$acronym = $taxon['acronym'];
 		$native = $taxon['native'];
+		if ($native == '1')
+			$native = 'native';
+		if ($native == '0')
+			$native = 'non-native';
 		$c_o_c = $taxon['c_o_c'];
 		$c_o_w = $taxon['c_o_w'];
 		$physiognomy = $taxon['physiognomy'];
