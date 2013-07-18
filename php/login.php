@@ -50,7 +50,7 @@
 					<label class="small-text">Password:</label>
 					<input class="field" type="password" id="login_password" size="23" />
 					<br><br><button class="btn btn-info" onClick="login();">Log In</button><br><br>
-					<a class="lost-pwd" href="#">Lost your password?</a><br><br>
+					<a class="lost-pwd" onClick="forgot_password();" href="#">Lost your password?</a><br><br>
 				</div>
 				<div class="span6">
 					<h2>Create new account:</h2>

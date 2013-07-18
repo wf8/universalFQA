@@ -17,7 +17,7 @@ function register() {
 			password2: $("#register_password2").val()
 		},
 		success: function( response ) {
-			if (response.indexOf("success") != -1) 
+			if (response.indexOf("success") !== -1) 
 				window.location='../php/assessments.php';
 			else 
 				alert(response);
@@ -34,7 +34,7 @@ function login() {
 			password: $("#login_password").val(),
 		},
 		success: function( response ) {
-			if (response.indexOf("success") != -1) 
+			if (response.indexOf("success") !== -1) 
 				window.location='../php/assessments.php';
 			else 
 				alert(response);
@@ -54,7 +54,7 @@ function save_account_changes() {
 			password2: $("#change_password2").val()
 		},
 		success: function( response ) {
-			if (response.indexOf("success") != -1) 
+			if (response.indexOf("success") !== -1) 
 				alert("Changes saved!");
 			else 
 				alert(response);
@@ -62,6 +62,21 @@ function save_account_changes() {
 	});
 }
 
+function forgot_password() {
+	$.ajax({
+		url: "../php/forgot_password.php",
+		type: "POST",
+		data: {
+			email: $("#login_email").val(),
+		},
+		success: function( response ) {
+			if (response.indexOf("success") !== -1) 
+				alert("A new temporary password has been emailed to you. Please check your spam filter if you don't see the email.");
+			else 
+				alert(response);
+		}
+	});
+}
 /**
  * ---------------------------------------------------------
  *
