@@ -135,7 +135,7 @@ if (mysql_num_rows($fqa_databases) == 0) {
 							<td><a href="edit_custom_database.php?id=<?php echo $fqa_id; ?>"><?php echo $customized_name; ?></a></td>
 							<td><?php echo $customized_description; ?></td>
 							<td><?php echo $region; ?>, <?php echo $year; ?></td>
-							<td><a href="edit_custom_database.php?id=<?php echo $fqa_id; ?>">Edit</a> | <a href="download_custom_database.php?id=<?php echo $fqa_id; ?>">Download</a> | <a href="delete_custom_database.php?id=<?php echo $fqa_id; ?>">Delete</a></td>
+							<td><a href="edit_custom_database.php?id=<?php echo $fqa_id; ?>">Edit</a> | <a href="download_custom_database.php?id=<?php echo $fqa_id; ?>">Download</a> | <a onclick="javascript:delete_custom_database(<?php echo $fqa_id; ?>);" href="#">Delete</a></td>
 						</tr>
 <?php
 	}

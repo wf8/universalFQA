@@ -109,7 +109,7 @@ while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
 				<div class="span11">
 					<br>
 					<h1>Customize Public FQA Database</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Save</button>
+					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Done Making Changes</button>
 					<button class="btn btn-info" onclick="javascript:window.location = 'cancel_customize_database.php?id=<?php echo $customized_fqa_id; ?>';return false;">Cancel</button>
 					<br>
 				</div>
@@ -125,9 +125,9 @@ while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
 				</div>
 				<div class="span6">
 					<h4>&#187; Original Database Details:</h4>
-					Region: Chicago<br>
-					Year Published: 1994<br>
-					Description: Swink and Wilhelm
+					Region: <?php echo $region; ?><br>
+					Year Published: <?php echo $year; ?><br>
+					Description: <?php echo $description; ?>
 				</div>	
 			</div>
 			<br>
@@ -162,282 +162,19 @@ while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
 <td><a href="javascript">Add</a></td>
 </tr>                   
 <tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="Acorus calamus"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="n/a"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="ACOCAL"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="Native"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="7"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="-5"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="OBL"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="Forb"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="Perennial"></td>
+<td><input class="input-mini" id="percentCover" type="text" onChange="" value="SWEET FLAG"></td>
 <td><a href="javascript">Delete</a></td>
 </tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr><tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr><tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr><tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr><tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr><tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr><tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr><tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr><tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr><tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
+
 
 
 </table>						
@@ -447,8 +184,8 @@ while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>Finished?</h4>
-					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Save</button> 
-					<button class="btn btn-info" onclick="cancel_customize_database.php?id=<?php echo $customized_fqa_id; ?>">Cancel</button><br>
+					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Done Making Changes</button> 
+					<button class="btn btn-info" onclick="javascript:window.location = 'cancel_customize_database.php?id=<?php echo $customized_fqa_id; ?>';return false;">Cancel</button><br>
 				</div>
 			</div>
 		</div>

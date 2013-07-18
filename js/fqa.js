@@ -97,3 +97,26 @@ function stop_database_upload( msg ){
  
 function download_database() {
 }
+
+/**
+ * ---------------------------------------------------------
+ *
+ * custom FQA databases functions
+ *
+ * ---------------------------------------------------------
+ */
+ 
+ function delete_custom_database( id ) {
+ 	if (confirm("Are you sure you want to delete this custom FQA database?")) {
+		$.ajax({
+			url: "../php/delete_custom_database.php",
+			type: "GET",
+			data: {
+				id: id,
+			},
+			success: function( response ) {
+				window.location='../php/databases.php';
+			}
+		});
+ 	}
+ }

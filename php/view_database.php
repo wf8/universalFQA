@@ -106,7 +106,7 @@ $percent_nonnative = 100 - $percent_native;
 				<div class="span11">
 					<br>
 					<h1>Public FQA Database</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'customize_database.php';return false;">Customize This Database</button>
+					<button class="btn btn-info" onclick="javascript:window.location = 'customize_database.php?id=<?php echo $id; ?>';return false;">Customize This Database</button>
 					<button class="btn btn-info" onClick="asdf_changes();">Download</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Done</button>
 					<br>
