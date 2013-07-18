@@ -70,7 +70,7 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<label class="small-text">Name: <font class="red">*</font></label>
+					<label class="small-text">Transect Name: <font class="red">*</font></label>
 					<input class="field" type="text" id="change_first_name" value="Pothole Pond" maxlength="256" required />
 				</div>
 			</div>

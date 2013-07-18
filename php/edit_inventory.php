@@ -70,7 +70,7 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<label class="small-text">Name: <font class="red">*</font></label>
+					<label class="small-text">Inventory Name: <font class="red">*</font></label>
 					<input class="field" type="text" id="change_first_name" value="Coyote Hill 1" maxlength="256" required />
 				</div>
 			</div>
