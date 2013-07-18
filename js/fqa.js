@@ -143,3 +143,19 @@ function custom_fqa_update( custom_fqa_id ) {
 		}
 	});
 }
+
+function custom_taxa_update( element_id, col_name, custom_taxa_id ) {
+	$.ajax({
+		url: "../php/custom_taxa_update.php",
+		type: "GET",
+		data: {
+			id: custom_taxa_id,
+			col_name: col_name,
+			value: $("#" + element_id).val(),
+		},
+		success: function( response ) {
+			if (response.indexOf("success") == -1)
+				alert(response);
+		}
+	});
+}

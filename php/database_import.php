@@ -66,7 +66,7 @@ else {
 					break;
 				}
 				if (($c_o_w !== '') && (!is_numeric( $c_o_w ) || ($c_o_w < -5) || (5 < $c_o_w))) {
-					$result = "Error: The coefficient of wetness must be an integer from 0-10.";
+					$result = "Error: The coefficient of wetness must be an integer between -5 and 5.";
 					break;
 				}
 				// check native/non-native

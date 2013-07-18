@@ -104,45 +104,70 @@ $customized_description = $custom_fqa['customized_description'];
 				<div class="span12">	
 					<h4>&#187; Species:</h4>
 					<table class="table table-hover">
-<tr>
-<td><strong>Scientific Name</strong></td>
-<td><strong>Family</strong></td>
-<td><strong>Acronym</strong></td>
-<td><strong>Nativity</strong></td>
-<td><strong>C</strong></td>
-<td><strong>W</strong></td>
-<td><strong>Wetland Status</strong></td>
-<td><strong>Physiognomy</strong></td>
-<td><strong>Duration</strong></td>
-<td><strong>Common Name</strong></td>
-<td><strong>Options</strong></td>
-</tr> 
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-<td><a href="javascript">Add</a></td>
-</tr>                   
-<tr>
-<td><input class="input-mini" id="percentCover" type="text" value="Acorus calamus"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="n/a"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="ACOCAL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Native"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="7"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="-5"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="OBL"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Forb"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="Perennial"></td>
-<td><input class="input-mini" id="percentCover" type="text" value="SWEET FLAG"></td>
-<td><a href="javascript">Delete</a></td>
-</tr>
+						<tr>
+							<td><strong>Scientific Name</strong></td>
+							<td><strong>Family</strong></td>
+							<td><strong>Acronym</strong></td>
+							<td><strong>Nativity</strong></td>
+							<td><strong>C</strong></td>
+							<td><strong>W</strong></td>
+							<td><strong>Physiognomy</strong></td>
+							<td><strong>Duration</strong></td>
+							<td><strong>Common Name</strong></td>
+							<td><strong>Options</strong></td>
+						</tr> 
+						<tr>
+							<td><input class="input-medium" id="percentCover" type="text" value=""></td>
+							<td><input class="input-small" id="percentCover" type="text" value=""></td>
+							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
+							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
+							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
+							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
+							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
+							<td><input class="input-small" id="percentCover" type="text" value=""></td>
+							<td><input class="input-medium" id="percentCover" type="text" value=""></td>
+							<td><a href="javascript">Add</a></td>
+						</tr>   
+<?php
+$sql = "SELECT * FROM customized_taxa WHERE customized_fqa_id='$customized_fqa_id' ORDER BY scientific_name";
+$taxa = mysql_query($sql);
+if (mysql_num_rows($taxa) == 0) {
+?>
+						<tr>
+							<td colspan="4">There are no taxa in this customized FQA database.</td>
+						</tr>
+<?php
+} else {
+	$i = 0;
+	while ($taxon = mysql_fetch_assoc($taxa)) {
+		$i++;
+		$taxon_id = $taxon['id'];
+		$scientific_name = $taxon['scientific_name'];
+		$family = $taxon['family'];
+		$acronym = $taxon['acronym'];
+		$native = $taxon['native'];
+		$c_o_c = $taxon['c_o_c'];
+		$c_o_w = $taxon['c_o_w'];
+		$physiognomy = $taxon['physiognomy'];
+		$duration = $taxon['duration'];
+		$common_name = $taxon['common_name'];
+?>
+						<tr>
+							<td><input class="input-medium" id="scientific_name<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'scientific_name<?php echo $i; ?>', 'scientific_name', <?php echo $taxon_id; ?> );" value="<?php echo $scientific_name; ?>"></td>
+							<td><input class="input-small" id="family<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'family<?php echo $i; ?>', 'family', <?php echo $taxon_id; ?> );" value="<?php echo $family; ?>"></td>
+							<td><input class="input-mini" id="acronym<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'acronym<?php echo $i; ?>', 'acronym', <?php echo $taxon_id; ?> );" value="<?php echo $acronym; ?>"></td>
+							<td><input class="input-mini" id="native<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'native<?php echo $i; ?>', 'native', <?php echo $taxon_id; ?> );" value="<?php echo $native; ?>"></td>
+							<td><input class="input-mini" id="c_o_c<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'c_o_c<?php echo $i; ?>', 'c_o_c', <?php echo $taxon_id; ?> );" value="<?php echo $c_o_c; ?>"></td>
+							<td><input class="input-mini" id="c_o_w<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'c_o_w<?php echo $i; ?>', 'c_o_w', <?php echo $taxon_id; ?> );" value="<?php echo $c_o_w; ?>"></td>
+							<td><input class="input-mini" id="physiognomy<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'physiognomy<?php echo $i; ?>', 'physiognomy', <?php echo $taxon_id; ?> );" value="<?php echo $physiognomy; ?>"></td>
+							<td><input class="input-small" id="duration<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'duration<?php echo $i; ?>', 'duration', <?php echo $taxon_id; ?> );" value="<?php echo $duration; ?>"></td>
+							<td><input class="input-medium" id="common_name<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'common_name<?php echo $i; ?>', 'common_name', <?php echo $taxon_id; ?> );" value="<?php echo $common_name; ?>"></td>
+							<td><a onclick="javascript:delete_custom_taxa(<?php echo $taxon_id; ?>);" href="#">Delete</a></td>
+						</tr>
+<?php
+	}
+}
+?>
 
 
 </table>						
