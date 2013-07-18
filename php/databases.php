@@ -115,7 +115,7 @@ if (mysql_num_rows($fqa_databases) == 0) {
 <?php
 $user_id = $_SESSION['user_id'];
 // need to rework customized_fqa table structure!!!
-$sql = "SELECT * FROM customized_fqa WHERE user_id='$user_id' ORDER BY region_name, publication_year";
+$sql = "SELECT * FROM customized_fqa WHERE user_id='$user_id' ORDER BY customized_name, region_name, publication_year";
 $fqa_databases = mysql_query($sql);
 if (mysql_num_rows($fqa_databases) == 0) {
 ?>
@@ -126,28 +126,21 @@ if (mysql_num_rows($fqa_databases) == 0) {
 } else {
 	while ($fqa_database = mysql_fetch_assoc($fqa_databases)) {
 		$fqa_id = $fqa_database['id'];
+		$customized_name = $fqa_database['customized_name'];
+		$customized_description = $fqa_database['customized_description'];
 		$region = $fqa_database['region_name'];
 		$year = $fqa_database['publication_year'];
-		$description = $fqa_database['description'];
 ?>
 						<tr>
-							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>"><?php echo $region; ?></a></td>
-							<td><?php echo $year; ?></td>
-							<td><?php echo $description; ?></td>
-							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>">View</a> | <a href="customize_database.php?id=<?php echo $fqa_id; ?>">Customize</a> | <a href="download_database.php?id=<?php echo $fqa_id; ?>">Download</a></td>
+							<td><a href="edit_custom_database.php?id=<?php echo $fqa_id; ?>"><?php echo $customized_name; ?></a></td>
+							<td><?php echo $customized_description; ?></td>
+							<td><?php echo $region; ?>, <?php echo $year; ?></td>
+							<td><a href="edit_custom_database.php?id=<?php echo $fqa_id; ?>">Edit</a> | <a href="download_custom_database.php?id=<?php echo $fqa_id; ?>">Download</a> | <a href="delete_custom_database.php?id=<?php echo $fqa_id; ?>">Delete</a></td>
 						</tr>
 <?php
 	}
 }
 ?>
-<!--
-						<tr>
-							<td><a href="edit_custom_database.php">My Custom Chi-town</a></td>
-							<td>updated some taxonomy</td>
-							<td>Chicago, 1994</td>
-							<td><a href="edit_custom_database.php">Edit</a> | <a href="download_custom_database.php">Download</a> | <a href="delete_custom_database.php">Delete</a></td>
-						</tr>
--->
 					</table>
 				</div>
 			</div>
