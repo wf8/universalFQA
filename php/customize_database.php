@@ -109,7 +109,7 @@ while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
 				<div class="span11">
 					<br>
 					<h1>Customize Public FQA Database</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Done Making Changes</button>
+					<button class="btn btn-info" onclick="javascript:done_creating_custom_db();">Done Making Changes</button>
 					<button class="btn btn-info" onclick="javascript:window.location = 'cancel_customize_database.php?id=<?php echo $customized_fqa_id; ?>';return false;">Cancel</button>
 					<br>
 				</div>
@@ -119,9 +119,9 @@ while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
 				<div class="span6">
 					<h4>&#187; Customized Database Details:</h4>
 					<label class="small-text">Customized Database Name: <font class="red">*</font></label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" required />
+					<input class="field" type="text" id="customized_fqa_name" value="" maxlength="256" required onChange="custom_fqa_update(<?php echo $customized_fqa_id; ?>)" />
 					<label class="small-text">Customized Database Description: <font class="red">*</font></label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" required />
+					<input class="field" type="text" id="customized_fqa_description" value="" maxlength="256" required onChange="custom_fqa_update(<?php echo $customized_fqa_id; ?>)" />
 				</div>
 				<div class="span6">
 					<h4>&#187; Original Database Details:</h4>
@@ -184,7 +184,7 @@ while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>Finished?</h4>
-					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Done Making Changes</button> 
+					<button class="btn btn-info" onclick="javascript:done_creating_custom_db();">Done Making Changes</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = 'cancel_customize_database.php?id=<?php echo $customized_fqa_id; ?>';return false;">Cancel</button><br>
 				</div>
 			</div>

@@ -120,3 +120,26 @@ function download_database() {
 		});
  	}
  }
+ 
+function done_creating_custom_db() {
+	if ( $("#customized_fqa_name").val() == "" )
+		alert("Please enter a name for the customized FQA database.");
+	else if ( $("#customized_fqa_description").val() == "" ) 
+		alert("Please enter a description for the customized FQA database.");
+	else
+		window.location='../php/databases.php';
+}
+
+function custom_fqa_update( custom_fqa_id ) {
+	$.ajax({
+		url: "../php/custom_fqa_update.php",
+		type: "GET",
+		data: {
+			id: custom_fqa_id,
+			name: $("#customized_fqa_name").val(),
+			description: $("#customized_fqa_description").val()
+		},
+		success: function( response ) {
+		}
+	});
+}
