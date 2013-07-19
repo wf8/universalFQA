@@ -253,6 +253,7 @@ if (!$db_selected)
 <td><strong>Scientific Name</strong></td>
 <td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
+<td><strong>% Cover</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
 <td><strong>W</strong></td>
@@ -265,6 +266,7 @@ if (!$db_selected)
 <td>Acorus calamus</td>
 <td>n/a</td>
 <td>ACOCAL</td>
+<td>15</td>
 <td>Native</td>
 <td>7</td>
 <td>-5</td>
@@ -277,6 +279,7 @@ if (!$db_selected)
 <td>Alisma subcordatum</td>
 <td>n/a</td>
 <td>ALISUB</td>
+<td>15</td>
 <td>Native</td>
 <td>4</td>
 <td>-5</td>
@@ -289,6 +292,7 @@ if (!$db_selected)
 <td>Acorus calamus</td>
 <td>n/a</td>
 <td>ACOCAL</td>
+<td>15</td>
 <td>Native</td>
 <td>7</td>
 <td>-5</td>
@@ -309,6 +313,7 @@ if (!$db_selected)
 <td><strong>Scientific Name</strong></td>
 <td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
+<td><strong>% Cover</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
 <td><strong>W</strong></td>
@@ -318,21 +323,10 @@ if (!$db_selected)
 <td><strong>Common Name</strong></td>
 </tr>                    
 <tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
 <td>Acorus calamus</td>
 <td>n/a</td>
 <td>ACOCAL</td>
+<td>15</td>
 <td>Native</td>
 <td>7</td>
 <td>-5</td>
@@ -345,6 +339,7 @@ if (!$db_selected)
 <td>Alisma subcordatum</td>
 <td>n/a</td>
 <td>ALISUB</td>
+<td>15</td>
 <td>Native</td>
 <td>4</td>
 <td>-5</td>
@@ -357,6 +352,7 @@ if (!$db_selected)
 <td>Acorus calamus</td>
 <td>n/a</td>
 <td>ACOCAL</td>
+<td>15</td>
 <td>Native</td>
 <td>7</td>
 <td>-5</td>
@@ -369,6 +365,7 @@ if (!$db_selected)
 <td>Alisma subcordatum</td>
 <td>n/a</td>
 <td>ALISUB</td>
+<td>15</td>
 <td>Native</td>
 <td>4</td>
 <td>-5</td>
@@ -381,6 +378,7 @@ if (!$db_selected)
 <td>Acorus calamus</td>
 <td>n/a</td>
 <td>ACOCAL</td>
+<td>15</td>
 <td>Native</td>
 <td>7</td>
 <td>-5</td>
@@ -399,8 +397,9 @@ if (!$db_selected)
 					<table class="table table-hover">
 <tr>
 <td><strong>Scientific Name</strong></td>
-<td><strong>Family</strong></td> 
+<td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
+<td><strong>% Cover</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
 <td><strong>W</strong></td>
@@ -408,23 +407,12 @@ if (!$db_selected)
 <td><strong>Physiognomy</strong></td>
 <td><strong>Duration</strong></td>
 <td><strong>Common Name</strong></td>
-</tr> 
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
+</tr>                    
 <tr>
 <td>Acorus calamus</td>
 <td>n/a</td>
 <td>ACOCAL</td>
+<td>15</td>
 <td>Native</td>
 <td>7</td>
 <td>-5</td>
@@ -437,6 +425,7 @@ if (!$db_selected)
 <td>Alisma subcordatum</td>
 <td>n/a</td>
 <td>ALISUB</td>
+<td>15</td>
 <td>Native</td>
 <td>4</td>
 <td>-5</td>
@@ -444,6 +433,19 @@ if (!$db_selected)
 <td>Forb</td>
 <td>Perennial</td>
 <td>COMMON WATER PLANTAIN </td>
+</tr>
+<tr>
+<td>Acorus calamus</td>
+<td>n/a</td>
+<td>ACOCAL</td>
+<td>15</td>
+<td>Native</td>
+<td>7</td>
+<td>-5</td>
+<td>OBL</td>
+<td>Forb</td>
+<td>Perennial</td>
+<td>SWEET FLAG</td>
 </tr>
 </table>
 				</div>
@@ -457,6 +459,7 @@ if (!$db_selected)
 <td><strong>Scientific Name</strong></td>
 <td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
+<td><strong>% Cover</strong></td>
 <td><strong>Nativity</strong></td>
 <td><strong>C</strong></td>
 <td><strong>W</strong></td>
@@ -464,11 +467,12 @@ if (!$db_selected)
 <td><strong>Physiognomy</strong></td>
 <td><strong>Duration</strong></td>
 <td><strong>Common Name</strong></td>
-</tr> 
+</tr>                    
 <tr>
 <td>Acorus calamus</td>
 <td>n/a</td>
 <td>ACOCAL</td>
+<td>15</td>
 <td>Native</td>
 <td>7</td>
 <td>-5</td>
@@ -481,6 +485,7 @@ if (!$db_selected)
 <td>Alisma subcordatum</td>
 <td>n/a</td>
 <td>ALISUB</td>
+<td>15</td>
 <td>Native</td>
 <td>4</td>
 <td>-5</td>
