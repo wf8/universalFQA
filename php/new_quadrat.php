@@ -75,7 +75,11 @@ if (!$db_selected)
  					<label class="small-text">Latitude:</label>
 					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>
  					<label class="small-text">Longitude:</label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>					
+					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>
+					<label class="small-text">% Bare Ground:</label>
+					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>
+ 					<label class="small-text">% Water:</label>
+					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>						
 				</div>
 			</div>
 			<br>
@@ -88,25 +92,31 @@ if (!$db_selected)
 			</div>
 			<div class="row-fluid">
 				<div class="span4">
-					<label class="small-text">Search by Scientific Name:</label>
-					<div class="input-append">
- 					 	<input class="input-medium" id="appendedInputButton" type="text">
-  						<button class="btn btn-info" type="button">Add</button>
-					</div>
+					<form class="form-inline">
+						<input class="input-medium" id="appendedInputButton" type="text" placeholder="Scientific Name">
+						<div class="input-append">
+							<input class="input-mini" id="appendedInputButton" type="text" placeholder="% Cover">
+							<button class="btn btn-info" type="button">Add</button>
+						</div>
+					</form>
 				</div>
 				<div class="span4">
-					<label class="small-text">Search by Acronym:</label>
- 					<div class="input-append">
- 					 	<input class="input-medium" id="appendedInputButton" type="text">
-  						<button class="btn btn-info" type="button">Add</button>
-					</div>
+					<form class="form-inline">
+						<input class="input-medium" id="appendedInputButton" type="text" placeholder="Acronym">
+						<div class="input-append">
+							<input class="input-mini" id="appendedInputButton" type="text" placeholder="% Cover">
+							<button class="btn btn-info" type="button">Add</button>
+						</div>
+					</form>
 				</div>
 				<div class="span4">
-					<label class="small-text">Search by Common Name:</label>
-					<div class="input-append">
- 					 	<input class="input-medium" id="appendedInputButton" type="text">
-  						<button class="btn btn-info" type="button">Add</button>
-					</div>
+					<form class="form-inline">
+						<input class="input-medium" id="appendedInputButton" type="text" placeholder="Common Name">
+						<div class="input-append">
+							<input class="input-mini" id="appendedInputButton" type="text" placeholder="% Cover">
+							<button class="btn btn-info" type="button">Add</button>
+						</div>
+					</form>
 				</div>	
 			</div>
 			<div class="row-fluid">

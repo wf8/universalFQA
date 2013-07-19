@@ -106,7 +106,7 @@ if (!$db_selected)
  			</div>
 			<br>
 			<div class="row-fluid">
-				<div class="span3">
+				<div class="span4">
 					<h4>&#187; Conservatism-Based Metrics:</h4>
 					Total Mean C: <strong>4.5</strong><br>
 					Native Mean C: <strong>5.5</strong><br>
@@ -123,7 +123,7 @@ if (!$db_selected)
 					% C value 4-6:  <strong>0%</strong><br>
 					% C value 7-10:  <strong>0%</strong><br>
 				</div>
-				<div class="span3">	
+				<div class="span4">	
 					<h4>&#187; Species Richness and Wetness:</h4>
 					Total Species: <strong>44</strong><br>
 					Native Species: <strong>37 (84.1%)</strong><br>
@@ -131,6 +131,7 @@ if (!$db_selected)
 					Mean Wetness: <strong>-2</strong><br>
 					Native Mean Wetness: <strong>-2</strong><br>
 				</div>
+				<!--
 				<div class="span3">
 					<h4>&#187; Physiognomy Metrics:</h4>
 					Tree: <strong>0 (0.0%)   </strong><br>
@@ -143,7 +144,8 @@ if (!$db_selected)
 					Fern: <strong>0     (0.0%) </strong><br>
 					Other: <strong>0     (0.0%)      </strong><br>  
 				</div>
-				<div class="span3">
+				-->
+				<div class="span4">
 					<h4>&#187; Duration Metrics:</h4>
 					Annual: <strong>22 (50.0%)</strong><br>
 					Perennial: <strong>22 (50.0%)</strong><br>
@@ -153,6 +155,128 @@ if (!$db_selected)
 					Native Perennial: <strong>22 (50.0%)</strong><br>
 					Native Biennial: <strong>0 (0.0%)</strong><br>
 				</div>	
+			</div>
+			<br>
+			<div class="row-fluid">
+				<div class="span12">
+					<h4>&#187; Physiognomic Relative Importance Values:</h4>
+					<table class="table table-hover">
+						<tr>
+							<td><strong>Physiognomy</strong></td>
+							<td><strong>Frequency</strong></td>
+							<td><strong>Coverage</strong></td>
+							<td><strong>Relative Frequency (%)</strong></td>
+							<td><strong>Relative Coverage (%)</strong></td>
+							<td><strong>Relative Importance Value</strong></td>
+						</tr>
+						<!-- show descending in order of RIV -->
+						<tr>
+							<td>Tree</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Shrub</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Vine</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Forb</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Grass</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Sedge</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Rush</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Fern</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Other</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<br>
+			<div class="row-fluid">
+				<div class="span12">
+					<h4>&#187; Species Relative Importance Values:</h4>
+					<table class="table table-hover">
+						<tr>
+							<td><strong>Species</strong></td>
+							<td><strong>Frequency</strong></td>
+							<td><strong>Coverage</strong></td>
+							<td><strong>Relative Frequency (%)</strong></td>
+							<td><strong>Relative Coverage (%)</strong></td>
+							<td><strong>Relative Importance Value</strong></td>
+						</tr>
+						<!-- show descending in order of RIV -->
+						<tr>
+							<td>Acorus calamus</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Alisma subcordatum</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			<br>
 			<div class="row-fluid">

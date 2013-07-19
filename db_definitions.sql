@@ -127,6 +127,8 @@ CREATE TABLE `quadrat` (
  `active` BOOLEAN NOT NULL DEFAULT 1,
  `latitude` VARCHAR(256) NULL,
  `longitude` VARCHAR(256) NULL,
+ `percent_bare_ground` INT NULL,
+ `percent_water` INT NULL,
 INDEX (`transect_id` ),
 PRIMARY KEY (  `id` )
 );
@@ -138,7 +140,7 @@ CREATE TABLE `quadrat_taxa` (
  `site_id` INT NOT NULL,
  `fqa_id` INT NOT NULL,
  `taxa_id` INT NOT NULL,
- `percent_coverage` INT NULL,
+ `percent_coverage` INT NOT NULL,
 INDEX ( `quadrat_id`, `transect_id`, `taxa_id`),
 PRIMARY KEY (  `id` )
 );
