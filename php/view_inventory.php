@@ -116,7 +116,8 @@ if (!$db_selected)
 					Total FQI: <strong>30.5</strong><br>
 					Native FQI: <strong>45.5</strong><br>
 					Adjusted FQI: <strong>45.5</strong><br>
-					% C value 0-3:  <strong>0%</strong><br>
+					% C value 0:  <strong>0%</strong><br>
+					% C value 1-3:  <strong>0%</strong><br>
 					% C value 4-6:  <strong>0%</strong><br>
 					% C value 7-10:  <strong>0%</strong><br>
 				</div>
