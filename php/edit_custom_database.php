@@ -22,6 +22,7 @@ if (mysql_num_rows($fqa_databases) == 0) {
 	exit;
 } 
 $custom_fqa = mysql_fetch_assoc($fqa_databases);
+$original_fqa_id = $custom_fqa['fqa_id'];
 $region = $custom_fqa['region_name'];
 $year = $custom_fqa['publication_year'];
 $description = $custom_fqa['description'];
@@ -117,16 +118,16 @@ $customized_description = $custom_fqa['customized_description'];
 							<td><strong>Options</strong></td>
 						</tr> 
 						<tr>
-							<td><input class="input-medium" id="percentCover" type="text" value=""></td>
-							<td><input class="input-small" id="percentCover" type="text" value=""></td>
-							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-							<td><input class="input-mini" id="percentCover" type="text" value=""></td>
-							<td><input class="input-small" id="percentCover" type="text" value=""></td>
-							<td><input class="input-medium" id="percentCover" type="text" value=""></td>
-							<td><a href="javascript">Add</a></td>
+							<td><input class="input-medium" id="new_scientific_name" type="text" value=""></td>
+							<td><input class="input-small" id="new_family" type="text" value=""></td>
+							<td><input class="input-mini" id="new_acronym" type="text" value=""></td>
+							<td><input class="input-mini" id="new_native" type="text" value=""></td>
+							<td><input class="input-mini" id="new_c" type="text" value=""></td>
+							<td><input class="input-mini" id="new_w" type="text" value=""></td>
+							<td><input class="input-mini" id="new_physiognomy" type="text" value=""></td>
+							<td><input class="input-small" id="new_duration" type="text" value=""></td>
+							<td><input class="input-medium" id="new_common_name" type="text" value=""></td>
+							<td><a href="javascript:new_custom_taxa( <?php echo $original_fqa_id; ?>, <?php echo $customized_fqa_id; ?> );">Add</a></td>
 						</tr>   
 <?php
 $sql = "SELECT * FROM customized_taxa WHERE customized_fqa_id='$customized_fqa_id' ORDER BY scientific_name";

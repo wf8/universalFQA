@@ -106,7 +106,7 @@ function download_database() {
  * ---------------------------------------------------------
  */
  
- function delete_custom_database( id ) {
+function delete_custom_database( id ) {
  	if (confirm("Are you sure you want to delete this custom FQA database?")) {
 		$.ajax({
 			url: "../php/delete_custom_database.php",
@@ -119,7 +119,22 @@ function download_database() {
 			}
 		});
  	}
- }
+}
+
+function delete_custom_taxa( id ) {
+ 	if (confirm("Are you sure you want to delete this taxa?")) {
+		$.ajax({
+			url: "../php/delete_custom_taxa.php",
+			type: "GET",
+			data: {
+				id: id,
+			},
+			success: function( response ) {
+				location.reload(true);
+			}
+		});
+ 	}
+}
  
 function done_creating_custom_db() {
 	if ( $("#customized_fqa_name").val() == "" )
@@ -156,6 +171,32 @@ function custom_taxa_update( element_id, col_name, custom_taxa_id ) {
 		success: function( response ) {
 			if (response.indexOf("success") == -1)
 				alert(response);
+		}
+	});
+}
+
+function new_custom_taxa( original_fqa_id, custom_fqa_id ) {
+	$.ajax({
+		url: "../php/new_custom_taxa.php",
+		type: "GET",
+		data: {
+			custom_fqa_id: custom_fqa_id,
+			original_fqa_id: original_fqa_id,
+			scientific_name: $("#new_scientific_name").val(),
+			family: $("#new_family").val(),
+			acronym: $("#new_acronym").val(),
+			native: $("#new_native").val(),
+			c_o_c: $("#new_c").val(),
+			c_o_w: $("#new_w").val(),
+			physiognomy: $("#new_physiognomy").val(),
+			duration: $("#new_duration").val(),
+			common_name: $("#new_common_name").val(),
+		},
+		success: function( response ) {
+			if (response.indexOf("success") == -1)
+				alert(response);
+			else
+				location.reload(true);
 		}
 	});
 }

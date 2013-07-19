@@ -114,7 +114,6 @@ if (mysql_num_rows($fqa_databases) == 0) {
 						</tr>
 <?php
 $user_id = $_SESSION['user_id'];
-// need to rework customized_fqa table structure!!!
 $sql = "SELECT * FROM customized_fqa WHERE user_id='$user_id' ORDER BY customized_name, region_name, publication_year";
 $fqa_databases = mysql_query($sql);
 if (mysql_num_rows($fqa_databases) == 0) {
