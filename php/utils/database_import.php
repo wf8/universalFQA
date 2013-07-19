@@ -49,14 +49,13 @@ else {
 			}
 			// skip the header row
 			if (trim(strtolower($data[0])) !== "scientific name") {
-				//scientific name, family, acronym, nativity, coefficient of conservatism, coefficient of wetness, wetland status, physiognomy, duration, common name
+				//scientific name, family, acronym, nativity, coefficient of conservatism, coefficient of wetness, physiognomy, duration, common name
 				$scientific_name = mysql_real_escape_string(ucfirst(trim($data[0])));
 				$family = mysql_real_escape_string(ucfirst(trim($data[1])));
 				$acronym = mysql_real_escape_string(strtoupper(trim($data[2])));
 				$native = mysql_real_escape_string(strtolower(trim($data[3])));
 				$c_o_c = mysql_real_escape_string(trim($data[4]));
 				$c_o_w = mysql_real_escape_string(trim($data[5]));
-				$wet = mysql_real_escape_string(strtoupper(trim($data[6])));
 				$physiognomy = mysql_real_escape_string(strtolower(trim($data[7])));
 				$duration = mysql_real_escape_string(strtolower(trim($data[8])));
 				$common_name = mysql_real_escape_string(strtolower(trim($data[9])));
@@ -93,6 +92,8 @@ else {
 					$result = "Error: Please enter a valid term for duration (either annual, biennial, or perennial).";
 					break;
 				}
+				/*******
+				removed wetness column from imported spreadsheets
 				// only c_o_w goes in database, not wetness--so make sure they are correct
 				if ( $c_o_w == '' && $wet !== '') {
 					if ($wet == 'OBL')
@@ -118,6 +119,7 @@ else {
 					else if ($wet == 'UPL')
 						$c_o_w = 5;
 				} 
+				*/
 				if ($family == '')
 					$family = null;
 				if ($acronym == '')

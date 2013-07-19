@@ -88,7 +88,7 @@ if( !$_SESSION['valid'] ) {
 					<p>
 					The columns should be organized as follows:
 					</p>
-					<pre>scientific name, family, acronym, nativity, coefficient of conservatism, coefficient of wetness, wetland status, physiognomy, duration, common name</pre>
+					<pre>scientific name, family, acronym, nativity, coefficient of conservatism, coefficient of wetness, physiognomy, duration, common name</pre>
 					<p>
 					Only the scientific name, nativity, and coefficient of conservatism columns are required. The other columns may be left blank, though the more the better. 
 					</p>
@@ -115,18 +115,17 @@ if( !$_SESSION['valid'] ) {
   							<li>5 = Upland = UPL</li>
 						</ul>
 					</li>
-					<li>Wetland status should be the abbreviations of the USFWS Wetland Status shown above (FACW+, etc). If you enter either the Coefficient of Wetness or the Wetland Status column the other will be generated automatically.</li>
 					<li>Physiognomy can be any of the following terms: "fern", "forb", "grass", "rush", "sedge", "shrub", "tree", "vine", or "other". Other terms won't be recognized.</li>
 					<li>Duration can be "annual", "biennial", or "perennial". Other terms won't be recognized.</li>
 					</ul>
 					</p>
 					<p>Here is an example with all the columns filled out:</p>
-<pre>Adiantum pedatum, Pteridaceae, ADIPED, native, 6, 1, FAC-, fern, perennial, maidenhair fern
-Alliaria petiolata, Brassicaceae, ALLPET, non-native, 0, 0, FAC, forb, biennial, garlic mustard
+<pre>Adiantum pedatum, Pteridaceae, ADIPED, native, 6, 1, fern, perennial, maidenhair fern
+Alliaria petiolata, Brassicaceae, ALLPET, non-native, 0, 0, forb, biennial, garlic mustard
 </pre>
 					<p>Here is an example with only the bare minimum columns filled out:</p>
-<pre>Adiantum pedatum,,, native, 6,,,,,
-Alliaria petiolata,,, non-native, 0,,,,,
+<pre>Adiantum pedatum,,, native, 6,,,,
+Alliaria petiolata,,, non-native, 0,,,,
 </pre>									
 				</div>
 			</div>
