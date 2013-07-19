@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('fqa_config.php');
+require('../fqa_config.php');
 
 if( !$_SESSION['valid'] ) {
 	exit;

@@ -65,7 +65,7 @@ if( !$_SESSION['valid'] ) {
 			<div class="row-fluid">
 				<div class="span12">
 					<h4>&#187; 1. Enter the FQA Database Details:</h4>
-					<form action="database_import.php" method="post" enctype="multipart/form-data" target="upload_target" onsubmit="start_database_upload();">
+					<form action="utils/database_import.php" method="post" enctype="multipart/form-data" target="upload_target" onsubmit="start_database_upload();">
 					<label class="small-text">Region Name: (What region does this database cover?)<font class="red">*</font></label>
 					<input class="medium" type="text" name="region" value="" maxlength="256" required />
 					<label class="small-text">Year Published: (When was this database originally developed?)<font class="red">*</font></label>

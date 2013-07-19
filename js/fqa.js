@@ -7,7 +7,7 @@
  */
 function register() {
 	$.ajax({
-		url: "../php/register_user.php",
+		url: "utils/register_user.php",
 		type: "POST",
 		data: {
 			email: $("#register_email").val(),
@@ -27,7 +27,7 @@ function register() {
 
 function login() {
 	$.ajax({
-		url: "../php/login_user.php",
+		url: "utils/login_user.php",
 		type: "POST",
 		data: {
 			email: $("#login_email").val(),
@@ -44,7 +44,7 @@ function login() {
 
 function save_account_changes() {
 	$.ajax({
-		url: "../php/change_user_info.php",
+		url: "utils/change_user_info.php",
 		type: "POST",
 		data: {
 			email: $("#change_email").val(),
@@ -64,7 +64,7 @@ function save_account_changes() {
 
 function forgot_password() {
 	$.ajax({
-		url: "../php/forgot_password.php",
+		url: "utils/forgot_password.php",
 		type: "POST",
 		data: {
 			email: $("#login_email").val(),
@@ -90,7 +90,7 @@ function start_database_upload() {
 }
 function stop_database_upload( msg ){	
 	if (msg.indexOf("Error") == -1)
-		window.location='../php/view_database.php?id=' + msg;
+		window.location='../view_database.php?id=' + msg;
 	else
 		$( "#upload_error" ).html( msg );
 }
@@ -109,7 +109,7 @@ function download_database() {
 function delete_custom_database( id ) {
  	if (confirm("Are you sure you want to delete this custom FQA database?")) {
 		$.ajax({
-			url: "../php/delete_custom_database.php",
+			url: "utils/delete_custom_database.php",
 			type: "GET",
 			data: {
 				id: id,
@@ -124,7 +124,7 @@ function delete_custom_database( id ) {
 function delete_custom_taxa( id ) {
  	if (confirm("Are you sure you want to delete this taxa?")) {
 		$.ajax({
-			url: "../php/delete_custom_taxa.php",
+			url: "utils/delete_custom_taxa.php",
 			type: "GET",
 			data: {
 				id: id,
@@ -147,7 +147,7 @@ function done_creating_custom_db() {
 
 function custom_fqa_update( custom_fqa_id ) {
 	$.ajax({
-		url: "../php/custom_fqa_update.php",
+		url: "utils/custom_fqa_update.php",
 		type: "GET",
 		data: {
 			id: custom_fqa_id,
@@ -161,7 +161,7 @@ function custom_fqa_update( custom_fqa_id ) {
 
 function custom_taxa_update( element_id, col_name, custom_taxa_id ) {
 	$.ajax({
-		url: "../php/custom_taxa_update.php",
+		url: "utils/custom_taxa_update.php",
 		type: "GET",
 		data: {
 			id: custom_taxa_id,
@@ -177,7 +177,7 @@ function custom_taxa_update( element_id, col_name, custom_taxa_id ) {
 
 function new_custom_taxa( original_fqa_id, custom_fqa_id ) {
 	$.ajax({
-		url: "../php/new_custom_taxa.php",
+		url: "utils/new_custom_taxa.php",
 		type: "GET",
 		data: {
 			custom_fqa_id: custom_fqa_id,

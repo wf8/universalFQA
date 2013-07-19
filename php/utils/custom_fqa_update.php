@@ -1,8 +1,8 @@
 <?php 
 session_start(); 
-require('fqa_config.php');
+require('../fqa_config.php');
 if( !$_SESSION['valid'] ) {
-	header( "Location: login.php" );
+	header( "Location: ../login.php" );
 	exit;
 } 
 $connection = mysql_connect($db_server, $db_username, $db_password);
@@ -14,8 +14,9 @@ if (!$db_selected)
 
 // get parameters
 $id = mysql_real_escape_string($_GET["id"]);
+$name = mysql_real_escape_string($_GET["name"]);
+$description = mysql_real_escape_string($_GET["description"]);
 
-// delete the taxa
-$sql = "DELETE FROM customized_taxa WHERE id='$id'";
+$sql = "UPDATE customized_fqa SET customized_name = '$name', customized_description = '$description' WHERE id = '$id'";
 mysql_query($sql);
-?>
+?> 

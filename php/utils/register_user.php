@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('fqa_config.php');
+require('../fqa_config.php');
 $connection = mysql_connect($db_server, $db_username, $db_password);
 if (!$connection) 
 	die('Not connected : ' . mysql_error());	
