@@ -80,7 +80,4 @@ if (mysql_num_rows($existing_taxa) == 0) {
 	echo "Error: a taxa with that scientific name already exists for this database.";
 	exit;
 }
-
-// redirect
-header( "Location: edit_custom_database.php?id=" . $customized_fqa_id );
 ?>
