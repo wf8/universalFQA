@@ -193,7 +193,7 @@ if (mysql_num_rows($taxa) == 0) {
     <br><br>
 	<footer class="footer">
 		<div class="container">
-			<p><a href="http://universalFQA.org">universalFQA.org</a> | <a href="../about.html">About this site</a></p>
+			<p><a href="javascript: check_form('http://universalFQA.org')">universalFQA.org</a> | <a href="javascript: check_form('../about.html')">About this site</a></p>
 		</div>
 	</footer>
   </body>
