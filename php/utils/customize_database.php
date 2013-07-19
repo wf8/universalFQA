@@ -1,8 +1,8 @@
 <?php
 session_start(); 
-require('fqa_config.php');
+require('../fqa_config.php');
 if( !$_SESSION['valid'] ) {
-	header( "Location: login.php" );
+	header( "Location: ../login.php" );
 	exit;
 } 
 $connection = mysql_connect($db_server, $db_username, $db_password);
@@ -57,5 +57,5 @@ while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
 	mysql_query($sql);
 }
 // redirect
-header( "Location: edit_custom_database.php?id=" . $customized_fqa_id );
+header( "Location: ../edit_custom_database.php?id=" . $customized_fqa_id );
 ?>

@@ -96,7 +96,7 @@ if (mysql_num_rows($fqa_databases) == 0) {
 							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>"><?php echo $region; ?></a></td>
 							<td><?php echo $year; ?></td>
 							<td><?php echo $description; ?></td>
-							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>">View</a> | <a href="customize_database.php?id=<?php echo $fqa_id; ?>">Customize</a> | <a href="download_database.php?id=<?php echo $fqa_id; ?>">Download</a></td>
+							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>">View</a> | <a href="utils/customize_database.php?id=<?php echo $fqa_id; ?>">Customize</a> | <a href="download_database.php?id=<?php echo $fqa_id; ?>">Download</a></td>
 						</tr>
 <?php
 	}
