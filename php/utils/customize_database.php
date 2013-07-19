@@ -18,7 +18,7 @@ $sql = "SELECT * FROM fqa WHERE id='$original_fqa_id'";
 $fqa_databases = mysql_query($sql);
 // if fqa not found redirect user
 if (mysql_num_rows($fqa_databases) == 0) {
-	header( "Location: databases.php" );
+	header( "Location: view_databases.php" );
 	exit;
 } 
 $original_fqa = mysql_fetch_assoc($fqa_databases);

@@ -18,7 +18,7 @@ function register() {
 		},
 		success: function( response ) {
 			if (response.indexOf("success") !== -1) 
-				window.location='../php/assessments.php';
+				window.location='../php/view_assessments.php';
 			else 
 				alert(response);
 		}
@@ -35,7 +35,7 @@ function login() {
 		},
 		success: function( response ) {
 			if (response.indexOf("success") !== -1) 
-				window.location='../php/assessments.php';
+				window.location='../php/view_assessments.php';
 			else 
 				alert(response);
 		}
@@ -115,7 +115,7 @@ function delete_custom_database( id ) {
 				id: id,
 			},
 			success: function( response ) {
-				window.location='../php/databases.php';
+				window.location='../php/view_databases.php';
 			}
 		});
  	}
@@ -142,7 +142,7 @@ function done_creating_custom_db() {
 	else if ( $("#customized_fqa_description").val() == "" ) 
 		alert("Please enter a description for the customized FQA database.");
 	else
-		window.location='../php/databases.php';
+		window.location='../php/view_databases.php';
 }
 
 function custom_fqa_update( custom_fqa_id ) {

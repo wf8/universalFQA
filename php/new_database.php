@@ -36,9 +36,9 @@ if( !$_SESSION['valid'] ) {
           		<a class="brand" href="../index.html">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
             		<ul class="nav pull-right">
-            			<li><a href="assessments.php">Assessments</a></li>
-            			<li><a href="databases.php">FQA Databases</a></li>
-            			<li><a href="account.php">Account Info</a></li>
+            			<li><a href="view_assessments.php">Assessments</a></li>
+            			<li><a href="view_databases.php">FQA Databases</a></li>
+            			<li><a href="view_account.php">Account Info</a></li>
             			<li><a href="../help.html">Help</a></li>
               			<li><a href="logout.php">Logout</a></li>
             		</ul>
@@ -57,7 +57,7 @@ if( !$_SESSION['valid'] ) {
 				<div class="span11">
 					<br>
 					<h1>Upload New Public FQA Database</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Cancel</button>
+					<button class="btn btn-info" onclick="javascript:window.location = 'view_databases.php';return false;">Cancel</button>
 					<br>
 				</div>
 			</div>
@@ -136,7 +136,7 @@ Alliaria petiolata,,, non-native, 0,,,,,
 					<h4>&#187; 3. Upload the spreadsheet:</h4>
 					<input type="file" id="upload_file" name="upload_file"><br>
 					<button type="submit" class="btn btn-info">Upload</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Cancel</button>
+					<button class="btn btn-info" onclick="javascript:window.location = 'view_databases.php';return false;">Cancel</button>
 					</form>
 					<br><br>
 					<div id="upload_error"></div>

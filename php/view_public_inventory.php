@@ -42,9 +42,9 @@ if (!$db_selected)
           		<a class="brand" href="../index.html">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
             		<ul class="nav pull-right">
-            			<li><a href="assessments.php">Assessments</a></li>
-            			<li><a href="databases.php">FQA Databases</a></li>
-            			<li><a href="account.php">Account Info</a></li>
+            			<li><a href="view_assessments.php">Assessments</a></li>
+            			<li><a href="view_databases.php">FQA Databases</a></li>
+            			<li><a href="view_account.php">Account Info</a></li>
             			<li><a href="../help.html">Help</a></li>
               			<li><a href="logout.php">Logout</a></li>
             		</ul>
@@ -64,7 +64,7 @@ if (!$db_selected)
 					<br>
 					<h1>Public Inventory Assessment</h1>
 					<button class="btn btn-info" onClick="asdf_changes();">Download Report</button> 
-					<button class="btn btn-info" onclick="javascript:window.location = 'public_assessments.php';return false;">Done</button>
+					<button class="btn btn-info" onclick="javascript:window.location = 'view_public_assessments.php';return false;">Done</button>
 					<br>
 				</div>
 			</div>

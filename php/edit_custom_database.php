@@ -18,7 +18,7 @@ $sql = "SELECT * FROM customized_fqa WHERE id='$customized_fqa_id'";
 $fqa_databases = mysql_query($sql);
 // if fqa not found redirect user
 if (mysql_num_rows($fqa_databases) == 0) {
-	header( "Location: databases.php" );
+	header( "Location: view_databases.php" );
 	exit;
 } 
 $custom_fqa = mysql_fetch_assoc($fqa_databases);
@@ -59,9 +59,9 @@ $customized_description = $custom_fqa['customized_description'];
           		<a class="brand" href="javascript: check_form('../index.html');">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
             		<ul class="nav pull-right">
-            			<li><a href="javascript: check_form('assessments.php');">Assessments</a></li>
-            			<li><a href="javascript: check_form('databases.php');">FQA Databases</a></li>
-            			<li><a href="javascript: check_form('account.php');">Account Info</a></li>
+            			<li><a href="javascript: check_form('view_assessments.php');">Assessments</a></li>
+            			<li><a href="javascript: check_form('view_databases.php');">FQA Databases</a></li>
+            			<li><a href="javascript: check_form('view_account.php');">Account Info</a></li>
             			<li><a href="javascript: check_form('../help.html');">Help</a></li>
               			<li><a href="javascript: check_form('logout.php');">Logout</a></li>
             		</ul>

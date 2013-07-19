@@ -19,7 +19,7 @@ $sql = "SELECT * FROM fqa WHERE id='$id'";
 $fqa_databases = mysql_query($sql);
 // if fqa not found redirect user
 if (mysql_num_rows($fqa_databases) == 0) {
-	header( "Location: databases.php" );
+	header( "Location: view_databases.php" );
 	exit;
 } 
 $fqa_database = mysql_fetch_assoc($fqa_databases);
@@ -85,9 +85,9 @@ $percent_nonnative = 100 - $percent_native;
           		<a class="brand" href="../index.html">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
             		<ul class="nav pull-right">
-            			<li><a href="assessments.php">Assessments</a></li>
-            			<li><a href="databases.php">FQA Databases</a></li>
-            			<li><a href="account.php">Account Info</a></li>
+            			<li><a href="view_assessments.php">Assessments</a></li>
+            			<li><a href="view_databases.php">FQA Databases</a></li>
+            			<li><a href="view_account.php">Account Info</a></li>
             			<li><a href="../help.html">Help</a></li>
               			<li><a href="logout.php">Logout</a></li>
             		</ul>
@@ -108,7 +108,7 @@ $percent_nonnative = 100 - $percent_native;
 					<h1>Public FQA Database</h1>
 					<button class="btn btn-info" onclick="javascript:window.location = 'utils/customize_database.php?id=<?php echo $id; ?>';return false;">Customize This Database</button>
 					<button class="btn btn-info" onClick="asdf_changes();">Download</button> 
-					<button class="btn btn-info" onclick="javascript:window.location = 'databases.php';return false;">Done</button>
+					<button class="btn btn-info" onclick="javascript:window.location = 'view_databases.php';return false;">Done</button>
 					<br>
 				</div>
 			</div>

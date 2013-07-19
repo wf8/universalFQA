@@ -36,9 +36,9 @@ if( !$_SESSION['valid'] ) {
           		<a class="brand" href="../index.html">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
             		<ul class="nav pull-right">
-            			<li><a href="assessments.php">Assessments</a></li>
-            			<li><a href="databases.php">FQA Databases</a></li>
-            			<li><a href="account.php">Account Info</a></li>
+            			<li><a href="view_assessments.php">Assessments</a></li>
+            			<li><a href="view_databases.php">FQA Databases</a></li>
+            			<li><a href="view_account.php">Account Info</a></li>
             			<li><a href="../help.html">Help</a></li>
               			<li><a href="logout.php">Logout</a></li>
             		</ul>
