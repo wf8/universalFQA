@@ -56,14 +56,14 @@ $customized_description = $custom_fqa['customized_description'];
             		<span class="icon-bar"></span>
             		<span class="icon-bar"></span>
           		</button>
-          		<a class="brand" href="../index.html">Universal FQA</a>
+          		<a class="brand" href="javascript: check_form('../index.html');">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
             		<ul class="nav pull-right">
-            			<li><a href="assessments.php">Assessments</a></li>
-            			<li><a href="databases.php">FQA Databases</a></li>
-            			<li><a href="account.php">Account Info</a></li>
-            			<li><a href="../help.html">Help</a></li>
-              			<li><a href="logout.php">Logout</a></li>
+            			<li><a href="javascript: check_form('assessments.php');">Assessments</a></li>
+            			<li><a href="javascript: check_form('databases.php');">FQA Databases</a></li>
+            			<li><a href="javascript: check_form('account.php');">Account Info</a></li>
+            			<li><a href="javascript: check_form('../help.html');">Help</a></li>
+              			<li><a href="javascript: check_form('logout.php');">Logout</a></li>
             		</ul>
           		</div>
         	</div>
@@ -81,6 +81,7 @@ $customized_description = $custom_fqa['customized_description'];
 					<br>
 					<h1>Edit Custom FQA Database</h1>
 					<button class="btn btn-info" onclick="javascript:done_creating_custom_db();">Done Making Changes</button>
+					<button class="btn btn-info" onclick="javascript:delete_custom_database(<?php echo $customized_fqa_id; ?>);">Delete This Custom FQA Database</button>
 					<br>
 				</div>
 			</div>
@@ -182,7 +183,9 @@ if (mysql_num_rows($taxa) == 0) {
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>Finished?</h4>
-					<button class="btn btn-info" onclick="javascript:done_creating_custom_db();">Done Making Changes</button><br>
+					<button class="btn btn-info" onclick="javascript:done_creating_custom_db();">Done Making Changes</button>
+					<button class="btn btn-info" onclick="javascript:delete_custom_database(<?php echo $customized_fqa_id; ?>);">Delete This Custom FQA Database</button>
+					<br>
 				</div>
 			</div>
 		</div>
