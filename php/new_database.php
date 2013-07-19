@@ -70,7 +70,7 @@ if( !$_SESSION['valid'] ) {
 					<input class="medium" type="text" name="region" value="" maxlength="256" required />
 					<label class="small-text">Year Published: (When was this database originally developed?)<font class="red">*</font></label>
 					<input class="medium" type="text" name="year" value="" maxlength="4" required />
-					<label class="small-text">Description: (Who or what organization developed this database?)<font class="red">*</font></label>
+					<label class="small-text">Description: (Who or what organization developed this database? Provide a citation of the published source if possible.)<font class="red">*</font></label>
 					<input class="medium" type="text" name="description" value="" maxlength="256" required />
 				</div>
 			</div>
