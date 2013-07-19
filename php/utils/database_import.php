@@ -50,46 +50,46 @@ else {
 			// skip the header row
 			if (trim(strtolower($data[0])) !== "scientific name") {
 				//scientific name, family, acronym, nativity, coefficient of conservatism, coefficient of wetness, physiognomy, duration, common name
-				$scientific_name = mysql_real_escape_string(ucfirst(trim($data[0])));
-				$family = mysql_real_escape_string(ucfirst(trim($data[1])));
+				$scientific_name = mysql_real_escape_string(ucfirst(strtolower(trim($data[0]))));
+				$family = mysql_real_escape_string(ucfirst(strtolower(trim($data[1]))));
 				$acronym = mysql_real_escape_string(strtoupper(trim($data[2])));
 				$native = mysql_real_escape_string(strtolower(trim($data[3])));
 				$c_o_c = mysql_real_escape_string(trim($data[4]));
 				$c_o_w = mysql_real_escape_string(trim($data[5]));
-				$physiognomy = mysql_real_escape_string(strtolower(trim($data[7])));
-				$duration = mysql_real_escape_string(strtolower(trim($data[8])));
-				$common_name = mysql_real_escape_string(strtolower(trim($data[9])));
+				$physiognomy = mysql_real_escape_string(strtolower(trim($data[6])));
+				$duration = mysql_real_escape_string(strtolower(trim($data[7])));
+				$common_name = mysql_real_escape_string(strtolower(trim($data[8])));
 				// check that scientific name has been entered
 				if (strlen($scientific_name) < 4) {
-					$result = "Error: Please enter a valid scientific name.";
+					$result = "Error: Please enter a valid scientific name. See line #".$taxa_inserted;
 					break;
 				}
 				// check that c_o_c and c_o_w are integers
 				if (!is_numeric( $c_o_c ) || ($c_o_c < 0) || (10 < $c_o_c)) {
-					$result = "Error: The coefficient of conservatism must be an integer from 0-10.";
+					$result = "Error: The coefficient of conservatism must be an integer from 0-10. See line #".$taxa_inserted;
 					break;
 				}
 				if (($c_o_w !== '') && (!is_numeric( $c_o_w ) || ($c_o_w < -5) || (5 < $c_o_w))) {
-					$result = "Error: The coefficient of wetness must be an integer between -5 and 5.";
+					$result = "Error: The coefficient of wetness must be an integer between -5 and 5. See line #".$taxa_inserted;
 					break;
 				}
 				// check native/non-native
 				if ($native !== 'native' && $native !== 'non-native') {
-					$result = "Error: The column native must be either 'native' or 'non-native'.";
+					$result = "Error: The column native must be either 'native' or 'non-native'. See line #".$taxa_inserted;
 					break;
 				}
 				if ($native == 'native')
 					$native = 1;
 				if ($native == 'non-native')
 					$native = 0;
-				// check physiognomy "fern", "forb", "grass", "rush", "sedge", "shrub", "tree", "vine", or "other"
-				if (($physiognomy !== '') && ($physiognomy !== 'fern' && $physiognomy !== 'forb' && $physiognomy !== 'grass' && $physiognomy !== 'rush' && $physiognomy !== 'sedge' && $physiognomy !== 'shrub' && $physiognomy !== 'tree' && $physiognomy !== 'vine' && $physiognomy !== 'other')) {
-					$result = "Error: Please enter a valid term for physiognomy.";
+				// check physiognomy "fern", "forb", "grass", "rush", "sedge", "shrub", "tree", "vine", or "bryophyte"
+				if (($physiognomy !== '') && ($physiognomy !== 'fern' && $physiognomy !== 'forb' && $physiognomy !== 'grass' && $physiognomy !== 'rush' && $physiognomy !== 'sedge' && $physiognomy !== 'shrub' && $physiognomy !== 'tree' && $physiognomy !== 'vine' && $physiognomy !== 'bryophyte')) {
+					$result = "Error: Please enter a valid term for physiognomy. See line #".$taxa_inserted;
 					break;
 				}
 				// check duration  "annual", "biennial", or "perennial"
 				if (($duration !== '') && ($duration !== 'annual' && $duration !== 'biennial' && $duration !== 'perennial')) {
-					$result = "Error: Please enter a valid term for duration (either annual, biennial, or perennial).";
+					$result = "Error: Please enter a valid term for duration (either annual, biennial, or perennial). See line #".$taxa_inserted;
 					break;
 				}
 				/*******

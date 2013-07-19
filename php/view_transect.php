@@ -142,7 +142,7 @@ if (!$db_selected)
 					Sedge: <strong>7    (15.9%) </strong><br>
 					Rush: <strong>0     (0.0%) </strong><br>
 					Fern: <strong>0     (0.0%) </strong><br>
-					Other: <strong>0     (0.0%)      </strong><br>  
+					Bryophyte: <strong>0     (0.0%)      </strong><br>  
 				</div>
 				-->
 				<div class="span4">
@@ -235,7 +235,7 @@ if (!$db_selected)
 							<td>14</td>
 						</tr>
 						<tr>
-							<td>Other</td>
+							<td>Bryophyte</td>
 							<td>120</td>
 							<td>105</td>
 							<td>15</td>

@@ -115,7 +115,7 @@ if( !$_SESSION['valid'] ) {
   							<li>5 = Upland = UPL</li>
 						</ul>
 					</li>
-					<li>Physiognomy can be any of the following terms: "fern", "forb", "grass", "rush", "sedge", "shrub", "tree", "vine", or "other". Other terms won't be recognized.</li>
+					<li>Physiognomy can be any of the following terms: "fern", "forb", "grass", "rush", "sedge", "shrub", "tree", "vine", or "bryophyte". Other terms won't be recognized.</li>
 					<li>Duration can be "annual", "biennial", or "perennial". Other terms won't be recognized.</li>
 					</ul>
 					</p>

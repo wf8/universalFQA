@@ -55,7 +55,7 @@ if ($col_name == 'scientific_name') {
 } else if ($col_name == 'physiognomy') {
 	$value = strtolower(trim($value));
 	// check physiognomy "fern", "forb", "grass", "rush", "sedge", "shrub", "tree", "vine", or "other"
-	if (($value !== '') && ($value !== 'fern' && $value !== 'forb' && $value !== 'grass' && $value !== 'rush' && $value !== 'sedge' && $value !== 'shrub' && $value !== 'tree' && $value !== 'vine' && $value !== 'other')) {
+	if (($value !== '') && ($value !== 'fern' && $value !== 'forb' && $value !== 'grass' && $value !== 'rush' && $value !== 'sedge' && $value !== 'shrub' && $value !== 'tree' && $value !== 'vine' && $value !== 'bryophyte')) {
 		echo "Error: Please enter a valid term for physiognomy.";
 		exit;
 	}

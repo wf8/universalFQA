@@ -139,7 +139,7 @@ if (!$db_selected)
 					Sedge: <strong>7    (15.9%) </strong><br>
 					Rush: <strong>0     (0.0%) </strong><br>
 					Fern: <strong>0     (0.0%) </strong><br>
-					Other: <strong>0     (0.0%)      </strong><br>  
+					Bryophyte: <strong>0     (0.0%)      </strong><br>  
 				</div>
 				<div class="span3">
 					<h4>&#187; Duration Metrics:</h4>
