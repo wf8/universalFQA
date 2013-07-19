@@ -25,6 +25,11 @@ $physiognomy = mysql_real_escape_string(strtolower(trim($_GET["physiognomy"])));
 $duration = mysql_real_escape_string(strtolower(trim($_GET["duration"])));
 $common_name = mysql_real_escape_string(strtolower(trim($_GET["common_name"])));
 
+// check that scientific name has been entered
+if (strlen($scientific_name) < 4) {
+	echo "Error: Please enter a valid scientific name.";
+	exit;
+}
 // check that c_o_c and c_o_w are integers
 if (!is_numeric( $c_o_c ) || ($c_o_c < 0) || (10 < $c_o_c)) {
 	echo "Error: The coefficient of conservatism must be an integer from 0-10.";
