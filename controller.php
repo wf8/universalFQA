@@ -18,6 +18,12 @@ switch($url_parts[0]){
 	case ('login'):
 		require_once('views/login.php');
 	break;
+	case ('logout'):
+		// destroy all of the session variables
+		$_SESSION = array(); 
+		session_destroy();
+		require_once('views/logout.php');
+	break;
 	default:
 		require_once('views/landing.php');
 	break;
