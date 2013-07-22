@@ -22,6 +22,44 @@ class CustomFQADatabase {
 		return mysql_query($sql);			 
     }
     
-
+    //
+	// function to insert a new custom database
+	// should return the id of the inserted db
+	//
+    function insert_new($original_fqa_id, $region, $description, $year) {
+		$date = date('Y-m-d');
+		$user_id = $_SESSION['user_id'];
+		$sql = "INSERT INTO customized_fqa (fqa_id, region_name, description, publication_year, created, user_id) VALUES ('$original_fqa_id', '$region', '$description', '$year', '$date', '$user_id')";
+		mysql_query($sql);	
+		return mysql_insert_id();
+	}
+	
+	//
+	// function to insert taxa for a new custom db. takes the custom db id and a hook to
+	// the mysql resource of all the taxa in the original db.
+	//
+	function insert_taxa($customized_fqa_id, $fqa_taxa) {
+		while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
+			$scientific_name = $fqa_taxon['scientific_name'];
+			$family = $fqa_taxon['family'];
+			$common_name = $fqa_taxon['common_name'];
+			$acronym = $fqa_taxon['acronym'];
+			$c_o_c = $fqa_taxon['c_o_c'];
+			$c_o_w = $fqa_taxon['c_o_w'];
+			$native = $fqa_taxon['native'];
+			$physiognomy = $fqa_taxon['physiognomy'];
+			$duration = $fqa_taxon['duration'];
+			// insert taxa into customized_taxa
+			// avoid mysql int = null = 0 problem
+			if ($c_o_w == null)
+				$sql = "INSERT INTO customized_taxa (customized_fqa_id, fqa_id, scientific_name, family, common_name, acronym, c_o_c, native, physiognomy, duration) VALUES ('$customized_fqa_id', '$original_fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$native', '$physiognomy', '$duration')";
+			else {
+				$sql = "INSERT INTO customized_taxa (customized_fqa_id, fqa_id, scientific_name, family, common_name, acronym, c_o_c, c_o_w, native, physiognomy, duration) VALUES ('$customized_fqa_id', '$original_fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$c_o_w', '$native', '$physiognomy', '$duration')";
+				mysql_query($sql);
+			}
+		}
+	}
+	
+	
 }
 ?>
