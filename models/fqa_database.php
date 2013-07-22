@@ -22,6 +22,21 @@ class FQADatabase {
 		return mysql_query($sql);			 
     }
     
+    //
+	// return a mysql resource for the fqa database with id
+	//
+	function get_fqa($id) {
+    	$sql = "SELECT * FROM fqa WHERE id='$id'";
+		return mysql_query($sql);
+	}
+	
+	//
+	// return a mysql resource for all the taxa associated with fqa database id
+	//
+	function get_fqa_taxa($id) {
+		$sql = "SELECT * FROM taxa WHERE fqa_id='$id'";
+		return mysql_query($sql);
+    }
 
 }
 ?>

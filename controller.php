@@ -77,23 +77,25 @@ if ($url_parts[0] == 'ajax') {
 		case ('view_account'):
 			if( !$_SESSION['valid'] ) 
 				require_once('views/login.php');
-			else
+			else {
 				require_once('views/nav.php');
 				require_once('views/view_account.php');
+			}
 		break;
 		
 		case ('view_assessments'):
 			if( !$_SESSION['valid'] ) 
 				require_once('views/login.php');
-			else
+			else {
 				require_once('views/nav.php');
 				require_once('views/view_assessments.php');
+			}
 		break; 
 		
 		case ('view_databases'):
 			if( !$_SESSION['valid'] ) 
 				require_once('views/login.php');
-			else
+			else {
 				require_once('views/nav.php');
 				// get all the fqa databases
 				require('models/fqa_database.php');
@@ -105,7 +107,63 @@ if ($url_parts[0] == 'ajax') {
 				$custom_fqa_databases = $custom_fqa->get_all_for_user($_SESSION['user_id']);
 				// display view
 				require_once('views/view_databases.php');
+			}
 		break; 
+		
+		case ('view_database'):
+			if( !$_SESSION['valid'] ) 
+				require_once('views/login.php');
+			else { 
+				require_once('views/nav.php');
+				// get the fqa database by id
+				require('models/fqa_database.php');
+				$id = mysql_real_escape_string($url_parts[1]);
+				$fqa = new FQADatabase;
+				$fqa_databases = $fqa->get_fqa($id); 
+				// if database is not found show all databases
+				if (mysql_num_rows($fqa_databases) == 0) {
+					$fqa_databases = $fqa->get_all();
+					// get this user's custom fqa databases
+					require('models/custom_fqa_database.php');
+					$custom_fqa = new CustomFQADatabase;
+					$custom_fqa_databases = $custom_fqa->get_all_for_user($_SESSION['user_id']);
+					// display view
+					require_once('views/view_databases.php');
+				} else { 
+					$fqa_database = mysql_fetch_assoc($fqa_databases);
+					$region = $fqa_database['region_name'];
+					$year = $fqa_database['publication_year'];
+					$description = $fqa_database['description'];
+					// get fqa taxa
+					$fqa_taxa = $fqa->get_fqa_taxa($id);
+					$total_taxa = 0;
+					$native_taxa = 0;
+					$total_c = 0;
+					$native_c = 0;
+					$mean_total_c = 0;
+					$mean_native_c = 0;
+					while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
+						$total_taxa++;
+						$total_c = $total_c + $fqa_taxon['c_o_c'];
+						if ($fqa_taxon['native'] == true) {
+							$native_taxa++;
+							$native_c = $total_c + $fqa_taxon['c_o_c'];
+						}
+					}
+					// reset pointer
+					mysql_data_seek($fqa_taxa, 0);
+					// calculate other fqa details
+					if ($total_taxa !== 0)
+						$mean_total_c = round(( $total_c / $total_taxa ), 1);
+					if ($native_taxa !== 0)
+						$mean_native_c = round(( $native_c / $native_taxa ), 1);
+					$percent_native = round(( $native_taxa / $total_taxa ) * 100, 1);
+					$percent_nonnative = 100 - $percent_native;
+					// display view
+					require_once('views/view_database.php');  
+				}
+			}
+		break;
 		
 		default:
 			require_once('views/landing.php');
