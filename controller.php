@@ -1,8 +1,9 @@
 <?php
 require_once('lib/fqa_config.php');
+session_start(); 
 
 // header
-//require_once('view/header.php')
+require_once('views/header.php');
 
 // parse url
 $url_parts = array_slice(explode('/',$_SERVER['REQUEST_URI']), 1);
@@ -23,5 +24,5 @@ switch($url_parts[0]){
 }
 
 // footer
-//require_once('views/footer.php') 
+require_once('views/footer.php');
 ?>
