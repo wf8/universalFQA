@@ -82,6 +82,14 @@ if ($url_parts[0] == 'ajax') {
 				require_once('views/view_assessments.php');
 		break; 
 		
+		case ('view_databases'):
+			if( !$_SESSION['valid'] ) 
+				require_once('views/login.php');
+			else
+				require_once('views/nav.php');
+				require_once('views/view_databases.php');
+		break; 
+		
 		case ('view_account'):
 			if( !$_SESSION['valid'] ) 
 				require_once('views/login.php');
