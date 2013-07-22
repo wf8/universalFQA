@@ -46,6 +46,17 @@ if ($url_parts[0] == 'ajax') {
 			$user->change_user_info($email, $first_name, $last_name, $pass1, $pass2);
 		break;
 		
+		case ('database_import'):
+			// get parameters
+			$region = mysql_real_escape_string($_POST["region"]);
+			$year = mysql_real_escape_string($_POST["year"]);
+			$description = mysql_real_escape_string($_POST["description"]);
+			$file = $_FILES["upload_file"];
+			require_once('models/fqa_database.php');
+			$fqa = new FQADatabase;
+			$fqa->import_new($region, $year, $description, $file);
+		break;
+		
 	}
 	
 // this is a request to one of the views
@@ -91,6 +102,15 @@ if ($url_parts[0] == 'ajax') {
 				require_once('views/view_assessments.php');
 			}
 		break; 
+		
+		case ('new_database'):
+			if( !$_SESSION['valid'] ) 
+				require_once('views/login.php');
+			else { 
+				require_once('views/nav.php');
+				require_once('views/new_database.php'); 
+			}
+		break;
 		
 		case ('view_databases'):
 			if( !$_SESSION['valid'] ) 
