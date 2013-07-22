@@ -8,7 +8,7 @@ if( !$_SESSION['valid'] ) {
 $connection = mysql_connect($db_server, $db_username, $db_password);
 if (!$connection) 
 	die('Not connected : ' . mysql_error());
-$db_selected = mysql_select_db($db_database, $connection);
+$db_selected = mysql_select_db($db_database);
 if (!$db_selected) 
 	die ('Database error: ' . mysql_error());
 

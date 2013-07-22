@@ -7,7 +7,7 @@
  */
 function register() {
 	$.ajax({
-		url: "utils/register_user.php",
+		url: "ajax/register_user",
 		type: "POST",
 		data: {
 			email: $("#register_email").val(),
@@ -18,7 +18,7 @@ function register() {
 		},
 		success: function( response ) {
 			if (response.indexOf("success") !== -1) 
-				window.location='../php/view_assessments.php';
+				window.location='view_assessments';
 			else 
 				alert(response);
 		}
@@ -27,16 +27,16 @@ function register() {
 
 function login() {
 	$.ajax({
-		url: "utils/login_user.php",
+		url: "ajax/login_user",
 		type: "POST",
 		data: {
 			email: $("#login_email").val(),
 			password: $("#login_password").val(),
 		},
 		success: function( response ) {
-			if (response.indexOf("success") !== -1) 
-				window.location='../php/view_assessments.php';
-			else 
+			if (response.indexOf("success") !== -1) {
+				window.location = 'view_assessments';
+			} else 
 				alert(response);
 		}
 	});
@@ -44,7 +44,7 @@ function login() {
 
 function save_account_changes() {
 	$.ajax({
-		url: "utils/change_user_info.php",
+		url: "ajax/change_user_info",
 		type: "POST",
 		data: {
 			email: $("#change_email").val(),
@@ -64,7 +64,7 @@ function save_account_changes() {
 
 function forgot_password() {
 	$.ajax({
-		url: "utils/forgot_password.php",
+		url: "ajax/forgot_password",
 		type: "POST",
 		data: {
 			email: $("#login_email").val(),
