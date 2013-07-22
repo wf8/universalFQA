@@ -8,9 +8,9 @@
 				<div class="span11">
 					<br>
 					<h1>Public FQA Database</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'customize_database/<?php echo $id; ?>';return false;">Customize This Database</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/customize_database/<?php echo $id; ?>';return false;">Customize This Database</button>
 					<button class="btn btn-info" onClick="asdf_changes();">Download</button> 
-					<button class="btn btn-info" onclick="javascript:window.location = 'view_databases';return false;">Done</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/view_databases';return false;">Done</button>
 					<br>
 				</div>
 			</div>

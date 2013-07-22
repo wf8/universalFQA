@@ -90,7 +90,7 @@ function start_database_upload() {
 }
 function stop_database_upload( msg ){	
 	if (msg.indexOf("Error") == -1)
-		window.location='view_database/' + msg;
+		window.location='/view_database/' + msg;
 	else
 		$( "#upload_error" ).html( msg );
 }

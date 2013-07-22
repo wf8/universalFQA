@@ -95,3 +95,4 @@ Alliaria petiolata,,, non-native, 0,,,,
 			</div>
 		</div>
     </div> 
+    <iframe id="upload_target" name="upload_target" src="#"></iframe>
