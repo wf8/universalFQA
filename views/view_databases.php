@@ -22,9 +22,6 @@
 							<td><strong>Options</strong></td>
 						</tr>
 <?php
-require('models/fqa_database.php');
-$fqa = new FQADatabase;
-$fqa_databases = $fqa->get_all();
 if (mysql_num_rows($fqa_databases) == 0) {
 ?>
 						<tr>
@@ -39,10 +36,10 @@ if (mysql_num_rows($fqa_databases) == 0) {
 		$description = $fqa_database['description'];
 ?>
 						<tr>
-							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>"><?php echo $region; ?></a></td>
+							<td><a href="view_database/<?php echo $fqa_id; ?>"><?php echo $region; ?></a></td>
 							<td><?php echo $year; ?></td>
 							<td><?php echo $description; ?></td>
-							<td><a href="view_database.php?id=<?php echo $fqa_id; ?>">View</a> | <a href="utils/customize_database.php?id=<?php echo $fqa_id; ?>">Customize</a> | <a href="download_database.php?id=<?php echo $fqa_id; ?>">Download</a></td>
+							<td><a href="view_database/<?php echo $fqa_id; ?>">View</a> | <a href="customize_database/<?php echo $fqa_id; ?>">Customize</a> | <a href="download_database/<?php echo $fqa_id; ?>">Download</a></td>
 						</tr>
 <?php
 	}
@@ -59,17 +56,14 @@ if (mysql_num_rows($fqa_databases) == 0) {
 							<td><strong>Options</strong></td>
 						</tr>
 <?php
-require('models/custom_fqa_database.php');
-$custom_fqa = new CustomFQADatabase;
-$fqa_databases = $custom_fqa->get_all_for_user($_SESSION['user_id']);
-if (mysql_num_rows($fqa_databases) == 0) {
+if (mysql_num_rows($custom_fqa_databases) == 0) {
 ?>
 						<tr>
 							<td colspan="4">You have not made any customized FQA databases.</td>
 						</tr>
 <?php
 } else {
-	while ($fqa_database = mysql_fetch_assoc($fqa_databases)) {
+	while ($fqa_database = mysql_fetch_assoc($custom_fqa_databases)) {
 		$fqa_id = $fqa_database['id'];
 		$customized_name = $fqa_database['customized_name'];
 		$customized_description = $fqa_database['customized_description'];
@@ -77,10 +71,10 @@ if (mysql_num_rows($fqa_databases) == 0) {
 		$year = $fqa_database['publication_year'];
 ?>
 						<tr>
-							<td><a href="edit_custom_database.php?id=<?php echo $fqa_id; ?>"><?php echo $customized_name; ?></a></td>
+							<td><a href="edit_custom_database/<?php echo $fqa_id; ?>"><?php echo $customized_name; ?></a></td>
 							<td><?php echo $customized_description; ?></td>
 							<td><?php echo $region; ?>, <?php echo $year; ?></td>
-							<td><a href="edit_custom_database.php?id=<?php echo $fqa_id; ?>">Edit</a> | <a href="download_custom_database.php?id=<?php echo $fqa_id; ?>">Download</a> | <a onclick="javascript:delete_custom_database(<?php echo $fqa_id; ?>);" href="#">Delete</a></td>
+							<td><a href="edit_custom_database/<?php echo $fqa_id; ?>">Edit</a> | <a href="download_custom_database/<?php echo $fqa_id; ?>">Download</a> | <a onclick="javascript:delete_custom_database(<?php echo $fqa_id; ?>);" href="#">Delete</a></td>
 						</tr>
 <?php
 	}

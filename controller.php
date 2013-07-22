@@ -74,6 +74,14 @@ if ($url_parts[0] == 'ajax') {
 			require_once('views/logout.php');
 		break;
 		
+		case ('view_account'):
+			if( !$_SESSION['valid'] ) 
+				require_once('views/login.php');
+			else
+				require_once('views/nav.php');
+				require_once('views/view_account.php');
+		break;
+		
 		case ('view_assessments'):
 			if( !$_SESSION['valid'] ) 
 				require_once('views/login.php');
@@ -87,16 +95,17 @@ if ($url_parts[0] == 'ajax') {
 				require_once('views/login.php');
 			else
 				require_once('views/nav.php');
+				// get all the fqa databases
+				require('models/fqa_database.php');
+				$fqa = new FQADatabase;
+				$fqa_databases = $fqa->get_all();
+				// get this user's custom fqa databases
+				require('models/custom_fqa_database.php');
+				$custom_fqa = new CustomFQADatabase;
+				$custom_fqa_databases = $custom_fqa->get_all_for_user($_SESSION['user_id']);
+				// display view
 				require_once('views/view_databases.php');
 		break; 
-		
-		case ('view_account'):
-			if( !$_SESSION['valid'] ) 
-				require_once('views/login.php');
-			else
-				require_once('views/nav.php');
-				require_once('views/view_account.php');
-		break;
 		
 		default:
 			require_once('views/landing.php');
