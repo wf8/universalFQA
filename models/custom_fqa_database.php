@@ -38,7 +38,7 @@ class CustomFQADatabase {
 	// function to insert taxa for a new custom db. takes the custom db id and a hook to
 	// the mysql resource of all the taxa in the original db.
 	//
-	function insert_taxa($customized_fqa_id, $fqa_taxa) {
+	function insert_taxa($customized_fqa_id, $original_fqa_id, $fqa_taxa) {
 		while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
 			$scientific_name = $fqa_taxon['scientific_name'];
 			$family = $fqa_taxon['family'];
@@ -53,10 +53,9 @@ class CustomFQADatabase {
 			// avoid mysql int = null = 0 problem
 			if ($c_o_w == null)
 				$sql = "INSERT INTO customized_taxa (customized_fqa_id, fqa_id, scientific_name, family, common_name, acronym, c_o_c, native, physiognomy, duration) VALUES ('$customized_fqa_id', '$original_fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$native', '$physiognomy', '$duration')";
-			else {
+			else 
 				$sql = "INSERT INTO customized_taxa (customized_fqa_id, fqa_id, scientific_name, family, common_name, acronym, c_o_c, c_o_w, native, physiognomy, duration) VALUES ('$customized_fqa_id', '$original_fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$c_o_w', '$native', '$physiognomy', '$duration')";
-				mysql_query($sql);
-			}
+			mysql_query($sql);
 		}
 	}
 	

@@ -216,7 +216,7 @@ if ($url_parts[0] == 'ajax') {
 					$customized_fqa_id = $custom_fqa->insert_new($original_fqa_id, $region, $description, $year);
 					// get original fqa taxa
 					$fqa_taxa = $fqa->get_fqa_taxa($original_fqa_id);
-					$custom_fqa->insert_taxa($customized_fqa_id, $fqa_taxa);
+					$custom_fqa->insert_taxa($customized_fqa_id, $original_fqa_id, $fqa_taxa);
 
 					// redirect
 					header( "Location: /edit_custom_database/" . $customized_fqa_id );
