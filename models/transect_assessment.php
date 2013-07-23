@@ -18,7 +18,7 @@ class TransectAssessment {
 	 * return a mysql resource with all the user's assessments
 	 */
     public function get_all_for_user($user_id) {
-	    $sql = "SELECT * FROM transect_assessment WHERE user_id='$user_id' ORDER BY name, date";
+	    $sql = "SELECT * FROM transect WHERE user_id='$user_id' ORDER BY date";
 		return mysql_query($sql);			 
     }
 	
