@@ -7,7 +7,7 @@
  */
 function register() {
 	$.ajax({
-		url: "ajax/register_user",
+		url: "/ajax/register_user",
 		type: "POST",
 		data: {
 			email: $("#register_email").val(),
@@ -18,7 +18,7 @@ function register() {
 		},
 		success: function( response ) {
 			if (response.indexOf("success") !== -1) 
-				window.location='view_assessments';
+				window.location='/view_assessments';
 			else 
 				alert(response);
 		}
@@ -27,7 +27,7 @@ function register() {
 
 function login() {
 	$.ajax({
-		url: "ajax/login_user",
+		url: "/ajax/login_user",
 		type: "POST",
 		data: {
 			email: $("#login_email").val(),
@@ -35,7 +35,7 @@ function login() {
 		},
 		success: function( response ) {
 			if (response.indexOf("success") !== -1) {
-				window.location = 'view_assessments';
+				window.location = '/view_assessments';
 			} else 
 				alert(response);
 		}
@@ -44,7 +44,7 @@ function login() {
 
 function save_account_changes() {
 	$.ajax({
-		url: "ajax/change_user_info",
+		url: "/ajax/change_user_info",
 		type: "POST",
 		data: {
 			email: $("#change_email").val(),
@@ -64,7 +64,7 @@ function save_account_changes() {
 
 function forgot_password() {
 	$.ajax({
-		url: "ajax/forgot_password",
+		url: "/ajax/forgot_password",
 		type: "POST",
 		data: {
 			email: $("#login_email").val(),
@@ -109,13 +109,13 @@ function download_database() {
 function delete_custom_database( id ) {
  	if (confirm("Are you sure you want to delete this custom FQA database?")) {
 		$.ajax({
-			url: "utils/delete_custom_database.php",
-			type: "GET",
+			url: "/ajax/delete_custom_database",
+			type: "POST",
 			data: {
 				id: id,
 			},
 			success: function( response ) {
-				window.location='../php/view_databases.php';
+				window.location='/view_databases';
 			}
 		});
  	}
@@ -142,13 +142,13 @@ function done_creating_custom_db() {
 	else if ( $("#customized_fqa_description").val() == "" ) 
 		alert("Please enter a description for the customized FQA database.");
 	else
-		window.location='../php/view_databases.php';
+		window.location='/view_databases';
 }
 
 function custom_fqa_update( custom_fqa_id ) {
 	$.ajax({
-		url: "utils/custom_fqa_update.php",
-		type: "GET",
+		url: "/ajax/custom_fqa_update",
+		type: "POST",
 		data: {
 			id: custom_fqa_id,
 			name: $("#customized_fqa_name").val(),

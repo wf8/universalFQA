@@ -7,6 +7,7 @@ $url_parts = array_slice(explode('/',$_SERVER['REQUEST_URI']), 1);
 
 // this is an ajax request
 if ($url_parts[0] == 'ajax') {
+
 	// perform ajax action
 	switch($url_parts[1]) {	
 	
@@ -57,7 +58,22 @@ if ($url_parts[0] == 'ajax') {
 			$fqa->import_new($region, $year, $description, $file);
 		break;
 		
+		case ('custom_fqa_update'):
+			// get parameters
+			$id = mysql_real_escape_string($_POST["id"]);
+			$name = mysql_real_escape_string($_POST["name"]);
+			$description = mysql_real_escape_string($_POST["description"]);
+			require_once('models/custom_fqa_database.php');
+			$fqa = new CustomFQADatabase;
+			$fqa->update($id, $name, $description);
+		break;
 		
+		case ('delete_custom_database'):
+			$id = mysql_real_escape_string($_POST["id"]);
+			require_once('models/custom_fqa_database.php');
+			$fqa = new CustomFQADatabase;
+			$fqa->delete($id);
+		break;
 		
 		
 	}
@@ -158,7 +174,7 @@ if ($url_parts[0] == 'ajax') {
 					$year = $fqa_database['publication_year'];
 					$description = $fqa_database['description'];
 					// get fqa taxa
-					$fqa_taxa = $fqa->get_fqa_taxa($id);
+					$fqa_taxa = $fqa->get_taxa($id);
 					$total_taxa = 0;
 					$native_taxa = 0;
 					$total_c = 0;
@@ -215,11 +231,45 @@ if ($url_parts[0] == 'ajax') {
 					$custom_fqa = new CustomFQADatabase;
 					$customized_fqa_id = $custom_fqa->insert_new($original_fqa_id, $region, $description, $year);
 					// get original fqa taxa
-					$fqa_taxa = $fqa->get_fqa_taxa($original_fqa_id);
+					$fqa_taxa = $fqa->get_taxa($original_fqa_id);
 					$custom_fqa->insert_taxa($customized_fqa_id, $original_fqa_id, $fqa_taxa);
-
-					// redirect
-					header( "Location: /edit_custom_database/" . $customized_fqa_id );
+					// get taxa for this db
+					$taxa = $custom_fqa->get_taxa($customized_fqa_id);
+					require_once('views/edit_custom_database.php');
+				}
+			}
+		break;
+		
+		case ('edit_custom_database'):
+			if( !$_SESSION['valid'] ) 
+				require_once('views/login.php');
+			else { 
+				// get customized fqa details
+				$customized_fqa_id = mysql_real_escape_string($url_parts[1]);
+				require('models/custom_fqa_database.php');
+				$custom_fqas = new CustomFQADatabase;
+				$custom_fqa_databases = $custom_fqas->get_fqa($customized_fqa_id);
+				// if fqa not found redirect user to view all databases
+				if (mysql_num_rows($custom_fqa_databases) == 0) {
+					require_once('views/nav.php');
+					require('models/fqa_database.php');
+					$fqa = new FQADatabase;
+					$fqa_databases = $fqa->get_all();
+					// get this user's custom fqa databases
+					$custom_fqa_databases = $custom_fqas->get_all_for_user($_SESSION['user_id']);
+					// display view
+					require_once('views/view_databases.php');
+				} else {
+					$custom_fqa = mysql_fetch_assoc($custom_fqa_databases);
+					$original_fqa_id = $custom_fqa['fqa_id'];
+					$region = $custom_fqa['region_name'];
+					$year = $custom_fqa['publication_year'];
+					$description = $custom_fqa['description'];
+					$customized_name = $custom_fqa['customized_name'];
+					$customized_description = $custom_fqa['customized_description'];
+					// get taxa for this db
+					$taxa = $custom_fqas->get_taxa($customized_fqa_id);
+					require_once('views/edit_custom_database.php');
 				}
 			}
 		break;

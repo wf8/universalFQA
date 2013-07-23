@@ -1,53 +1,3 @@
-<?php
-session_start(); 
-require('fqa_config.php');
-if( !$_SESSION['valid'] ) {
-	header( "Location: login.php" );
-	exit;
-} 
-$connection = mysql_connect($db_server, $db_username, $db_password);
-if (!$connection) 
-	die('Not connected : ' . mysql_error());
-$db_selected = mysql_select_db($db_database);
-if (!$db_selected) 
-	die ('Database error: ' . mysql_error());
-
-// get customized fqa details
-$customized_fqa_id = mysql_real_escape_string($_GET["id"]);
-$sql = "SELECT * FROM customized_fqa WHERE id='$customized_fqa_id'";
-$fqa_databases = mysql_query($sql);
-// if fqa not found redirect user
-if (mysql_num_rows($fqa_databases) == 0) {
-	header( "Location: view_databases.php" );
-	exit;
-} 
-$custom_fqa = mysql_fetch_assoc($fqa_databases);
-$original_fqa_id = $custom_fqa['fqa_id'];
-$region = $custom_fqa['region_name'];
-$year = $custom_fqa['publication_year'];
-$description = $custom_fqa['description'];
-$customized_name = $custom_fqa['customized_name'];
-$customized_description = $custom_fqa['customized_description'];
-?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Universal FQA Calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="../css/fqa.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-
-    <script src="../js/jquery-1.9.1.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/fqa.js"></script>
-  </head>
-  <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
     	<div class="navbar-inner">
         	<div class="container">
@@ -56,14 +6,14 @@ $customized_description = $custom_fqa['customized_description'];
             		<span class="icon-bar"></span>
             		<span class="icon-bar"></span>
           		</button>
-          		<a class="brand" href="javascript: check_form('../index.html');">Universal FQA</a>
+          		<a class="brand" href="javascript: check_form('../');">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
             		<ul class="nav pull-right">
-            			<li><a href="javascript: check_form('view_assessments.php');">Assessments</a></li>
-            			<li><a href="javascript: check_form('view_databases.php');">FQA Databases</a></li>
-            			<li><a href="javascript: check_form('view_account.php');">Account Info</a></li>
-            			<li><a href="javascript: check_form('../help.html');">Help</a></li>
-              			<li><a href="javascript: check_form('logout.php');">Logout</a></li>
+            			<li><a href="javascript: check_form('/view_assessments');">Assessments</a></li>
+            			<li><a href="javascript: check_form('/view_databases');">FQA Databases</a></li>
+            			<li><a href="javascript: check_form('/view_account');">Account Info</a></li>
+            			<li><a href="javascript: check_form('/help');">Help</a></li>
+              			<li><a href="javascript: check_form('/logout');">Logout</a></li>
             		</ul>
           		</div>
         	</div>
@@ -131,8 +81,6 @@ $customized_description = $custom_fqa['customized_description'];
 							<td><a href="javascript:new_custom_taxa( <?php echo $original_fqa_id; ?>, <?php echo $customized_fqa_id; ?> );">Add</a></td>
 						</tr>   
 <?php
-$sql = "SELECT * FROM customized_taxa WHERE customized_fqa_id='$customized_fqa_id' ORDER BY scientific_name";
-$taxa = mysql_query($sql);
 if (mysql_num_rows($taxa) == 0) {
 ?>
 						<tr>
@@ -174,9 +122,7 @@ if (mysql_num_rows($taxa) == 0) {
 	}
 }
 ?>
-
-
-</table>						
+					</table>						
 				</div>
 			</div>
 			<br><br>
@@ -191,10 +137,3 @@ if (mysql_num_rows($taxa) == 0) {
 		</div>
     </div> 
     <br><br>
-	<footer class="footer">
-		<div class="container">
-			<p><a href="javascript: check_form('http://universalFQA.org')">universalFQA.org</a> | <a href="javascript: check_form('../about.html')">About this site</a></p>
-		</div>
-	</footer>
-  </body>
-</html>

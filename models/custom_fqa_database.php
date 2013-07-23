@@ -14,6 +14,30 @@ class CustomFQADatabase {
 			die ('Database error: ' . mysql_error());
 	}
 
+    //
+	// return a mysql resource for the custom fqa database with id
+	//
+	function get_fqa($id) {
+    	$sql = "SELECT * FROM customized_fqa WHERE id='$id'";
+		return mysql_query($sql);
+	}
+	
+	//
+	// function to update fqa database details
+	//
+	function update($id, $name, $description) {
+		$sql = "UPDATE customized_fqa SET customized_name = '$name', customized_description = '$description' WHERE id = '$id'";
+		mysql_query($sql);
+	}
+	
+	//
+	// return a mysql resource for all the taxa associated with fqa database id
+	//
+	function get_taxa($id) {
+		$sql = "SELECT * FROM customized_taxa WHERE customized_fqa_id='$id' ORDER BY scientific_name";
+		return mysql_query($sql);
+    }
+
 	//
 	// return a mysql resource with all the user's fqa databases
 	//
@@ -32,6 +56,16 @@ class CustomFQADatabase {
 		$sql = "INSERT INTO customized_fqa (fqa_id, region_name, description, publication_year, created, user_id) VALUES ('$original_fqa_id', '$region', '$description', '$year', '$date', '$user_id')";
 		mysql_query($sql);	
 		return mysql_insert_id();
+	}
+	
+	//
+	// delete the database and all its taxa
+	//
+	function delete($id) {
+		$sql = "DELETE FROM customized_fqa WHERE id='$id'";
+		mysql_query($sql);
+		$sql = "DELETE FROM customized_taxa WHERE customized_fqa_id='$id'";
+		mysql_query($sql);
 	}
 	
 	//

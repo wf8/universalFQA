@@ -33,8 +33,8 @@ class FQADatabase {
 	//
 	// return a mysql resource for all the taxa associated with fqa database id
 	//
-	function get_fqa_taxa($id) {
-		$sql = "SELECT * FROM taxa WHERE fqa_id='$id'";
+	function get_taxa($id) {
+		$sql = "SELECT * FROM taxa WHERE fqa_id='$id' ORDER BY scientific_name";
 		return mysql_query($sql);
     }
     
