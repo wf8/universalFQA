@@ -9,7 +9,11 @@ require_once('models/custom_taxa.php');
 // parse url
 $url_parts = array_slice(explode('/',$_SERVER['REQUEST_URI']), 1);
 
-// this is an ajax request
+/*
+ *
+ *	ajax requests
+ *
+ */
 if ($url_parts[0] == 'ajax') {
 
 	// perform ajax action
@@ -107,12 +111,15 @@ if ($url_parts[0] == 'ajax') {
 		break;		
 		
 	}
-	
-// this is a request to one of the views
+/*
+ *
+ *	view requests
+ *
+ */
 } else {
-	// insert header
+	// insert header for all views
 	require_once('views/header.php');
-	// determine which view
+	// determine which view and get appropriate data from models
 	switch($url_parts[0]) {	
 	
 		case (''):
@@ -300,7 +307,7 @@ if ($url_parts[0] == 'ajax') {
 			require_once('views/landing.php');
 		break;
 	}
-	// insert footer
+	// insert footer for all views
 	require_once('views/footer.php');
 }
 ?>
