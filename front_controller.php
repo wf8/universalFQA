@@ -1,11 +1,8 @@
 <?php
 session_start();
-require_once('models/user.php');
-require_once('models/fqa_database.php');
-require_once('models/custom_fqa_database.php');
-require_once('models/custom_taxa.php');
-require_once('models/inventory_assessment.php');
-require_once('models/transect_assessment.php');
+function __autoload($class_name) {
+    require_once 'models/' . $class_name . '.php';
+}
 
 // parse url
 $url_parts = array_slice(explode('/',$_SERVER['REQUEST_URI']), 1);
