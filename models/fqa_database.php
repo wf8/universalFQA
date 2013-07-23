@@ -1,9 +1,9 @@
 <?php
 class FQADatabase {
 
-	//
-	// constructor
-	//
+	/*
+	 * constructor
+	 */
 	function FQADatabase() {
 		require('lib/fqa_config.php');
 		$connection = mysql_connect($db_server, $db_username, $db_password);
@@ -14,34 +14,34 @@ class FQADatabase {
 			die ('Database error: ' . mysql_error());
 	}
 
-	//
-	// return a mysql resource with all the fqa databases
-	//
+	/*
+	 * return a mysql resource with all the fqa databases
+	 */
 	function get_all() {
 		$sql = "SELECT * FROM fqa WHERE 1 ORDER BY region_name, publication_year";
 		return mysql_query($sql);			 
     }
     
-    //
-	// return a mysql resource for the fqa database with id
-	//
+    /*
+	 * return a mysql resource for the fqa database with id
+	 */
 	function get_fqa($id) {
     	$sql = "SELECT * FROM fqa WHERE id='$id'";
 		return mysql_query($sql);
 	}
 	
-	//
-	// return a mysql resource for all the taxa associated with fqa database id
-	//
+	/*
+	 * return a mysql resource for all the taxa associated with fqa database id
+	 */
 	function get_taxa($id) {
 		$sql = "SELECT * FROM taxa WHERE fqa_id='$id' ORDER BY scientific_name";
 		return mysql_query($sql);
     }
     
-    //
-	// function to import a new fqa database. takes as input region, year, description, and 
-	// handle to uploaded file
-	//
+    /*
+	 * function to import a new fqa database. takes as input region, year, description, and 
+	 * handle to uploaded file
+	 */
 	function import_new($region, $year, $description, $file) {
 		$result = "";
 		if (!is_numeric( $year ) || ($year < 1950) || (3000 < $year)) {

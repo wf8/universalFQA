@@ -124,8 +124,8 @@ function delete_custom_database( id ) {
 function delete_custom_taxa( id ) {
  	if (confirm("Are you sure you want to delete this taxa?")) {
 		$.ajax({
-			url: "utils/delete_custom_taxa.php",
-			type: "GET",
+			url: "/ajax/delete_custom_taxa",
+			type: "POST",
 			data: {
 				id: id,
 			},
@@ -161,8 +161,8 @@ function custom_fqa_update( custom_fqa_id ) {
 
 function custom_taxa_update( element_id, col_name, custom_taxa_id ) {
 	$.ajax({
-		url: "utils/custom_taxa_update.php",
-		type: "GET",
+		url: "/ajax/custom_taxa_update",
+		type: "POST",
 		data: {
 			id: custom_taxa_id,
 			col_name: col_name,
@@ -177,8 +177,8 @@ function custom_taxa_update( element_id, col_name, custom_taxa_id ) {
 
 function new_custom_taxa( original_fqa_id, custom_fqa_id ) {
 	$.ajax({
-		url: "utils/new_custom_taxa.php",
-		type: "GET",
+		url: "/ajax/new_custom_taxa",
+		type: "POST",
 		data: {
 			custom_fqa_id: custom_fqa_id,
 			original_fqa_id: original_fqa_id,

@@ -1,6 +1,10 @@
 <?php
+session_start();
 require('lib/fqa_config.php');
-session_start(); 
+require_once('models/user.php');
+require_once('models/fqa_database.php');
+require_once('models/custom_fqa_database.php');
+require_once('models/custom_taxa.php');
 
 // parse url
 $url_parts = array_slice(explode('/',$_SERVER['REQUEST_URI']), 1);
@@ -12,7 +16,6 @@ if ($url_parts[0] == 'ajax') {
 	switch($url_parts[1]) {	
 	
 		case ('login_user'):
-			require_once('models/user.php');
 			$user = new User;
 			$user->login(mysql_real_escape_string($_POST['email']), $_POST['password']);
 		break;
@@ -24,13 +27,11 @@ if ($url_parts[0] == 'ajax') {
 			$last_name = mysql_real_escape_string($_POST['last_name']);
 			$pass1 = $_POST['password1'];
 			$pass2 = $_POST['password2'];
-			require_once('models/user.php');
 			$user = new User;
 			$user->register($email, $first_name, $last_name, $pass1, $pass2);
 		break;
 		
 		case ('forgot_password'):
-			require_once('models/user.php');
 			$user = new User;
 			$user->email_forgot_password(mysql_real_escape_string($_POST['email']));
 		break;
@@ -42,7 +43,6 @@ if ($url_parts[0] == 'ajax') {
 			$last_name = mysql_real_escape_string($_POST['last_name']);
 			$pass1 = $_POST['password1'];
 			$pass2 = $_POST['password2'];
-			require_once('models/user.php');
 			$user = new User;
 			$user->change_user_info($email, $first_name, $last_name, $pass1, $pass2);
 		break;
@@ -53,7 +53,6 @@ if ($url_parts[0] == 'ajax') {
 			$year = mysql_real_escape_string($_POST["year"]);
 			$description = mysql_real_escape_string($_POST["description"]);
 			$file = $_FILES["upload_file"];
-			require_once('models/fqa_database.php');
 			$fqa = new FQADatabase;
 			$fqa->import_new($region, $year, $description, $file);
 		break;
@@ -63,18 +62,49 @@ if ($url_parts[0] == 'ajax') {
 			$id = mysql_real_escape_string($_POST["id"]);
 			$name = mysql_real_escape_string($_POST["name"]);
 			$description = mysql_real_escape_string($_POST["description"]);
-			require_once('models/custom_fqa_database.php');
 			$fqa = new CustomFQADatabase;
 			$fqa->update($id, $name, $description);
 		break;
 		
 		case ('delete_custom_database'):
 			$id = mysql_real_escape_string($_POST["id"]);
-			require_once('models/custom_fqa_database.php');
 			$fqa = new CustomFQADatabase;
 			$fqa->delete($id);
 		break;
 		
+		case ('delete_custom_taxa'):
+			$id = mysql_real_escape_string($_POST["id"]);
+			$custom_taxa = new CustomTaxa;
+			$custom_taxa->delete($id);
+		break;
+		
+		case('new_custom_taxa'):
+			// get parameters
+			$custom_fqa_id = mysql_real_escape_string($_POST["custom_fqa_id"]);
+			$original_fqa_id = mysql_real_escape_string($_POST["original_fqa_id"]);
+			$scientific_name = mysql_real_escape_string(ucfirst(trim($_POST["scientific_name"])));
+			$family = mysql_real_escape_string(ucfirst(trim($_POST["family"])));
+			$acronym = mysql_real_escape_string(strtoupper(trim($_POST["acronym"])));
+			$native = mysql_real_escape_string(strtolower(trim($_POST["native"])));
+			$c_o_c = mysql_real_escape_string(trim($_POST["c_o_c"]));
+			$c_o_w = mysql_real_escape_string(trim($_POST["c_o_w"]));
+			$physiognomy = mysql_real_escape_string(strtolower(trim($_POST["physiognomy"])));
+			$duration = mysql_real_escape_string(strtolower(trim($_POST["duration"])));
+			$common_name = mysql_real_escape_string(strtolower(trim($_POST["common_name"])));
+				
+			$custom_taxa = new CustomTaxa;
+			$custom_taxa->insert_new($custom_fqa_id, $original_fqa_id, $scientific_name, $family, $common_name, $acronym, $c_o_c, $native, $physiognomy, $duration);	
+		break;	
+		
+		case('custom_taxa_update'):	
+			// get parameters
+			$id = mysql_real_escape_string($_POST["id"]);
+			$col_name = mysql_real_escape_string($_POST["col_name"]);
+			$value = mysql_real_escape_string($_POST["value"]);
+	
+			$custom_taxa = new CustomTaxa;
+			$custom_taxa->update($id, $col_name, $value);	
+		break;		
 		
 	}
 	
@@ -137,11 +167,9 @@ if ($url_parts[0] == 'ajax') {
 			else {
 				require_once('views/nav.php');
 				// get all the fqa databases
-				require('models/fqa_database.php');
 				$fqa = new FQADatabase;
 				$fqa_databases = $fqa->get_all();
 				// get this user's custom fqa databases
-				require('models/custom_fqa_database.php');
 				$custom_fqa = new CustomFQADatabase;
 				$custom_fqa_databases = $custom_fqa->get_all_for_user($_SESSION['user_id']);
 				// display view
@@ -155,7 +183,6 @@ if ($url_parts[0] == 'ajax') {
 			else { 
 				require_once('views/nav.php');
 				// get the fqa database by id
-				require('models/fqa_database.php');
 				$id = mysql_real_escape_string($url_parts[1]);
 				$fqa = new FQADatabase;
 				$fqa_databases = $fqa->get_fqa($id); 
@@ -163,7 +190,6 @@ if ($url_parts[0] == 'ajax') {
 				if (mysql_num_rows($fqa_databases) == 0) {
 					$fqa_databases = $fqa->get_all();
 					// get this user's custom fqa databases
-					require('models/custom_fqa_database.php');
 					$custom_fqa = new CustomFQADatabase;
 					$custom_fqa_databases = $custom_fqa->get_all_for_user($_SESSION['user_id']);
 					// display view
@@ -209,8 +235,6 @@ if ($url_parts[0] == 'ajax') {
 				require_once('views/login.php');
 			else { 
 				require_once('views/nav.php');
-				require('models/fqa_database.php');
-				require('models/custom_fqa_database.php');
 				// get original fqa details
 				$original_fqa_id = mysql_real_escape_string($url_parts[1]);
 				$fqa = new FQADatabase;
@@ -246,13 +270,11 @@ if ($url_parts[0] == 'ajax') {
 			else { 
 				// get customized fqa details
 				$customized_fqa_id = mysql_real_escape_string($url_parts[1]);
-				require('models/custom_fqa_database.php');
 				$custom_fqas = new CustomFQADatabase;
 				$custom_fqa_databases = $custom_fqas->get_fqa($customized_fqa_id);
 				// if fqa not found redirect user to view all databases
 				if (mysql_num_rows($custom_fqa_databases) == 0) {
 					require_once('views/nav.php');
-					require('models/fqa_database.php');
 					$fqa = new FQADatabase;
 					$fqa_databases = $fqa->get_all();
 					// get this user's custom fqa databases

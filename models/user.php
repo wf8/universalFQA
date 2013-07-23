@@ -1,9 +1,9 @@
 <?php
 class User {
 
-	//
-	// constructor
-	//
+	/*
+	 * constructor
+	 */
 	function User() {
 		require('lib/fqa_config.php');
 		$connection = mysql_connect($db_server, $db_username, $db_password);
@@ -14,9 +14,9 @@ class User {
 			die ('Database error: ' . mysql_error());
 	}
 
-	//
-	// function to login users
-	//
+	/*
+	 * function to login users
+	 */
     function login($email, $login_password) {
 	
 		$query = "SELECT * FROM user WHERE email = '$email';";
@@ -47,9 +47,9 @@ class User {
 		echo "success login:" . $userData['id'];			 
     }
     
-	//
-	// function to register new users and then login them in
-	//
+	/*
+	 * function to register new users and then login them in
+	 */
     function register($email, $first_name, $last_name, $pass1, $pass2) {
 		// check that the 2 passwords are the same
 		if($pass1 != $pass2) 
@@ -120,9 +120,9 @@ class User {
 		}
 	}
 	
-	//
-	// function to send forgot password email
-	//
+	/*
+	 * function to send forgot password email
+	 */
     function email_forgot_password($email) {
 		if ($email == '') {
 			echo 'Please enter your email address.';
@@ -151,9 +151,9 @@ class User {
 		}
     }
     
-    //
-	// function update user account info
-	//
+    /*
+	 * function update user account info
+	 */
     function change_user_info($email, $first_name, $last_name, $pass1, $pass2) {
 
 		// check that the 2 passwords are the same
