@@ -4,7 +4,7 @@ class CustomTaxa {
 	/*
 	 * constructor
 	 */
-	function CustomTaxa() {
+	public function __construct() {
 		require('lib/fqa_config.php');
 		$connection = mysql_connect($db_server, $db_username, $db_password);
 		if (!$connection) 
@@ -18,7 +18,7 @@ class CustomTaxa {
 	/*
 	 * function to update custom taxa
 	 */
-	function update($id, $col_name, $value) {	
+	public function update($id, $col_name, $value) {	
 		// check that values are valid for the column
 		if ($col_name == 'scientific_name') {
 			$value = ucfirst(trim($value));
@@ -91,7 +91,7 @@ class CustomTaxa {
     /*
 	 * function to insert a new custom taxa
 	 */
-    function insert_new($custom_fqa_id, $original_fqa_id, $scientific_name, $family, $common_name, $acronym, $c_o_c, $native, $physiognomy, $duration) {
+    public function insert_new($custom_fqa_id, $original_fqa_id, $scientific_name, $family, $common_name, $acronym, $c_o_c, $native, $physiognomy, $duration) {
 		// check that scientific name has been entered
 		if (strlen($scientific_name) < 4) {
 			echo "Error: Please enter a valid scientific name.";
@@ -155,7 +155,7 @@ class CustomTaxa {
 	/*
 	 * delete the custom taxa
 	 */
-	function delete($id) {
+	public function delete($id) {
 		$sql = "DELETE FROM customized_taxa WHERE id='$id'";
 		mysql_query($sql);
 	}	
