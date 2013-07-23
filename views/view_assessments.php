@@ -26,26 +26,21 @@
 							<td><strong>Options</strong></td>							
 						</tr>
 <?php
-if (mysql_num_rows($inventory_assessments) == 0) {
+if (count($inventory_assessments) == 0) {
 ?>
 						<tr>
 							<td colspan="5">You have not made any inventory assessments. Click <a href="new_inventory">New Inventory</a> to get started.</td> 
 						</tr>
 <?php
 } else {
-	while ($inventory_assessment = mysql_fetch_assoc($inventory_assessments)) {
-		$id = $inventory_assessment['id'];
-		$site_id = $inventory_assessment['site_id'];
-		$date = $inventory_assessment['date'];
-		// get other data
+	foreach ($inventory_assessments as $assessment) {
 ?>						
 						<tr>
-							<td><a href="view_inventory.php?assessment=1">Coyote Hill 1</a></td>
-							<td>7/23/2010</td>
-							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
-							<td>45.5</td>
-							<td>Private</td>
-							<td><a href="view_inventory.php">View</a> | <a href="edit_inventory.php">Edit</a> | <a href="download_inventory.php">Download</a> | <a href="delete_inventory.php">Delete</a></td>
+							<td><a href="view_inventory/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
+							<td><?php echo $assessment->date; ?></td>
+							<td><?php echo $assessment->calculate_native_fqi(); ?></td>
+							<td><?php echo $assessment->private; ?></td>
+							<td><a href="view_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="edit_inventory/<?php echo $assessment->id; ?>">Edit</a> | <a href="download_inventory/<?php echo $assessment->id; ?>">Download</a> | <a href="delete_inventory/<?php echo $assessment->id; ?>">Delete</a></td>
 						</tr>
 <?php
 	}
@@ -62,26 +57,21 @@ if (mysql_num_rows($inventory_assessments) == 0) {
 							<td><strong>Options</strong></td>							
 						</tr>
 <?php
-if (mysql_num_rows($transect_assessments) == 0) {
+if (count($transect_assessments) == 0) {
 ?>
 						<tr>
 							<td colspan="5">You have not made any transect assessments. Click <a href="new_transect">New Transect</a> to get started.</td> 
 						</tr>
 <?php
 } else {
-	while ($transect_assessment = mysql_fetch_assoc($transect_assessments)) {
-		$id = $transect_assessment['id'];
-		$site_id = $transect_assessment['site_id'];
-		$date = $transect_assessment['date'];
-		// get other data
+	foreach ($transect_assessments as $transect_assessment) {
 ?>
 						<tr>
-							<td><a href="view_transect.php?assessment=1">Pothole Pond</a></td>
-							<td>6/8/2013</td>
-							<td><a href="view_site.php?site=1">Somme Prairie Grove</a></td>
-							<td>40.0</td>
-							<td>Private</td>
-							<td><a href="view_transect">View</a> | <a href="edit_transect">Edit</a> | <a href="download_transect">Download</a> | <a href="delete_transect">Delete</a></td>
+							<td><a href="view_transect/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
+							<td><?php echo $assessment->date; ?></td>
+							<td><?php echo $assessment->calculate_native_fqi(); ?></td>
+							<td><?php echo $assessment->private; ?></td>
+							<td><a href="view_transect/<?php echo $assessment->id; ?>">View</a> | <a href="edit_transect/<?php echo $assessment->id; ?>">Edit</a> | <a href="download_transect/<?php echo $assessment->id; ?>">Download</a> | <a href="delete_transect/<?php echo $assessment->id; ?>">Delete</a></td>
 						</tr>
 <?php
 	}
