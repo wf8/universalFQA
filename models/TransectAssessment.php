@@ -3,8 +3,11 @@ class TransectAssessment extends Assessment {
 
 	protected $db_table = 'transect';
 	
-	public function __construct() {
-		Assessment::__construct();
+	public function __construct( $id = null ) {
+		Assessment::__construct( $id );
+		if ($id !== null) {
+			// load the transect quadrats
+		}
 	}
 	
 	public function get_all_for_user($user_id) {
