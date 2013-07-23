@@ -1,10 +1,11 @@
 <?php
 session_start();
-require('lib/fqa_config.php');
 require_once('models/user.php');
 require_once('models/fqa_database.php');
 require_once('models/custom_fqa_database.php');
 require_once('models/custom_taxa.php');
+require_once('models/inventory_assessment.php');
+require_once('models/transect_assessment.php');
 
 // parse url
 $url_parts = array_slice(explode('/',$_SERVER['REQUEST_URI']), 1);
@@ -17,10 +18,11 @@ if ($url_parts[0] == 'ajax') {
 		require_once('controllers/ajax/' . $url_parts[1] . '.php');
 	} else {
 		// there is a problem, so load error page
-		require_once('views/landing.php');
+		require_once('views/header.php');
 		require_once('views/error.php');
 		require_once('views/footer.php');
 	}
+	
 // route view requests		
 } else {	
 	

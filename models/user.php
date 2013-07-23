@@ -132,7 +132,7 @@ class User {
 		$sql = "SELECT * FROM user WHERE email='$email'";
 		$result = mysql_query($sql);
 		if (mysql_num_rows($result) == 0) {
-			echo 'There is no account registered for that email address. Please register a new account.'.$email;
+			echo 'There is no account registered for that email address. Please register a new account.';
 			exit;
 		}
 		// get salt and hash
