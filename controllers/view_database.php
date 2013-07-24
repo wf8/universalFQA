@@ -8,7 +8,7 @@ else {
 	$fqa = new FQADatabase;
 	$fqa_databases = $fqa->get_fqa($id); 
 	// if database is not found show all databases
-	if (mysql_num_rows($fqa_databases) == 0) {
+	if (mysqli_num_rows($fqa_databases) == 0) {
 		$fqa_databases = $fqa->get_all();
 		// get this user's custom fqa databases
 		$custom_fqa = new CustomFQADatabase;
@@ -16,7 +16,7 @@ else {
 		// display view
 		require_once('../views/view_databases.php');
 	} else { 
-		$fqa_database = mysql_fetch_assoc($fqa_databases);
+		$fqa_database = mysqli_fetch_assoc($fqa_databases);
 		$region = $fqa_database['region_name'];
 		$year = $fqa_database['publication_year'];
 		$description = $fqa_database['description'];
@@ -28,7 +28,7 @@ else {
 		$native_c = 0;
 		$mean_total_c = 0;
 		$mean_native_c = 0;
-		while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
+		while ($fqa_taxon = mysqli_fetch_assoc($fqa_taxa)) {
 			$total_taxa++;
 			$total_c = $total_c + $fqa_taxon['c_o_c'];
 			if ($fqa_taxon['native'] == true) {

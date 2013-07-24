@@ -1,19 +1,18 @@
 <?php
 class CustomTaxa {
 
+	protected $db_link;
+
 	/*
 	 * constructor
 	 */
 	public function __construct() {
-		require('../config/config.php');
-		$connection = mysql_connect($db_server, $db_username, $db_password);
-		if (!$connection) 
-			die('Not connected : ' . mysql_error());
-		$db_selected = mysql_select_db($db_database);
-		if (!$db_selected) 
-			die ('Database error: ' . mysql_error());
+		require('../config/db_config.php');
+		$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+		if (mysqli_connect_errno($this->db_link)) {
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
 	}
-
 	
 	/*
 	 * function to update custom taxa
@@ -83,7 +82,7 @@ class CustomTaxa {
 			$sql = "UPDATE customized_taxa SET $col_name = NULL WHERE id = '$id'";
 		else
 			$sql = "UPDATE customized_taxa SET $col_name = '$value' WHERE id = '$id'";
-		mysql_query($sql);
+		mysqli_query($this->db_link, $sql);
 		echo "success";	
 	}
 	
@@ -139,14 +138,14 @@ class CustomTaxa {
 			$duration = null;
 		// do not insert if there is already a taxa with this sci name for this fqa db
 		$sql = "SELECT * FROM customized_taxa WHERE scientific_name='$scientific_name' AND customized_fqa_id='$custom_fqa_id'";
-		$existing_taxa = mysql_query($sql);
-		if (mysql_num_rows($existing_taxa) == 0) {
+		$existing_taxa = mysqli_query($this->db_link, $sql);
+		if (mysqli_num_rows($existing_taxa) == 0) {
 			// avoid mysql int = null = 0 problem
 			if ($c_o_w == null)
 				$sql = "INSERT INTO customized_taxa (customized_fqa_id, fqa_id, scientific_name, family, common_name, acronym, c_o_c, native, physiognomy, duration) VALUES ('$custom_fqa_id', '$original_fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$native', '$physiognomy', '$duration')";
 			else
 				$sql = "INSERT INTO customized_taxa (customized_fqa_id, fqa_id, scientific_name, family, common_name, acronym, c_o_c, c_o_w, native, physiognomy, duration) VALUES ('$custom_fqa_id', '$original_fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$c_o_w', '$native', '$physiognomy', '$duration')";
-			mysql_query($sql);
+			mysqli_query($this->db_link, $sql);
 			echo "success";
 		} else 
 			echo "Error: a taxa with that scientific name already exists for this database.";
@@ -157,7 +156,7 @@ class CustomTaxa {
 	 */
 	public function delete($id) {
 		$sql = "DELETE FROM customized_taxa WHERE id='$id'";
-		mysql_query($sql);
+		mysqli_query($this->db_link, $sql);
 	}	
 }
 ?>

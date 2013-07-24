@@ -1,17 +1,17 @@
 <?php
 class CustomFQADatabase {
 
+	protected $db_link;
+	
 	/*
 	 * constructor
 	 */
 	public function __construct() {
-		require('../config/config.php');
-		$connection = mysql_connect($db_server, $db_username, $db_password);
-		if (!$connection) 
-			die('Not connected : ' . mysql_error());
-		$db_selected = mysql_select_db($db_database);
-		if (!$db_selected) 
-			die ('Database error: ' . mysql_error());
+		require('../config/db_config.php');
+		$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+		if (mysqli_connect_errno($this->db_link)) {
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
 	}
 
     /*
@@ -19,7 +19,7 @@ class CustomFQADatabase {
 	 */
 	public function get_fqa($id) {
     	$sql = "SELECT * FROM customized_fqa WHERE id='$id'";
-		return mysql_query($sql);
+		return mysqli_query($this->db_link, $sql);
 	}
 	
 	/*
@@ -27,7 +27,7 @@ class CustomFQADatabase {
 	 */
 	public function update($id, $name, $description) {
 		$sql = "UPDATE customized_fqa SET customized_name = '$name', customized_description = '$description' WHERE id = '$id'";
-		mysql_query($sql);
+		mysqli_query($this->db_link, $sql);
 	}
 	
 	/*
@@ -35,7 +35,7 @@ class CustomFQADatabase {
 	 */
 	public function get_taxa($id) {
 		$sql = "SELECT * FROM customized_taxa WHERE customized_fqa_id='$id' ORDER BY scientific_name";
-		return mysql_query($sql);
+		return mysqli_query($this->db_link, $sql);
     }
 
 	/*
@@ -43,7 +43,7 @@ class CustomFQADatabase {
 	 */
     public function get_all_for_user($user_id) {
 	    $sql = "SELECT * FROM customized_fqa WHERE user_id='$user_id' ORDER BY customized_name, region_name, publication_year";
-		return mysql_query($sql);			 
+		return mysqli_query($this->db_link, $sql);			 
     }
     
     /*
@@ -54,8 +54,8 @@ class CustomFQADatabase {
 		$date = date('Y-m-d');
 		$user_id = $_SESSION['user_id'];
 		$sql = "INSERT INTO customized_fqa (fqa_id, region_name, description, publication_year, created, user_id) VALUES ('$original_fqa_id', '$region', '$description', '$year', '$date', '$user_id')";
-		mysql_query($sql);	
-		return mysql_insert_id();
+		mysqli_query($this->db_link, $sql);	
+		return mysqli_insert_id();
 	}
 	
 	/*
@@ -63,9 +63,9 @@ class CustomFQADatabase {
 	 */
 	public function delete($id) {
 		$sql = "DELETE FROM customized_fqa WHERE id='$id'";
-		mysql_query($sql);
+		mysqli_query($this->db_link, $sql);
 		$sql = "DELETE FROM customized_taxa WHERE customized_fqa_id='$id'";
-		mysql_query($sql);
+		mysqli_query($this->db_link, $sql);
 	}
 	
 	/*
@@ -73,7 +73,7 @@ class CustomFQADatabase {
 	 * the mysql resource of all the taxa in the original db.
 	 */
 	public function insert_taxa($customized_fqa_id, $original_fqa_id, $fqa_taxa) {
-		while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
+		while ($fqa_taxon = mysqli_fetch_assoc($fqa_taxa)) {
 			$scientific_name = $fqa_taxon['scientific_name'];
 			$family = $fqa_taxon['family'];
 			$common_name = $fqa_taxon['common_name'];
@@ -89,7 +89,7 @@ class CustomFQADatabase {
 				$sql = "INSERT INTO customized_taxa (customized_fqa_id, fqa_id, scientific_name, family, common_name, acronym, c_o_c, native, physiognomy, duration) VALUES ('$customized_fqa_id', '$original_fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$native', '$physiognomy', '$duration')";
 			else 
 				$sql = "INSERT INTO customized_taxa (customized_fqa_id, fqa_id, scientific_name, family, common_name, acronym, c_o_c, c_o_w, native, physiognomy, duration) VALUES ('$customized_fqa_id', '$original_fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$c_o_w', '$native', '$physiognomy', '$duration')";
-			mysql_query($sql);
+			mysqli_query($this->db_link, $sql);
 		}
 	}
 	

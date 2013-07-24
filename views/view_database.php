@@ -55,7 +55,7 @@
 						</tr>  
 						
 <?php
-while ($fqa_taxon = mysql_fetch_assoc($fqa_taxa)) {
+while ($fqa_taxon = mysqli_fetch_assoc($fqa_taxa)) {
 	echo "<tr>";
 	echo "<td>".$fqa_taxon['scientific_name']."</td>";
 	if ($fqa_taxon['family'] == null)

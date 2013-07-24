@@ -1,17 +1,17 @@
 <?php
 class User {
 
+	protected $db_link;
+	
 	/*
 	 * constructor
 	 */
 	public function __construct() {
-		require('../config/config.php');
-		$connection = mysql_connect($db_server, $db_username, $db_password);
-		if (!$connection) 
-			die('Not connected : ' . mysql_error());
-		$db_selected = mysql_select_db($db_database);
-		if (!$db_selected) 
-			die ('Database error: ' . mysql_error());
+		require('../config/db_config.php');
+		$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+		if (mysqli_connect_errno($this->db_link)) {
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
 	}
 
 	/*
@@ -20,13 +20,13 @@ class User {
     public function login($email, $login_password) {
 	
 		$query = "SELECT * FROM user WHERE email = '$email';";
-		$result = mysql_query($query);
-		if(mysql_num_rows($result) < 1) {
+		$result = mysqli_query($this->db_link, $query);
+		if(mysqli_num_rows($result) < 1) {
 			//no such user exists 
 			echo "Login or password incorrect.";
 			die();
 		}
-		$userData = mysql_fetch_assoc($result);
+		$userData = mysqli_fetch_assoc($result);
 		$hash = hash('sha256', $userData['salt'] . hash('sha256', $login_password) );
 		if($hash != $userData['password']) {
 			//incorrect password
@@ -81,27 +81,27 @@ class User {
 													
 			// check if there is already a user registered to that email address
 			$query = "SELECT * FROM user WHERE email = '$email'";
-			$result = mysql_query($query);
-			if(mysql_num_rows($result) > 0) 
+			$result = mysqli_query($this->db_link, $query);
+			if(mysqli_num_rows($result) > 0) 
 				echo "There is already a user registered with that email address.";
 			else {
 				// check for user already registered with the same name
 				$query = "SELECT * FROM user WHERE first_name = '$first_name' AND last_name = '$last_name'";
-				$result = mysql_query($query);
-				if (mysql_num_rows($result) > 0) 
+				$result = mysqli_query($this->db_link, $query);
+				if (mysqli_num_rows($result) > 0) 
 					echo "There is already a user registered with that name.";
 				else {
 					// finally insert the new user into database
 					$query = "INSERT INTO user (email, first_name, last_name, password, salt) VALUES ('$email', '$first_name', '$last_name', '$hash', '$salt')";
-					$result = mysql_query($query);
+					$result = mysqli_query($this->db_link, $query);
 					if (!$result) 
 						echo 'Database error: ' . mysql_error();
 					else {
 						// now login the user
 						// first get the new user id
 						$query = "SELECT * FROM user WHERE email = '$email'";
-						$result = mysql_query($query);
-						$userData = mysql_fetch_assoc($result);
+						$result = mysqli_query($this->db_link, $query);
+						$userData = mysqli_fetch_assoc($result);
 						// set the session variables
 						// first regen session id as security measure
 						session_regenerate_id (); 
@@ -130,8 +130,8 @@ class User {
 		}
 		// check to see if email address exists
 		$sql = "SELECT * FROM user WHERE email='$email'";
-		$result = mysql_query($sql);
-		if (mysql_num_rows($result) == 0) {
+		$result = mysqli_query($this->db_link, $sql);
+		if (mysqli_num_rows($result) == 0) {
 			echo 'There is no account registered for that email address. Please register a new account.';
 			exit;
 		}
@@ -142,7 +142,7 @@ class User {
 		$hash = hash('sha256', $temp_password);
 		$hash = hash('sha256', $salt . $hash);					
 		$sql = "UPDATE user SET password='$hash', salt='$salt' WHERE email='$email'";
-		$result = mysql_query($sql);
+		$result = mysqli_query($this->db_link, $sql);
 		if (!$result) {
 			echo 'Database error: ' . mysql_error();
 		} else {
@@ -185,7 +185,7 @@ class User {
 			
 			$user_id = $_SESSION['user_id'];
 			$query = "UPDATE user SET first_name='$first_name', last_name='$last_name', email='$email', password='$hash', salt='$salt' WHERE id='$user_id'";
-			$result = mysql_query($query);
+			$result = mysqli_query($this->db_link, $query);
 			if (!$result) {
 				echo 'Database error: ' . mysql_error();
 				exit;

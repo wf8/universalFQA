@@ -1,6 +1,7 @@
 <?php
 class Assessment {
 
+	protected $db_link;
 	protected $db_table;
 	
 	public $id;
@@ -25,11 +26,11 @@ class Assessment {
 			// load all data for this assessment
 			$this->connect_to_db();
 			$sql = "SELECT $this->db_table.*, site.* FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.id='$id'";
-			$results = mysql_query($sql);
-			if (mysql_num_rows($results) == 0) {
+			$results = mysqli_query($this->db_link, $sql);
+			if (mysqli_num_rows($results) == 0) {
 				$this->id = null;
 			} else {
-				$result = mysql_fetch_assoc($results);
+				$result = mysqli_fetch_assoc($results);
 				$this->id = $result['id'];
 				$this->date = $result['date'];
 				if ($result['private'] == 1)
@@ -61,13 +62,11 @@ class Assessment {
 	 * function to get hook to mysql database
 	 */
 	private function connect_to_db() {
-		require('../config/config.php');
-		$connection = mysql_connect($db_server, $db_username, $db_password);
-		if (!$connection) 
-			die('Not connected : ' . mysql_error());
-		$db_selected = mysql_select_db($db_database);
-		if (!$db_selected) 
-			die ('Database error: ' . mysql_error());
+		require('../config/db_config.php');
+		$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+		if (mysqli_connect_errno($this->db_link)) {
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
 	}
 	
 	/*
@@ -76,9 +75,9 @@ class Assessment {
     protected function get_all_for_user($user_id) {
     	$this->connect_to_db();
 	    $sql = "SELECT $this->db_table.*, site.* FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.user_id='$user_id' ORDER BY site.name, $this->db_table.date";
-		$results = mysql_query($sql);
+		$results = mysqli_query($this->db_link, $sql);
 		$assessments = array();
-		while ($result = mysql_fetch_assoc($results)) {
+		while ($result = mysqli_fetch_assoc($results)) {
 			$assessment = new Assessment();
 			$assessment->id = $result['id'];
 			$assessment->date = $result['date'];
@@ -114,9 +113,9 @@ class Assessment {
     protected function get_all_public() {
     	$this->connect_to_db();
 	    $sql = "SELECT $this->db_table.*, site.* FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.private='0' ORDER BY site.name, $this->db_table.date";
-		$results = mysql_query($sql);			 
+		$results = mysqli_query($this->db_link, $sql);			 
 		$assessments = array();
-		while ($result = mysql_fetch_assoc($results)) {		
+		while ($result = mysqli_fetch_assoc($results)) {		
 			$assessment = new Assessment();			
 			$assessment->id = $result['id'];
 			$assessment->date = $result['date'];

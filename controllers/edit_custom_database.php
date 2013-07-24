@@ -7,7 +7,7 @@ else {
 	$custom_fqas = new CustomFQADatabase;
 	$custom_fqa_databases = $custom_fqas->get_fqa($customized_fqa_id);
 	// if fqa not found redirect user to view all databases
-	if (mysql_num_rows($custom_fqa_databases) == 0) {
+	if (mysqli_num_rows($custom_fqa_databases) == 0) {
 		require_once('../views/nav.php');
 		$fqa = new FQADatabase;
 		$fqa_databases = $fqa->get_all();
@@ -16,7 +16,7 @@ else {
 		// display view
 		require_once('../views/view_databases.php');
 	} else {
-		$custom_fqa = mysql_fetch_assoc($custom_fqa_databases);
+		$custom_fqa = mysqli_fetch_assoc($custom_fqa_databases);
 		$original_fqa_id = $custom_fqa['fqa_id'];
 		$region = $custom_fqa['region_name'];
 		$year = $custom_fqa['publication_year'];

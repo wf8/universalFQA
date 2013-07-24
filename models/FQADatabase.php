@@ -1,17 +1,17 @@
 <?php
 class FQADatabase {
 
+	protected $db_link;
+	
 	/*
 	 * constructor
 	 */
 	public function __construct() {
-		require('../config/config.php');
-		$connection = mysql_connect($db_server, $db_username, $db_password);
-		if (!$connection) 
-			die('Not connected : ' . mysql_error());
-		$db_selected = mysql_select_db($db_database);
-		if (!$db_selected) 
-			die ('Database error: ' . mysql_error());
+		require('../config/db_config.php');
+		$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+		if (mysqli_connect_errno($this->db_link)) {
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
 	}
 
 	/*
@@ -19,7 +19,7 @@ class FQADatabase {
 	 */
 	public function get_all() {
 		$sql = "SELECT * FROM fqa WHERE 1 ORDER BY region_name, publication_year";
-		return mysql_query($sql);			 
+		return mysqli_query($this->db_link, $sql);			 
     }
     
     /*
@@ -27,7 +27,7 @@ class FQADatabase {
 	 */
 	public function get_fqa($id) {
     	$sql = "SELECT * FROM fqa WHERE id='$id'";
-		return mysql_query($sql);
+		return mysqli_query($this->db_link, $sql);
 	}
 	
 	/*
@@ -35,7 +35,7 @@ class FQADatabase {
 	 */
 	public function get_taxa($id) {
 		$sql = "SELECT * FROM taxa WHERE fqa_id='$id' ORDER BY scientific_name";
-		return mysql_query($sql);
+		return mysqli_query($this->db_link, $sql);
     }
     
     /*
@@ -61,13 +61,13 @@ class FQADatabase {
 						$new_fqa = false;
 						// do not insert if there is already an FQA database with that region and year
 						$sql = "SELECT * FROM fqa WHERE region_name='$region' AND publication_year='$year'";
-						$existing_fqa = mysql_query($sql);
-						if (mysql_num_rows($existing_fqa) == 0) {
+						$existing_fqa = mysqli_query($this->db_link, $sql);
+						if (mysqli_num_rows($existing_fqa) == 0) {
 							$date = date('Y-m-d');
 							$user_id = $_SESSION['user_id'];
 							$sql = "INSERT INTO fqa (region_name, description, publication_year, created, user_id) VALUES ('$region', '$description', '$year', '$date', '$user_id')";
-							mysql_query($sql);	
-							$fqa_id = mysql_insert_id();
+							mysqli_query($this->db_link, $sql);	
+							$fqa_id = mysqli_insert_id();
 						} else {
 							$result = "Error: An FQA database for that region and year already exist.";
 							break;
@@ -132,14 +132,14 @@ class FQADatabase {
 							$duration = null;
 						// do not insert if there is already a taxa with this sci name for this fqa db
 						$sql = "SELECT * FROM taxa WHERE scientific_name='$scientific_name' AND fqa_id='$fqa_id'";
-						$existing_taxa = mysql_query($sql);
-						if (mysql_num_rows($existing_taxa) == 0) {
+						$existing_taxa = mysqli_query($this->db_link, $sql);
+						if (mysqli_num_rows($existing_taxa) == 0) {
 							// avoid mysql int = null = 0 problem
 							if ($c_o_w == null)
 								$sql = "INSERT INTO taxa (fqa_id, scientific_name, family, common_name, acronym, c_o_c, native, physiognomy, duration) VALUES ('$fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$native', '$physiognomy', '$duration')";
 							else
 								$sql = "INSERT INTO taxa (fqa_id, scientific_name, family, common_name, acronym, c_o_c, c_o_w, native, physiognomy, duration) VALUES ('$fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$c_o_w', '$native', '$physiognomy', '$duration')";
-							mysql_query($sql);
+							mysqli_query($this->db_link, $sql);
 							$taxa_inserted++;
 						}	
 					}
@@ -151,9 +151,9 @@ class FQADatabase {
 				} else {
 					// delete any partially inserted databases
 					$sql = "DELETE FROM fqa WHERE id='$fqa_id'";
-					mysql_query($sql);
+					mysqli_query($this->db_link, $sql);
 					$sql = "DELETE FROM taxa WHERE fqa_id='$fqa_id'";
-					mysql_query($sql);
+					mysqli_query($this->db_link, $sql);
 				}
 			}
 		}

@@ -81,7 +81,7 @@
 							<td><a href="javascript:new_custom_taxa( <?php echo $original_fqa_id; ?>, <?php echo $customized_fqa_id; ?> );">Add</a></td>
 						</tr>   
 <?php
-if (mysql_num_rows($taxa) == 0) {
+if (mysqli_num_rows($taxa) == 0) {
 ?>
 						<tr>
 							<td colspan="4">There are no taxa in this customized FQA database.</td>
@@ -89,7 +89,7 @@ if (mysql_num_rows($taxa) == 0) {
 <?php
 } else {
 	$i = 0;
-	while ($taxon = mysql_fetch_assoc($taxa)) {
+	while ($taxon = mysqli_fetch_assoc($taxa)) {
 		$i++;
 		$taxon_id = $taxon['id'];
 		$scientific_name = $taxon['scientific_name'];
