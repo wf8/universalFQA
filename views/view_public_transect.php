@@ -1,58 +1,3 @@
-<?php
-session_start(); 
-require('fqa_config.php');
-if( !$_SESSION['valid'] ) {
-	header( "Location: login.php" );
-	exit;
-} 
-$connection = mysql_connect($db_server, $db_username, $db_password);
-if (!$connection) 
-	die('Not connected : ' . mysql_error());
-$db_selected = mysql_select_db($db_database);
-if (!$db_selected) 
-	die ('Database error: ' . mysql_error());
-?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Universal FQA Calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="../css/fqa.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-
-    <script src="../js/jquery-1.9.1.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/fqa.js"></script>
-  </head>
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-    	<div class="navbar-inner">
-        	<div class="container">
-          		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            		<span class="icon-bar"></span>
-            		<span class="icon-bar"></span>
-            		<span class="icon-bar"></span>
-          		</button>
-          		<a class="brand" href="../index.html">Universal FQA</a>
-          		<div class="nav-collapse collapse pull-right">
-            		<ul class="nav pull-right">
-            			<li><a href="view_assessments.php">Assessments</a></li>
-            			<li><a href="view_databases.php">FQA Databases</a></li>
-            			<li><a href="view_account.php">Account Info</a></li>
-            			<li><a href="../help.html">Help</a></li>
-              			<li><a href="logout.php">Logout</a></li>
-            		</ul>
-          		</div>
-        	</div>
-      	</div>
-    </div>
-	<br>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
@@ -64,20 +9,15 @@ if (!$db_selected)
 					<br>
 					<h1>Public Transect Assessment</h1>
 					<button class="btn btn-info" onClick="asdf_changes();">Download Report</button> 
-					<button class="btn btn-info" onclick="javascript:window.location = 'view_public_assessments.php';return false;">Done</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/view_public_assessments';return false;">Done</button>
 					<br>
-				</div>
-			</div>
-			<div class="row-fluid">
-				<div class="span12">
-					<h2>Coyote Hill 2</h2>
 				</div>
 			</div>
 			<br>
 			<div class="row-fluid">
 				<div class="span6">
 					<h4>&#187; Date & Location:</h4>
-					6/9/2013<br>
+					6/28/2013<br>
 					Somme Prairie Grove<br>
 					Northbrook<br>
 					Cook, Illinois, USA<br>					
@@ -92,7 +32,7 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<h4>&#187; Details:</h4>				
+					<h4>&#187; Details:</h4>			
 					Practitioner: Stephen and crew<br>
  					Latitude:<br>
  					Longitude:<br>
@@ -105,7 +45,7 @@ if (!$db_selected)
  			</div>
 			<br>
 			<div class="row-fluid">
-				<div class="span3">
+				<div class="span4">
 					<h4>&#187; Conservatism-Based Metrics:</h4>
 					Total Mean C: <strong>4.5</strong><br>
 					Native Mean C: <strong>5.5</strong><br>
@@ -122,7 +62,7 @@ if (!$db_selected)
 					% C value 4-6:  <strong>0%</strong><br>
 					% C value 7-10:  <strong>0%</strong><br>
 				</div>
-				<div class="span3">	
+				<div class="span4">	
 					<h4>&#187; Species Richness and Wetness:</h4>
 					Total Species: <strong>44</strong><br>
 					Native Species: <strong>37 (84.1%)</strong><br>
@@ -130,6 +70,7 @@ if (!$db_selected)
 					Mean Wetness: <strong>-2</strong><br>
 					Native Mean Wetness: <strong>-2</strong><br>
 				</div>
+				<!--
 				<div class="span3">
 					<h4>&#187; Physiognomy Metrics:</h4>
 					Tree: <strong>0 (0.0%)   </strong><br>
@@ -140,9 +81,10 @@ if (!$db_selected)
 					Sedge: <strong>7    (15.9%) </strong><br>
 					Rush: <strong>0     (0.0%) </strong><br>
 					Fern: <strong>0     (0.0%) </strong><br>
-					Other: <strong>0     (0.0%)      </strong><br>  
+					Bryophyte: <strong>0     (0.0%)      </strong><br>  
 				</div>
-				<div class="span3">
+				-->
+				<div class="span4">
 					<h4>&#187; Duration Metrics:</h4>
 					Annual: <strong>22 (50.0%)</strong><br>
 					Perennial: <strong>22 (50.0%)</strong><br>
@@ -156,91 +98,123 @@ if (!$db_selected)
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<h4>&#187; Quadrat Level Metrics:</h4>
-
-<table class="table table-hover">
-<tr>
-<td><strong>Quadrat</strong></td>
-<td><strong>Species Richness</strong></td>
-<td><strong>Native Species Richness</strong></td>
-<td><strong>Total Mean C</strong></td>
-<td><strong>Native Mean C</strong></td>
-<td><strong>Total FQI</strong></td>
-<td><strong>Native FQI</strong></td>
-<td><strong>Cover-weighted FQI</strong></td>
-<td><strong>Cover-weighted Native FQI</strong></td>
-<td><strong>Adjusted FQI</strong></td>
-<td><strong>Mean Wetness</strong></td>
-<td><strong>Mean Native Wetness</strong></td>
-<td><strong>Latitude</strong></td>
-<td><strong>Longitude</strong></td>
-</tr>                    
-<tr>
-<td>1</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>2</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>3</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>4</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-</table>
-
+					<h4>&#187; Physiognomic Relative Importance Values:</h4>
+					<table class="table table-hover">
+						<tr>
+							<td><strong>Physiognomy</strong></td>
+							<td><strong>Frequency</strong></td>
+							<td><strong>Coverage</strong></td>
+							<td><strong>Relative Frequency (%)</strong></td>
+							<td><strong>Relative Coverage (%)</strong></td>
+							<td><strong>Relative Importance Value</strong></td>
+						</tr>
+						<!-- show descending in order of RIV -->
+						<tr>
+							<td>Tree</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Shrub</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Vine</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Forb</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Grass</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Sedge</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Rush</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Fern</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Bryophyte</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<br>
+			<div class="row-fluid">
+				<div class="span12">
+					<h4>&#187; Species Relative Importance Values:</h4>
+					<table class="table table-hover">
+						<tr>
+							<td><strong>Species</strong></td>
+							<td><strong>Frequency</strong></td>
+							<td><strong>Coverage</strong></td>
+							<td><strong>Relative Frequency (%)</strong></td>
+							<td><strong>Relative Coverage (%)</strong></td>
+							<td><strong>Relative Importance Value</strong></td>
+						</tr>
+						<!-- show descending in order of RIV -->
+						<tr>
+							<td>Acorus calamus</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+						<tr>
+							<td>Alisma subcordatum</td>
+							<td>120</td>
+							<td>105</td>
+							<td>15</td>
+							<td>13</td>
+							<td>14</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<br>
@@ -495,10 +469,3 @@ if (!$db_selected)
 		</div>
     </div> 
     <br><br>
-	<footer class="footer">
-		<div class="container">
-			<p><a href="http://universalFQA.org">universalFQA.org</a> | <a href="../about.html">About this site</a></p>
-		</div>
-	</footer>
-  </body>
-</html>

@@ -26,30 +26,34 @@ class Assessment {
 			$this->connect_to_db();
 			$sql = "SELECT $this->db_table.*, site.* FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.id='$id'";
 			$results = mysql_query($sql);
-			$result = mysql_fetch_assoc($results);
-			$this->id = $result['id'];
-			$this->date = $result['date'];
-			if ($result['private'] == 1)
-				$this->private = 'private';
-			else
-				$this->private = 'public';
-			$this->practitioner = $result['practitioner'];
-			$this->latitude = $result['latitude'];
-			$this->longitude = $result['longitude'];
-			$this->weather_notes = $result['weather_notes'];
-			$this->duration_notes = $result['duration_notes'];
-			$this->community_type_notes = $result['community_type_notes'];
-			$this->other_notes = $result['other_notes'];	
-			$site = new Site();
-			$site->id = $result['site_id'];
-			$site->name = $result['name'];
-			$site->location = $result['location'];
-			$site->city = $result['city'];
-			$site->county = $result['county'];
-			$site->state = $result['state'];
-			$site->country = $result['country'];
-			$site->notes = $result['notes'];
-			$this->site = $site;	
+			if (mysql_num_rows($results) == 0) {
+				$this->id = null;
+			} else {
+				$result = mysql_fetch_assoc($results);
+				$this->id = $result['id'];
+				$this->date = $result['date'];
+				if ($result['private'] == 1)
+					$this->private = 'private';
+				else
+					$this->private = 'public';
+				$this->practitioner = $result['practitioner'];
+				$this->latitude = $result['latitude'];
+				$this->longitude = $result['longitude'];
+				$this->weather_notes = $result['weather_notes'];
+				$this->duration_notes = $result['duration_notes'];
+				$this->community_type_notes = $result['community_type_notes'];
+				$this->other_notes = $result['other_notes'];	
+				$site = new Site();
+				$site->id = $result['site_id'];
+				$site->name = $result['name'];
+				$site->location = $result['location'];
+				$site->city = $result['city'];
+				$site->county = $result['county'];
+				$site->state = $result['state'];
+				$site->country = $result['country'];
+				$site->notes = $result['notes'];
+				$this->site = $site;
+			}	
 		}	
 	}
 	

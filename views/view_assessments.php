@@ -8,10 +8,10 @@
 				<div class="span11">
 					<br>
 					<h1>Your Assessments</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'new_inventory';return false;">New Inventory</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'new_transect';return false;">New Transect</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'new_transect';return false;">Download Summary</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'view_public_assessments';return false;">View All Public Assessments</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/new_inventory';return false;">New Inventory</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/new_transect';return false;">New Transect</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/new_transect';return false;">Download Summary</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/view_public_assessments';return false;">View All Public Assessments</button>
 				</div>
 			</div>
 			<div class="row-fluid">
@@ -29,18 +29,18 @@
 if (count($inventory_assessments) == 0) {
 ?>
 						<tr>
-							<td colspan="5">You have not made any inventory assessments. Click <a href="new_inventory">New Inventory</a> to get started.</td> 
+							<td colspan="5">You have not made any inventory assessments. Click <a href="/new_inventory">New Inventory</a> to get started.</td> 
 						</tr>
 <?php
 } else {
 	foreach ($inventory_assessments as $assessment) {
 ?>						
 						<tr>
-							<td><a href="view_inventory/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
+							<td><a href="/view_inventory/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
 							<td><?php echo $assessment->date; ?></td>
 							<td><?php echo $assessment->calculate_native_fqi(); ?></td>
 							<td><?php echo $assessment->private; ?></td>
-							<td><a href="view_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="edit_inventory/<?php echo $assessment->id; ?>">Edit</a> | <a href="download_inventory/<?php echo $assessment->id; ?>">Download</a> | <a href="delete_inventory/<?php echo $assessment->id; ?>">Delete</a></td>
+							<td><a href="/view_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="/edit_inventory/<?php echo $assessment->id; ?>">Edit</a> | <a href="/download_inventory/<?php echo $assessment->id; ?>">Download</a> | <a href="/delete_inventory/<?php echo $assessment->id; ?>">Delete</a></td>
 						</tr>
 <?php
 	}
@@ -60,18 +60,18 @@ if (count($inventory_assessments) == 0) {
 if (count($transect_assessments) == 0) {
 ?>
 						<tr>
-							<td colspan="5">You have not made any transect assessments. Click <a href="new_transect">New Transect</a> to get started.</td> 
+							<td colspan="5">You have not made any transect assessments. Click <a href="/new_transect">New Transect</a> to get started.</td> 
 						</tr>
 <?php
 } else {
 	foreach ($transect_assessments as $transect_assessment) {
 ?>
 						<tr>
-							<td><a href="view_transect/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
+							<td><a href="/view_transect/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
 							<td><?php echo $assessment->date; ?></td>
 							<td><?php echo $assessment->calculate_native_fqi(); ?></td>
 							<td><?php echo $assessment->private; ?></td>
-							<td><a href="view_transect/<?php echo $assessment->id; ?>">View</a> | <a href="edit_transect/<?php echo $assessment->id; ?>">Edit</a> | <a href="download_transect/<?php echo $assessment->id; ?>">Download</a> | <a href="delete_transect/<?php echo $assessment->id; ?>">Delete</a></td>
+							<td><a href="/view_transect/<?php echo $assessment->id; ?>">View</a> | <a href="/edit_transect/<?php echo $assessment->id; ?>">Edit</a> | <a href="/download_transect/<?php echo $assessment->id; ?>">Download</a> | <a href="/delete_transect/<?php echo $assessment->id; ?>">Delete</a></td>
 						</tr>
 <?php
 	}

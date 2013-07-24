@@ -8,8 +8,8 @@
 				<div class="span11">
 					<br>
 					<h1>Public Assessments</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = 'download_public_summary';return false;">Download Summary</button>
-					<button class="btn btn-info" onclick="javascript:window.location = 'view_assessments';return false;">View Your Assessments</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/download_public_summary';return false;">Download Summary</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">View Your Assessments</button>
 				</div>
 			</div>
 			<div class="row-fluid">
@@ -34,11 +34,11 @@ if (count($inventory_assessments) == 0) {
 	foreach ($inventory_assessments as $assessment) {
 ?>						
 						<tr>
-							<td><a href="view_inventory/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
+							<td><a href="/view_public_inventory/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
 							<td><?php echo $assessment->date; ?></td>
 							<td><?php echo $assessment->calculate_native_fqi(); ?></td>
 							<td><?php echo $assessment->private; ?></td>
-							<td><a href="view_public_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="download_inventory/<?php echo $assessment->id; ?>">Download</a></td>
+							<td><a href="/view_public_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="/download_inventory/<?php echo $assessment->id; ?>">Download</a></td>
 						</tr>
 <?php
 	}
@@ -65,11 +65,11 @@ if (count($transect_assessments) == 0) {
 	foreach ($transect_assessments as $transect_assessment) {
 ?>
 						<tr>
-							<td><a href="view_transect/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
+							<td><a href="/view_public_transect/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
 							<td><?php echo $assessment->date; ?></td>
 							<td><?php echo $assessment->calculate_native_fqi(); ?></td>
 							<td><?php echo $assessment->private; ?></td>
-							<td><a href="view_transect/<?php echo $assessment->id; ?>">View</a> | <a href="download_transect/<?php echo $assessment->id; ?>">Download</a></td>
+							<td><a href="/view_public_transect/<?php echo $assessment->id; ?>">View</a> | <a href="/download_transect/<?php echo $assessment->id; ?>">Download</a></td>
 						</tr>
 <?php
 	}

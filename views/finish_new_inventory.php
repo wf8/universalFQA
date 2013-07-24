@@ -14,13 +14,6 @@
 			</div>
 			<br>
 			<div class="row-fluid">
-				<div class="span12">
-					<label class="small-text">Inventory Name: <font class="red">*</font></label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" required />
-				</div>
-			</div>
-			<br>
-			<div class="row-fluid">
 				<div class="span6">
 					<p>
 					<label class="small-text">Month: </label>
@@ -157,7 +150,7 @@
 <td colspan=11>You have not entered any species yet.</td>
 </tr>
 </table>
-<button class="btn btn-info" onclick="javascript:window.location = 'view_site.php';return false;">Remove Selected Species</button>
+<button class="btn btn-info" onclick="javascript:window.location = '/removed_species';return false;">Remove Selected Species</button>
 				</div>
 			</div>
 			<br><br>
