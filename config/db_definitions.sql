@@ -76,6 +76,7 @@ CREATE TABLE `inventory` (
  `id` INT NOT NULL AUTO_INCREMENT,
  `user_id` INT NOT NULL,
  `fqa_id` INT NOT NULL,
+ `customized_fqa` BOOLEAN NOT NULL DEFAULT 0,
  `site_id` INT NOT NULL,
  `date` DATE NOT NULL,
  `private` BOOLEAN NOT NULL DEFAULT 0,
@@ -94,7 +95,6 @@ CREATE TABLE `inventory_taxa` (
  `id` INT NOT NULL AUTO_INCREMENT,
  `inventory_id` INT NOT NULL,
  `site_id` INT NOT NULL,
- `fqa_id` INT NOT NULL,
  `taxa_id` INT NOT NULL,
 INDEX (`inventory_id`, `taxa_id`),
 PRIMARY KEY (  `id` )
@@ -104,6 +104,7 @@ CREATE TABLE `transect` (
  `id` INT NOT NULL AUTO_INCREMENT,
  `user_id` INT NOT NULL,
  `fqa_id` INT NOT NULL,
+ `customized_fqa` BOOLEAN NOT NULL DEFAULT 0,
  `site_id` INT NOT NULL,
  `date` DATE NOT NULL,
  `private` BOOLEAN NOT NULL DEFAULT 0,
@@ -121,8 +122,6 @@ PRIMARY KEY (  `id` )
 CREATE TABLE `quadrat` (
  `id` INT NOT NULL AUTO_INCREMENT,
  `transect_id` INT NOT NULL,
- `site_id` INT NOT NULL,
- `fqa_id` INT NOT NULL,
  `name` VARCHAR(256) NOT NULL,
  `active` BOOLEAN NOT NULL DEFAULT 1,
  `latitude` VARCHAR(256) NULL,
@@ -136,12 +135,9 @@ PRIMARY KEY (  `id` )
 CREATE TABLE `quadrat_taxa` (
  `id` INT NOT NULL AUTO_INCREMENT,
  `quadrat_id` INT NOT NULL,
- `transect_id` INT NOT NULL,
- `site_id` INT NOT NULL,
- `fqa_id` INT NOT NULL,
  `taxa_id` INT NOT NULL,
  `percent_coverage` INT NOT NULL,
-INDEX ( `quadrat_id`, `transect_id`, `taxa_id`),
+INDEX ( `quadrat_id`, `taxa_id`),
 PRIMARY KEY (  `id` )
 );
 
