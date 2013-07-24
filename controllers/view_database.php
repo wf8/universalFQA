@@ -1,8 +1,8 @@
 <?php
 if( !$_SESSION['valid'] ) 
-	require_once('views/login.php');
+	require_once('../views/login.php');
 else { 
-	require_once('views/nav.php');
+	require_once('../views/nav.php');
 	// get the fqa database by id
 	$id = mysql_real_escape_string($url_parts[1]);
 	$fqa = new FQADatabase;
@@ -14,7 +14,7 @@ else {
 		$custom_fqa = new CustomFQADatabase;
 		$custom_fqa_databases = $custom_fqa->get_all_for_user($_SESSION['user_id']);
 		// display view
-		require_once('views/view_databases.php');
+		require_once('../views/view_databases.php');
 	} else { 
 		$fqa_database = mysql_fetch_assoc($fqa_databases);
 		$region = $fqa_database['region_name'];
@@ -46,7 +46,7 @@ else {
 		$percent_native = round(( $native_taxa / $total_taxa ) * 100, 1);
 		$percent_nonnative = 100 - $percent_native;
 		// display view
-		require_once('views/view_database.php');  
+		require_once('../views/view_database.php');  
 	}
 }
 ?>

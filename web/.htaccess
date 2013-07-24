@@ -1,3 +1,4 @@
+Options All -Indexes
 RewriteEngine on
 RewriteCond $1 !^(front_controller\.php|assets)
 RewriteRule ^(.*)$ /front_controller.php/$1 [L]

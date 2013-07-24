@@ -1,8 +1,8 @@
 <?php
 if( !$_SESSION['valid'] ) 
-	require_once('views/login.php');
+	require_once('../views/login.php');
 else { 
-	require_once('views/nav.php');
+	require_once('../views/nav.php');
 	// get original fqa details
 	$original_fqa_id = mysql_real_escape_string($url_parts[1]);
 	$fqa = new FQADatabase;
@@ -14,7 +14,7 @@ else {
 		$custom_fqa = new CustomFQADatabase;
 		$custom_fqa_databases = $custom_fqa->get_all_for_user($_SESSION['user_id']);
 		// display view
-		require_once('views/view_databases.php');
+		require_once('../views/view_databases.php');
 	} else { 
 		$fqa_database = mysql_fetch_assoc($fqa_databases);
 		$region = $fqa_database['region_name'];
@@ -27,7 +27,7 @@ else {
 		$custom_fqa->insert_taxa($customized_fqa_id, $original_fqa_id, $fqa_taxa);
 		// get taxa for this db
 		$taxa = $custom_fqa->get_taxa($customized_fqa_id);
-		require_once('views/edit_custom_database.php');
+		require_once('../views/edit_custom_database.php');
 	}
 }
 ?>

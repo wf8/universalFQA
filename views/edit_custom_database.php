@@ -24,7 +24,7 @@
 		<div class="nice_margins">
 			<div class="row-fluid">
 				<div class="span1">
-					<img src="../assets/images/blue-eyed.jpg" width="70" height="105" class="img-rounded">
+					<img src="/assets/images/blue-eyed.jpg" width="70" height="105" class="img-rounded">
 					<br><br>
 				</div>
 				<div class="span11">
