@@ -99,21 +99,21 @@
 				<div class="span4">
 					<label class="small-text">Search by Scientific Name:</label>
 					<div class="input-append">
- 					 	<input class="input-medium" id="appendedInputButton" type="text">
+ 					 	<input class="input-medium" id="scientific_name" type="text" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($scientific_names) ?>'>
   						<button class="btn btn-info" type="button">Add</button>
 					</div>
 				</div>
 				<div class="span4">
 					<label class="small-text">Search by Acronym:</label>
  					<div class="input-append">
- 					 	<input class="input-medium" id="appendedInputButton" type="text">
+ 					 	<input class="input-medium" id="acronym" type="text" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($acronyms) ?>'>
   						<button class="btn btn-info" type="button">Add</button>
 					</div>
 				</div>
 				<div class="span4">
 					<label class="small-text">Search by Common Name:</label>
 					<div class="input-append">
- 					 	<input class="input-medium" id="appendedInputButton" type="text">
+ 					 	<input class="input-medium" id="common_name" type="text" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($common_names) ?>'>
   						<button class="btn btn-info" type="button">Add</button>
 					</div>
 				</div>	
@@ -121,7 +121,7 @@
 			<div class="row-fluid">
 				<div class="span12">
 				<h4>To Add Species In Bulk:</h4>
-				List each species separated by a comma. For example: "Acorus calamus, Alisma subcordatum, Anemone virginiana, etc."<br>
+				List each species (by scientific name, acronym, or common name) separated by a comma. For example: "Acorus calamus, Alisma subcordatum, Anemone virginiana, etc."<br>
 				<textarea class="input-xxlarge" rows="3" id="items_location7"></textarea><br>
 				<button class="btn btn-info" type="button">Add Species</button><br>
 				</div>

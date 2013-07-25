@@ -32,7 +32,7 @@ if (mysqli_num_rows($custom_fqa_databases) !== 0) {
 		$name = $fqa_database['customized_name'];
 		$year = $fqa_database['publication_year'];
 ?>
-  						<option value="<?php echo $fqa_id; ?>"><?php echo $name; ?>, <?php echo $year; ?></option>
+  						<option value="custom<?php echo $fqa_id; ?>"><?php echo $name; ?>, <?php echo $year; ?></option>
 <?php
 	}
 }

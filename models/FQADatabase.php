@@ -39,6 +39,50 @@ class FQADatabase {
     }
     
     /*
+	 * return an array with all scientific names in fqa database id
+	 */
+	public function get_scientific_names($id) {
+		$sql = "SELECT scientific_name FROM taxa WHERE fqa_id='$id' ORDER BY scientific_name";
+		$result = mysqli_query($this->db_link, $sql);
+		$array_to_return = array();
+		while($row = mysqli_fetch_array($result))	{
+			if ($row['scientific_name'] !== '')
+    			$array_to_return[] = $row['scientific_name'];
+		}
+		return $array_to_return;
+    }
+    
+    /*
+	 * return an array with all acronyms in fqa database id
+	 */
+	public function get_acronyms($id) {
+		$sql = "SELECT acronym FROM taxa WHERE fqa_id='$id' ORDER BY acronym";
+		$result = mysqli_query($this->db_link, $sql);
+		$array_to_return = array();
+		while($row = mysqli_fetch_array($result))	{
+			if ($row['acronym'] !== '')
+	    		$array_to_return[] = $row['acronym'];
+		}
+		return $array_to_return;
+    }
+    
+    /*
+	 * return an array with all common names in fqa database id
+	 */
+	public function get_common_names($id) {
+		$sql = "SELECT common_name FROM taxa WHERE fqa_id='$id' ORDER BY common_name";
+		$result = mysqli_query($this->db_link, $sql);
+		$array_to_return = array();
+		while($row = mysqli_fetch_array($result))	{
+    		if ($row['common_name'] !== '')
+    			$common_name = $row['common_name'];
+				$common_name = str_replace("'", "", $common_name);
+    			$array_to_return[] = $common_name;
+		}
+		return $array_to_return;
+    }
+    
+    /*
 	 * function to import a new fqa database. takes as input region, year, description, and 
 	 * handle to uploaded file
 	 */
