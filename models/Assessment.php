@@ -17,7 +17,9 @@ class Assessment {
  	public $community_type_notes;
  	public $other_notes;
 	
-	public $site;
+	public $site; // Site object
+	
+	public $taxa; // an array of Taxa or CustomTaxa objects
 	
 	/*
 	 * constructor
@@ -66,10 +68,12 @@ class Assessment {
 	 * function to get link to mysql database
 	 */
 	private function get_db_link() {
-		require('../config/db_config.php');
-		$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
-		if (mysqli_connect_errno($this->db_link)) {
-			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		if (is_null($this->db_link) {
+			require('../config/db_config.php');
+			$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+			if (mysqli_connect_errno($this->db_link)) {
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
 		}
 	}
 	

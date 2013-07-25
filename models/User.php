@@ -7,10 +7,18 @@ class User {
 	 * constructor
 	 */
 	public function __construct() {
-		require('../config/db_config.php');
-		$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
-		if (mysqli_connect_errno($this->db_link)) {
-			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	
+	/*
+	 * function to get link to mysql database
+	 */
+	private function get_db_link() {
+		if (is_null($this->db_link) {
+			require('../config/db_config.php');
+			$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+			if (mysqli_connect_errno($this->db_link)) {
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
 		}
 	}
 
@@ -18,7 +26,7 @@ class User {
 	 * function to login users
 	 */
     public function login($email, $login_password) {
-	
+		$this->get_db_link();
 		$query = "SELECT * FROM user WHERE email = '$email';";
 		$result = mysqli_query($this->db_link, $query);
 		if(mysqli_num_rows($result) < 1) {
@@ -78,7 +86,9 @@ class User {
 			$salt = substr($temp_string, 0, 3);
 			$hash = hash('sha256', $pass1);
 			$hash = hash('sha256', $salt . $hash);
-													
+												
+			$this->get_db_link();
+				
 			// check if there is already a user registered to that email address
 			$query = "SELECT * FROM user WHERE email = '$email'";
 			$result = mysqli_query($this->db_link, $query);
@@ -129,6 +139,7 @@ class User {
 			exit;
 		}
 		// check to see if email address exists
+		$this->get_db_link();
 		$sql = "SELECT * FROM user WHERE email='$email'";
 		$result = mysqli_query($this->db_link, $sql);
 		if (mysqli_num_rows($result) == 0) {
@@ -184,6 +195,7 @@ class User {
 			$hash = hash('sha256', $salt . $hash);
 			
 			$user_id = $_SESSION['user_id'];
+			$this->get_db_link();
 			$query = "UPDATE user SET first_name='$first_name', last_name='$last_name', email='$email', password='$hash', salt='$salt' WHERE id='$user_id'";
 			$result = mysqli_query($this->db_link, $query);
 			if (!$result) {

@@ -1,16 +1,24 @@
 <?php
 class FQADatabase {
 
-	protected $db_link;
+	protected $db_link = null;
 	
 	/*
 	 * constructor
 	 */
 	public function __construct() {
-		require('../config/db_config.php');
-		$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
-		if (mysqli_connect_errno($this->db_link)) {
-			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	
+	/*
+	 * function to get link to mysql database
+	 */
+	private function get_db_link() {
+		if (is_null($this->db_link) {
+			require('../config/db_config.php');
+			$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+			if (mysqli_connect_errno($this->db_link)) {
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
 		}
 	}
 
@@ -18,6 +26,7 @@ class FQADatabase {
 	 * return a mysql resource with all the fqa databases
 	 */
 	public function get_all() {
+		$this->get_db_link();
 		$sql = "SELECT * FROM fqa WHERE 1 ORDER BY region_name, publication_year";
 		return mysqli_query($this->db_link, $sql);			 
     }
@@ -26,6 +35,7 @@ class FQADatabase {
 	 * return a mysql resource for the fqa database with id
 	 */
 	public function get_fqa($id) {
+		$this->get_db_link();
     	$sql = "SELECT * FROM fqa WHERE id='$id'";
 		return mysqli_query($this->db_link, $sql);
 	}
@@ -34,6 +44,7 @@ class FQADatabase {
 	 * return a mysql resource for all the taxa associated with fqa database id
 	 */
 	public function get_taxa($id) {
+		$this->get_db_link();
 		$sql = "SELECT * FROM taxa WHERE fqa_id='$id' ORDER BY scientific_name";
 		return mysqli_query($this->db_link, $sql);
     }
@@ -42,6 +53,7 @@ class FQADatabase {
 	 * return an array with all scientific names in fqa database id
 	 */
 	public function get_scientific_names($id) {
+		$this->get_db_link();
 		$sql = "SELECT scientific_name FROM taxa WHERE fqa_id='$id' ORDER BY scientific_name";
 		$result = mysqli_query($this->db_link, $sql);
 		$array_to_return = array();
@@ -56,6 +68,7 @@ class FQADatabase {
 	 * return an array with all acronyms in fqa database id
 	 */
 	public function get_acronyms($id) {
+		$this->get_db_link();
 		$sql = "SELECT acronym FROM taxa WHERE fqa_id='$id' ORDER BY acronym";
 		$result = mysqli_query($this->db_link, $sql);
 		$array_to_return = array();
@@ -70,6 +83,7 @@ class FQADatabase {
 	 * return an array with all common names in fqa database id
 	 */
 	public function get_common_names($id) {
+		$this->get_db_link();
 		$sql = "SELECT common_name FROM taxa WHERE fqa_id='$id' ORDER BY common_name";
 		$result = mysqli_query($this->db_link, $sql);
 		$array_to_return = array();
@@ -87,6 +101,7 @@ class FQADatabase {
 	 * handle to uploaded file
 	 */
 	public function import_new($region, $year, $description, $file) {
+		$this->get_db_link();
 		$result = "";
 		if (!is_numeric( $year ) || ($year < 1950) || (3000 < $year)) {
 			$result = "Error: Please enter a valid year.";
