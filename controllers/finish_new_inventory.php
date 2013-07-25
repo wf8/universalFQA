@@ -16,6 +16,7 @@ else {
 	$assessment = new InventoryAssessment();
 	$assessment->fqa_id = $fqa_id;
 	$assessment->custom_fqa = $custom_fqa;
+	$_SESSION['assessment'] = serialize($assessment);
 	
 	if ($custom_fqa) {
 		$fqa = new CustomFQADatabase();

@@ -35,9 +35,9 @@ class CustomTaxa {
 				$this->customized_fqa_id = $result['customized_fqa_id'];
 				$this->scientific_name = $result['scientific_name'];
 				if ($result['native'] == 1)
-					$this->private = 'native';
+					$this->native = 'native';
 				else
-					$this->private = 'non-native';
+					$this->native = 'non-native';
 				$this->family = $result['family'];
 				$this->common_name = $result['common_name'];
 				$this->acronym = $result['acronym'];
@@ -53,13 +53,11 @@ class CustomTaxa {
 	 * function to get link to mysql database
 	 */
 	private function get_db_link() {
-		if (is_null($this->db_link) {
 			require('../config/db_config.php');
 			$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
 			if (mysqli_connect_errno($this->db_link)) {
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
-		}
 	}
 	
 	/*

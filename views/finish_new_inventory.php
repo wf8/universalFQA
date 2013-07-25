@@ -100,21 +100,21 @@
 					<label class="small-text">Search by Scientific Name:</label>
 					<div class="input-append">
  					 	<input class="input-medium" id="scientific_name" type="text" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($scientific_names) ?>'>
-  						<button class="btn btn-info" type="button">Add</button>
+  						<button class="btn btn-info" type="button" onclick="javascript:add_taxa_by_scientific_name();return false;">Add</button>
 					</div>
 				</div>
 				<div class="span4">
 					<label class="small-text">Search by Acronym:</label>
  					<div class="input-append">
  					 	<input class="input-medium" id="acronym" type="text" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($acronyms) ?>'>
-  						<button class="btn btn-info" type="button">Add</button>
+  						<button class="btn btn-info" type="button" onclick="javascript:add_taxa_by_acronym();return false;">Add</button>
 					</div>
 				</div>
 				<div class="span4">
 					<label class="small-text">Search by Common Name:</label>
 					<div class="input-append">
  					 	<input class="input-medium" id="common_name" type="text" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($common_names) ?>'>
-  						<button class="btn btn-info" type="button">Add</button>
+  						<button class="btn btn-info" type="button" onclick="javascript:add_taxa_by_common_name();return false;">Add</button>
 					</div>
 				</div>	
 			</div>
@@ -132,7 +132,8 @@
 					<h4>To Remove Species:</h4>
 					Select the species to remove and click remove at the bottom of the list.<br>
 					<br>
-					<table class="table table-hover">
+					<div id="species_list">
+<table class="table table-hover">
 <tr>
 <td></td>
 <td><strong>Scientific Name</strong></td>
@@ -141,16 +142,16 @@
 <td><strong>Native?</strong></td>
 <td><strong>C</strong></td>
 <td><strong>W</strong></td>
-<td><strong>Wetland Status</strong></td>
 <td><strong>Physiognomy</strong></td>
 <td><strong>Duration</strong></td>
 <td><strong>Common Name</strong></td>
 </tr>                    
 <tr>
-<td colspan=11>You have not entered any species yet.</td>
+<td colspan=10>You have not entered any species yet.</td>
 </tr>
 </table>
-<button class="btn btn-info" onclick="javascript:window.location = '/removed_species';return false;">Remove Selected Species</button>
+					</div>
+					<button class="btn btn-info" onclick="javascript:window.location = '/removed_species';return false;">Remove Selected Species</button>
 				</div>
 			</div>
 			<br><br>

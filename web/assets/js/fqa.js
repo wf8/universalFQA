@@ -219,3 +219,73 @@ function check_form( url ) {
  * ---------------------------------------------------------
  */
  
+ function add_taxa_by_scientific_name() {
+ 	$.ajax({
+		url: "/ajax/add_taxa_by_scientific_name",
+		type: "POST",
+		data: {
+			species: $("#scientific_name").val()
+		},
+		success: function( response ) {
+			if (response.indexOf("success") == -1) {
+				alert("That scientific name is not found in this database.");
+			} else {
+				clear_add_fields();
+				update_species_list();
+			}
+		}
+	});
+ }
+ 
+function add_taxa_by_acronym() {
+ 	$.ajax({
+		url: "/ajax/add_taxa_by_acronym",
+		type: "POST",
+		data: {
+			species: $("#acronym").val()
+		},
+		success: function( response ) {
+			if (response.indexOf("success") == -1) {
+				alert("That acronym is not found in this database.");
+			} else {
+				clear_add_fields();
+				update_species_list();
+			}
+		}
+	});
+}
+ 
+function add_taxa_by_common_name() {
+ 	$.ajax({
+		url: "/ajax/add_taxa_by_common_name",
+		type: "POST",
+		data: {
+			species: $("#common_name").val()
+		},
+		success: function( response ) {
+			if (response.indexOf("success") == -1) {
+				alert("That common name is not found in this database.");
+			} else {
+				clear_add_fields();
+				update_species_list();
+			}
+		}
+	});
+}
+
+function clear_add_fields() {
+	$("#scientific_name").val('');
+	$("#acronym").val('');
+	$("#common_name").val('');
+}
+
+function update_species_list() {
+	$.ajax({
+		url: "/ajax/get_assessment_species_list",
+		type: "POST",
+		success: function( response ) {
+			$( "#species_list" ).html( response );
+		}
+	});
+	
+}

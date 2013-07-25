@@ -18,8 +18,7 @@ class Assessment {
  	public $other_notes;
 	
 	public $site; // Site object
-	
-	public $taxa; // an array of Taxa or CustomTaxa objects
+	public $taxa = array(); // an array of Taxa or CustomTaxa objects
 	
 	/*
 	 * constructor
@@ -68,13 +67,11 @@ class Assessment {
 	 * function to get link to mysql database
 	 */
 	private function get_db_link() {
-		if (is_null($this->db_link) {
 			require('../config/db_config.php');
 			$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
 			if (mysqli_connect_errno($this->db_link)) {
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
-		}
 	}
 	
 	/*
@@ -157,5 +154,47 @@ class Assessment {
 		return '50.0';
 	}
 	
+	/*
+	 * add the taxa to this assessment based on the value of a db column
+	 * allows taxa to be added based on sci name, common name, or acronym
+	 * return true/false depending on success of adding taxa
+	 */
+	public function add_taxa_by_column_value( $column, $value ) {
+		if ($this->custom_fqa) {
+			$taxa = new CustomTaxa();
+			$taxa_db = 'customized_taxa';
+			$fqa_column = 'customized_fqa_id';
+		} else {
+			$taxa = new Taxa();
+			$taxa_db = 'taxa';
+			$fqa_column = 'fqa_id';
+		}
+		$this->get_db_link();
+		$sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column='$value' AND $taxa_db.$fqa_column='$this->fqa_id'";
+		$results = mysqli_query($this->db_link, $sql);
+		if (mysqli_num_rows($results) == 0) {
+			return false;
+		} else {
+			$result = mysqli_fetch_assoc($results);
+			$taxa->id = $result['id'];
+			
+			$taxa->fqa_id = $result['fqa_id'];
+			$taxa->scientific_name = $result['scientific_name'];
+			if ($result['native'] == 1)
+				$taxa->native = 'native';
+			else
+				$taxa->native = 'non-native';
+			$taxa->family = $result['family'];
+			$taxa->common_name = $result['common_name'];
+			$taxa->acronym = $result['acronym'];
+			$taxa->c_o_c = $result['c_o_c'];
+			$taxa->c_o_w = $result['c_o_w'];
+			$taxa->physiognomy = $result['physiognomy'];
+			$taxa->duration = $result['duration'];
+			
+			$this->taxa[] = $taxa;
+			return true;
+		}	
+	}
 }
 ?>
