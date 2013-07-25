@@ -196,5 +196,19 @@ class Assessment {
 			return true;
 		}	
 	}
+	
+	/*
+	 * removes taxon from taxa array
+	 * takes as input the id of the taxon to be removed
+	 */
+	public function remove_taxon( $id ) {
+		foreach($this->taxa as $key => $taxon) {
+			if ($taxon->id == $id) {
+				unset($this->taxa[$key]);
+				$this->taxa = array_values($this->taxa);
+				break;
+			}
+		}
+	}
 }
 ?>

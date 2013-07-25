@@ -289,3 +289,24 @@ function update_species_list() {
 	});
 	
 }
+
+function remove_taxa() {
+	if (confirm("Are you sure you want to delete the selected taxa?")) {
+		var taxa_to_remove = new Array();
+		$("input:checkbox[name=taxa]:checked").each( function() {
+			taxa_to_remove.push($(this).val());
+		});
+	
+		$.ajax({
+			url: "/ajax/remove_taxa",
+			type: "POST",
+			data: {
+				taxa: taxa_to_remove
+			},
+			success: function( response ) {
+				clear_add_fields();
+				update_species_list();
+			}
+		});
+	}
+}

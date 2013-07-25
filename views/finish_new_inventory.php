@@ -151,7 +151,7 @@
 </tr>
 </table>
 					</div>
-					<button class="btn btn-info" onclick="javascript:window.location = '/removed_species';return false;">Remove Selected Species</button>
+					<button class="btn btn-info" onclick="javascript:remove_taxa();return false;">Remove Selected Species</button>
 				</div>
 			</div>
 			<br><br>

@@ -18,7 +18,7 @@ if( $_SESSION['valid'] ) {
 	} else {
 		$sorted_taxa = sort_array_of_objects($assessment->taxa, 'scientific_name');
 		foreach ($sorted_taxa as $taxon) {
-			$html = $html . '<tr><td><input type="checkbox" id="taxa" value="' . $taxon->id . '"></td>';
+			$html = $html . '<tr><td><input type="checkbox" name="taxa" value="' . $taxon->id . '"></td>';
 			$html = $html . '<td>' . $taxon->scientific_name . '</td>';
 			$html = $html . '<td>' . $taxon->family . '</td>';
 			$html = $html . '<td>' . $taxon->acronym . '</td>';
