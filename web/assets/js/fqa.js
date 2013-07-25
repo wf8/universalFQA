@@ -308,7 +308,7 @@ function update_species_list() {
 }
 
 function remove_taxa() {
-	if (confirm("Are you sure you want to delete the selected taxa?")) {
+	if (confirm("Are you sure you want to remove the selected taxa?")) {
 		var taxa_to_remove = new Array();
 		$("input:checkbox[name=taxa]:checked").each( function() {
 			taxa_to_remove.push($(this).val());
