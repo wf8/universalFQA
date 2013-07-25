@@ -3,6 +3,8 @@ if( !$_SESSION['valid'] )
 	require_once('../views/login.php');
 else {
 	require_once('../views/nav.php');
+	// clear any assessments from session
+	$_SESSION['assessment'] = null;
 	// get all the fqa databases
 	$fqa = new FQADatabase;
 	$fqa_databases = $fqa->get_all();

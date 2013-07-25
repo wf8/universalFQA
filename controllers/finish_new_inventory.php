@@ -13,11 +13,16 @@ else {
 		$custom_fqa = false;
 	}
 	
-	$assessment = new InventoryAssessment();
+	// check whether the user has an assessment already started in session
+	if ($_SESSION['assessment'] == null) {
+		$assessment = new InventoryAssessment();	
+	} else {
+		$assessment = unserialize($_SESSION['assessment']);
+	}
 	$assessment->fqa_id = $fqa_id;
 	$assessment->custom_fqa = $custom_fqa;
 	$_SESSION['assessment'] = serialize($assessment);
-	
+		
 	if ($custom_fqa) {
 		$fqa = new CustomFQADatabase();
 		$scientific_names = $fqa->get_scientific_names($fqa_id);

@@ -9,12 +9,14 @@ if( $_SESSION['valid'] ) {
 	$taxa_not_found = false;
 	foreach($taxa_array as $taxa) {
 		$taxa = trim($taxa);
-		// try to add taxa by all possible columns
-		if (!$assessment->add_taxa_by_column_value('scientific_name', $taxa)) {
-			if (!$assessment->add_taxa_by_column_value('common_name', $taxa)) {
-				if (!$assessment->add_taxa_by_column_value('acronym', $taxa)) {
-					$html = $html . $taxa . '<br>';
-					$taxa_not_found = true;
+		if ($taxa !== '') {
+			// try to add taxa by all possible columns
+			if (!$assessment->add_taxa_by_column_value('scientific_name', $taxa)) {
+				if (!$assessment->add_taxa_by_column_value('common_name', $taxa)) {
+					if (!$assessment->add_taxa_by_column_value('acronym', $taxa)) {
+						$html = $html . $taxa . '<br>';
+						$taxa_not_found = true;
+					}
 				}
 			}
 		}

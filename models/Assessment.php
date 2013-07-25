@@ -161,6 +161,8 @@ class Assessment {
 	 * will return true if taxa is already in assessment
 	 */
 	public function add_taxa_by_column_value( $column, $value ) {
+		if (trim($value) == '')
+			return false;
 		if ($this->custom_fqa) {
 			$taxa = new CustomTaxa();
 			$taxa_db = 'customized_taxa';

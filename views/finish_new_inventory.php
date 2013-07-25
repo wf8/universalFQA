@@ -1,3 +1,4 @@
+	<script> window.onload = update_species_list(); </script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
