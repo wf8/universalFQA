@@ -208,5 +208,32 @@ class User {
 			}
 		}
 	}
+	
+	/*
+	 * function to get all sites for the user with id
+	 * returns an array of Site objects
+	 */
+    public function get_sites($id) {
+		$this->get_db_link();
+		$query = "SELECT * FROM site WHERE user_id = '$id'";
+		$result = mysqli_query($this->db_link, $query);
+		$sites = array();
+		while ($site = mysqli_fetch_assoc($result)) {
+			if ($site['user_id'] == $id) {
+				$new_site = new Site();
+				$new_site->id = $site['id'];
+				$new_site->user_id = $site['user_id'];
+				$new_site->name = $site['name'];
+				$new_site->location = $site['location'];
+				$new_site->city = $site['city'];
+				$new_site->county = $site['county'];
+				$new_site->state = $site['state'];
+				$new_site->country = $site['country'];
+				$new_site->notes = $site['notes'];
+				$sites[] = $new_site;
+			}
+		}
+		return $sites;
+	}
 }
 ?>

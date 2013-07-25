@@ -2,6 +2,7 @@
 class Site {
 	
 	public $id;
+	public $user_id;
 	public $name;
 	public $location;
 	public $city;

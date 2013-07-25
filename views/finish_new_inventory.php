@@ -18,54 +18,55 @@
 					<p>
 					<label class="small-text">Month: </label>
 					<select>
-  						<option>1</option>
-  						<option>2</option>
-  						<option>3</option>
-  						<option>4</option>
-  						<option>5</option>
-  						<option>6</option>
-  						<option selected>7</option>
-  						<option>8</option>
-  						<option>9</option>
-  						<option>10</option>
-  						<option>11</option>
-  						<option>12</option>
+<?php 	$current_month = date("m");
+		$i = 1;
+		while($i < 13) {
+			if ($i == $current_month)
+ 				echo '<option selected>'.$i.'</option>';
+ 			else
+ 				echo '<option>'.$i.'</option>';
+ 			$i++;
+ 		}
+?>
 					</select>
 					<label class="small-text">Day: </label>
 					<select>
-  						<option selected>23</option>
+<?php 	$current_day = date("j");
+		$i = 1;
+		while($i < 32) {
+			if ($i == $current_day)
+ 				echo '<option selected>'.$i.'</option>';
+ 			else
+ 				echo '<option>'.$i.'</option>';
+ 			$i++;
+ 		}
+?>
 					</select>
 					<label class="small-text">Year: </label>
 					<select>
-  						<option selected>2010</option>
+<?php 	$current_year = date("Y");
+		$i = $current_year;
+		while($i > 1979) {
+			if ($i == $current_year)
+ 				echo '<option selected>'.$i.'</option>';
+ 			else
+ 				echo '<option>'.$i.'</option>';
+ 			$i--;
+ 		}
+?>
 					</select>
 				</div>	
-				<!--  &^*&^#@*$&^#@*$&^@#*$&^@#
-				
-				force user to enter new site if no sites exist
-				
-				-->
-				<div class="span6">
-					<label class="small-text">Site: </label>
-					<select>
-  						<option>Somme Prairie Grove</option>
-  						<option>Harms Woods</option>
-  						<option>Deer Grove</option>
-					</select>			
-					<br>	
-					<button class="btn btn-info" onclick="javascript:window.location = '/edit_site';return false;">Edit Selected Site</button>
-					<button class="btn btn-info" onclick="javascript:window.location = '/edit_site';return false;">Create New Site</button>
-				</div>		
+				<?php require('../views/site_selector.php'); ?>		
 			</div>
 			<br>
 			<div class="row-fluid">
 				<div class="span6">
 					<label class="small-text">Practitioner:</label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>
+					<input class="input-medium" type="text" id="change_first_name" value="" maxlength="256" /><br>
  					<label class="small-text">Latitude:</label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>
+					<input class="input-medium" type="text" id="change_first_name" value="" maxlength="256" /><br>
  					<label class="small-text">Longitude:</label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>
+					<input class="input-medium" type="text" id="change_first_name" value="" maxlength="256" /><br>
 					<br>
 					<label class="radio">
   						<input type="radio" name="publicOrPrivate" id="public_inventory" value="public" checked>
