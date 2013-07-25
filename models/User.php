@@ -215,7 +215,7 @@ class User {
 	 */
     public function get_sites($id) {
 		$this->get_db_link();
-		$query = "SELECT * FROM site WHERE user_id = '$id'";
+		$query = "SELECT * FROM site WHERE user_id = '$id' ORDER BY name";
 		$result = mysqli_query($this->db_link, $query);
 		$sites = array();
 		while ($site = mysqli_fetch_assoc($result)) {

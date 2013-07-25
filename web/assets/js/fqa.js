@@ -210,6 +210,61 @@ function check_form( url ) {
 		window.location = url;
 }
 
+/**
+ * ---------------------------------------------------------
+ *
+ * site functions
+ *
+ * ---------------------------------------------------------
+ */
+
+function save_site_changes( site_id ) {
+	if ($("#site_name").val().trim() == '') {
+		alert("Please enter a site name.");
+	} else {
+		$.ajax({
+			url: "/ajax/save_site_changes",
+			type: "POST",
+			data: {
+				id: site_id,
+				name: $("#site_name").val().trim(),
+				notes: $("#site_notes").val().trim(),
+				city: $("#site_city").val().trim(),
+				county: $("#site_county").val().trim(),
+				state: $("#site_state").val().trim(),
+				country: $("#site_country").val().trim()
+			},
+			success: function( response ) { 
+					alert("Changes saved!");
+			}
+		});
+	}
+}
+
+function save_new_site() {
+	if ($("#site_name").val().trim() == '') {
+		alert("Please enter a site name.");
+	} else {
+		$.ajax({
+			url: "/ajax/save_new_site",
+			type: "POST",
+			data: {
+				name: $("#site_name").val().trim(),
+				notes: $("#site_notes").val().trim(),
+				city: $("#site_city").val().trim(),
+				county: $("#site_county").val().trim(),
+				state: $("#site_state").val().trim(),
+				country: $("#site_country").val().trim()
+			},
+			success: function( response ) { 
+				if (response.indexOf("success") == -1) 
+					alert( response );
+				else
+					alert("New site saved!");
+			}
+		});
+	}
+}
 
 /**
  * ---------------------------------------------------------
