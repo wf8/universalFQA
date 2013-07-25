@@ -158,6 +158,7 @@ class Assessment {
 	 * add the taxa to this assessment based on the value of a db column
 	 * allows taxa to be added based on sci name, common name, or acronym
 	 * return true/false depending on success of adding taxa
+	 * will return true if taxa is already in assessment
 	 */
 	public function add_taxa_by_column_value( $column, $value ) {
 		if ($this->custom_fqa) {
@@ -192,6 +193,12 @@ class Assessment {
 			$taxa->physiognomy = $result['physiognomy'];
 			$taxa->duration = $result['duration'];
 			
+			// check to make sure taxa is not already in assessment
+			foreach($this->taxa as $taxon) {
+				if ($taxon->id == $taxa->id) {
+					return true;
+				}
+			}
 			$this->taxa[] = $taxa;
 			return true;
 		}	

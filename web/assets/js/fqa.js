@@ -273,10 +273,27 @@ function add_taxa_by_common_name() {
 	});
 }
 
+function add_taxa_by_list() {
+ 	$.ajax({
+		url: "/ajax/add_taxa_by_list",
+		type: "POST",
+		data: {
+			taxa: $("#taxa_to_add_list").val()
+		},
+		success: function( response ) {
+				$( "#species_error" ).html( response );
+				$("#taxa_to_add_list").val('');
+				update_species_list();
+		}
+	});
+}
+
 function clear_add_fields() {
 	$("#scientific_name").val('');
 	$("#acronym").val('');
 	$("#common_name").val('');
+	$("#taxa_to_add_list").val('');
+	$("#species_error").html('');
 }
 
 function update_species_list() {
