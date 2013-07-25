@@ -37,7 +37,7 @@ else {
 			}
 		}
 		// reset pointer
-		mysql_data_seek($fqa_taxa, 0);
+		mysqli_data_seek($fqa_taxa, 0);
 		// calculate other fqa details
 		if ($total_taxa !== 0)
 			$mean_total_c = round(( $total_c / $total_taxa ), 1);
