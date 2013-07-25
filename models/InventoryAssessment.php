@@ -112,5 +112,16 @@ class InventoryAssessment extends Assessment {
 		return $inventory_id;
 	}
 	
+	/*
+	 * delete the inventory and all its taxa
+	 */
+	public function delete( $id ) {
+		$this->get_db_link();
+		$sql = "DELETE FROM inventory_taxa WHERE inventory_id='$id'";
+		mysqli_query($this->db_link, $sql);
+		$sql = "DELETE FROM inventory WHERE id='$id'";
+		mysqli_query($this->db_link, $sql);
+	}
+	
 }
 ?>

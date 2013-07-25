@@ -269,7 +269,7 @@ function save_new_site() {
 /**
  * ---------------------------------------------------------
  *
- * new assessment functions
+ * inventory assessment functions
  *
  * ---------------------------------------------------------
  */
@@ -442,5 +442,19 @@ function save_new_inventory() {
 			});
 		}
 	}
+}
 
+function delete_inventory( id ) {
+ 	if (confirm("Are you sure you want to delete this inventory assessment?")) {
+		$.ajax({
+			url: "/ajax/delete_inventory",
+			type: "POST",
+			data: {
+				id: id,
+			},
+			success: function( response ) {
+				location.reload(true);
+			}
+		});
+ 	}
 }

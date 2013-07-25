@@ -40,7 +40,7 @@ if (count($inventory_assessments) == 0) {
 							<td><?php echo $assessment->date; ?></td>
 							<td><?php echo $assessment->calculate_native_fqi(); ?></td>
 							<td><?php echo $assessment->private; ?></td>
-							<td><a href="/view_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="/edit_inventory/<?php echo $assessment->id; ?>">Edit</a> | <a href="/download_inventory/<?php echo $assessment->id; ?>">Download</a> | <a href="/delete_inventory/<?php echo $assessment->id; ?>">Delete</a></td>
+							<td><a href="/view_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="/edit_inventory/<?php echo $assessment->id; ?>">Edit</a> | <a href="/download_inventory/<?php echo $assessment->id; ?>">Download</a> | <a href="javascript:delete_inventory(<?php echo $assessment->id; ?>);">Delete</a></td>
 						</tr>
 <?php
 	}
@@ -71,7 +71,7 @@ if (count($transect_assessments) == 0) {
 							<td><?php echo $assessment->date; ?></td>
 							<td><?php echo $assessment->calculate_native_fqi(); ?></td>
 							<td><?php echo $assessment->private; ?></td>
-							<td><a href="/view_transect/<?php echo $assessment->id; ?>">View</a> | <a href="/edit_transect/<?php echo $assessment->id; ?>">Edit</a> | <a href="/download_transect/<?php echo $assessment->id; ?>">Download</a> | <a href="/delete_transect/<?php echo $assessment->id; ?>">Delete</a></td>
+							<td><a href="/view_transect/<?php echo $assessment->id; ?>">View</a> | <a href="/edit_transect/<?php echo $assessment->id; ?>">Edit</a> | <a href="/download_transect/<?php echo $assessment->id; ?>">Download</a> | <a href="javascript:delete_transect(<?php echo $assessment->id; ?>);">Delete</a></td>
 						</tr>
 <?php
 	}
