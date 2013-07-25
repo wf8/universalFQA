@@ -61,6 +61,7 @@ class Site {
 
 	/*
 	 * function to add a new site
+	 * returns id of new site on success
 	 */
 	public function save_new_site($user_id, $name, $notes, $city, $county, $state, $country) {
 		$this->get_db_link();
@@ -68,11 +69,11 @@ class Site {
 		$sql = "SELECT * FROM site WHERE user_id='$user_id' AND name='$name'";
 		$result = mysqli_query($this->db_link, $sql);
 		if (mysqli_num_rows($result) !== 0) {
-			echo 'You already have already created a site with that name. New site not saved.';
+			echo 'Error: You already have already created a site with that name. New site not saved.';
 		} else {
 			$sql = "INSERT INTO site (user_id, name, notes, city, county, state, country) VALUES ('$user_id', '$name', '$notes', '$city', '$county', '$state', '$country')";
 			mysqli_query($this->db_link, $sql);
-			echo 'success';
+			echo mysqli_insert_id($this->db_link);
 		}
 	}
 }

@@ -9,7 +9,7 @@
 				<div class="span11">
 					<br>
 					<h1>New Inventory Assessment</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = '/view_inventory';return false;">Save and View Results</button> 
+					<button class="btn btn-info" onclick="javascript:save_new_inventory();return false;">Save and View Results</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Cancel</button><br>
 				</div>
 			</div>
@@ -18,7 +18,7 @@
 				<div class="span6">
 					<p>
 					<label class="small-text">Month: </label>
-					<select>
+					<select id="month">
 <?php 	$current_month = date("m");
 		$i = 1;
 		while($i < 13) {
@@ -31,7 +31,7 @@
 ?>
 					</select>
 					<label class="small-text">Day: </label>
-					<select>
+					<select id="day">
 <?php 	$current_day = date("j");
 		$i = 1;
 		while($i < 32) {
@@ -44,7 +44,7 @@
 ?>
 					</select>
 					<label class="small-text">Year: </label>
-					<select>
+					<select id="year">
 <?php 	$current_year = date("Y");
 		$i = $current_year;
 		while($i > 1979) {
@@ -63,37 +63,37 @@
 			<div class="row-fluid">
 				<div class="span6">
 					<label class="small-text">Practitioner:</label>
-					<input class="input-medium" type="text" id="change_first_name" value="" maxlength="256" /><br>
+					<input class="input-medium" type="text" id="practitioner" value="" maxlength="256" /><br>
  					<label class="small-text">Latitude:</label>
-					<input class="input-medium" type="text" id="change_first_name" value="" maxlength="256" /><br>
+					<input class="input-medium" type="text" id="latitude" value="" maxlength="256" /><br>
  					<label class="small-text">Longitude:</label>
-					<input class="input-medium" type="text" id="change_first_name" value="" maxlength="256" /><br>
+					<input class="input-medium" type="text" id="longitude" value="" maxlength="256" /><br>
 					<br>
+					<form id="public_inventory">
 					<label class="radio">
-  						<input type="radio" name="publicOrPrivate" id="public_inventory" value="public" checked>
+  						<input type="radio" name="publicOrPrivate" value="public" checked>
   						Public (viewable by any users of this site)
 					</label>
 					<label class="radio">
-  						<input type="radio" name="publicOrPrivate" id="private_inventory" value="private">
+  						<input type="radio" name="publicOrPrivate" value="private">
   						Private (viewable only by you)
 					</label>
+					</form>
  				</div>
  				<div class="span6">
  					<label class="small-text">Weather Notes:</label>
-					<textarea rows="3" id="site_location3"></textarea><br>
+					<textarea rows="3" id="weather_notes"></textarea><br>
  					<label class="small-text">Duration Notes:</label>
-					<textarea rows="3" id="site_location3"></textarea><br>
+					<textarea rows="3" id="duration_notes"></textarea><br>
  					<label class="small-text">Community Type Notes:</label>
-					<textarea rows="3" id="site_location4"></textarea><br>
+					<textarea rows="3" id="community_notes"></textarea><br>
  					<label class="small-text">Other Notes:</label>
-					<textarea rows="3" id="site_location5"></textarea><br>
+					<textarea rows="3" id="other_notes"></textarea><br>
  				</div>
  			</div>
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-				<h3>FQA Database: Chicago, 1994</h3>
-				<br>
 				<h4>To Add Species Individually:</h4>
 				</div>
 			</div>
@@ -161,7 +161,7 @@
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>Finished?</h4>
-					<button class="btn btn-info" onclick="javascript:window.location = '/view_inventory';return false;">Save and View Results</button> 
+					<button class="btn btn-info" onclick="javascript:save_new_inventory();return false;">Save and View Results</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Cancel</button><br>
 				</div>
 			</div>

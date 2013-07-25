@@ -257,7 +257,7 @@ function save_new_site() {
 				country: $("#site_country").val().trim()
 			},
 			success: function( response ) { 
-				if (response.indexOf("success") == -1) 
+				if (response.indexOf("Error") !== -1) 
 					alert( response );
 				else
 					alert("New site saved!");
@@ -381,4 +381,66 @@ function remove_taxa() {
 			}
 		});
 	}
+}
+
+function save_new_inventory() {
+
+	var public_inv = $('input[name=publicOrPrivate]:checked', '#public_inventory').val();
+	if ($("#site_select").length) {
+		// user has selected an existing site
+		$.ajax({
+			url: "/ajax/save_new_inventory",
+			type: "POST",
+			data: {
+				site_id: $("#site_select").val().trim(),
+				month: $("#month").val().trim(),
+				day: $("#day").val().trim(),
+				year: $("#year").val().trim(),
+				practitioner: $("#practitioner").val().trim(),
+				latitude: $("#latitude").val().trim(),
+				longitude: $("#longitude").val().trim(),
+				public_inventory: public_inv,
+				weather_notes: $("#weather_notes").val().trim(),
+				duration_notes: $("#duration_notes").val().trim(),
+				community_notes: $("#community_notes").val().trim(),
+				other_notes: $("#other_notes").val().trim()
+			},
+			success: function( response ) { 
+					window.location = '/view_inventory/' + response;
+			}
+		});
+	} else {
+		// user is creating a new site
+		if ($("#site_name").val().trim() == '') {
+			alert("Please enter a site name.");
+		} else {
+			$.ajax({
+				url: "/ajax/save_new_inventory",
+				type: "POST",
+				data: {
+					site_name: $("#site_name").val().trim(),
+					site_city: $("#site_city").val().trim(),
+					site_county: $("#site_county").val().trim(),
+					site_state: $("#site_state").val().trim(),
+					site_country: $("#site_country").val().trim(),
+					
+					month: $("#month").val().trim(),
+					day: $("#day").val().trim(),
+					year: $("#year").val().trim(),
+					practitioner: $("#practitioner").val().trim(),
+					latitude: $("#latitude").val().trim(),
+					longitude: $("#longitude").val().trim(),
+					public_inventory: public_inv,
+					weather_notes: $("#weather_notes").val().trim(),
+					duration_notes: $("#duration_notes").val().trim(),
+					community_notes: $("#community_notes").val().trim(),
+					other_notes: $("#other_notes").val().trim()
+				},
+				success: function( response ) { 
+						window.location = '/view_inventory/' + response;
+				}
+			});
+		}
+	}
+
 }
