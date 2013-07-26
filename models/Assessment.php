@@ -27,7 +27,7 @@ class Assessment {
 			$this->id = $id;
 			// load all data for this assessment
 			$this->get_db_link();
-			$sql = "SELECT $this->db_table.*, site.* FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.id='$id'";
+			$sql = "SELECT $this->db_table.*, site.name, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.id='$id'";
 			$results = mysqli_query($this->db_link, $sql);
 			if (mysqli_num_rows($results) == 0) {
 				$this->id = null;
@@ -116,7 +116,7 @@ class Assessment {
 	 */
     protected function get_all_public() {
     	$this->get_db_link();
-	    $sql = "SELECT $this->db_table.*, site.* FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.private='0' ORDER BY site.name, $this->db_table.date";
+	    $sql = "SELECT $this->db_table.*, site.name, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.private='0' ORDER BY site.name, $this->db_table.date";
 		$results = mysqli_query($this->db_link, $sql);			 
 		$assessments = array();
 		while ($result = mysqli_fetch_assoc($results)) {		

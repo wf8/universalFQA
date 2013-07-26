@@ -8,7 +8,7 @@
 				<div class="span11">
 					<br>
 					<h1>Public Inventory Assessment</h1>
-					<button class="btn btn-info" onClick="asdf_changes();">Download Report</button> 
+					<button class="btn btn-info" onClick="download_inventory(<?php echo $assessment->id; ?>);">Download Report</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_public_assessments';return false;">Done</button>
 					<br>
 				</div>
@@ -17,10 +17,18 @@
 			<div class="row-fluid">
 				<div class="span6">
 					<h4>&#187; Date & Location:</h4>
-					6/9/2013<br>
-					Somme Prairie Grove<br>
-					Northbrook<br>
-					Cook, Illinois, USA<br>					
+					<?php echo $assessment->date; ?><br>
+					<?php echo $assessment->site->name; ?><br>
+					<?php echo $assessment->site->city; ?><br>
+					<?php 
+						echo $assessment->site->county;
+						if ($assessment->site->county !== '' && $assessment->site->state !== '')
+							echo ', ';
+						echo $assessment->site->state; 
+						if (($assessment->site->state !== '' && $assessment->site->country !== '') || ($assessment->site->county !== '' && $assessment->site->country !== ''))
+							echo ', '; 
+						echo $assessment->site->country; 
+					?><br>					
 				</div>	
 				<div class="span6">
 					<h4>&#187; FQA Database:</h4>
@@ -32,15 +40,14 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<h4>&#187; Details:</h4>				
-					Practitioner: Stephen and crew<br>
- 					Latitude:<br>
- 					Longitude:<br>
-					Weather Notes: Perfect breezy summer day, with storms on the horizon.<br>
- 					Duration Notes:<br>
- 					Community Type Notes:<br>
- 					Other Notes:<br>
- 					This assessment is private (viewable only by you).<br>
+					<h4>&#187; Details:</h4>			
+					Practitioner: <?php echo $assessment->practitioner; ?><br>
+ 					Latitude: <?php echo $assessment->latitude; ?><br>
+ 					Longitude: <?php echo $assessment->longitude; ?><br>
+					Weather Notes: <?php echo $assessment->weather_notes; ?><br>
+ 					Duration Notes: <?php echo $assessment->duration_notes; ?><br>
+ 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
+ 					Other Notes: <?php echo $assessment->other_notes; ?><br>
  				</div>
  			</div>
 			<br>
@@ -95,284 +102,54 @@
 			<div class="row-fluid">
 				<div class="span12">	
 					<h4>&#187; Species:</h4>
-					<table class="table table-hover">
+<table class="table table-hover">
 <tr>
 <td><strong>Scientific Name</strong></td>
 <td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
-<td><strong>Nativity</strong></td>
+<td><strong>Native?</strong></td>
 <td><strong>C</strong></td>
 <td><strong>W</strong></td>
-<td><strong>Wetland Status</strong></td>
 <td><strong>Physiognomy</strong></td>
 <td><strong>Duration</strong></td>
 <td><strong>Common Name</strong></td>
-</tr>                    
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-</table>			
+</tr>   
+<?php   
+	$html = '';
+	if (count($assessment->taxa) == 0) {
+		$html = $html . '<tr><td colspan=9>There are no species in this inventory.</td></tr>';
+	} else {
+		$sorted_taxa = sort_array_of_objects($assessment->taxa, 'scientific_name');
+		foreach ($sorted_taxa as $taxon) {
+			$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
+			$html = $html . '<td>' . $taxon->family . '</td>';
+			$html = $html . '<td>' . $taxon->acronym . '</td>';
+			$html = $html . '<td>' . $taxon->native . '</td>';
+			$html = $html . '<td>' . $taxon->c_o_c . '</td>';
+			$html = $html . '<td>' . $taxon->c_o_w . '</td>';
+			$html = $html . '<td>' . $taxon->physiognomy . '</td>';
+			$html = $html . '<td>' . $taxon->duration . '</td>';
+			$html = $html . '<td>' . $taxon->common_name . '</td></tr>';
+		}
+	}
+	echo $html . '</table>';
+	
+function sort_array_of_objects($arr, $var) { 
+   $tarr = array(); 
+   $rarr = array(); 
+   for($i = 0; $i < count($arr); $i++) { 
+      $element = $arr[$i]; 
+      $tarr[] = strtolower($element->{$var}); 
+   } 
+   reset($tarr); 
+   asort($tarr); 
+   $karr = array_keys($tarr); 
+   for($i = 0; $i < count($tarr); $i++) { 
+      $rarr[] = $arr[intval($karr[$i])]; 
+   } 
+   return $rarr; 
+} 
+?>              						
 				</div>
 			</div>
 		</div>
