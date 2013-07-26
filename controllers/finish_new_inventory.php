@@ -2,7 +2,7 @@
 if( !$_SESSION['valid'] ) 
 	require_once('../views/login.php');
 else {
-	require_once('../views/nav.php');
+	require_once('../views/nav_disabled_links.php');
 	
 	// determine whether user has selected custom fqa db and get id
 	if (strpos($url_parts[1], 'custom') !== false) {
