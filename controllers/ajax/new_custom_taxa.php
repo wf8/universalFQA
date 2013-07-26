@@ -13,5 +13,5 @@ $duration = mysql_real_escape_string(strtolower(trim($_POST["duration"])));
 $common_name = mysql_real_escape_string(strtolower(trim($_POST["common_name"])));
 	
 $custom_taxa = new CustomTaxa;
-$custom_taxa->insert_new($custom_fqa_id, $original_fqa_id, $scientific_name, $family, $common_name, $acronym, $c_o_c, $native, $physiognomy, $duration);	
+$custom_taxa->insert_new($custom_fqa_id, $original_fqa_id, $scientific_name, $family, $common_name, $acronym, $c_o_c, $c_o_w, $native, $physiognomy, $duration);	
 ?>

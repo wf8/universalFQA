@@ -137,7 +137,7 @@ class CustomTaxa {
     /*
 	 * function to insert a new custom taxa
 	 */
-    public function insert_new($custom_fqa_id, $original_fqa_id, $scientific_name, $family, $common_name, $acronym, $c_o_c, $native, $physiognomy, $duration) {
+    public function insert_new($custom_fqa_id, $original_fqa_id, $scientific_name, $family, $common_name, $acronym, $c_o_c, $c_o_w, $native, $physiognomy, $duration) {
 		// check that scientific name has been entered
 		if (strlen($scientific_name) < 4) {
 			echo "Error: Please enter a valid scientific name.";
