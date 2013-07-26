@@ -18,6 +18,7 @@ class Assessment {
  	public $other_notes;
 	
 	public $site; // Site object
+	public $fqa; // FQADatabase or CustomFQADatabase object
 	
 	/*
 	 * constructor
@@ -58,6 +59,7 @@ class Assessment {
 				$site->country = $result['country'];
 				$site->notes = $result['notes'];
 				$this->site = $site;
+				$this->get_fqa_object();
 			}	
 		}	
 	}
@@ -71,6 +73,18 @@ class Assessment {
 			if (mysqli_connect_errno($this->db_link)) {
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
+	}
+	
+	/*
+	 * function to this Assessment's FQADatabase or CustomFQADatabase object
+	 */
+	protected function get_fqa_object() {
+		if ( $this->id !== null ) {
+			if ($this->custom_fqa) 
+				$this->fqa = new CustomFQADatabase( $this->fqa_id );
+			else
+				$this->fqa = new FQADatabase( $this->fqa_id );
+		}
 	}
 	
 	/*
@@ -106,6 +120,7 @@ class Assessment {
  			$site->country = $result['country'];
  			$site->notes = $result['notes'];
  			$assessment->site = $site;	
+ 			$assessment->get_fqa_object();
 			$assessments[] = $assessment; 
 		}
 		return $assessments;
@@ -143,7 +158,8 @@ class Assessment {
  			$site->state = $result['state'];
  			$site->country = $result['country'];
  			$site->notes = $result['notes'];
- 			$assessment->site = $site;		
+ 			$assessment->site = $site;	
+ 			$assessment->get_fqa_object();	
 			$assessments[] = $assessment; 
 		}
 		return $assessments;

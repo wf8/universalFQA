@@ -3,10 +3,31 @@ class CustomFQADatabase {
 
 	protected $db_link;
 	
+	public $id;
+	public $fqa_id;
+	public $region_name;
+	public $publication_year;
+	public $description;
+	public $customized_name;
+	public $customized_description;
+	
 	/*
 	 * constructor
 	 */
-	public function __construct() {
+	public function __construct( $id = null ) {
+		if ($id !== null) {
+			$this->get_db_link();
+			$sql = "SELECT * FROM customized_fqa WHERE id='$id'";
+			$fqa_result = mysqli_query($this->db_link, $sql);
+			$fqa = mysqli_fetch_array($fqa_result);
+			$this->id = $id;
+			$this->fqa_id = $fqa['fqa_id'];
+			$this->region_name = $fqa['region_name'];
+			$this->publication_year = $fqa['publication_year'];
+			$this->description = $fqa['description'];
+			$this->customized_name = $fqa['customized_name'];
+			$this->customized_description = $fqa['customized_description'];
+		}
 	}
 	
 	/*
