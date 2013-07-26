@@ -7,6 +7,7 @@ else {
 	if (is_null($assessment->id))
 		require_once('../views/error.php');
 	else {
+		$_SESSION['assessment'] = serialize($assessment);
 		require_once('../views/nav.php');
 		require_once('../views/view_inventory.php');
 	}

@@ -35,7 +35,7 @@ class Assessment {
 				$result = mysqli_fetch_assoc($results);
 				$this->id = $result['id'];
 				$this->fqa_id = $result['fqa_id'];
-				$this->custom_fqa = $result['custom_fqa'];
+				$this->custom_fqa = $result['customized_fqa'];
 				$this->date = $result['date'];
 				if ($result['private'] == 1)
 					$this->private = 'private';
