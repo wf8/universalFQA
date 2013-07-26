@@ -157,6 +157,10 @@ class FQADatabase {
 						$physiognomy = mysql_real_escape_string(strtolower(trim($data[6])));
 						$duration = mysql_real_escape_string(strtolower(trim($data[7])));
 						$common_name = mysql_real_escape_string(strtolower(trim($data[8])));
+						// remove any quotes (typically in common names e.g. "Witch's Teeth Lotus")
+						$scientific_name = str_replace("'", "", $scientific_name);
+						$family = str_replace("'", "", $family);
+						$common_name = str_replace("'", "", $common_name);
 						// check that scientific name has been entered
 						if (strlen($scientific_name) < 4) {
 							$result = "Error: Please enter a valid scientific name. See line #".$taxa_inserted;
