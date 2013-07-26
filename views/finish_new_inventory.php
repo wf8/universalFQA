@@ -72,7 +72,7 @@
 					<form id="public_inventory">
 					<label class="radio">
   						<input type="radio" name="publicOrPrivate" value="public" checked>
-  						Public (viewable by any users of this site)
+  						Public (viewable by all users of this site)
 					</label>
 					<label class="radio">
   						<input type="radio" name="publicOrPrivate" value="private">
