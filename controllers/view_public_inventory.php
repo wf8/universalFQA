@@ -8,8 +8,6 @@ else {
 		require_once('../views/error.php');
 	else {
 		if ($assessment->private == 'public') {
-			$metrics = new InventoryMetrics( $assessment );
-			$_SESSION['assessment'] = serialize($assessment);
 			require_once('../views/nav.php');
 			require_once('../views/view_public_inventory.php');
 		} else

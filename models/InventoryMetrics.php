@@ -92,7 +92,6 @@ class InventoryMetrics extends Metrics {
 		$wetness = false;
 		
 		foreach( $taxa as $taxon ) {
-		
 			$this->total_species++;
 			$total_c += $taxon->c_o_c;
 			
@@ -296,7 +295,6 @@ class InventoryMetrics extends Metrics {
 		if ($this->native_species > 0) {
 		
 			$this->native_mean_c = round(($native_c / $this->native_species),1);
-			
 			$this->native_fqi = round(($this->native_mean_c * sqrt( $this->native_species ) ), 1);
 		}
 		

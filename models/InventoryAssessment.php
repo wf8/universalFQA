@@ -8,54 +8,32 @@ class InventoryAssessment extends Assessment {
 		Assessment::__construct( $id );
 		if ($id !== null) {
 			// load the inventory taxa
-			$this->get_db_link();
-			$sql = "SELECT * FROM inventory_taxa WHERE inventory_id='$id'";
-			$results = mysqli_query($this->db_link, $sql);
-			while ($taxa_to_add = mysqli_fetch_assoc($results)) {
-				// got the taxa id
-				$id_to_add = $taxa_to_add['taxa_id'];
-				// make an object for the taxa
-				if ($this->custom_fqa) {
-					$taxa = new CustomTaxa();
-					$taxa_db = 'customized_taxa';
-					$fqa_column = 'customized_fqa_id';
-				} else {
-					$taxa = new Taxa();
-					$taxa_db = 'taxa';
-					$fqa_column = 'fqa_id';
-				}
-				// get the taxa data
-				$sql = "SELECT * FROM $taxa_db WHERE id='$id_to_add'";
-				$results2 = mysqli_query($this->db_link, $sql);
-				$result = mysqli_fetch_assoc($results2);
-				// populate taxa object
-				$taxa->id = $result['id'];
-				$taxa->fqa_id = $result['fqa_id'];
-				$taxa->scientific_name = $result['scientific_name'];
-				if ($result['native'] == 1)
-					$taxa->native = 'native';
-				else
-					$taxa->native = 'non-native';
-				$taxa->family = $result['family'];
-				$taxa->common_name = $result['common_name'];
-				$taxa->acronym = $result['acronym'];
-				$taxa->c_o_c = $result['c_o_c'];
-				$taxa->c_o_w = $result['c_o_w'];
-				$taxa->physiognomy = $result['physiognomy'];
-				$taxa->duration = $result['duration'];
-				// add object to array
-				$this->taxa[] = $taxa;
-			}
-			
+			$this->get_taxa();
+			$metrics = new InventoryMetrics($this);
+			$this->metrics = $metrics;
 		}
 	}
 	
 	public function get_all_for_user($user_id) {
-		return Assessment::get_all_for_user($user_id);
+		$assessments = Assessment::get_all_for_user($user_id);
+		$this->get_db_link();
+		foreach ($assessments as $assessment) {
+			$assessment->get_taxa();
+			$metrics = new InventoryMetrics($assessment);
+			$assessment->metrics = $metrics;
+		}
+		return $assessments;
 	}
 	
 	public function get_all_public() {
-		return Assessment::get_all_public();
+		$assessments = Assessment::get_all_public();
+		$this->get_db_link();
+		foreach ($assessments as $assessment) {
+			$assessment->get_taxa();
+			$metrics = new InventoryMetrics($assessment);
+			$assessment->metrics = $metrics;
+		}
+		return $assessments;
 	}
 	
 	/*
@@ -160,6 +138,52 @@ class InventoryAssessment extends Assessment {
 		mysqli_query($this->db_link, $sql);
 		$sql = "DELETE FROM inventory WHERE id='$id'";
 		mysqli_query($this->db_link, $sql);
+	}
+	
+	/*
+	 * load all the taxa for this inventory
+	 */
+	public function get_taxa() {
+		$this->get_db_link();
+		$id = $this->id;
+		// load the inventory taxa
+		$sql = "SELECT * FROM inventory_taxa WHERE inventory_id='$id'";
+		$results = mysqli_query($this->db_link, $sql);
+		while ($taxa_to_add = mysqli_fetch_assoc($results)) {
+			// got the taxa id
+			$id_to_add = $taxa_to_add['taxa_id'];
+			// make an object for the taxa
+			if ($this->custom_fqa) {
+				$taxa = new CustomTaxa();
+				$taxa_db = 'customized_taxa';
+				$fqa_column = 'customized_fqa_id';
+			} else {
+				$taxa = new Taxa();
+				$taxa_db = 'taxa';
+				$fqa_column = 'fqa_id';
+			}
+			// get the taxa data
+			$sql = "SELECT * FROM $taxa_db WHERE id='$id_to_add'";
+			$results2 = mysqli_query($this->db_link, $sql);
+			$result = mysqli_fetch_assoc($results2);
+			// populate taxa object
+			$taxa->id = $result['id'];
+			$taxa->fqa_id = $result['fqa_id'];
+			$taxa->scientific_name = $result['scientific_name'];
+			if ($result['native'] == 1)
+				$taxa->native = 'native';
+			else
+				$taxa->native = 'non-native';
+			$taxa->family = $result['family'];
+			$taxa->common_name = $result['common_name'];
+			$taxa->acronym = $result['acronym'];
+			$taxa->c_o_c = $result['c_o_c'];
+			$taxa->c_o_w = $result['c_o_w'];
+			$taxa->physiognomy = $result['physiognomy'];
+			$taxa->duration = $result['duration'];
+			// add object to array
+			$this->taxa[] = $taxa;
+		}
 	}
 	
 }

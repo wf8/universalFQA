@@ -19,6 +19,7 @@ class Assessment {
 	
 	public $site; // Site object
 	public $fqa; // FQADatabase or CustomFQADatabase object
+	public $metrics; // InventoryMetrics or TransectMetrics object
 	
 	/*
 	 * constructor
@@ -96,8 +97,14 @@ class Assessment {
 		$results = mysqli_query($this->db_link, $sql);
 		$assessments = array();
 		while ($result = mysqli_fetch_assoc($results)) {
-			$assessment = new Assessment();
+			// no type casting so use hack
+			if ($this->db_table == 'inventory')
+				$assessment = new InventoryAssessment();
+			else
+				$assessment = new TransectAssessment();
 			$assessment->id = $result['id'];
+			$assessment->fqa_id = $result['fqa_id'];
+			$assessment->custom_fqa = $result['customized_fqa'];
 			$assessment->date = $result['date'];
 			if ($result['private'] == 1)
 				$assessment->private = 'private';
@@ -135,9 +142,15 @@ class Assessment {
 		$results = mysqli_query($this->db_link, $sql);			 
 		$assessments = array();
 		while ($result = mysqli_fetch_assoc($results)) {		
-			$assessment = new Assessment();			
+			// no type casting so use hack
+			if ($this->db_table == 'inventory')
+				$assessment = new InventoryAssessment();
+			else
+				$assessment = new TransectAssessment();			
 			$assessment->id = $result['id'];
 			$assessment->date = $result['date'];
+			$assessment->fqa_id = $result['fqa_id'];
+			$assessment->custom_fqa = $result['customized_fqa'];
 			if ($result['private'] == 1)
 				$assessment->private = 'private';
 			else
