@@ -69,6 +69,14 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span3">
+					<?php
+						function prettify_percent( $value ) {
+							if (trim($value) == '') 
+								return '';
+							else
+								return '(' . $value . '%)';
+						}
+					?>
 					<h4>&#187; Conservatism-Based Metrics:</h4>
 					Total Mean C: <strong><?php echo $assessment->metrics->total_mean_c; ?></strong><br>
 					Native Mean C: <strong><?php echo $assessment->metrics->native_mean_c; ?></strong><br>
@@ -86,32 +94,32 @@
 				<div class="span3">	
 					<h4>&#187; Species Richness and Wetness:</h4>
 					Total Species: <strong><?php echo $assessment->metrics->total_species; ?></strong><br>
-					Native Species: <strong><?php echo $assessment->metrics->native_species; ?> (<?php echo $assessment->metrics->percent_native_species; ?>%)</strong><br>
-					Non-native Species: <strong><?php echo $assessment->metrics->non_native_species; ?> (<?php echo $assessment->metrics->percent_non_native_species; ?>%)</strong><br>
+					Native Species: <strong><?php echo $assessment->metrics->native_species; ?> <?php echo prettify_percent($assessment->metrics->percent_native_species); ?></strong><br>
+					Non-native Species: <strong><?php echo $assessment->metrics->non_native_species; ?> <?php echo prettify_percent($assessment->metrics->percent_non_native_species); ?></strong><br>
 					Mean Wetness: <strong><?php echo $assessment->metrics->mean_wetness; ?></strong><br>
 					Native Mean Wetness: <strong><?php echo $assessment->metrics->native_mean_wetness; ?></strong><br>
 				</div>
 				<div class="span3">
 					<h4>&#187; Physiognomy Metrics:</h4>
-					Tree: <strong><?php echo $assessment->metrics->tree; ?> <?php echo $assessment->metrics->percent_tree; ?>   </strong><br>
-					Shrub: <strong><?php echo $assessment->metrics->shrub; ?>     <?php echo $assessment->metrics->percent_shrub; ?> </strong><br>    
-					Vine: <strong><?php echo $assessment->metrics->vine; ?>     <?php echo $assessment->metrics->percent_vine; ?>  </strong><br>
-					Forb: <strong><?php echo $assessment->metrics->forb; ?>    <?php echo $assessment->metrics->percent_forb; ?>      </strong><br>
-					Grass: <strong><?php echo $assessment->metrics->grass; ?>    <?php echo $assessment->metrics->percent_grass; ?> </strong><br>
-					Sedge: <strong><?php echo $assessment->metrics->sedge; ?>    <?php echo $assessment->metrics->percent_sedge; ?> </strong><br>
-					Rush: <strong><?php echo $assessment->metrics->rush; ?>     <?php echo $assessment->metrics->percent_rush; ?> </strong><br>
-					Fern: <strong><?php echo $assessment->metrics->fern; ?>     <?php echo $assessment->metrics->percent_fern; ?> </strong><br>
-					Bryophyte: <strong><?php echo $assessment->metrics->bryophyte; ?>     <?php echo $assessment->metrics->percent_bryophyte; ?>      </strong><br>  
+					Tree: <strong><?php echo $assessment->metrics->tree; ?> <?php echo prettify_percent($assessment->metrics->percent_tree); ?>   </strong><br>
+					Shrub: <strong><?php echo $assessment->metrics->shrub; ?>     <?php echo prettify_percent($assessment->metrics->percent_shrub); ?> </strong><br>    
+					Vine: <strong><?php echo $assessment->metrics->vine; ?>     <?php echo prettify_percent($assessment->metrics->percent_vine); ?>  </strong><br>
+					Forb: <strong><?php echo $assessment->metrics->forb; ?>    <?php echo prettify_percent($assessment->metrics->percent_forb); ?>      </strong><br>
+					Grass: <strong><?php echo $assessment->metrics->grass; ?>    <?php echo prettify_percent($assessment->metrics->percent_grass); ?> </strong><br>
+					Sedge: <strong><?php echo $assessment->metrics->sedge; ?>    <?php echo prettify_percent($assessment->metrics->percent_sedge); ?> </strong><br>
+					Rush: <strong><?php echo $assessment->metrics->rush; ?>     <?php echo prettify_percent($assessment->metrics->percent_rush); ?> </strong><br>
+					Fern: <strong><?php echo $assessment->metrics->fern; ?>     <?php echo prettify_percent($assessment->metrics->percent_fern); ?> </strong><br>
+					Bryophyte: <strong><?php echo $assessment->metrics->bryophyte; ?>     <?php echo prettify_percent($assessment->metrics->percent_bryophyte); ?>      </strong><br>  
 				</div>
 				<div class="span3">
 					<h4>&#187; Duration Metrics:</h4>
-					Annual: <strong><?php echo $assessment->metrics->annual; ?> <?php echo $assessment->metrics->percent_annual; ?></strong><br>
-					Perennial: <strong><?php echo $assessment->metrics->perennial; ?> <?php echo $assessment->metrics->percent_perennial; ?></strong><br>
-					Biennial: <strong><?php echo $assessment->metrics->biennial; ?> <?php echo $assessment->metrics->percent_biennial; ?></strong><br>
+					Annual: <strong><?php echo $assessment->metrics->annual; ?> <?php echo prettify_percent($assessment->metrics->percent_annual); ?></strong><br>
+					Perennial: <strong><?php echo $assessment->metrics->perennial; ?> <?php echo prettify_percent($assessment->metrics->percent_perennial); ?></strong><br>
+					Biennial: <strong><?php echo $assessment->metrics->biennial; ?> <?php echo prettify_percent($assessment->metrics->percent_biennial); ?></strong><br>
 					<br>	
-					Native Annual: <strong><?php echo $assessment->metrics->native_annual; ?> <?php echo $assessment->metrics->percent_native_annual; ?></strong><br>
-					Native Perennial: <strong><?php echo $assessment->metrics->native_perennial; ?> <?php echo $assessment->metrics->percent_native_annual; ?></strong><br>
-					Native Biennial: <strong><?php echo $assessment->metrics->native_biennial; ?> <?php echo $assessment->metrics->percent_native_annual; ?></strong><br>
+					Native Annual: <strong><?php echo $assessment->metrics->native_annual; ?> <?php echo prettify_percent($assessment->metrics->percent_native_annual); ?></strong><br>
+					Native Perennial: <strong><?php echo $assessment->metrics->native_perennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_annual); ?></strong><br>
+					Native Biennial: <strong><?php echo $assessment->metrics->native_biennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_annual); ?></strong><br>
 				</div>	
 			</div>
 			<br>

@@ -245,15 +245,15 @@ class InventoryMetrics extends Metrics {
 				$this->native_herbaceous_mean_c = 'n/a';
 			else
 				$this->native_herbaceous_mean_c = round(($native_herbaceous_c / $this->native_species),1);
-			$this->percent_tree = '('.round(100*$this->tree / $this->total_species,1).'%)';
-			$this->percent_shrub = '('.round(100*$this->shrub / $this->total_species,1).'%)';
-			$this->percent_vine = '('.round(100*$this->vine / $this->total_species,1).'%)';
-			$this->percent_forb = '('.round(100*$this->forb / $this->total_species,1).'%)';
-			$this->percent_grass = '('.round(100*$this->grass / $this->total_species,1).'%)';
-			$this->percent_sedge = '('.round(100*$this->sedge / $this->total_species,1).'%)';
-			$this->percent_rush = '('.round(100*$this->rush / $this->total_species,1).'%)';
-			$this->percent_fern = '('.round(100*$this->fern / $this->total_species,1).'%)';
-			$this->percent_bryophyte = '('.round(100*$this->bryophyte / $this->total_species,1).'%)';
+			$this->percent_tree = round(100*$this->tree / $this->total_species,1);
+			$this->percent_shrub = round(100*$this->shrub / $this->total_species,1);
+			$this->percent_vine = round(100*$this->vine / $this->total_species,1);
+			$this->percent_forb = round(100*$this->forb / $this->total_species,1);
+			$this->percent_grass = round(100*$this->grass / $this->total_species,1);
+			$this->percent_sedge = round(100*$this->sedge / $this->total_species,1);
+			$this->percent_rush = round(100*$this->rush / $this->total_species,1);
+			$this->percent_fern = round(100*$this->fern / $this->total_species,1);
+			$this->percent_bryophyte = round(100*$this->bryophyte / $this->total_species,1);
 		}
 		
 		if (!$duration) {
@@ -273,13 +273,13 @@ class InventoryMetrics extends Metrics {
 			$this->percent_native_perennial = '';
 			$this->percent_native_biennial = '';
 		} else {
-			$this->percent_annual = '('.round(100*$this->annual / $this->total_species,1).'%)';
-			$this->percent_perennial = '('.round(100*$this->perennial / $this->total_species,1).'%)';
-			$this->percent_biennial = '('.round(100*$this->biennial / $this->total_species,1).'%)';
+			$this->percent_annual = round(100*$this->annual / $this->total_species,1);
+			$this->percent_perennial = round(100*$this->perennial / $this->total_species,1);
+			$this->percent_biennial = round(100*$this->biennial / $this->total_species,1);
 	
-			$this->percent_native_annual = '('.round(100*$this->native_annual / $this->total_species,1).'%)';
-			$this->percent_native_perennial = '('.round(100*$this->native_perennial / $this->total_species,1).'%)';
-			$this->percent_native_biennial = '('.round(100*$this->native_biennial / $this->total_species,1).'%)';
+			$this->percent_native_annual = round(100*$this->native_annual / $this->total_species,1);
+			$this->percent_native_perennial = round(100*$this->native_perennial / $this->total_species,1);
+			$this->percent_native_biennial = round(100*$this->native_biennial / $this->total_species,1);
 		}
 		
 		if ($wetness) {
