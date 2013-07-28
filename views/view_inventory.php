@@ -131,6 +131,30 @@
 <td><strong>Common Name</strong></td>
 </tr>   
 <?php   
+
+	function prettify_value( $value ) {
+		if (trim($value) == '') 
+			return 'n/a';
+		else
+			return $value;
+	}
+	
+	function sort_array_of_objects($arr, $var) { 
+	   $tarr = array(); 
+	   $rarr = array(); 
+	   for($i = 0; $i < count($arr); $i++) { 
+		  $element = $arr[$i]; 
+		  $tarr[] = strtolower($element->{$var}); 
+	   } 
+	   reset($tarr); 
+	   asort($tarr); 
+	   $karr = array_keys($tarr); 
+	   for($i = 0; $i < count($tarr); $i++) { 
+		  $rarr[] = $arr[intval($karr[$i])]; 
+	   } 
+	   return $rarr; 
+	} 
+	
 	$html = '';
 	if (count($assessment->taxa) == 0) {
 		$html = $html . '<tr><td colspan=9>There are no species in this inventory.</td></tr>';
@@ -138,33 +162,18 @@
 		$sorted_taxa = sort_array_of_objects($assessment->taxa, 'scientific_name');
 		foreach ($sorted_taxa as $taxon) {
 			$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
-			$html = $html . '<td>' . $taxon->family . '</td>';
-			$html = $html . '<td>' . $taxon->acronym . '</td>';
+			$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
+			$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
 			$html = $html . '<td>' . $taxon->native . '</td>';
 			$html = $html . '<td>' . $taxon->c_o_c . '</td>';
-			$html = $html . '<td>' . $taxon->c_o_w . '</td>';
-			$html = $html . '<td>' . $taxon->physiognomy . '</td>';
-			$html = $html . '<td>' . $taxon->duration . '</td>';
-			$html = $html . '<td>' . $taxon->common_name . '</td></tr>';
+			$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';
+			$html = $html . '<td>' . prettify_value($taxon->physiognomy) . '</td>';
+			$html = $html . '<td>' . prettify_value($taxon->duration) . '</td>';
+			$html = $html . '<td>' . prettify_value($taxon->common_name) . '</td></tr>';
 		}
 	}
 	echo $html . '</table>';
 	
-function sort_array_of_objects($arr, $var) { 
-   $tarr = array(); 
-   $rarr = array(); 
-   for($i = 0; $i < count($arr); $i++) { 
-      $element = $arr[$i]; 
-      $tarr[] = strtolower($element->{$var}); 
-   } 
-   reset($tarr); 
-   asort($tarr); 
-   $karr = array_keys($tarr); 
-   for($i = 0; $i < count($tarr); $i++) { 
-      $rarr[] = $arr[intval($karr[$i])]; 
-   } 
-   return $rarr; 
-} 
 ?>              						
 				</div>
 			</div>
