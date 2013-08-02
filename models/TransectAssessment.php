@@ -54,6 +54,19 @@ class TransectAssessment extends Assessment {
  		}
 		return $transect_id;
 	}
+	
+	/*
+	 * delete the transect and all its quadrats and their taxa
+	 */
+	public function delete( $id ) {
+		$this->get_db_link();
+		$sql = "DELETE FROM transect WHERE id='$id'";
+		mysqli_query($this->db_link, $sql);
+		$sql = "DELETE FROM quadrat WHERE transect_id='$id'";
+		mysqli_query($this->db_link, $sql);
+		$sql = "DELETE FROM quadrat_taxa WHERE transect_id='$id'";
+		mysqli_query($this->db_link, $sql);
+	}
 		
 }
 ?>

@@ -590,3 +590,18 @@ function save_new_transect() {
 		}
 	}
 }
+
+function delete_transect( id ) {
+ 	if (confirm("Are you sure you want to delete this transect assessment?")) {
+		$.ajax({
+			url: "/ajax/delete_transect",
+			type: "POST",
+			data: {
+				id: id,
+			},
+			success: function( response ) {
+				location.reload(true);
+			}
+		});
+ 	}
+}

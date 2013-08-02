@@ -134,10 +134,11 @@ PRIMARY KEY (  `id` )
 
 CREATE TABLE `quadrat_taxa` (
  `id` INT NOT NULL AUTO_INCREMENT,
+ `transect_id` INT NOT NULL,
  `quadrat_id` INT NOT NULL,
  `taxa_id` INT NOT NULL,
  `percent_coverage` INT NOT NULL,
-INDEX ( `quadrat_id`, `taxa_id`),
+INDEX ( `transect_id`, `quadrat_id`, `taxa_id`),
 PRIMARY KEY (  `id` )
 );
 
