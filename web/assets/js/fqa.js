@@ -483,3 +483,33 @@ function update_inventory() {
 		}
 	});
 }
+
+function change_inventory_fqa_db() {
+ 	if (confirm("Are you sure you want to change the FQA database? Some species may not be found in the new database.")) {
+		$.ajax({
+			url: "/ajax/change_inventory_fqa_db",
+			type: "POST",
+			data: {
+				fqa_id: $("#fqa_select").val(),
+			},
+			success: function( response ) {
+				$( "#species_error" ).html( response );
+				update_species_list();
+				// now populate the typeaheads with new fqa db data				
+				$.ajax({
+					url: "/ajax/get_typeahead_data",
+					type: "POST",
+					data: {
+						fqa_id: $("#fqa_select").val(),
+					},
+					dataType: 'json',
+					success: function( response ) { 
+						$('#scientific_name').typeahead().data('typeahead').source = response['scientific_name'];
+						$('#acronym').typeahead().data('typeahead').source = response['acronym'];
+						$('#common_name').typeahead().data('typeahead').source = response['common_name'];
+					},
+				});		
+			}
+		});
+ 	}
+}

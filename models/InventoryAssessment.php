@@ -140,50 +140,22 @@ class InventoryAssessment extends Assessment {
 		else
 			$custom = 0;
 		$site_id = $this->site->id;
-		$sql = "UPDATE inventory SET customized_fqa = '$custom', site_id = '$site_id', date = '$this->date', private = '$this->private', 
+		$sql = "UPDATE inventory SET fqa_id = '$this->fqa_id', customized_fqa = '$custom', site_id = '$site_id', date = '$this->date', private = '$this->private', 
 		practitioner = '$this->practitioner', latitude = '$this->latitude', longitude = '$this->longitude',
 		weather_notes = '$this->weather_notes', duration_notes = '$this->duration_notes', community_type_notes = '$this->community_type_notes', 
 		other_notes = '$this->other_notes' WHERE id = '$this->id'";
 		mysqli_query($this->db_link, $sql);
 		$inventory_id = mysqli_insert_id($this->db_link);
-		// remember the new taxa for this inventory
-		$new_taxa = $this->taxa;
-		// get the old taxa for this inventory
-		$this->taxa = null;
-		$this->get_taxa();
-		$old_taxa = $this->taxa;
-		// reset the new taxa in this object
-		$this->taxa = $new_taxa;
-		// check to see if this new taxa was one of the old taxa
-		// or if we need to insert a new inventory_taxa
-		foreach($new_taxa as $new_taxon) {
-			$need_to_insert = true;
-			foreach($old_taxa as $old_taxon) {
-				if ($old_taxon->id == $new_taxon->id) {
-					$need_to_insert = false;
-					break;
-				}
-			}
-			if ($need_to_insert) {
-				$sql = "INSERT INTO inventory_taxa (inventory_id, site_id, taxa_id) VALUES ('$this->id', '$site_id', '$new_taxon->id')";
-				mysqli_query($this->db_link, $sql);
-			}
+		
+		// delete the old taxa
+		$sql = "DELETE FROM inventory_taxa WHERE inventory_id='$this->id'";
+		mysqli_query($this->db_link, $sql);
+		// insert the new taxa
+		foreach($this->taxa as $taxon) {
+ 			$taxa_id = $taxon->id;
+ 			$sql = "INSERT INTO inventory_taxa (inventory_id, site_id, taxa_id) VALUES ('$this->id', '$site_id', '$taxa_id')";
+ 			mysqli_query($this->db_link, $sql);
  		}
- 		// check to see if any of the old taxa
- 		// need to be deleted from inventory_taxa
-		foreach($old_taxa as $old_taxon) {
-			$need_to_delete = true;
-			foreach($new_taxa as $new_taxon) {
-				if ($old_taxon->id == $new_taxon->id) {
-					$need_to_delete = false;
-					break;
-				}
-			}
-			if ($need_to_delete) {
-				$sql = "DELETE FROM inventory_taxa WHERE inventory_id='$this->id' AND taxa_id='$old_taxon->id'";
-				mysqli_query($this->db_link, $sql);
-			}
-		}
 	}
 	
 	/*

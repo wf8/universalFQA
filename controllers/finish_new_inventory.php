@@ -23,6 +23,7 @@ else {
 	$assessment->custom_fqa = $custom_fqa;
 	$_SESSION['assessment'] = serialize($assessment);
 		
+	// get data to populate typeaheads
 	if ($custom_fqa) {
 		$fqa = new CustomFQADatabase();
 		$scientific_names = $fqa->get_scientific_names($fqa_id);
