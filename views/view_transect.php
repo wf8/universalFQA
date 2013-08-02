@@ -8,8 +8,8 @@
 				<div class="span11">
 					<br>
 					<h1>Transect Assessment</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = '/edit_transect';return false;">Edit This Transect</button>
-					<button class="btn btn-info" onClick="asdf_changes();">Download Report</button> 
+					<button class="btn btn-info" onclick="javascript:window.location = '/edit_transect/<?php echo $assessment->id; ?>';return false;">Edit This Transect</button>
+					<button class="btn btn-info" onClick="download_inventory(<?php echo $assessment->id; ?>);">Download Report</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Done</button>
 					<br>
 				</div>
@@ -18,30 +18,52 @@
 			<div class="row-fluid">
 				<div class="span6">
 					<h4>&#187; Date & Location:</h4>
-					6/28/2013<br>
-					Somme Prairie Grove<br>
-					Northbrook<br>
-					Cook, Illinois, USA<br>					
+					<strong><?php echo $assessment->date; ?><br>
+					<?php echo $assessment->site->name; ?></strong><br>
+					<?php echo $assessment->site->city; ?><br>
+					<?php 
+						echo $assessment->site->county;
+						if ($assessment->site->county !== '' && $assessment->site->state !== '')
+							echo ', ';
+						echo $assessment->site->state; 
+						if (($assessment->site->state !== '' && $assessment->site->country !== '') || ($assessment->site->county !== '' && $assessment->site->country !== ''))
+							echo ', '; 
+						echo $assessment->site->country; 
+					?><br>		
 				</div>	
 				<div class="span6">
-					<h4>&#187; FQA Database:</h4>
-					Region: Chicago<br>
-					Year Published: 1994<br>
-					Description: Swink and Wilhelm
+					<?php if ($assessment->custom_fqa) { ?>
+						<h4>&#187; Custom FQA Database:</h4>
+						Name: <strong><?php echo $assessment->fqa->customized_name; ?></strong><br>
+						Description: <br><?php echo $assessment->fqa->customized_description; ?><br>
+						<h4>&#187; Original FQA Database:</h4>
+						Region: <strong><?php echo $assessment->fqa->region_name; ?></strong><br>
+						Year Published: <strong><?php echo $assessment->fqa->publication_year; ?></strong><br>
+						Description: <br><?php echo $assessment->fqa->description; ?>
+					<?php } else { ?>
+						<h4>&#187; FQA Database:</h4>
+						Region: <strong><?php echo $assessment->fqa->region_name; ?></strong><br>
+						Year Published: <strong><?php echo $assessment->fqa->publication_year; ?></strong><br>
+						Description: <br><?php echo $assessment->fqa->description; ?>
+					<?php } ?>
 				</div>		
 			</div>
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
 					<h4>&#187; Details:</h4>			
-					Practitioner: Stephen and crew<br>
- 					Latitude:<br>
- 					Longitude:<br>
-					Weather Notes: Perfect breezy summer day, with storms on the horizon.<br>
- 					Duration Notes:<br>
- 					Community Type Notes:<br>
- 					Other Notes:<br>
- 					This assessment is private (viewable only by you).<br>
+					Practitioner: <strong><?php echo $assessment->practitioner; ?></strong><br>
+ 					Latitude: <?php echo $assessment->latitude; ?><br>
+ 					Longitude: <?php echo $assessment->longitude; ?><br>
+					Weather Notes: <?php echo $assessment->weather_notes; ?><br>
+ 					Duration Notes: <?php echo $assessment->duration_notes; ?><br>
+ 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
+ 					Other Notes: <?php echo $assessment->other_notes; ?><br>
+ 					<?php if ($assessment->private == 'private') { ?>
+ 					This assessment is <strong>private</strong> (viewable only by you).<br>
+ 					<?php } else { ?>
+ 					This assessment is <strong>public</strong> (viewable by all users of this website).<br>
+ 					<?php } ?>
  				</div>
  			</div>
 			<br>

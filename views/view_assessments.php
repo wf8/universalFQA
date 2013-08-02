@@ -64,7 +64,7 @@ if (count($transect_assessments) == 0) {
 						</tr>
 <?php
 } else {
-	foreach ($transect_assessments as $transect_assessment) {
+	foreach ($transect_assessments as $assessment) {
 ?>
 						<tr>
 							<td><a href="/view_transect/<?php echo $assessment->id; ?>"><?php echo $assessment->site->name; ?></a></td>
