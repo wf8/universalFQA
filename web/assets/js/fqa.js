@@ -358,8 +358,7 @@ function update_species_list() {
 		success: function( response ) {
 			$( "#species_list" ).html( response );
 		}
-	});
-	
+	});	
 }
 
 function remove_taxa() {
@@ -512,4 +511,22 @@ function change_inventory_fqa_db() {
 			}
 		});
  	}
+}
+
+/**
+ * ---------------------------------------------------------
+ *
+ * transect assessment functions
+ *
+ * ---------------------------------------------------------
+ */
+ 
+ function update_quadrat_list() {
+	$.ajax({
+		url: "/ajax/get_assessment_quadrat_list",
+		type: "POST",
+		success: function( response ) {
+			$( "#quadrat_list" ).html( response );
+		}
+	});	
 }
