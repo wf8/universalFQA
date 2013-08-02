@@ -9,7 +9,7 @@
 				<div class="span11">
 					<br>
 					<h1>Edit Inventory Assessment</h1>
-					<button class="btn btn-info" onclick="javascript:save_edited_inventory();return false;">Save Changes and View Results</button> 
+					<button class="btn btn-info" onclick="javascript:update_inventory();return false;">Save Changes and View Results</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Cancel</button><br>
 				</div>
 			</div>
@@ -207,7 +207,7 @@
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>Finished making changes?</h4>
-					<button class="btn btn-info" onclick="javascript:save_edited_inventory();return false;">Save Changes and View Results</button> 
+					<button class="btn btn-info" onclick="javascript:update_inventory();return false;">Save Changes and View Results</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Cancel</button><br>
 				</div>
 			</div>

@@ -139,7 +139,8 @@ class InventoryAssessment extends Assessment {
 			$custom = 1;
 		else
 			$custom = 0;
-		$sql = "UPDATE inventory SET customized_fqa = '$custom', site_id = '$this->site->id', date = '$this->date', private = '$this->private', 
+		$site_id = $this->site->id;
+		$sql = "UPDATE inventory SET customized_fqa = '$custom', site_id = '$site_id', date = '$this->date', private = '$this->private', 
 		practitioner = '$this->practitioner', latitude = '$this->latitude', longitude = '$this->longitude',
 		weather_notes = '$this->weather_notes', duration_notes = '$this->duration_notes', community_type_notes = '$this->community_type_notes', 
 		other_notes = '$this->other_notes' WHERE id = '$this->id'";
@@ -148,6 +149,7 @@ class InventoryAssessment extends Assessment {
 		// remember the new taxa for this inventory
 		$new_taxa = $this->taxa;
 		// get the old taxa for this inventory
+		$this->taxa = null;
 		$this->get_taxa();
 		$old_taxa = $this->taxa;
 		// reset the new taxa in this object
@@ -163,7 +165,7 @@ class InventoryAssessment extends Assessment {
 				}
 			}
 			if ($need_to_insert) {
-				$sql = "INSERT INTO inventory_taxa (inventory_id, site_id, taxa_id) VALUES ('$this->id', '$this->site->id', '$new_taxon->id')";
+				$sql = "INSERT INTO inventory_taxa (inventory_id, site_id, taxa_id) VALUES ('$this->id', '$site_id', '$new_taxon->id')";
 				mysqli_query($this->db_link, $sql);
 			}
  		}
@@ -178,7 +180,7 @@ class InventoryAssessment extends Assessment {
 				}
 			}
 			if ($need_to_delete) {
-				$sql = "DELETE FROM inventory_taxa WHERE inventory_id = '$this->id' AND taxa_id = '$new_taxon->id')";
+				$sql = "DELETE FROM inventory_taxa WHERE inventory_id='$this->id' AND taxa_id='$old_taxon->id'";
 				mysqli_query($this->db_link, $sql);
 			}
 		}
