@@ -4,6 +4,10 @@ function __autoload($class_name) {
     require_once '../models/' . $class_name . '.php';
 }
 
+// hide unnecessary session side-effect warnings
+ini_set('session.bug_compat_warn', 0);
+ini_set('session.bug_compat_42', 0);
+
 // parse url
 $url_parts = array_slice(explode('/',$_SERVER['REQUEST_URI']), 1);
 
