@@ -22,19 +22,6 @@ else {
 	$assessment->fqa_id = $fqa_id;
 	$assessment->custom_fqa = $custom_fqa;
 	$_SESSION['assessment'] = serialize($assessment);
-		
-	// get data to populate typeaheads
-	if ($custom_fqa) {
-		$fqa = new CustomFQADatabase();
-		$scientific_names = $fqa->get_scientific_names($fqa_id);
-		$acronyms = $fqa->get_acronyms($fqa_id);
-		$common_names = $fqa->get_common_names($fqa_id);
-	} else {
-		$fqa = new FQADatabase();
-		$scientific_names = $fqa->get_scientific_names($fqa_id);
-		$acronyms = $fqa->get_acronyms($fqa_id);
-		$common_names = $fqa->get_common_names($fqa_id);	
-	}
 	
 	// display view
 	require_once('../views/finish_new_transect.php');

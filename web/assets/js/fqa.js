@@ -605,3 +605,118 @@ function delete_transect( id ) {
 		});
  	}
 }
+
+/**
+ * ---------------------------------------------------------
+ *
+ * quadrat functions
+ *
+ * ---------------------------------------------------------
+ */
+
+function save_new_quadrat() {
+	$.ajax({
+		url: "/ajax/save_new_quadrat",
+		type: "POST",
+		data: {
+		// *************** to finish
+			site_id: $("#site_select").val().trim(),
+			month: $("#month").val().trim(),
+			day: $("#day").val().trim(),
+			year: $("#year").val().trim(),
+			practitioner: $("#practitioner").val().trim(),
+			latitude: $("#latitude").val().trim(),
+			longitude: $("#longitude").val().trim(),
+			public_inventory: public_inv,
+			weather_notes: $("#weather_notes").val().trim(),
+			duration_notes: $("#duration_notes").val().trim(),
+			community_notes: $("#community_notes").val().trim(),
+			other_notes: $("#other_notes").val().trim()
+		},
+		success: function( response ) { 
+				window.location = '/view_inventory/' + response;
+		}
+	});
+}
+
+function add_quadrat_taxa_by_acronym() {
+ 	$.ajax({
+		url: "/ajax/add_quadrat_taxa_by_acronym",
+		type: "POST",
+		data: {
+			species: $("#acronym").val()
+		},
+		success: function( response ) {
+			if (response.indexOf("success") == -1) {
+				alert("That acronym is not found in this database.");
+			} else {
+				clear_add_fields();
+				update_quadrat_species_list();
+			}
+		}
+	});
+}
+ 
+function add_quadrat_taxa_by_common_name() {
+ 	$.ajax({
+		url: "/ajax/add_quadrat_taxa_by_common_name",
+		type: "POST",
+		data: {
+			species: $("#common_name").val()
+		},
+		success: function( response ) {
+			if (response.indexOf("success") == -1) {
+				alert("That common name is not found in this database.");
+			} else {
+				clear_add_fields();
+				update_quadrat_species_list();
+			}
+		}
+	});
+}
+
+function add_quadrat_taxa_by_list() {
+ 	$.ajax({
+		url: "/ajax/add_quadrat_taxa_by_list",
+		type: "POST",
+		data: {
+			taxa: $("#taxa_to_add_list").val()
+		},
+		success: function( response ) {
+				$( "#species_error" ).html( response );
+				$("#taxa_to_add_list").val('');
+				update_quadrat_species_list();
+		}
+	});
+}
+
+function update_quadrat_species_list() {
+	$.ajax({
+		url: "/ajax/get_quadrat_species_list",
+		type: "POST",
+		success: function( response ) {
+			$( "#species_list" ).html( response );
+		}
+	});	
+}
+
+function remove_quadrat_taxa() {
+	if (confirm("Are you sure you want to remove the selected taxa?")) {
+		var taxa_to_remove = new Array();
+		$("input:checkbox[name=taxa]:checked").each( function() {
+			taxa_to_remove.push($(this).val());
+		});
+	
+		$.ajax({
+			url: "/ajax/remove_quadrat_taxa",
+			type: "POST",
+			data: {
+				taxa: taxa_to_remove
+			},
+			success: function( response ) {
+				clear_add_fields();
+				update_quadrat_species_list();
+			}
+		});
+	}
+}
