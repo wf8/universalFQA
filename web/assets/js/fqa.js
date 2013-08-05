@@ -635,6 +635,27 @@ function save_new_quadrat() {
 	});
 }
 
+function save_edited_quadrat() {
+	$.ajax({
+		url: "/ajax/save_edited_quadrat",
+		type: "POST",
+		data: {
+			name: $("#name").val().trim(),
+			latitude: $("#latitude").val().trim(),
+			longitude: $("#longitude").val().trim(),
+			bare_ground: $("#bare_ground").val().trim(),
+			water: $("#water").val().trim(),
+		},
+		success: function( response ) { 
+			if (response.indexOf("success") == -1) {
+				alert( response );
+			} else {
+				window.location = document.referrer;
+			}
+		}
+	});
+}
+
 function add_quadrat_taxa_by_acronym() {
  	$.ajax({
 		url: "/ajax/add_quadrat_taxa_by_acronym",

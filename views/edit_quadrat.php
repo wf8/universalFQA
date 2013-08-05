@@ -1,3 +1,4 @@
+    <script> window.onload = update_quadrat_species_list(); </script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
@@ -8,7 +9,7 @@
 				<div class="span11">
 					<br>
 					<h1>Edit Quadrat</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = '/edit_transect';return false;">Save Changes</button> 
+					<button class="btn btn-info" onclick="javascript:save_edited_quadrat();return false;">Save Changes</button> 
 					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
 				</div>
 			</div>
@@ -16,61 +17,62 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<label class="small-text">Quadrat Number or Name: <font class="red">*</font></label>
-					<input class="field" type="text" id="change_first_name" value="1" maxlength="256" required />
+					<input class="field" type="text" id="name" value="<?php echo $quadrat->name; ?>" maxlength="256" required />
  					<label class="small-text">Latitude:</label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>
+					<input class="field" type="text" id="latitude" value="<?php echo $quadrat->latitude; ?>" maxlength="256" /><br>
  					<label class="small-text">Longitude:</label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>		
+					<input class="field" type="text" id="longitude" value="<?php echo $quadrat->longitude; ?>" maxlength="256" /><br>
 					<label class="small-text">% Bare Ground:</label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>
+					<input class="field" type="text" id="bare_ground" value="<?php echo $quadrat->percent_bare_ground; ?>" maxlength="3" /><br>
  					<label class="small-text">% Water:</label>
-					<input class="field" type="text" id="change_first_name" value="" maxlength="256" /><br>				
+					<input class="field" type="text" id="water" value="<?php echo $quadrat->percent_water; ?>" maxlength="3" /><br>						
 				</div>
 			</div>
 			<br>
+
 			<div class="row-fluid">
 				<div class="span12">
-				<h3>FQA Database: Chicago, 1994</h3>
-				<br>
 				<h4>To Add Species Individually:</h4>
 				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span4">
 					<form class="form-inline">
-						<input class="input-medium" id="appendedInputButton" type="text" placeholder="Scientific Name">
+						<input class="input-medium" id="scientific_name" type="text" placeholder="Scientific Name" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($scientific_names) ?>'>
 						<div class="input-append">
-							<input class="input-mini" id="appendedInputButton" type="text" placeholder="% Cover">
-							<button class="btn btn-info" type="button">Add</button>
+							<input class="input-mini" id="scientific_name_percent_cover" type="text" placeholder="% Cover">
+							<button class="btn btn-info" type="button" onclick="javascript:add_quadrat_taxa_by_scientific_name();return false;">Add</button>
 						</div>
 					</form>
 				</div>
 				<div class="span4">
 					<form class="form-inline">
-						<input class="input-medium" id="appendedInputButton" type="text" placeholder="Acronym">
+						<input class="input-medium" id="acronym" type="text" placeholder="Acronym" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($acronyms) ?>'>
 						<div class="input-append">
-							<input class="input-mini" id="appendedInputButton" type="text" placeholder="% Cover">
-							<button class="btn btn-info" type="button">Add</button>
+							<input class="input-mini" id="acronym_percent_cover" type="text" placeholder="% Cover">
+							<button class="btn btn-info" type="button" onclick="javascript:add_quadrat_taxa_by_acronym();return false;">Add</button>
 						</div>
 					</form>
 				</div>
 				<div class="span4">
 					<form class="form-inline">
-						<input class="input-medium" id="appendedInputButton" type="text" placeholder="Common Name">
+						<input class="input-medium" id="common_name" type="text" placeholder="Common Name" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($common_names) ?>'>
 						<div class="input-append">
-							<input class="input-mini" id="appendedInputButton" type="text" placeholder="% Cover">
-							<button class="btn btn-info" type="button">Add</button>
+							<input class="input-mini" id="common_name_percent_cover" type="text" placeholder="% Cover">
+							<button class="btn btn-info" type="button" onclick="javascript:add_quadrat_taxa_by_common_name();return false;">Add</button>
 						</div>
 					</form>
 				</div>	
 			</div>
+
 			<div class="row-fluid">
 				<div class="span12">
 				<h4>To Add Species In Bulk:</h4>
-				List each species separated by a comma. For example: "Acorus calamus, Alisma subcordatum, Anemone virginiana, etc."<br>
-				<textarea class="input-xxlarge" rows="3" id="items_location7"></textarea><br>
-				<button class="btn btn-info" type="button">Add Species</button><br>
+				List each species (by scientific name, acronym, or common name) and their percent coverage separated by a comma. For example: "Acorus calamus, 20, Alisma subcordatum, 15, Anemone virginiana, 5, etc."<br>
+				<textarea class="input-xxlarge" rows="3" id="taxa_to_add_list"></textarea><br>
+				<button class="btn btn-info" type="button" onclick="javascript:add_quadrat_taxa_by_list();return false;">Add Species</button><br>
 				</div>
+				<div id="species_error" class="red"></div>
 			</div>
 			<br>
 			<div class="row-fluid">
@@ -78,114 +80,34 @@
 					<h4>To Remove Species:</h4>
 					Select the species to remove and click remove at the bottom of the list.<br>
 					<br>
-					<table class="table table-hover">
+					<div id="species_list">
+<table class="table table-hover">
 <tr>
 <td></td>
 <td><strong>Scientific Name</strong></td>
 <td><strong>Family</strong></td>
 <td><strong>Acronym</strong></td>
 <td><strong>% Cover</strong></td>
-<td><strong>Nativity</strong></td>
+<td><strong>Native?</strong></td>
 <td><strong>C</strong></td>
 <td><strong>W</strong></td>
-<td><strong>Wetland Status</strong></td>
 <td><strong>Physiognomy</strong></td>
 <td><strong>Duration</strong></td>
 <td><strong>Common Name</strong></td>
 </tr>                    
 <tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td><input class="input-mini" id="percentCover" type="text" value="23"></td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td><input class="input-mini" id="percentCover" type="text" value="75"></td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td><input class="input-mini" id="percentCover" type="text" value="10"></td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td><input class="input-mini" id="percentCover" type="text" value="54"></td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td><input class="input-mini" id="percentCover" type="text" value="6"></td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td><input type="checkbox" id="checkbox1" value="option1"></td>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td><input class="input-mini" id="percentCover" type="text" value="23"></td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
+<td colspan=11>You have not entered any species yet.</td>
 </tr>
 </table>
-				<button class="btn btn-info" onclick="javascript:window.location = 'view_site.php';return false;">Remove Selected Species</button>
+					</div>
+					<button class="btn btn-info" onclick="javascript:remove_quadrat_taxa();return false;">Remove Selected Species</button>
 				</div>
 			</div>
 			<br><br>
 			<div class="row-fluid">
 				<div class="span12">				
-					<h4>Finished making changes?</h4>
-					<button class="btn btn-info" onclick="javascript:window.location = '/edit_transect';return false;">Save Changes</button> 
+					<h4>Finished?</h4>
+					<button class="btn btn-info" onclick="javascript:save_edited_quadrat();return false;">Save Changes</button> 
 					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
 				</div>
 			</div>
