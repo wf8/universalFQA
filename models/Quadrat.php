@@ -2,7 +2,16 @@
 class Quadrat {
 
 	public $taxa = array(); // an array of Taxa or CustomTaxa objects
+	public $fqa_id;
+	public $custom_fqa;
 	
+	public $name;
+	public $active;
+	public $latitude;
+	public $longitude;
+	public $percent_bare_ground;
+	public $percent_water;
+		
 	public function __construct( $id = null ) {
 		if ($id !== null) {
 			// load the quadrat taxa
@@ -10,6 +19,17 @@ class Quadrat {
 			//$metrics = new QuadratMetrics($this);
 			//$this->metrics = $metrics;
 		}
+	}
+	
+	/*
+	 * function to get link to mysql database
+	 */
+	protected function get_db_link() {
+			require('../config/db_config.php');
+			$this->db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+			if (mysqli_connect_errno($this->db_link)) {
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
 	}
 		
 	/*

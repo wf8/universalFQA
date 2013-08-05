@@ -619,22 +619,18 @@ function save_new_quadrat() {
 		url: "/ajax/save_new_quadrat",
 		type: "POST",
 		data: {
-		// *************** to finish
-			site_id: $("#site_select").val().trim(),
-			month: $("#month").val().trim(),
-			day: $("#day").val().trim(),
-			year: $("#year").val().trim(),
-			practitioner: $("#practitioner").val().trim(),
+			name: $("#name").val().trim(),
 			latitude: $("#latitude").val().trim(),
 			longitude: $("#longitude").val().trim(),
-			public_inventory: public_inv,
-			weather_notes: $("#weather_notes").val().trim(),
-			duration_notes: $("#duration_notes").val().trim(),
-			community_notes: $("#community_notes").val().trim(),
-			other_notes: $("#other_notes").val().trim()
+			bare_ground: $("#bare_ground").val().trim(),
+			water: $("#water").val().trim(),
 		},
 		success: function( response ) { 
-				window.location = '/view_inventory/' + response;
+			if (response.indexOf("success") == -1) {
+				alert( response );
+			} else {
+				window.history.back(-1);
+			}
 		}
 	});
 }
