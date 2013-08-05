@@ -629,7 +629,7 @@ function save_new_quadrat() {
 			if (response.indexOf("success") == -1) {
 				alert( response );
 			} else {
-				window.history.back(-1);
+				window.location = document.referrer;
 			}
 		}
 	});

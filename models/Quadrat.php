@@ -31,6 +31,13 @@ class Quadrat {
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
 	}
+	
+	/*
+	 * function to get number of species
+	 */
+	public function get_species_richness() {
+			return count($this->taxa);
+	}
 		
 	/*
 	 * add the taxa to this quadrat based on the value of a db column

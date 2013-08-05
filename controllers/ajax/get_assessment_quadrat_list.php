@@ -10,23 +10,29 @@ if( $_SESSION['valid'] ) {
 			<td><strong>Longitude</strong></td>
 			<td></td>
 			</tr>';	
-
+error_log('count='.count($assessment->quadrats));
 	if (count($assessment->quadrats) == 0) {
 		$html = $html . '<tr><td colspan=6>You have not added any quadrats yet.</td></tr>';
 	} else {
 		$sorted_quadrats = sort_array_of_objects($assessment->quadrats, 'name');
 		foreach ($sorted_quadrats as $quadrat) {
-			$html = $html . '<tr><td><input type="checkbox" name="quadrat" value="' . $quadrat->id . '"></td>';
+			$html = $html . '<tr><td><input type="checkbox" name="quadrat" value="' . $quadrat->name . '"></td>';
 			$html = $html . '<td>' . $quadrat->name . '</td>';
 			$html = $html . '<td>' . $quadrat->get_species_richness() . '</td>';
-			$html = $html . '<td>' . $quadrat->latitude . '</td>';
-			$html = $html . '<td>' . $quadrat->longitude . '</td>';
-			$html = $html . '<td><a href="/edit_quadrat/'.$quadrat->id.'">Edit</a> | <a href="/delete_quadrat/'.$quadrat->id.'">Delete</a></td></tr>';
+			$html = $html . '<td>' . prettify_value($quadrat->latitude) . '</td>';
+			$html = $html . '<td>' . prettify_value($quadrat->longitude) . '</td>';
+			$html = $html . '<td><a href="/edit_quadrat/'.$quadrat->name.'">Edit</a> | <a href="/delete_quadrat/'.$quadrat->name.'">Delete</a></td></tr>';
 		}
 	}
 	echo $html . '</table>';
 }
 
+function prettify_value( $value ) {
+	if (trim($value) == '') 
+		return 'n/a';
+	else
+		return $value;
+}
 
 function sort_array_of_objects($arr, $var) { 
 	$tarr = array(); 
