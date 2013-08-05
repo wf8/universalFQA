@@ -14,6 +14,7 @@ class Taxa {
  	public $native;
  	public $physiognomy;
  	public $duration;
+ 	public $percent_cover;
 
 	/*
 	 * constructor
