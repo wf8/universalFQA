@@ -45,7 +45,7 @@ class Quadrat {
 	 * return true/false depending on success of adding taxa
 	 * will return true if taxa is already in assessment
 	 */
-	public function add_taxa_by_column_value( $column, $value ) {
+	public function add_taxa_by_column_value( $column, $value, $percent_cover ) {
 		if (trim($value) == '')
 			return false;
 		if ($this->custom_fqa) {
@@ -79,7 +79,7 @@ class Quadrat {
 			$taxa->c_o_w = $result['c_o_w'];
 			$taxa->physiognomy = $result['physiognomy'];
 			$taxa->duration = $result['duration'];
-			
+			$taxa->percent_cover = $percent_cover;
 			// check to make sure taxa is not already in assessment
 			foreach($this->taxa as $taxon) {
 				if ($taxon->id == $taxa->id) {

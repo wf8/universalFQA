@@ -640,13 +640,14 @@ function add_quadrat_taxa_by_acronym() {
 		url: "/ajax/add_quadrat_taxa_by_acronym",
 		type: "POST",
 		data: {
-			species: $("#acronym").val()
+			species: $("#acronym").val(),
+			percent_cover: $("#acronym_percent_cover").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
 				alert("That acronym is not found in this database.");
 			} else {
-				clear_add_fields();
+				clear_add_fields_quadrat();
 				update_quadrat_species_list();
 			}
 		}
@@ -658,13 +659,33 @@ function add_quadrat_taxa_by_common_name() {
 		url: "/ajax/add_quadrat_taxa_by_common_name",
 		type: "POST",
 		data: {
-			species: $("#common_name").val()
+			species: $("#common_name").val(),
+			percent_cover: $("#common_name_percent_cover").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
 				alert("That common name is not found in this database.");
 			} else {
-				clear_add_fields();
+				clear_add_fields_quadrat();
+				update_quadrat_species_list();
+			}
+		}
+	});
+}
+
+function add_quadrat_taxa_by_scientific_name() {
+ 	$.ajax({
+		url: "/ajax/add_quadrat_taxa_by_scientific_name",
+		type: "POST",
+		data: {
+			species: $("#scientific_name").val(),
+			percent_cover: $("#scientific_name_percent_cover").val()
+		},
+		success: function( response ) {
+			if (response.indexOf("success") == -1) {
+				alert("That scientific name is not found in this database.");
+			} else {
+				clear_add_fields_quadrat();
 				update_quadrat_species_list();
 			}
 		}
@@ -710,9 +731,33 @@ function remove_quadrat_taxa() {
 				taxa: taxa_to_remove
 			},
 			success: function( response ) {
-				clear_add_fields();
+				clear_add_fields_quadrat();
 				update_quadrat_species_list();
 			}
 		});
 	}
+}
+
+function update_quadrat_taxa( id, percent_cover ) {
+ 	$.ajax({
+		url: "/ajax/update_quadrat_taxa",
+		type: "POST",
+		data: {
+			id: id,
+			percent_cover: percent_cover
+		},
+		success: function( response ) {
+		}
+	});
+}
+
+function clear_add_fields_quadrat() {
+	$("#scientific_name").val('');
+	$("#acronym").val('');
+	$("#common_name").val('');
+	$("#scientific_name_percent_cover").val('');
+	$("#acronym_percent_cover").val('');
+	$("#common_name_percent_cover").val('');
+	$("#taxa_to_add_list").val('');
+	$("#species_error").html('');
 }

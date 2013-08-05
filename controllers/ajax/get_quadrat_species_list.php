@@ -6,6 +6,7 @@ if( $_SESSION['valid'] ) {
 				<td><strong>Scientific Name</strong></td>
 				<td><strong>Family</strong></td>
 				<td><strong>Acronym</strong></td>
+				<td><strong>% Cover</strong></td>
 				<td><strong>Native?</strong></td>
 				<td><strong>C</strong></td>
 				<td><strong>W</strong></td>
@@ -14,7 +15,7 @@ if( $_SESSION['valid'] ) {
 				<td><strong>Common Name</strong></td>
 			</tr> ';
 	if (count($quadrat->taxa) == 0) {
-		$html = $html . '<tr><td colspan=10>You have not entered any species yet.</td></tr></table>';
+		$html = $html . '<tr><td colspan=11>You have not entered any species yet.</td></tr></table>';
 	} else {
 		$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
 		foreach ($sorted_taxa as $taxon) {
@@ -22,6 +23,7 @@ if( $_SESSION['valid'] ) {
 			$html = $html . '<td>' . $taxon->scientific_name . '</td>';
 			$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
 			$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
+			$html = $html . '<td><input class="input-mini" onChange="update_quadrat_taxa(' . $taxon->id . ', this.value)" type="text" value="' . $taxon->percent_cover . '"></td>';
 			$html = $html . '<td>' . $taxon->native . '</td>';
 			$html = $html . '<td>' . $taxon->c_o_c . '</td>';
 			$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';
