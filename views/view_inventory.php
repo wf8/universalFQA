@@ -118,8 +118,8 @@
 					Biennial: <strong><?php echo $assessment->metrics->biennial; ?> <?php echo prettify_percent($assessment->metrics->percent_biennial); ?></strong><br>
 					<br>	
 					Native Annual: <strong><?php echo $assessment->metrics->native_annual; ?> <?php echo prettify_percent($assessment->metrics->percent_native_annual); ?></strong><br>
-					Native Perennial: <strong><?php echo $assessment->metrics->native_perennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_annual); ?></strong><br>
-					Native Biennial: <strong><?php echo $assessment->metrics->native_biennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_annual); ?></strong><br>
+					Native Perennial: <strong><?php echo $assessment->metrics->native_perennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_perennial); ?></strong><br>
+					Native Biennial: <strong><?php echo $assessment->metrics->native_biennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_biennial); ?></strong><br>
 				</div>	
 			</div>
 			<br>
