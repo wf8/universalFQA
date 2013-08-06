@@ -109,7 +109,7 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<br>
-					<h3>FQA Database: Chicago, 1994</h3>
+					<h3>FQA Database:</h3>
 					<form class="form-inline">
 						<select id="fqa_select">
 						<?php
