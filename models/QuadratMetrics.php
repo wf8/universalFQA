@@ -37,6 +37,16 @@ class QuadratMetrics extends Metrics {
 	public $fern = 0;
 	public $bryophyte = 0;
 	
+	public $tree_coverage = 0;
+	public $shrub_coverage = 0;
+	public $vine_coverage = 0;
+	public $forb_coverage = 0;
+	public $grass_coverage = 0;
+	public $sedge_coverage = 0;
+	public $rush_coverage = 0;
+	public $fern_coverage = 0;
+	public $bryophyte_coverage = 0;
+	
 	public $percent_tree = 0;
 	public $percent_shrub = 0;
 	public $percent_vine = 0;
@@ -46,6 +56,26 @@ class QuadratMetrics extends Metrics {
 	public $percent_rush = 0;
 	public $percent_fern = 0;
 	public $percent_bryophyte = 0;
+	
+	public $percent_tree_coverage = 0;
+	public $percent_shrub_coverage = 0;
+	public $percent_vine_coverage = 0;
+	public $percent_forb_coverage = 0;
+	public $percent_grass_coverage = 0;
+	public $percent_sedge_coverage = 0;
+	public $percent_rush_coverage = 0;
+	public $percent_fern_coverage = 0;
+	public $percent_bryophyte_coverage = 0;
+	
+	public $tree_riv = 0;
+	public $shrub_riv = 0;
+	public $vine_riv = 0;
+	public $forb_riv = 0;
+	public $grass_riv = 0;
+	public $sedge_riv = 0;
+	public $rush_riv = 0;
+	public $fern_riv = 0;
+	public $bryophyte_riv = 0;
 
 	public $annual = 0;
 	public $perennial = 0;
@@ -155,6 +185,7 @@ class QuadratMetrics extends Metrics {
 				case 'tree':
 					$this->physiognomy = true;
 					$this->tree++;
+					$this->tree_coverage += $taxon->percent_cover;
 					if ($taxon->native == 'native') {
 						$this->native_tree_c += $taxon->c_o_c;
 						$this->native_tree++;
@@ -163,6 +194,7 @@ class QuadratMetrics extends Metrics {
 				case 'shrub':
 					$this->physiognomy = true;
 					$this->shrub++;
+					$this->shrub_coverage += $taxon->percent_cover;
 					if ($taxon->native == 'native') {
 						$this->native_shrub_c += $taxon->c_o_c;
 						$this->native_shrub++;
@@ -171,6 +203,7 @@ class QuadratMetrics extends Metrics {
 				case 'vine':
 					$this->physiognomy = true;
 					$this->vine++;
+					$this->vine_coverage += $taxon->percent_cover;
 					if ($taxon->native == 'native') {
 						$this->native_herbaceous_c += $taxon->c_o_c;
 						$this->native_herbaceous++;
@@ -179,6 +212,7 @@ class QuadratMetrics extends Metrics {
 				case 'forb':
 					$this->physiognomy = true;
 					$this->forb++;
+					$this->forb_coverage += $taxon->percent_cover;
 					if ($taxon->native == 'native') {
 						$this->native_herbaceous_c += $taxon->c_o_c;
 						$this->native_herbaceous++;
@@ -187,6 +221,7 @@ class QuadratMetrics extends Metrics {
 				case 'grass':
 					$this->physiognomy = true;
 					$this->grass++;
+					$this->grass_coverage += $taxon->percent_cover;
 					if ($taxon->native == 'native') {
 						$this->native_herbaceous_c += $taxon->c_o_c;
 						$this->native_herbaceous++;
@@ -195,6 +230,7 @@ class QuadratMetrics extends Metrics {
 				case 'sedge':
 					$this->physiognomy = true;
 					$this->sedge++;
+					$this->sedge_coverage += $taxon->percent_cover;
 					if ($taxon->native == 'native') {
 						$this->native_herbaceous_c += $taxon->c_o_c;
 						$this->native_herbaceous++;
@@ -203,6 +239,7 @@ class QuadratMetrics extends Metrics {
 				case 'rush':
 					$this->physiognomy = true;
 					$this->rush++;
+					$this->rush_coverage += $taxon->percent_cover;
 					if ($taxon->native == 'native') {
 						$this->native_herbaceous_c += $taxon->c_o_c;
 						$this->native_herbaceous++;
@@ -211,6 +248,7 @@ class QuadratMetrics extends Metrics {
 				case 'fern':
 					$this->physiognomy = true;
 					$this->fern++;
+					$this->fern_coverage += $taxon->percent_cover;
 					if ($taxon->native == 'native') {
 						$this->native_herbaceous_c += $taxon->c_o_c;
 						$this->native_herbaceous++;
@@ -219,6 +257,7 @@ class QuadratMetrics extends Metrics {
 				case 'bryophyte':
 					$this->physiognomy = true;
 					$this->bryophyte++;
+					$this->bryophyte_coverage += $taxon->percent_cover;
 					if ($taxon->native == 'native') {
 						$this->native_herbaceous_c += $taxon->c_o_c;
 						$this->native_herbaceous++;
@@ -247,6 +286,33 @@ class QuadratMetrics extends Metrics {
 			$this->percent_rush = '';
 			$this->percent_fern = '';
 			$this->percent_bryophyte = '';
+			$this->tree_coverage = 'n/a';
+			$this->shrub_coverage = 'n/a';
+			$this->vine_coverage = 'n/a';
+			$this->forb_coverage = 'n/a';
+			$this->grass_coverage = 'n/a';
+			$this->sedge_coverage = 'n/a';
+			$this->rush_coverage = 'n/a';
+			$this->fern_coverage = 'n/a';
+			$this->bryophyte_coverage = 'n/a';
+			$this->percent_tree_coverage = '';
+			$this->percent_shrub_coverage = '';
+			$this->percent_vine_coverage = '';
+			$this->percent_forb_coverage = '';
+			$this->percent_grass_coverage = '';
+			$this->percent_sedge_coverage = '';
+			$this->percent_rush_coverage = '';
+			$this->percent_fern_coverage = '';
+			$this->percent_bryophyte_coverage = '';
+			$this->tree_riv = 'n/a';
+			$this->shrub_riv = 'n/a';
+			$this->vine_riv = 'n/a';
+			$this->forb_riv = 'n/a';
+			$this->grass_riv = 'n/a';
+			$this->sedge_riv = 'n/a';
+			$this->rush_riv = 'n/a';
+			$this->fern_riv = 'n/a';
+			$this->bryophyte_riv = 'n/a';
 		} else {
 			if ($this->native_tree == 0)
 				$this->native_tree_mean_c = 'n/a';
@@ -276,6 +342,26 @@ class QuadratMetrics extends Metrics {
 				$this->percent_rush = round(100*$this->rush / $this->total_species,1);
 				$this->percent_fern = round(100*$this->fern / $this->total_species,1);
 				$this->percent_bryophyte = round(100*$this->bryophyte / $this->total_species,1);
+				
+				$this->percent_tree_coverage = round(100*$this->tree_coverage / $this->total_coverage,1);
+				$this->percent_shrub_coverage = round(100*$this->shrub_coverage / $this->total_coverage,1);
+				$this->percent_vine_coverage = round(100*$this->vine_coverage / $this->total_coverage,1);
+				$this->percent_forb_coverage = round(100*$this->forb_coverage / $this->total_coverage,1);
+				$this->percent_grass_coverage = round(100*$this->grass_coverage / $this->total_coverage,1);
+				$this->percent_sedge_coverage = round(100*$this->sedge_coverage / $this->total_coverage,1);
+				$this->percent_rush_coverage = round(100*$this->rush_coverage / $this->total_coverage,1);
+				$this->percent_fern_coverage = round(100*$this->fern_coverage / $this->total_coverage,1);
+				$this->percent_bryophyte_coverage = round(100*$this->bryophyte_coverage / $this->total_coverage,1);
+				
+				$this->tree_riv = round(($this->percent_tree + $this->percent_tree_coverage)/2, 1);
+				$this->shrub_riv = round(($this->percent_shrub + $this->percent_shrub_coverage)/2, 1);
+				$this->vine_riv = round(($this->percent_vine + $this->percent_vine_coverage)/2, 1);
+				$this->forb_riv = round(($this->percent_forb + $this->percent_forb_coverage)/2, 1);
+				$this->grass_riv = round(($this->percent_grass + $this->percent_grass_coverage)/2, 1);
+				$this->sedge_riv = round(($this->percent_sedge + $this->percent_sedge_coverage)/2, 1);
+				$this->rush_riv = round(($this->percent_rush + $this->percent_rush_coverage)/2, 1);
+				$this->fern_riv = round(($this->percent_fern + $this->percent_fern_coverage)/2, 1);
+				$this->bryophyte_riv = round(($this->percent_bryophyte + $this->percent_bryophyte_coverage)/2, 1);
 			}
 		}
 		

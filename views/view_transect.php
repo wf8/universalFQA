@@ -149,74 +149,74 @@
 						<tr>
 							<td>Tree</td>
 							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->percent_tree; ?></td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->tree_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_tree); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_tree_coverage); ?></td>
+							<td><?php echo $assessment->metrics->tree_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Shrub</td>
 							<td><?php echo $assessment->metrics->shrub; ?></td>
-							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->percent_shrub; ?></td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->shrub_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_shrub); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_shrub_coverage); ?></td>
+							<td><?php echo $assessment->metrics->shrub_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Vine</td>
 							<td><?php echo $assessment->metrics->vine; ?></td>
-							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->percent_vine; ?></td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->vine_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_vine); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_vine_coverage); ?></td>
+							<td><?php echo $assessment->metrics->vine_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Forb</td>
 							<td><?php echo $assessment->metrics->forb; ?></td>
-							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->percent_forb; ?></td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->forb_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_forb); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_forb_coverage); ?></td>
+							<td><?php echo $assessment->metrics->forb_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Grass</td>
 							<td><?php echo $assessment->metrics->grass; ?></td>
-							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->percent_grass; ?></td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->grass_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_grass); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_grass_coverage); ?></td>
+							<td><?php echo $assessment->metrics->grass_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Sedge</td>
 							<td><?php echo $assessment->metrics->sedge; ?></td>
-							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->percent_sedge; ?></td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->sedge_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_sedge); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_sedge_coverage); ?></td>
+							<td><?php echo $assessment->metrics->sedge_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Rush</td>
 							<td><?php echo $assessment->metrics->rush; ?></td>
-							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->percent_rush; ?></td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->rush_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_rush); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_rush_coverage); ?></td>
+							<td><?php echo $assessment->metrics->rush_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Fern</td>
 							<td><?php echo $assessment->metrics->fern; ?></td>
-							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->percent_fern; ?></td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->fern_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_fern); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_fern_coverage); ?></td>
+							<td><?php echo $assessment->metrics->fern_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Bryophyte</td>
 							<td><?php echo $assessment->metrics->bryophyte; ?></td>
-							<td><?php echo $assessment->metrics->bryophyte; ?></td>
-							<td><?php echo $assessment->metrics->percent_bryophyte; ?></td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->bryophyte_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_bryophyte); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_bryophyte_coverage); ?></td>
+							<td><?php echo $assessment->metrics->bryophyte_riv; ?></td>
 						</tr>
 					</table>
 				</div>
