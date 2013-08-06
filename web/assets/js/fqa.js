@@ -591,6 +591,31 @@ function save_new_transect() {
 	}
 }
 
+function update_transect() {
+	var public_inv = $('input[name=publicOrPrivate]:checked', '#public_inventory').val();
+	$.ajax({
+		url: "/ajax/update_transect",
+		type: "POST",
+		data: {
+			site_id: $("#site_select").val().trim(),
+			month: $("#month").val().trim(),
+			day: $("#day").val().trim(),
+			year: $("#year").val().trim(),
+			practitioner: $("#practitioner").val().trim(),
+			latitude: $("#latitude").val().trim(),
+			longitude: $("#longitude").val().trim(),
+			public_inventory: public_inv,
+			weather_notes: $("#weather_notes").val().trim(),
+			duration_notes: $("#duration_notes").val().trim(),
+			community_notes: $("#community_notes").val().trim(),
+			other_notes: $("#other_notes").val().trim()
+		},
+		success: function( response ) { 
+				window.location = '/view_transect/' + response;
+		}
+	});
+}
+
 function delete_transect( id ) {
  	if (confirm("Are you sure you want to delete this transect assessment?")) {
 		$.ajax({
@@ -629,7 +654,8 @@ function save_new_quadrat() {
 			if (response.indexOf("success") == -1) {
 				alert( response );
 			} else {
-				window.location = document.referrer;
+				window.history.back(-1);
+				update_quadrat_list();
 			}
 		}
 	});
@@ -650,7 +676,8 @@ function save_edited_quadrat() {
 			if (response.indexOf("success") == -1) {
 				alert( response );
 			} else {
-				window.location = document.referrer;
+				window.history.back(-1);
+				update_quadrat_list();
 			}
 		}
 	});
@@ -792,7 +819,7 @@ function delete_quadrat( id ) {
 				id: id,
 			},
 			success: function( response ) {
-				location.reload(true);
+				update_quadrat_list();
 			}
 		});
  	}
