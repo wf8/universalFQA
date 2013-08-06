@@ -157,7 +157,7 @@
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>Finished making changes?</h4>
-					<button class="btn btn-info" onclick="javascript:update_inventory();return false;">Save Changes and View Results</button> 
+					<button class="btn btn-info" onclick="javascript:update_transect();return false;">Save Changes and View Results</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Cancel</button><br>
 				</div>
 			</div>

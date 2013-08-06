@@ -631,6 +631,18 @@ function delete_transect( id ) {
  	}
 }
 
+function toggle_active( quadrat_name ) {
+	$.ajax({
+		url: "/ajax/toggle_active",
+		type: "POST",
+		data: {
+			quadrat_name: quadrat_name,
+		},
+		success: function( response ) {
+		}
+	});
+}
+
 /**
  * ---------------------------------------------------------
  *

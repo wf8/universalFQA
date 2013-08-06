@@ -15,7 +15,10 @@ if( $_SESSION['valid'] ) {
 	} else {
 		$sorted_quadrats = sort_array_of_objects($assessment->quadrats, 'name');
 		foreach ($sorted_quadrats as $quadrat) {
-			$html = $html . '<tr><td><input type="checkbox" name="quadrat" value="' . $quadrat->name . '"></td>';
+			if ($quadrat->active)
+				$html = $html . '<tr><td><input type="checkbox" onChange="javascript:toggle_active(\'' . $quadrat->name . '\');" checked></td>';
+			else
+				$html = $html . '<tr><td><input type="checkbox" onChange="javascript:toggle_active(\'' . $quadrat->name . '\');"></td>';
 			$html = $html . '<td>' . $quadrat->name . '</td>';
 			$html = $html . '<td>' . $quadrat->get_species_richness() . '</td>';
 			$html = $html . '<td>' . prettify_value($quadrat->latitude) . '</td>';

@@ -42,6 +42,7 @@ $quadrat->latitude = $latitude;
 $quadrat->longitude = $longitude;
 $quadrat->percent_bare_ground = $bare_ground;
 $quadrat->percent_water = $water;
+$quadrat->active = 1;
 
 // update session assessment object
 $assessment->quadrats[] = $quadrat;
