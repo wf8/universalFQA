@@ -285,7 +285,8 @@ class InventoryMetrics extends Metrics {
 				$this->percent_annual = round(100*$this->annual / $this->total_species,1);
 				$this->percent_perennial = round(100*$this->perennial / $this->total_species,1);
 				$this->percent_biennial = round(100*$this->biennial / $this->total_species,1);
-		
+			}
+			if ($this->native_species > 0) {
 				$this->percent_native_annual = round(100*$this->native_annual / $this->native_species,1);
 				$this->percent_native_perennial = round(100*$this->native_perennial / $this->native_species,1);
 				$this->percent_native_biennial = round(100*$this->native_biennial / $this->native_species,1);

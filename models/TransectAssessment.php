@@ -9,8 +9,8 @@ class TransectAssessment extends Assessment {
 		if ($id !== null) {
 			// load the transect quadrats
 			$this->get_quadrats();
-			//$metrics = new TransectMetrics($this);
-			//$this->metrics = $metrics;
+			$metrics = new TransectMetrics($this);
+			$this->metrics = $metrics;
 		}
 	}
 	

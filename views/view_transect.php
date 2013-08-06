@@ -84,52 +84,52 @@
 			<div class="row-fluid">
 				<div class="span4">
 					<h4>&#187; Conservatism-Based Metrics:</h4>
-					Total Mean C: <strong>4.5</strong><br>
-					Native Mean C: <strong>5.5</strong><br>
-					Native Tree Mean C: <strong>5.5</strong><br>
-					Native Shrub Mean C: <strong>5.5</strong><br>
-					Native Herbaceous Mean C: <strong>5.5</strong><br>
-					Total FQI: <strong>30.5</strong><br>
-					Native FQI: <strong>45.5</strong><br>
-					Cover-weighted FQI: <strong>30.5</strong><br>
-					Cover-weighted Native FQI: <strong>45.5</strong><br>
-					Adjusted FQI: <strong>45.5</strong><br>
-					% C value 0:  <strong>0%</strong><br>
-					% C value 1-3:  <strong>0%</strong><br>
-					% C value 4-6:  <strong>0%</strong><br>
-					% C value 7-10:  <strong>0%</strong><br>
+					Total Mean C: <strong><?php echo $assessment->metrics->total_mean_c; ?></strong><br>
+					Native Mean C: <strong><?php echo $assessment->metrics->native_mean_c; ?></strong><br>
+					Native Tree Mean C: <strong><?php echo $assessment->metrics->native_tree_mean_c; ?></strong><br>
+					Native Shrub Mean C: <strong><?php echo $assessment->metrics->native_shrub_mean_c; ?></strong><br>
+					Native Herbaceous Mean C: <strong><?php echo $assessment->metrics->native_herbaceous_mean_c; ?></strong><br>
+					Total FQI: <strong><?php echo $assessment->metrics->total_fqi; ?></strong><br>
+					Native FQI: <strong><?php echo $assessment->metrics->native_fqi; ?></strong><br>
+					Cover-weighted FQI: <strong><?php echo $assessment->metrics->cover_weighted_total_fqi; ?></strong><br>
+					Cover-weighted Native FQI: <strong><?php echo $assessment->metrics->cover_weighted_native_fqi; ?></strong><br>
+					Adjusted FQI: <strong><?php echo $assessment->metrics->adjusted_fqi; ?></strong><br>
+					% C value 0:  <strong><?php echo $assessment->metrics->percent_c_0; ?>%</strong><br>
+					% C value 1-3:  <strong><?php echo $assessment->metrics->percent_c_1_3; ?>%</strong><br>
+					% C value 4-6:  <strong><?php echo $assessment->metrics->percent_c_4_6; ?>%</strong><br>
+					% C value 7-10:  <strong><?php echo $assessment->metrics->percent_c_7_10; ?>%</strong><br>
 				</div>
 				<div class="span4">	
 					<h4>&#187; Species Richness and Wetness:</h4>
-					Total Species: <strong>44</strong><br>
-					Native Species: <strong>37 (84.1%)</strong><br>
-					Non-native Species: <strong>7 (15.9%)</strong><br>
-					Mean Wetness: <strong>-2</strong><br>
-					Native Mean Wetness: <strong>-2</strong><br>
+					Total Species: <strong><?php echo $assessment->metrics->total_species; ?></strong><br>
+					Native Species: <strong><?php echo $assessment->metrics->native_species; ?> <?php echo prettify_percent($assessment->metrics->percent_native_species); ?></strong><br>
+					Non-native Species: <strong><?php echo $assessment->metrics->non_native_species; ?> <?php echo prettify_percent($assessment->metrics->percent_non_native_species); ?></strong><br>
+					Mean Wetness: <strong><?php echo $assessment->metrics->mean_wetness; ?></strong><br>
+					Native Mean Wetness: <strong><?php echo $assessment->metrics->native_mean_wetness; ?></strong><br>
 				</div>
 				<!--
 				<div class="span3">
 					<h4>&#187; Physiognomy Metrics:</h4>
-					Tree: <strong>0 (0.0%)   </strong><br>
-					Shrub: <strong>1     (2.3%) </strong><br>    
-					Vine: <strong>1     (2.3%)  </strong><br>
-					Forb: <strong>22    (50.0%)      </strong><br>
-					Grass: <strong>6    (13.6%) </strong><br>
-					Sedge: <strong>7    (15.9%) </strong><br>
-					Rush: <strong>0     (0.0%) </strong><br>
-					Fern: <strong>0     (0.0%) </strong><br>
-					Bryophyte: <strong>0     (0.0%)      </strong><br>  
+					Tree: <strong><?php echo $assessment->metrics->tree; ?> <?php echo prettify_percent($assessment->metrics->percent_tree); ?>   </strong><br>
+					Shrub: <strong><?php echo $assessment->metrics->shrub; ?>     <?php echo prettify_percent($assessment->metrics->percent_shrub); ?> </strong><br>    
+					Vine: <strong><?php echo $assessment->metrics->vine; ?>     <?php echo prettify_percent($assessment->metrics->percent_vine); ?>  </strong><br>
+					Forb: <strong><?php echo $assessment->metrics->forb; ?>    <?php echo prettify_percent($assessment->metrics->percent_forb); ?>      </strong><br>
+					Grass: <strong><?php echo $assessment->metrics->grass; ?>    <?php echo prettify_percent($assessment->metrics->percent_grass); ?> </strong><br>
+					Sedge: <strong><?php echo $assessment->metrics->sedge; ?>    <?php echo prettify_percent($assessment->metrics->percent_sedge); ?> </strong><br>
+					Rush: <strong><?php echo $assessment->metrics->rush; ?>     <?php echo prettify_percent($assessment->metrics->percent_rush); ?> </strong><br>
+					Fern: <strong><?php echo $assessment->metrics->fern; ?>     <?php echo prettify_percent($assessment->metrics->percent_fern); ?> </strong><br>
+					Bryophyte: <strong><?php echo $assessment->metrics->bryophyte; ?>     <?php echo prettify_percent($assessment->metrics->percent_bryophyte); ?>      </strong><br>  
 				</div>
 				-->
 				<div class="span4">
 					<h4>&#187; Duration Metrics:</h4>
-					Annual: <strong>22 (50.0%)</strong><br>
-					Perennial: <strong>22 (50.0%)</strong><br>
-					Biennial: <strong>0 (0.0%)</strong><br>
+					Annual: <strong><?php echo $assessment->metrics->annual; ?> <?php echo prettify_percent($assessment->metrics->percent_annual); ?></strong><br>
+					Perennial: <strong><?php echo $assessment->metrics->perennial; ?> <?php echo prettify_percent($assessment->metrics->percent_perennial); ?></strong><br>
+					Biennial: <strong><?php echo $assessment->metrics->biennial; ?> <?php echo prettify_percent($assessment->metrics->percent_biennial); ?></strong><br>
 					<br>	
-					Native Annual: <strong>22 (50.0%)</strong><br>
-					Native Perennial: <strong>22 (50.0%)</strong><br>
-					Native Biennial: <strong>0 (0.0%)</strong><br>
+					Native Annual: <strong><?php echo $assessment->metrics->native_annual; ?> <?php echo prettify_percent($assessment->metrics->percent_native_annual); ?></strong><br>
+					Native Perennial: <strong><?php echo $assessment->metrics->native_perennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_perennial); ?></strong><br>
+					Native Biennial: <strong><?php echo $assessment->metrics->native_biennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_biennial); ?></strong><br>
 				</div>	
 			</div>
 			<br>
@@ -148,73 +148,73 @@
 						<!-- show descending in order of RIV -->
 						<tr>
 							<td>Tree</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->percent_tree; ?></td>
 							<td>13</td>
 							<td>14</td>
 						</tr>
 						<tr>
 							<td>Shrub</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
+							<td><?php echo $assessment->metrics->shrub; ?></td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->percent_shrub; ?></td>
 							<td>13</td>
 							<td>14</td>
 						</tr>
 						<tr>
 							<td>Vine</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
+							<td><?php echo $assessment->metrics->vine; ?></td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->percent_vine; ?></td>
 							<td>13</td>
 							<td>14</td>
 						</tr>
 						<tr>
 							<td>Forb</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
+							<td><?php echo $assessment->metrics->forb; ?></td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->percent_forb; ?></td>
 							<td>13</td>
 							<td>14</td>
 						</tr>
 						<tr>
 							<td>Grass</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
+							<td><?php echo $assessment->metrics->grass; ?></td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->percent_grass; ?></td>
 							<td>13</td>
 							<td>14</td>
 						</tr>
 						<tr>
 							<td>Sedge</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
+							<td><?php echo $assessment->metrics->sedge; ?></td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->percent_sedge; ?></td>
 							<td>13</td>
 							<td>14</td>
 						</tr>
 						<tr>
 							<td>Rush</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
+							<td><?php echo $assessment->metrics->rush; ?></td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->percent_rush; ?></td>
 							<td>13</td>
 							<td>14</td>
 						</tr>
 						<tr>
 							<td>Fern</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
+							<td><?php echo $assessment->metrics->fern; ?></td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->percent_fern; ?></td>
 							<td>13</td>
 							<td>14</td>
 						</tr>
 						<tr>
 							<td>Bryophyte</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
+							<td><?php echo $assessment->metrics->bryophyte; ?></td>
+							<td><?php echo $assessment->metrics->bryophyte; ?></td>
+							<td><?php echo $assessment->metrics->percent_bryophyte; ?></td>
 							<td>13</td>
 							<td>14</td>
 						</tr>
