@@ -66,55 +66,69 @@
  				</div>
  			</div>
 			<br>
+			<?php
+				function prettify_percent( $value ) {
+					if (trim($value) == '') 
+						return '';
+					else
+						return '(' . $value . '%)';
+				}
+				function prettify_value( $value ) {
+					if (trim($value) == '') 
+						return 'n/a';
+					else
+						return $value;
+				}
+			?>
 			<div class="row-fluid">
 				<div class="span4">
 					<h4>&#187; Conservatism-Based Metrics:</h4>
-					Total Mean C: <strong>4.5</strong><br>
-					Native Mean C: <strong>5.5</strong><br>
-					Native Tree Mean C: <strong>5.5</strong><br>
-					Native Shrub Mean C: <strong>5.5</strong><br>
-					Native Herbaceous Mean C: <strong>5.5</strong><br>
-					Total FQI: <strong>30.5</strong><br>
-					Native FQI: <strong>45.5</strong><br>
-					Cover-weighted FQI: <strong>30.5</strong><br>
-					Cover-weighted Native FQI: <strong>45.5</strong><br>
-					Adjusted FQI: <strong>45.5</strong><br>
-					% C value 0:  <strong>0%</strong><br>
-					% C value 1-3:  <strong>0%</strong><br>
-					% C value 4-6:  <strong>0%</strong><br>
-					% C value 7-10:  <strong>0%</strong><br>
+					Total Mean C: <strong><?php echo $assessment->metrics->total_mean_c; ?></strong><br>
+					Native Mean C: <strong><?php echo $assessment->metrics->native_mean_c; ?></strong><br>
+					Native Tree Mean C: <strong><?php echo $assessment->metrics->native_tree_mean_c; ?></strong><br>
+					Native Shrub Mean C: <strong><?php echo $assessment->metrics->native_shrub_mean_c; ?></strong><br>
+					Native Herbaceous Mean C: <strong><?php echo $assessment->metrics->native_herbaceous_mean_c; ?></strong><br>
+					Total FQI: <strong><?php echo $assessment->metrics->total_fqi; ?></strong><br>
+					Native FQI: <strong><?php echo $assessment->metrics->native_fqi; ?></strong><br>
+					Cover-weighted FQI: <strong><?php echo $assessment->metrics->cover_weighted_total_fqi; ?></strong><br>
+					Cover-weighted Native FQI: <strong><?php echo $assessment->metrics->cover_weighted_native_fqi; ?></strong><br>
+					Adjusted FQI: <strong><?php echo $assessment->metrics->adjusted_fqi; ?></strong><br>
+					% C value 0:  <strong><?php echo $assessment->metrics->percent_c_0; ?>%</strong><br>
+					% C value 1-3:  <strong><?php echo $assessment->metrics->percent_c_1_3; ?>%</strong><br>
+					% C value 4-6:  <strong><?php echo $assessment->metrics->percent_c_4_6; ?>%</strong><br>
+					% C value 7-10:  <strong><?php echo $assessment->metrics->percent_c_7_10; ?>%</strong><br>
 				</div>
 				<div class="span4">	
 					<h4>&#187; Species Richness and Wetness:</h4>
-					Total Species: <strong>44</strong><br>
-					Native Species: <strong>37 (84.1%)</strong><br>
-					Non-native Species: <strong>7 (15.9%)</strong><br>
-					Mean Wetness: <strong>-2</strong><br>
-					Native Mean Wetness: <strong>-2</strong><br>
+					Total Species: <strong><?php echo $assessment->metrics->total_species; ?></strong><br>
+					Native Species: <strong><?php echo $assessment->metrics->native_species; ?> <?php echo prettify_percent($assessment->metrics->percent_native_species); ?></strong><br>
+					Non-native Species: <strong><?php echo $assessment->metrics->non_native_species; ?> <?php echo prettify_percent($assessment->metrics->percent_non_native_species); ?></strong><br>
+					Mean Wetness: <strong><?php echo $assessment->metrics->mean_wetness; ?></strong><br>
+					Native Mean Wetness: <strong><?php echo $assessment->metrics->native_mean_wetness; ?></strong><br>
 				</div>
 				<!--
 				<div class="span3">
 					<h4>&#187; Physiognomy Metrics:</h4>
-					Tree: <strong>0 (0.0%)   </strong><br>
-					Shrub: <strong>1     (2.3%) </strong><br>    
-					Vine: <strong>1     (2.3%)  </strong><br>
-					Forb: <strong>22    (50.0%)      </strong><br>
-					Grass: <strong>6    (13.6%) </strong><br>
-					Sedge: <strong>7    (15.9%) </strong><br>
-					Rush: <strong>0     (0.0%) </strong><br>
-					Fern: <strong>0     (0.0%) </strong><br>
-					Bryophyte: <strong>0     (0.0%)      </strong><br>  
+					Tree: <strong><?php echo $assessment->metrics->tree; ?> <?php echo prettify_percent($assessment->metrics->percent_tree); ?>   </strong><br>
+					Shrub: <strong><?php echo $assessment->metrics->shrub; ?>     <?php echo prettify_percent($assessment->metrics->percent_shrub); ?> </strong><br>    
+					Vine: <strong><?php echo $assessment->metrics->vine; ?>     <?php echo prettify_percent($assessment->metrics->percent_vine); ?>  </strong><br>
+					Forb: <strong><?php echo $assessment->metrics->forb; ?>    <?php echo prettify_percent($assessment->metrics->percent_forb); ?>      </strong><br>
+					Grass: <strong><?php echo $assessment->metrics->grass; ?>    <?php echo prettify_percent($assessment->metrics->percent_grass); ?> </strong><br>
+					Sedge: <strong><?php echo $assessment->metrics->sedge; ?>    <?php echo prettify_percent($assessment->metrics->percent_sedge); ?> </strong><br>
+					Rush: <strong><?php echo $assessment->metrics->rush; ?>     <?php echo prettify_percent($assessment->metrics->percent_rush); ?> </strong><br>
+					Fern: <strong><?php echo $assessment->metrics->fern; ?>     <?php echo prettify_percent($assessment->metrics->percent_fern); ?> </strong><br>
+					Bryophyte: <strong><?php echo $assessment->metrics->bryophyte; ?>     <?php echo prettify_percent($assessment->metrics->percent_bryophyte); ?>      </strong><br>  
 				</div>
 				-->
 				<div class="span4">
 					<h4>&#187; Duration Metrics:</h4>
-					Annual: <strong>22 (50.0%)</strong><br>
-					Perennial: <strong>22 (50.0%)</strong><br>
-					Biennial: <strong>0 (0.0%)</strong><br>
+					Annual: <strong><?php echo $assessment->metrics->annual; ?> <?php echo prettify_percent($assessment->metrics->percent_annual); ?></strong><br>
+					Perennial: <strong><?php echo $assessment->metrics->perennial; ?> <?php echo prettify_percent($assessment->metrics->percent_perennial); ?></strong><br>
+					Biennial: <strong><?php echo $assessment->metrics->biennial; ?> <?php echo prettify_percent($assessment->metrics->percent_biennial); ?></strong><br>
 					<br>	
-					Native Annual: <strong>22 (50.0%)</strong><br>
-					Native Perennial: <strong>22 (50.0%)</strong><br>
-					Native Biennial: <strong>0 (0.0%)</strong><br>
+					Native Annual: <strong><?php echo $assessment->metrics->native_annual; ?> <?php echo prettify_percent($assessment->metrics->percent_native_annual); ?></strong><br>
+					Native Perennial: <strong><?php echo $assessment->metrics->native_perennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_perennial); ?></strong><br>
+					Native Biennial: <strong><?php echo $assessment->metrics->native_biennial; ?> <?php echo prettify_percent($assessment->metrics->percent_native_biennial); ?></strong><br>
 				</div>	
 			</div>
 			<br>
@@ -133,75 +147,75 @@
 						<!-- show descending in order of RIV -->
 						<tr>
 							<td>Tree</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->tree; ?></td>
+							<td><?php echo $assessment->metrics->tree_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_tree); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_tree_coverage); ?></td>
+							<td><?php echo $assessment->metrics->tree_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Shrub</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->shrub; ?></td>
+							<td><?php echo $assessment->metrics->shrub_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_shrub); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_shrub_coverage); ?></td>
+							<td><?php echo $assessment->metrics->shrub_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Vine</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->vine; ?></td>
+							<td><?php echo $assessment->metrics->vine_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_vine); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_vine_coverage); ?></td>
+							<td><?php echo $assessment->metrics->vine_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Forb</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->forb; ?></td>
+							<td><?php echo $assessment->metrics->forb_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_forb); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_forb_coverage); ?></td>
+							<td><?php echo $assessment->metrics->forb_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Grass</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->grass; ?></td>
+							<td><?php echo $assessment->metrics->grass_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_grass); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_grass_coverage); ?></td>
+							<td><?php echo $assessment->metrics->grass_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Sedge</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->sedge; ?></td>
+							<td><?php echo $assessment->metrics->sedge_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_sedge); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_sedge_coverage); ?></td>
+							<td><?php echo $assessment->metrics->sedge_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Rush</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->rush; ?></td>
+							<td><?php echo $assessment->metrics->rush_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_rush); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_rush_coverage); ?></td>
+							<td><?php echo $assessment->metrics->rush_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Fern</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->fern; ?></td>
+							<td><?php echo $assessment->metrics->fern_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_fern); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_fern_coverage); ?></td>
+							<td><?php echo $assessment->metrics->fern_riv; ?></td>
 						</tr>
 						<tr>
 							<td>Bryophyte</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
+							<td><?php echo $assessment->metrics->bryophyte; ?></td>
+							<td><?php echo $assessment->metrics->bryophyte_coverage; ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_bryophyte); ?></td>
+							<td><?php echo prettify_value($assessment->metrics->percent_bryophyte_coverage); ?></td>
+							<td><?php echo $assessment->metrics->bryophyte_riv; ?></td>
 						</tr>
 					</table>
 				</div>
@@ -220,22 +234,57 @@
 							<td><strong>Relative Importance Value</strong></td>
 						</tr>
 						<!-- show descending in order of RIV -->
-						<tr>
-							<td>Acorus calamus</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
-						</tr>
-						<tr>
-							<td>Alisma subcordatum</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
-						</tr>
+						<?php
+						
+							function sort_array_of_objects($arr, $var) { 
+							   $tarr = array(); 
+							   $rarr = array(); 
+							   for($i = 0; $i < count($arr); $i++) { 
+								  $element = $arr[$i]; 
+								  $tarr[] = strtolower($element->{$var}); 
+							   } 
+							   reset($tarr); 
+							   asort($tarr); 
+							   $karr = array_keys($tarr); 
+							   for($i = 0; $i < count($tarr); $i++) { 
+								  $rarr[] = $arr[intval($karr[$i])]; 
+							   } 
+							   return $rarr; 
+							} 
+							function reverse_sort_array_of_objects($arr, $var) { 
+							   $tarr = array(); 
+							   $rarr = array(); 
+							   for($i = 0; $i < count($arr); $i++) { 
+								  $element = $arr[$i]; 
+								  $tarr[] = strtolower($element->{$var}); 
+							   } 
+							   reset($tarr); 
+							   asort($tarr); 
+							   $karr = array_keys($tarr); 
+							   for($i = count($tarr)-1; $i > -1; $i--) { 
+								  $rarr[] = $arr[intval($karr[$i])]; 
+							   } 
+							   return $rarr; 
+							} 
+							
+							$taxa = reverse_sort_array_of_objects($assessment->metrics->taxa, 'relative_importance_value');
+						
+							foreach ($taxa as $taxon) { 
+
+						?>
+							<tr>
+								<td><?php echo $taxon->taxa->scientific_name; ?></td>
+								<td><?php echo $taxon->frequency; ?></td>
+								<td><?php echo $taxon->percent_cover; ?></td>
+								<td><?php echo $taxon->relative_frequency; ?></td>
+								<td><?php echo $taxon->relative_cover; ?></td>
+								<td><?php echo $taxon->relative_importance_value; ?></td>
+							</tr>
+						<?php
+						
+							}
+							
+						?>
 					</table>
 				</div>
 			</div>
@@ -244,171 +293,116 @@
 				<div class="span12">
 					<h4>&#187; Quadrat Level Metrics:</h4>
 
-<table class="table table-hover">
-<tr>
-<td><strong>Quadrat</strong></td>
-<td><strong>Species Richness</strong></td>
-<td><strong>Native Species Richness</strong></td>
-<td><strong>Total Mean C</strong></td>
-<td><strong>Native Mean C</strong></td>
-<td><strong>Total FQI</strong></td>
-<td><strong>Native FQI</strong></td>
-<td><strong>Cover-weighted FQI</strong></td>
-<td><strong>Cover-weighted Native FQI</strong></td>
-<td><strong>Adjusted FQI</strong></td>
-<td><strong>Mean Wetness</strong></td>
-<td><strong>Mean Native Wetness</strong></td>
-<td><strong>Latitude</strong></td>
-<td><strong>Longitude</strong></td>
-</tr>                    
-<tr>
-<td>1</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>2</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>3</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>4</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-</table>
-
+					<table class="table table-hover">
+						<tr>
+							<td><strong>Quadrat</strong></td>
+							<td><strong>Species Richness</strong></td>
+							<td><strong>Native Species Richness</strong></td>
+							<td><strong>Total Mean C</strong></td>
+							<td><strong>Native Mean C</strong></td>
+							<td><strong>Total FQI</strong></td>
+							<td><strong>Native FQI</strong></td>
+							<td><strong>Cover-weighted FQI</strong></td>
+							<td><strong>Cover-weighted Native FQI</strong></td>
+							<td><strong>Adjusted FQI</strong></td>
+							<td><strong>Mean Wetness</strong></td>
+							<td><strong>Mean Native Wetness</strong></td>
+							<td><strong>Latitude</strong></td>
+							<td><strong>Longitude</strong></td>
+						</tr>    
+						<?php 	
+							
+							$num_active_quads = 0;
+							$quadrats = sort_array_of_objects($assessment->quadrats, 'name');
+						
+							foreach ($quadrats as $quadrat) { 
+								if ($quadrat->active) { 
+						?>           
+							<tr>
+								<td><?php echo $quadrat->name; ?></td>
+								<td><?php echo $quadrat->metrics->total_species; ?></td>
+								<td><?php echo $quadrat->metrics->native_species; ?></td>
+								<td><?php echo $quadrat->metrics->total_mean_c; ?></td>
+								<td><?php echo $quadrat->metrics->native_mean_c; ?></td>
+								<td><?php echo $quadrat->metrics->total_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->native_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->cover_weighted_total_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->cover_weighted_native_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->adjusted_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->mean_wetness; ?></td>
+								<td><?php echo $quadrat->metrics->native_mean_wetness; ?></td>
+								<td><?php echo prettify_value($quadrat->latitude); ?></td>
+								<td><?php echo prettify_value($quadrat->longitude); ?></td>
+							</tr>
+						<?php
+							 	}
+							} 
+						?>
+					</table>
 				</div>
 			</div>
 			<br>
 			
-<?php
-
-function prettify_value( $value ) {
-	if (trim($value) == '') 
-		return 'n/a';
-	else
-		return $value;
-}
-
-function sort_array_of_objects($arr, $var) { 
-   $tarr = array(); 
-   $rarr = array(); 
-   for($i = 0; $i < count($arr); $i++) { 
-	  $element = $arr[$i]; 
-	  $tarr[] = strtolower($element->{$var}); 
-   } 
-   reset($tarr); 
-   asort($tarr); 
-   $karr = array_keys($tarr); 
-   for($i = 0; $i < count($tarr); $i++) { 
-	  $rarr[] = $arr[intval($karr[$i])]; 
-   } 
-   return $rarr; 
-} 
-$num_active_quads = 0;
-$quadrats = sort_array_of_objects($assessment->quadrats, 'name');
-foreach ($quadrats as $quadrat) {
-	if (!$quadrat->active) {
-	} else {
-		$num_active_quads++; 			
-?>			
+			<?php
+			
+				foreach ($quadrats as $quadrat) {
+					if (!$quadrat->active) {
+					} else {
+						$num_active_quads++; 	
+								
+			?>	
+					
 			<div class="row-fluid">
 				<div class="span12">	
 					<h4>&#187; Quadrat <?php echo $quadrat->name; ?> Species:</h4>
 					<table class="table table-hover">
-<tr>
-<td><strong>Scientific Name</strong></td>
-<td><strong>Family</strong></td>
-<td><strong>Acronym</strong></td>
-<td><strong>% Cover</strong></td>
-<td><strong>Nativity</strong></td>
-<td><strong>C</strong></td>
-<td><strong>W</strong></td>
-<td><strong>Physiognomy</strong></td>
-<td><strong>Duration</strong></td>
-<td><strong>Common Name</strong></td>
-</tr>      
-<?php
-		$html = '';
-		if (count($quadrat->taxa) == 0) {
-			$html = $html . '<tr><td colspan=9>There are no species in this quadrat.</td></tr>';
-		} else {
-			$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
-			foreach ($sorted_taxa as $taxon) {
-				$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
-				$html = $html . '<td>' . $taxon->percent_cover . '</td>';
-				$html = $html . '<td>' . $taxon->native . '</td>';
-				$html = $html . '<td>' . $taxon->c_o_c . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->physiognomy) . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->duration) . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->common_name) . '</td></tr>';
-			}
-		}
-		echo $html . '</table>';
-?>            
+						<tr>
+							<td><strong>Scientific Name</strong></td>
+							<td><strong>Family</strong></td>
+							<td><strong>Acronym</strong></td>
+							<td><strong>% Cover</strong></td>
+							<td><strong>Nativity</strong></td>
+							<td><strong>C</strong></td>
+							<td><strong>W</strong></td>
+							<td><strong>Physiognomy</strong></td>
+							<td><strong>Duration</strong></td>
+							<td><strong>Common Name</strong></td>
+						</tr>      
+						<?php
+						
+							$html = '';
+							if (count($quadrat->taxa) == 0) {
+								$html = $html . '<tr><td colspan=9>There are no species in this quadrat.</td></tr>';
+							} else {
+								$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
+								foreach ($sorted_taxa as $taxon) {
+									$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
+									$html = $html . '<td>' . $taxon->percent_cover . '</td>';
+									$html = $html . '<td>' . $taxon->native . '</td>';
+									$html = $html . '<td>' . $taxon->c_o_c . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->physiognomy) . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->duration) . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->common_name) . '</td></tr>';
+								}
+							}
+							echo $html . '</table>';
+							
+						?>            
 				</div>
 			</div>
 			<br>
-<?php
-	}
-}
-if ($num_active_quads == 0) {
-	echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats in this transect. </h4></div></div>';
-}
-?>
+			<?php
+			
+					}
+				}
+				if ($num_active_quads == 0) {
+					echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats in this transect. </h4></div></div>';
+				}
+				
+			?>
 		</div>
     </div> 
     <br><br>
