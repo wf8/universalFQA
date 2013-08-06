@@ -6,14 +6,14 @@
             		<span class="icon-bar"></span>
             		<span class="icon-bar"></span>
           		</button>
-          		<a class="brand" href="#">Universal FQA</a>
+          		<a class="brand" href="javascript:warn_user();">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
             		<ul class="nav pull-right">
-            			<li><a href="#">Assessments</a></li>
-            			<li><a href="#">FQA Databases</a></li>
-            			<li><a href="#">Account Info</a></li>
-            			<li><a href="#">Help</a></li>
-              			<li><a href="#">Logout</a></li>
+            			<li><a href="javascript:warn_user();">Assessments</a></li>
+            			<li><a href="javascript:warn_user();">FQA Databases</a></li>
+            			<li><a href="javascript:warn_user();">Account Info</a></li>
+            			<li><a href="javascript:warn_user();">Help</a></li>
+              			<li><a href="javascript:warn_user();">Logout</a></li>
             		</ul>
           		</div>
         	</div>

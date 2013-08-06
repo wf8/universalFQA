@@ -852,3 +852,15 @@ function delete_quadrat( id ) {
 		});
  	}
 }
+
+/**
+ * ---------------------------------------------------------
+ *
+ *  utility functions
+ *
+ * ---------------------------------------------------------
+ */
+
+function warn_user() {
+	alert('Please either click Save or Cancel before navigating away from this page.');
+}
