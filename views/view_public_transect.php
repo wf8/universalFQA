@@ -8,7 +8,7 @@
 				<div class="span11">
 					<br>
 					<h1>Public Transect Assessment</h1>
-					<button class="btn btn-info" onClick="asdf_changes();">Download Report</button> 
+					<button class="btn btn-info" onClick="download_inventory(<?php echo $assessment->id; ?>);">Download Report</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_public_assessments';return false;">Done</button>
 					<br>
 				</div>
@@ -17,30 +17,52 @@
 			<div class="row-fluid">
 				<div class="span6">
 					<h4>&#187; Date & Location:</h4>
-					6/28/2013<br>
-					Somme Prairie Grove<br>
-					Northbrook<br>
-					Cook, Illinois, USA<br>					
+					<strong><?php echo $assessment->date; ?><br>
+					<?php echo $assessment->site->name; ?></strong><br>
+					<?php echo $assessment->site->city; ?><br>
+					<?php 
+						echo $assessment->site->county;
+						if ($assessment->site->county !== '' && $assessment->site->state !== '')
+							echo ', ';
+						echo $assessment->site->state; 
+						if (($assessment->site->state !== '' && $assessment->site->country !== '') || ($assessment->site->county !== '' && $assessment->site->country !== ''))
+							echo ', '; 
+						echo $assessment->site->country; 
+					?><br>		
 				</div>	
 				<div class="span6">
-					<h4>&#187; FQA Database:</h4>
-					Region: Chicago<br>
-					Year Published: 1994<br>
-					Description: Swink and Wilhelm
+					<?php if ($assessment->custom_fqa) { ?>
+						<h4>&#187; Custom FQA Database:</h4>
+						Name: <strong><?php echo $assessment->fqa->customized_name; ?></strong><br>
+						Description: <br><?php echo $assessment->fqa->customized_description; ?><br>
+						<h4>&#187; Original FQA Database:</h4>
+						Region: <strong><?php echo $assessment->fqa->region_name; ?></strong><br>
+						Year Published: <strong><?php echo $assessment->fqa->publication_year; ?></strong><br>
+						Description: <br><?php echo $assessment->fqa->description; ?>
+					<?php } else { ?>
+						<h4>&#187; FQA Database:</h4>
+						Region: <strong><?php echo $assessment->fqa->region_name; ?></strong><br>
+						Year Published: <strong><?php echo $assessment->fqa->publication_year; ?></strong><br>
+						Description: <br><?php echo $assessment->fqa->description; ?>
+					<?php } ?>
 				</div>		
 			</div>
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
 					<h4>&#187; Details:</h4>			
-					Practitioner: Stephen and crew<br>
- 					Latitude:<br>
- 					Longitude:<br>
-					Weather Notes: Perfect breezy summer day, with storms on the horizon.<br>
- 					Duration Notes:<br>
- 					Community Type Notes:<br>
- 					Other Notes:<br>
- 					This assessment is private (viewable only by you).<br>
+					Practitioner: <strong><?php echo $assessment->practitioner; ?></strong><br>
+ 					Latitude: <?php echo $assessment->latitude; ?><br>
+ 					Longitude: <?php echo $assessment->longitude; ?><br>
+					Weather Notes: <?php echo $assessment->weather_notes; ?><br>
+ 					Duration Notes: <?php echo $assessment->duration_notes; ?><br>
+ 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
+ 					Other Notes: <?php echo $assessment->other_notes; ?><br>
+ 					<?php if ($assessment->private == 'private') { ?>
+ 					This assessment is <strong>private</strong> (viewable only by you).<br>
+ 					<?php } else { ?>
+ 					This assessment is <strong>public</strong> (viewable by all users of this website).<br>
+ 					<?php } ?>
  				</div>
  			</div>
 			<br>
@@ -219,253 +241,174 @@
 			</div>
 			<br>
 			<div class="row-fluid">
-				<div class="span12">	
-					<h4>&#187; Quadrat 1 Species:</h4>
-					<table class="table table-hover">
+				<div class="span12">
+					<h4>&#187; Quadrat Level Metrics:</h4>
+
+<table class="table table-hover">
 <tr>
-<td><strong>Scientific Name</strong></td>
-<td><strong>Family</strong></td>
-<td><strong>Acronym</strong></td>
-<td><strong>Nativity</strong></td>
-<td><strong>C</strong></td>
-<td><strong>W</strong></td>
-<td><strong>Wetland Status</strong></td>
-<td><strong>Physiognomy</strong></td>
-<td><strong>Duration</strong></td>
-<td><strong>Common Name</strong></td>
+<td><strong>Quadrat</strong></td>
+<td><strong>Species Richness</strong></td>
+<td><strong>Native Species Richness</strong></td>
+<td><strong>Total Mean C</strong></td>
+<td><strong>Native Mean C</strong></td>
+<td><strong>Total FQI</strong></td>
+<td><strong>Native FQI</strong></td>
+<td><strong>Cover-weighted FQI</strong></td>
+<td><strong>Cover-weighted Native FQI</strong></td>
+<td><strong>Adjusted FQI</strong></td>
+<td><strong>Mean Wetness</strong></td>
+<td><strong>Mean Native Wetness</strong></td>
+<td><strong>Latitude</strong></td>
+<td><strong>Longitude</strong></td>
 </tr>                    
 <tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
+<td>1</td>
+<td>5</td>
 <td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
+<td>6</td>
+<td>7</td>
+<td>56</td>
+<td>67</td>
+<td>56</td>
+<td>67</td>
+<td>67</td>
+<td>-2</td>
+<td>-2</td>
+<td>n/a</td>
+<td>n/a</td>
 </tr>
 <tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
+<td>2</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
 <td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
+<td>56</td>
+<td>67</td>
+<td>56</td>
+<td>67</td>
+<td>67</td>
+<td>-2</td>
+<td>-2</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>7</td>
+<td>56</td>
+<td>67</td>
+<td>56</td>
+<td>67</td>
+<td>67</td>
+<td>-2</td>
+<td>-2</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>7</td>
+<td>56</td>
+<td>67</td>
+<td>56</td>
+<td>67</td>
+<td>67</td>
+<td>-2</td>
+<td>-2</td>
+<td>n/a</td>
+<td>n/a</td>
 </tr>
 </table>
+
 				</div>
 			</div>
 			<br>
-			<div class="row-fluid">
-				<div class="span12">	
-					<h4>&#187; Quadrat 2 Species:</h4>
-					<table class="table table-hover">
-<tr>
-<td><strong>Scientific Name</strong></td>
-<td><strong>Family</strong></td>
-<td><strong>Acronym</strong></td>
-<td><strong>Nativity</strong></td>
-<td><strong>C</strong></td>
-<td><strong>W</strong></td>
-<td><strong>Wetland Status</strong></td>
-<td><strong>Physiognomy</strong></td>
-<td><strong>Duration</strong></td>
-<td><strong>Common Name</strong></td>
-</tr>                    
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-</table>
-				</div>
-			</div>
-			<br>
-			<div class="row-fluid">
-				<div class="span12">	
-					<h4>&#187; Quadrat 3 Species:</h4>
-					<table class="table table-hover">
-<tr>
-<td><strong>Scientific Name</strong></td>
-<td><strong>Family</strong></td> 
-<td><strong>Acronym</strong></td>
-<td><strong>Nativity</strong></td>
-<td><strong>C</strong></td>
-<td><strong>W</strong></td>
-<td><strong>Wetland Status</strong></td>
-<td><strong>Physiognomy</strong></td>
-<td><strong>Duration</strong></td>
-<td><strong>Common Name</strong></td>
-</tr> 
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-</table>
-				</div>
-			</div>
-			<br>
-			<div class="row-fluid">
-				<div class="span12">	
-					<h4>&#187; Quadrat 4 Species:</h4>
-					<table class="table table-hover">
-<tr>
-<td><strong>Scientific Name</strong></td>
-<td><strong>Family</strong></td>
-<td><strong>Acronym</strong></td>
-<td><strong>Nativity</strong></td>
-<td><strong>C</strong></td>
-<td><strong>W</strong></td>
-<td><strong>Wetland Status</strong></td>
-<td><strong>Physiognomy</strong></td>
-<td><strong>Duration</strong></td>
-<td><strong>Common Name</strong></td>
-</tr> 
-<tr>
-<td>Acorus calamus</td>
-<td>n/a</td>
-<td>ACOCAL</td>
-<td>Native</td>
-<td>7</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>SWEET FLAG</td>
-</tr>
-<tr>
-<td>Alisma subcordatum</td>
-<td>n/a</td>
-<td>ALISUB</td>
-<td>Native</td>
-<td>4</td>
-<td>-5</td>
-<td>OBL</td>
-<td>Forb</td>
-<td>Perennial</td>
-<td>COMMON WATER PLANTAIN </td>
-</tr>
-</table>
 			
+<?php
+
+function prettify_value( $value ) {
+	if (trim($value) == '') 
+		return 'n/a';
+	else
+		return $value;
+}
+
+function sort_array_of_objects($arr, $var) { 
+   $tarr = array(); 
+   $rarr = array(); 
+   for($i = 0; $i < count($arr); $i++) { 
+	  $element = $arr[$i]; 
+	  $tarr[] = strtolower($element->{$var}); 
+   } 
+   reset($tarr); 
+   asort($tarr); 
+   $karr = array_keys($tarr); 
+   for($i = 0; $i < count($tarr); $i++) { 
+	  $rarr[] = $arr[intval($karr[$i])]; 
+   } 
+   return $rarr; 
+} 
+$num_active_quads = 0;
+$quadrats = sort_array_of_objects($assessment->quadrats, 'name');
+foreach ($quadrats as $quadrat) {
+	if (!$quadrat->active) {
+	} else {
+		$num_active_quads++; 			
+?>			
+			<div class="row-fluid">
+				<div class="span12">	
+					<h4>&#187; Quadrat <?php echo $quadrat->name; ?> Species:</h4>
+					<table class="table table-hover">
+<tr>
+<td><strong>Scientific Name</strong></td>
+<td><strong>Family</strong></td>
+<td><strong>Acronym</strong></td>
+<td><strong>% Cover</strong></td>
+<td><strong>Nativity</strong></td>
+<td><strong>C</strong></td>
+<td><strong>W</strong></td>
+<td><strong>Physiognomy</strong></td>
+<td><strong>Duration</strong></td>
+<td><strong>Common Name</strong></td>
+</tr>      
+<?php
+		$html = '';
+		if (count($quadrat->taxa) == 0) {
+			$html = $html . '<tr><td colspan=9>There are no species in this quadrat.</td></tr>';
+		} else {
+			$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
+			foreach ($sorted_taxa as $taxon) {
+				$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
+				$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
+				$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
+				$html = $html . '<td>' . $taxon->percent_cover . '</td>';
+				$html = $html . '<td>' . $taxon->native . '</td>';
+				$html = $html . '<td>' . $taxon->c_o_c . '</td>';
+				$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';
+				$html = $html . '<td>' . prettify_value($taxon->physiognomy) . '</td>';
+				$html = $html . '<td>' . prettify_value($taxon->duration) . '</td>';
+				$html = $html . '<td>' . prettify_value($taxon->common_name) . '</td></tr>';
+			}
+		}
+		echo $html . '</table>';
+?>            
 				</div>
 			</div>
+			<br>
+<?php
+	}
+}
+if ($num_active_quads == 0) {
+	echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats in this transect. </h4></div></div>';
+}
+?>
 		</div>
     </div> 
     <br><br>
