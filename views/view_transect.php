@@ -67,6 +67,20 @@
  				</div>
  			</div>
 			<br>
+			<?php
+				function prettify_percent( $value ) {
+					if (trim($value) == '') 
+						return '';
+					else
+						return '(' . $value . '%)';
+				}
+				function prettify_value( $value ) {
+					if (trim($value) == '') 
+						return 'n/a';
+					else
+						return $value;
+				}
+			?>
 			<div class="row-fluid">
 				<div class="span4">
 					<h4>&#187; Conservatism-Based Metrics:</h4>
@@ -245,101 +259,55 @@
 				<div class="span12">
 					<h4>&#187; Quadrat Level Metrics:</h4>
 
-<table class="table table-hover">
-<tr>
-<td><strong>Quadrat</strong></td>
-<td><strong>Species Richness</strong></td>
-<td><strong>Native Species Richness</strong></td>
-<td><strong>Total Mean C</strong></td>
-<td><strong>Native Mean C</strong></td>
-<td><strong>Total FQI</strong></td>
-<td><strong>Native FQI</strong></td>
-<td><strong>Cover-weighted FQI</strong></td>
-<td><strong>Cover-weighted Native FQI</strong></td>
-<td><strong>Adjusted FQI</strong></td>
-<td><strong>Mean Wetness</strong></td>
-<td><strong>Mean Native Wetness</strong></td>
-<td><strong>Latitude</strong></td>
-<td><strong>Longitude</strong></td>
-</tr>                    
-<tr>
-<td>1</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>2</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>3</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr>
-<td>4</td>
-<td>5</td>
-<td>4</td>
-<td>6</td>
-<td>7</td>
-<td>56</td>
-<td>67</td>
-<td>56</td>
-<td>67</td>
-<td>67</td>
-<td>-2</td>
-<td>-2</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-</table>
-
+					<table class="table table-hover">
+						<tr>
+							<td><strong>Quadrat</strong></td>
+							<td><strong>Species Richness</strong></td>
+							<td><strong>Native Species Richness</strong></td>
+							<td><strong>Total Mean C</strong></td>
+							<td><strong>Native Mean C</strong></td>
+							<td><strong>Total FQI</strong></td>
+							<td><strong>Native FQI</strong></td>
+							<td><strong>Cover-weighted FQI</strong></td>
+							<td><strong>Cover-weighted Native FQI</strong></td>
+							<td><strong>Adjusted FQI</strong></td>
+							<td><strong>Mean Wetness</strong></td>
+							<td><strong>Mean Native Wetness</strong></td>
+							<td><strong>Latitude</strong></td>
+							<td><strong>Longitude</strong></td>
+						</tr>    
+						<?php 	
+							foreach ($assessment->quadrats as $quadrat) { 
+								if ($quadrat->active) { 
+						?>           
+							<tr>
+								<td><?php echo $quadrat->name; ?></td>
+								<td><?php echo $quadrat->metrics->total_species; ?></td>
+								<td><?php echo $quadrat->metrics->native_species; ?></td>
+								<td><?php echo $quadrat->metrics->total_mean_c; ?></td>
+								<td><?php echo $quadrat->metrics->native_mean_c; ?></td>
+								<td><?php echo $quadrat->metrics->total_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->native_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->cover_weighted_total_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->cover_weighted_native_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->adjusted_fqi; ?></td>
+								<td><?php echo $quadrat->metrics->mean_wetness; ?></td>
+								<td><?php echo $quadrat->metrics->native_mean_wetness; ?></td>
+								<td><?php echo prettify_value($quadrat->latitude); ?></td>
+								<td><?php echo prettify_value($quadrat->longitude); ?></td>
+							</tr>
+						<?php
+							 	}
+							} 
+						?>
+					</table>
 				</div>
 			</div>
 			<br>
 			
 <?php
 
-function prettify_value( $value ) {
-	if (trim($value) == '') 
-		return 'n/a';
-	else
-		return $value;
-}
+
 
 function sort_array_of_objects($arr, $var) { 
    $tarr = array(); 
