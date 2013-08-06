@@ -10,7 +10,6 @@ if( $_SESSION['valid'] ) {
 			<td><strong>Longitude</strong></td>
 			<td></td>
 			</tr>';	
-error_log('count='.count($assessment->quadrats));
 	if (count($assessment->quadrats) == 0) {
 		$html = $html . '<tr><td colspan=6>You have not added any quadrats yet.</td></tr>';
 	} else {
@@ -21,7 +20,7 @@ error_log('count='.count($assessment->quadrats));
 			$html = $html . '<td>' . $quadrat->get_species_richness() . '</td>';
 			$html = $html . '<td>' . prettify_value($quadrat->latitude) . '</td>';
 			$html = $html . '<td>' . prettify_value($quadrat->longitude) . '</td>';
-			$html = $html . '<td><a href="/edit_quadrat/'.$quadrat->name.'">Edit</a> | <a href="/delete_quadrat/'.$quadrat->name.'">Delete</a></td></tr>';
+			$html = $html . '<td><a href="/edit_quadrat/'.$quadrat->name.'">Edit</a> | <a href="javascript:delete_quadrat(\'' . $quadrat->name . '\');">Delete</a></td></tr>';
 		}
 	}
 	echo $html . '</table>';

@@ -782,3 +782,18 @@ function clear_add_fields_quadrat() {
 	$("#taxa_to_add_list").val('');
 	$("#species_error").html('');
 }
+
+function delete_quadrat( id ) {
+ 	if (confirm("Are you sure you want to delete this quadrat?")) {
+		$.ajax({
+			url: "/ajax/delete_quadrat",
+			type: "POST",
+			data: {
+				id: id,
+			},
+			success: function( response ) {
+				location.reload(true);
+			}
+		});
+ 	}
+}
