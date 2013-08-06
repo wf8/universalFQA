@@ -4,6 +4,7 @@ class Quadrat {
 	public $taxa = array(); // an array of Taxa or CustomTaxa objects
 	public $fqa_id;
 	public $custom_fqa;
+	public $metrics; // a QuadratMetrics object
 	
 	public $name;
 	public $active;
@@ -16,8 +17,7 @@ class Quadrat {
 		if ($id !== null) {
 			// load the quadrat taxa
 			$this->get_taxa();
-			//$metrics = new QuadratMetrics($this);
-			//$this->metrics = $metrics;
+			$this->compute_metrics();
 		}
 	}
 	
@@ -125,10 +125,11 @@ class Quadrat {
 	}
 	
 	/*
-	 * updates existing quadrat
+	 * compute metrics for the quadrat
 	 */
-	public function update() {
-
+	public function compute_metrics() {
+		$metrics = new QuadratMetrics($this);
+		$this->metrics = $metrics;
 	}
 	
 	/*

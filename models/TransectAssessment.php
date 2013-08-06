@@ -42,6 +42,7 @@ class TransectAssessment extends Assessment {
 			$quadrat->fqa_id = $this->fqa_id;
 			$quadrat->custom_fqa = $this->custom_fqa;
 			$quadrat->get_taxa();
+			$quadrat->compute_metrics();
 			// add object to array
 			$this->quadrats[] = $quadrat;
 		}
