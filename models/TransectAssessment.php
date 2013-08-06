@@ -15,11 +15,25 @@ class TransectAssessment extends Assessment {
 	}
 	
 	public function get_all_for_user($user_id) {
-		return Assessment::get_all_for_user($user_id);
+		$assessments = Assessment::get_all_for_user($user_id);
+		$this->get_db_link();
+		foreach ($assessments as $assessment) {
+			$assessment->get_quadrats();
+			$metrics = new TransectMetrics($assessment);
+			$assessment->metrics = $metrics;
+		}
+		return $assessments;
 	}
 	
 	public function get_all_public() {
-		return Assessment::get_all_public();
+		$assessments = Assessment::get_all_public();
+		$this->get_db_link();
+		foreach ($assessments as $assessment) {
+			$assessment->get_quadrats();
+			$metrics = new TransectMetrics($assessment);
+			$assessment->metrics = $metrics;
+		}
+		return $assessments;
 	}
 	
 	/*

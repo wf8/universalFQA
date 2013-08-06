@@ -1,6 +1,9 @@
 <?php
 class TransectMetrics extends QuadratMetrics {
 
+	public $taxa = array(); // array of TransectMetricsTaxa objects
+	public $total_frequency = 0;
+	
 	/*
 	 * constructor
 	 * takes as input a Transect object
@@ -13,74 +16,212 @@ class TransectMetrics extends QuadratMetrics {
 		
 		foreach( $quadrats as $quadrat ) {
 		
-			$this->total_species += $quadrat->metrics->total_species;
-			$this->total_c += $quadrat->metrics->total_c;
-			$this->total_coverage += $quadrat->metrics->total_coverage;
-			$this->sum_total_c_times_coverage += $quadrat->metrics->sum_total_c_times_coverage;
-
-			$this->native_species += $quadrat->metrics->native_species;
-			$this->native_c += $quadrat->metrics->native_c;
-			$this->native_w += $quadrat->metrics->native_w;
-			$this->native_coverage += $quadrat->metrics->native_coverage;
-			$this->sum_native_c_times_coverage += $quadrat->metrics->sum_native_c_times_coverage;
+			if ($quadrat->active) {
 			
-			$this->c_0 += $quadrat->metrics->c_0;
-			$this->c_1_3 += $quadrat->metrics->c_1_3;
-			$this->c_4_6 += $quadrat->metrics->c_4_6;
-			$this->c_7_10 += $quadrat->metrics->c_7_10;			
+				if ($quadrat->metrics->wetness)
+					$this->wetness = true;
+				if ($quadrat->metrics->physiognomy)
+					$this->physiognomy = true;
+				if ($quadrat->metrics->duration)
+					$this->duration = true;
+				
+				foreach ($quadrat->taxa as $taxon) {
+					$this->total_frequency++;
+					// check to see if this taxa is already in the transect metrics
+					$found = false;
+					foreach ($this->taxa as $metric_taxon) {
+						if ($taxon->id == $metric_taxon->taxa->id) {
+							// update frequence and coverage
+							$metric_taxon->frequency++;
+							$metric_taxon->coverage += $taxon->percent_cover;
+							$found = true;
+							break;
+						}
+					}
+					if (!$found) {
+						// make new TransectMetricsTaxa
+						$metric_taxon = new TransectMetricsTaxa();
+						$metric_taxon->frequency = 1;
+						$metric_taxon->coverage = $taxon->percent_cover;
+						$metric_taxon->taxa = $taxon;
+						$this->taxa[] = $metric_taxon;
+						
+						$this->total_species++;
+						$this->total_c += $taxon->c_o_c;
+						if ($quadrat->metrics->wetness)
+							$this->total_w += $taxon->c_o_w;
+						if ($taxon->native == 'native') {
+							$this->native_species++;
+							$this->native_c += $taxon->c_o_c;
+							if ($quadrat->metrics->wetness)
+								$this->native_w += $taxon->c_o_w;
+						}
+						if ($taxon->c_o_c == 0)
+							$this->c_0++;
+						else if (0 < $taxon->c_o_c && $taxon->c_o_c < 4)
+							$this->c_1_3++;
+						else if (3 < $taxon->c_o_c && $taxon->c_o_c < 7)
+							$this->c_4_6++;
+						else if (6 < $taxon->c_o_c && $taxon->c_o_c < 11)
+							$this->c_7_10++;
+							
+						if ($quadrat->metrics->duration) {
+							if ($taxon->duration == 'annual') {
+								$this->annual++;
+								if ($taxon->native == 'native') {
+									$this->native_annual++;
+								}
+							}
+							if ($taxon->duration == 'perennial') {
+								$this->perennial++;
+								if ($taxon->native == 'native') {
+									$this->native_perennial++;
+								}
+							}
+							if ($taxon->duration == 'biennial') {
+								$this->biennial++;
+								if ($taxon->native == 'native') {
+									$this->native_biennial++;
+								}
+							}
+						}
+						
+						if ($quadrat->metrics->physiognomy) {
+						
+							switch ($taxon->physiognomy) {
+								case 'tree':
+									$this->physiognomy = true;
+									$this->tree++;
+									if ($taxon->native == 'native') {
+										$this->native_tree_c += $taxon->c_o_c;
+										$this->native_tree++;
+									}
+									break;
+								case 'shrub':
+									$this->physiognomy = true;
+									$this->shrub++;
+									if ($taxon->native == 'native') {
+										$this->native_shrub_c += $taxon->c_o_c;
+										$this->native_shrub++;
+									}
+									break;
+								case 'vine':
+									$this->physiognomy = true;
+									$this->vine++;
+									if ($taxon->native == 'native') {
+										$this->native_herbaceous_c += $taxon->c_o_c;
+										$this->native_herbaceous++;
+									}
+									break;
+								case 'forb':
+									$this->physiognomy = true;
+									$this->forb++;
+									if ($taxon->native == 'native') {
+										$this->native_herbaceous_c += $taxon->c_o_c;
+										$this->native_herbaceous++;
+									}
+									break;
+								case 'grass':
+									$this->physiognomy = true;
+									$this->grass++;
+									if ($taxon->native == 'native') {
+										$this->native_herbaceous_c += $taxon->c_o_c;
+										$this->native_herbaceous++;
+									}
+									break;
+								case 'sedge':
+									$this->physiognomy = true;
+									$this->sedge++;
+									if ($taxon->native == 'native') {
+										$this->native_herbaceous_c += $taxon->c_o_c;
+										$this->native_herbaceous++;
+									}
+									break;
+								case 'rush':
+									$this->physiognomy = true;
+									$this->rush++;
+									if ($taxon->native == 'native') {
+										$this->native_herbaceous_c += $taxon->c_o_c;
+										$this->native_herbaceous++;
+									}
+									break;
+								case 'fern':
+									$this->physiognomy = true;
+									$this->fern++;
+									if ($taxon->native == 'native') {
+										$this->native_herbaceous_c += $taxon->c_o_c;
+										$this->native_herbaceous++;
+									}
+									break;
+								case 'bryophyte':
+									$this->physiognomy = true;
+									$this->bryophyte++;
+									if ($taxon->native == 'native') {
+										$this->native_herbaceous_c += $taxon->c_o_c;
+										$this->native_herbaceous++;
+									}
+									break;
+							}
+						}			
+					}
+				}
+			}
+		}
+		// done looping through quadrats
+		
+		// now generate average coverage for each taxa
+		// and calculate total coverage
+		foreach ($this->taxa as $metric_taxon) {
+			$metric_taxon->percent_cover = round($metric_taxon->coverage / $metric_taxon->frequency, 1);
 			
-			if ($quadrat->metrics->wetness) {
-				$this->wetness = true;
-				$this->total_w += $quadrat->metrics->total_w;
+			$this->total_coverage += $metric_taxon->percent_cover;
+			$this->sum_total_c_times_coverage += ($metric_taxon->percent_cover * $metric_taxon->taxa->c_o_c);
+			if ($metric_taxon->taxa->native == 'native') {
+				$this->native_coverage += $metric_taxon->percent_cover;
+				$this->sum_native_c_times_coverage += ($metric_taxon->percent_cover * $metric_taxon->taxa->c_o_c);
 			}
 			
-			if ($quadrat->metrics->duration) {
-				$this->duration = true;
-				$this->annual += $quadrat->metrics->annual;
-				$this->native_annual += $quadrat->metrics->native_annual;
-				$this->perennial += $quadrat->metrics->perennial;
-				$this->native_perennial += $quadrat->metrics->native_perennial;
-				$this->biennial += $quadrat->metrics->biennial;
-				$this->native_biennial += $quadrat->metrics->native_biennial;
+			if ($this->physiognomy) {
+				// now compute physiognomy coverage
+				switch ($metric_taxon->taxa->physiognomy) {
+					case 'tree':
+						$this->tree_coverage += $metric_taxon->percent_cover;
+						break;
+					case 'shrub':
+						$this->shrub_coverage += $metric_taxon->percent_cover;
+						break;
+					case 'vine':
+						$this->vine_coverage += $metric_taxon->percent_cover;
+						break;
+					case 'forb':
+						$this->forb_coverage += $metric_taxon->percent_cover;
+						break;
+					case 'grass':
+						$this->grass_coverage += $metric_taxon->percent_cover;
+						break;
+					case 'sedge':
+						$this->sedge_coverage += $metric_taxon->percent_cover;
+						break;
+					case 'rush':
+						$this->rush_coverage += $metric_taxon->percent_cover;
+						break;
+					case 'fern':
+						$this->fern_coverage += $metric_taxon->percent_cover;
+						break;
+					case 'bryophyte':
+						$this->bryophyte_coverage += $metric_taxon->percent_cover;
+						break;
+				}
 			}
-			
-			if ($quadrat->metrics->physiognomy) {
-			
-				$this->physiognomy = true;
-				
-				$this->tree += $quadrat->metrics->tree;
-				$this->shrub += $quadrat->metrics->shrub;
-				$this->vine += $quadrat->metrics->vine;
-				$this->forb += $quadrat->metrics->forb;
-				$this->grass += $quadrat->metrics->grass;
-				$this->sedge += $quadrat->metrics->sedge;
-				$this->rush += $quadrat->metrics->rush;
-				$this->fern += $quadrat->metrics->fern;
-				$this->bryophyte += $quadrat->metrics->bryophyte;
-				
-				$this->tree_coverage += $quadrat->metrics->tree_coverage;
-				$this->shrub_coverage += $quadrat->metrics->shrub_coverage;
-				$this->vine_coverage += $quadrat->metrics->vine_coverage;
-				$this->forb_coverage += $quadrat->metrics->forb_coverage;
-				$this->grass_coverage += $quadrat->metrics->grass_coverage;
-				$this->sedge_coverage += $quadrat->metrics->sedge_coverage;
-				$this->rush_coverage += $quadrat->metrics->rush_coverage;
-				$this->fern_coverage += $quadrat->metrics->fern_coverage;
-				$this->bryophyte_coverage += $quadrat->metrics->bryophyte_coverage;
-				
-				$this->native_tree += $quadrat->metrics->native_tree;
-				$this->native_tree_c += $quadrat->metrics->native_tree_c;
-				$this->native_shrub += $quadrat->metrics->native_shrub;
-				$this->native_shrub_c += $quadrat->metrics->native_shrub_c;
-				$this->native_herbaceous += $quadrat->metrics->native_herbaceous;
-				$this->native_herbaceous_c += $quadrat->metrics->native_herbaceous_c;
-			}
-			
-			/* get data for relative importance */
-			
-			
 		}
 		
+		// now calculate RIVs for each species
+		foreach ($this->taxa as $metric_taxon) {
+			$metric_taxon->relative_cover = round(100 * $metric_taxon->percent_cover / $this->total_coverage, 1);
+			$metric_taxon->relative_frequency = round(100 * $metric_taxon->frequency / $this->total_frequency, 1);
+			$metric_taxon->relative_importance_value = round( ($metric_taxon->relative_cover + $metric_taxon->relative_frequency)/2, 1);
+		}
+
 		if (!$this->physiognomy) {
 			$this->tree = 'n/a';
 			$this->shrub = 'n/a';
@@ -157,7 +298,8 @@ class TransectMetrics extends QuadratMetrics {
 				$this->percent_rush = round(100*$this->rush / $this->total_species,1);
 				$this->percent_fern = round(100*$this->fern / $this->total_species,1);
 				$this->percent_bryophyte = round(100*$this->bryophyte / $this->total_species,1);
-				
+			}
+			if ($this->total_coverage > 0) {	
 				$this->percent_tree_coverage = round(100*$this->tree_coverage / $this->total_coverage,1);
 				$this->percent_shrub_coverage = round(100*$this->shrub_coverage / $this->total_coverage,1);
 				$this->percent_vine_coverage = round(100*$this->vine_coverage / $this->total_coverage,1);

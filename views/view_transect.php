@@ -235,22 +235,57 @@
 							<td><strong>Relative Importance Value</strong></td>
 						</tr>
 						<!-- show descending in order of RIV -->
-						<tr>
-							<td>Acorus calamus</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
-						</tr>
-						<tr>
-							<td>Alisma subcordatum</td>
-							<td>120</td>
-							<td>105</td>
-							<td>15</td>
-							<td>13</td>
-							<td>14</td>
-						</tr>
+						<?php
+						
+							function sort_array_of_objects($arr, $var) { 
+							   $tarr = array(); 
+							   $rarr = array(); 
+							   for($i = 0; $i < count($arr); $i++) { 
+								  $element = $arr[$i]; 
+								  $tarr[] = strtolower($element->{$var}); 
+							   } 
+							   reset($tarr); 
+							   asort($tarr); 
+							   $karr = array_keys($tarr); 
+							   for($i = 0; $i < count($tarr); $i++) { 
+								  $rarr[] = $arr[intval($karr[$i])]; 
+							   } 
+							   return $rarr; 
+							} 
+							function reverse_sort_array_of_objects($arr, $var) { 
+							   $tarr = array(); 
+							   $rarr = array(); 
+							   for($i = 0; $i < count($arr); $i++) { 
+								  $element = $arr[$i]; 
+								  $tarr[] = strtolower($element->{$var}); 
+							   } 
+							   reset($tarr); 
+							   asort($tarr); 
+							   $karr = array_keys($tarr); 
+							   for($i = count($tarr)-1; $i > -1; $i--) { 
+								  $rarr[] = $arr[intval($karr[$i])]; 
+							   } 
+							   return $rarr; 
+							} 
+							
+							$taxa = reverse_sort_array_of_objects($assessment->metrics->taxa, 'relative_importance_value');
+						
+							foreach ($taxa as $taxon) { 
+
+						?>
+							<tr>
+								<td><?php echo $taxon->taxa->scientific_name; ?></td>
+								<td><?php echo $taxon->frequency; ?></td>
+								<td><?php echo $taxon->percent_cover; ?></td>
+								<td><?php echo $taxon->relative_frequency; ?></td>
+								<td><?php echo $taxon->relative_cover; ?></td>
+								<td><?php echo $taxon->relative_importance_value; ?></td>
+							</tr>
+						<?php
+						
+							}
+							
+						?>
 					</table>
 				</div>
 			</div>
@@ -277,7 +312,11 @@
 							<td><strong>Longitude</strong></td>
 						</tr>    
 						<?php 	
-							foreach ($assessment->quadrats as $quadrat) { 
+							
+							$num_active_quads = 0;
+							$quadrats = sort_array_of_objects($assessment->quadrats, 'name');
+						
+							foreach ($quadrats as $quadrat) { 
 								if ($quadrat->active) { 
 						?>           
 							<tr>
@@ -305,79 +344,66 @@
 			</div>
 			<br>
 			
-<?php
-
-
-
-function sort_array_of_objects($arr, $var) { 
-   $tarr = array(); 
-   $rarr = array(); 
-   for($i = 0; $i < count($arr); $i++) { 
-	  $element = $arr[$i]; 
-	  $tarr[] = strtolower($element->{$var}); 
-   } 
-   reset($tarr); 
-   asort($tarr); 
-   $karr = array_keys($tarr); 
-   for($i = 0; $i < count($tarr); $i++) { 
-	  $rarr[] = $arr[intval($karr[$i])]; 
-   } 
-   return $rarr; 
-} 
-$num_active_quads = 0;
-$quadrats = sort_array_of_objects($assessment->quadrats, 'name');
-foreach ($quadrats as $quadrat) {
-	if (!$quadrat->active) {
-	} else {
-		$num_active_quads++; 			
-?>			
+			<?php
+			
+				foreach ($quadrats as $quadrat) {
+					if (!$quadrat->active) {
+					} else {
+						$num_active_quads++; 	
+								
+			?>	
+					
 			<div class="row-fluid">
 				<div class="span12">	
 					<h4>&#187; Quadrat <?php echo $quadrat->name; ?> Species:</h4>
 					<table class="table table-hover">
-<tr>
-<td><strong>Scientific Name</strong></td>
-<td><strong>Family</strong></td>
-<td><strong>Acronym</strong></td>
-<td><strong>% Cover</strong></td>
-<td><strong>Nativity</strong></td>
-<td><strong>C</strong></td>
-<td><strong>W</strong></td>
-<td><strong>Physiognomy</strong></td>
-<td><strong>Duration</strong></td>
-<td><strong>Common Name</strong></td>
-</tr>      
-<?php
-		$html = '';
-		if (count($quadrat->taxa) == 0) {
-			$html = $html . '<tr><td colspan=9>There are no species in this quadrat.</td></tr>';
-		} else {
-			$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
-			foreach ($sorted_taxa as $taxon) {
-				$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
-				$html = $html . '<td>' . $taxon->percent_cover . '</td>';
-				$html = $html . '<td>' . $taxon->native . '</td>';
-				$html = $html . '<td>' . $taxon->c_o_c . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->physiognomy) . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->duration) . '</td>';
-				$html = $html . '<td>' . prettify_value($taxon->common_name) . '</td></tr>';
-			}
-		}
-		echo $html . '</table>';
-?>            
+						<tr>
+							<td><strong>Scientific Name</strong></td>
+							<td><strong>Family</strong></td>
+							<td><strong>Acronym</strong></td>
+							<td><strong>% Cover</strong></td>
+							<td><strong>Nativity</strong></td>
+							<td><strong>C</strong></td>
+							<td><strong>W</strong></td>
+							<td><strong>Physiognomy</strong></td>
+							<td><strong>Duration</strong></td>
+							<td><strong>Common Name</strong></td>
+						</tr>      
+						<?php
+						
+							$html = '';
+							if (count($quadrat->taxa) == 0) {
+								$html = $html . '<tr><td colspan=9>There are no species in this quadrat.</td></tr>';
+							} else {
+								$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
+								foreach ($sorted_taxa as $taxon) {
+									$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
+									$html = $html . '<td>' . $taxon->percent_cover . '</td>';
+									$html = $html . '<td>' . $taxon->native . '</td>';
+									$html = $html . '<td>' . $taxon->c_o_c . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->physiognomy) . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->duration) . '</td>';
+									$html = $html . '<td>' . prettify_value($taxon->common_name) . '</td></tr>';
+								}
+							}
+							echo $html . '</table>';
+							
+						?>            
 				</div>
 			</div>
 			<br>
-<?php
-	}
-}
-if ($num_active_quads == 0) {
-	echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats in this transect. </h4></div></div>';
-}
-?>
+			<?php
+			
+					}
+				}
+				if ($num_active_quads == 0) {
+					echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats in this transect. </h4></div></div>';
+				}
+				
+			?>
 		</div>
     </div> 
     <br><br>
