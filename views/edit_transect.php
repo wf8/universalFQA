@@ -137,8 +137,9 @@
 						}
 						?>
 						</select>
-						<button class="btn btn-info" onclick="javascript:change_inventory_fqa_db();return false;">Change FQA Database</button>
+						<button class="btn btn-info" onclick="javascript:change_transect_fqa_db();return false;">Change FQA Database</button>
 					</form>
+					<div id="species_error" class="red"></div>
 				</div>
 			</div>
 			<div class="row-fluid">

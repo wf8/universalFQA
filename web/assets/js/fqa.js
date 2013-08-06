@@ -643,6 +643,22 @@ function toggle_active( quadrat_name ) {
 	});
 }
 
+	function change_transect_fqa_db() {
+ 	if (confirm("Are you sure you want to change the FQA database? Some species may not be found in the new database.")) {
+		$.ajax({
+			url: "/ajax/change_transect_fqa_db",
+			type: "POST",
+			data: {
+				fqa_id: $("#fqa_select").val(),
+			},
+			success: function( response ) {
+				$( "#species_error" ).html( response );	
+				update_quadrat_list();
+			}
+		});
+ 	}
+}
+
 /**
  * ---------------------------------------------------------
  *
