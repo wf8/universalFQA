@@ -1,5 +1,5 @@
 <?php
-class InventoryMetrics extends Metrics {
+class QuadratMetrics extends Metrics {
 
 	public $total_mean_c = 0;
 	public $native_mean_c = 0;
@@ -21,6 +21,11 @@ class InventoryMetrics extends Metrics {
 	public $percent_non_native_species = 0;
 	public $mean_wetness = 0;
 	public $native_mean_wetness = 0;
+
+	public $cover_weighted_total_mean_c = 0;
+	public $cover_weighted_native_mean_c = 0;
+	public $cover_weighted_total_fqi = 0;
+	public $cover_weighted_native_fqi = 0;
 
 	public $tree = 0;
 	public $shrub = 0;
@@ -60,13 +65,13 @@ class InventoryMetrics extends Metrics {
 
 	/*
 	 * constructor
-	 * takes as input an InventoryAssessment object
+	 * takes as input an Quadrat object
 	 */
-	public function __construct( $inventory ) {
+	public function __construct( $quadrat ) {
 	
-		Metrics::__construct( $inventory );
+		Metrics::__construct( $quadrat );
 		
-		$taxa = $inventory->taxa;
+		$taxa = $quadrat->taxa;
 		$total_c = 0;
 		$native_c = 0;
 		$total_w = 0;
@@ -85,6 +90,11 @@ class InventoryMetrics extends Metrics {
 		$native_shrub = 0;
 		$native_herbaceous = 0;
 		
+		$total_coverage = 0;
+		$native_coverage = 0;
+		$sum_total_c_times_coverage = 0;	
+		$sum_native_c_times_coverage = 0;
+		
 		// checks to see if these data are in the taxon's fqa_db
 		// if no data set metrics to 'n/a'
 		$physiognomy = false;
@@ -94,6 +104,8 @@ class InventoryMetrics extends Metrics {
 		foreach( $taxa as $taxon ) {
 			$this->total_species++;
 			$total_c += $taxon->c_o_c;
+			$total_coverage += $taxon->percent_cover;
+			$sum_total_c_times_coverage += ($taxon->percent_cover * $taxon->c_o_c);
 			
 			if (trim($taxon->c_o_w) !== '') {
 				$wetness = true;
@@ -104,6 +116,8 @@ class InventoryMetrics extends Metrics {
 				$this->native_species++;
 				$native_c += $taxon->c_o_c;
 				$native_w += $taxon->c_o_w;
+				$native_coverage += $taxon->percent_cover;
+				$sum_native_c_times_coverage += ($taxon->percent_cover * $taxon->c_o_c);
 			}
 			
 			if ($taxon->c_o_c == 0)
@@ -237,19 +251,19 @@ class InventoryMetrics extends Metrics {
 				$this->native_tree_mean_c = 'n/a';
 			else
 				if ($this->native_species > 0) {
-					$this->native_tree_mean_c = round(($native_tree_c / $this->native_species),1);
+					$this->native_tree_mean_c = round(($native_tree_c / $this->native_species), 1);
 				}
 			if ($native_shrub == 0)
 				$this->native_shrub_mean_c = 'n/a';
 			else
 				if ($this->native_species > 0) {
-					$this->native_shrub_mean_c = round(($native_shrub_c / $this->native_species),1);
+					$this->native_shrub_mean_c = round(($native_shrub_c / $this->native_species), 1);
 				}
 			if ( $native_herbaceous == 0 )
 				$this->native_herbaceous_mean_c = 'n/a';
 			else
 				if ($this->native_species > 0) {
-					$this->native_herbaceous_mean_c = round(($native_herbaceous_c / $this->native_species),1);
+					$this->native_herbaceous_mean_c = round(($native_herbaceous_c / $this->native_species), 1);
 				}
 			if ($this->total_species > 0) {
 				$this->percent_tree = round(100*$this->tree / $this->total_species,1);
@@ -285,7 +299,7 @@ class InventoryMetrics extends Metrics {
 				$this->percent_annual = round(100*$this->annual / $this->total_species,1);
 				$this->percent_perennial = round(100*$this->perennial / $this->total_species,1);
 				$this->percent_biennial = round(100*$this->biennial / $this->total_species,1);
-		
+				
 				$this->percent_native_annual = round(100*$this->native_annual / $this->total_species,1);
 				$this->percent_native_perennial = round(100*$this->native_perennial / $this->total_species,1);
 				$this->percent_native_biennial = round(100*$this->native_biennial / $this->total_species,1);
@@ -293,9 +307,9 @@ class InventoryMetrics extends Metrics {
 		}
 		
 		if ($wetness) {
-			if ($this->total_species > 0) 
+			if ($this->total_species > 0)
 				$this->mean_wetness = round(($total_w / $this->total_species),1);
-			if ($this->native_species > 0) 
+			if ($this->native_species > 0)
 				$this->native_mean_wetness = round(($native_w / $this->native_species),1);
 		} else {
 			$this->mean_wetness = 'n/a';
@@ -305,15 +319,17 @@ class InventoryMetrics extends Metrics {
 		$this->non_native_species = $this->total_species - $this->native_species;
 			
 		if ($this->native_species > 0) {
-		
 			$this->native_mean_c = round(($native_c / $this->native_species),1);
 			$this->native_fqi = round(($this->native_mean_c * sqrt( $this->native_species ) ), 1);
+			if ($native_coverage > 0) {
+				$this->cover_weighted_native_mean_c = round( $sum_native_c_times_coverage / $native_coverage , 1 );
+				$this->cover_weighted_native_fqi = round( ($this->cover_weighted_native_mean_c * sqrt( $this->native_species )), 1);
+			}
 		}
 		
 		if ($this->total_species > 0) {
 		
 			$this->total_mean_c = round(($total_c / $this->total_species),1);
-			
 			$this->percent_c_0 = round(($c_0 / $this->total_species) * 100,1);
 			$this->percent_c_1_3 = round(($c_1_3 / $this->total_species) * 100,1);
 			$this->percent_c_4_6 = round(($c_4_6 / $this->total_species) * 100,1);
@@ -323,8 +339,12 @@ class InventoryMetrics extends Metrics {
 			$this->percent_non_native_species = round(100*($this->non_native_species/$this->total_species),1);
 			
 			$this->total_fqi = round(( $this->total_mean_c * sqrt( $this->total_species ) ), 1);
-			
 			$this->adjusted_fqi = round( ( ( $this->native_mean_c / 10 ) * ( sqrt( $this->native_species ) / sqrt( $this->total_species ) ) * 100 ), 1);
+			
+			if ($total_coverage > 0) {
+				$this->cover_weighted_total_mean_c = round( $sum_total_c_times_coverage / $total_coverage , 1 );
+				$this->cover_weighted_total_fqi = round( ($this->cover_weighted_total_mean_c * sqrt( $this->total_species )), 1);
+			}
 		}	
 	}	
 }
