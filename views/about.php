@@ -20,7 +20,7 @@
 					<h1>About this website</h1>
 					<br>
 					<p class="nice-text">
-						The <a href="../">Universal Floristic Quality Assessment Calculator</a> is an open source project licensed for use under <a href="http://www.gnu.org/licenses/">GPLv3</a>. It is completely free for any user, and is being developed by <a href="http://breadorpyramid.org">Will Freyman</a> with support from <a href="http://openlands.org">Openlands</a>. Questions or comments should be sent to willfreyman at gmail dot com.
+						The <a href="../">Universal Floristic Quality Assessment Calculator</a> is an open source project licensed for use under <a href="http://www.gnu.org/licenses/">GPLv3</a>. It is completely free for any user, and was developed by <a href="http://breadorpyramid.org">Will Freyman</a> with support from <a href="http://openlands.org">Openlands</a>. Questions or comments should be sent to willfreyman at gmail dot com.
 					</p>
 					<p class="nice-text">
 						Photo of <em>Sisyrinchium angustifolium</em> &copy; <a href="http://www.flickr.com/photos/lc10s/">Lisa Culp</a>. Used with permission.

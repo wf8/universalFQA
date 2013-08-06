@@ -15,6 +15,9 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
+					<p class="nice-text">
+					Help expand this tool by uploading your region's list of species and their coefficients of conservatism. If you need help, <a href="/about">contact us</a>.
+					</p>
 					<h4>&#187; 1. Enter the FQA Database Details:</h4>
 					<form action="ajax/database_import" method="post" enctype="multipart/form-data" target="upload_target" onsubmit="start_database_upload();">
 					<label class="small-text">Region Name: (What region does this database cover?)<font class="red">*</font></label>
