@@ -148,15 +148,15 @@ class FQADatabase {
 					// skip the header row
 					if (trim(strtolower($data[0])) !== "scientific name") {
 						//scientific name, family, acronym, nativity, coefficient of conservatism, coefficient of wetness, physiognomy, duration, common name
-						$scientific_name = mysql_real_escape_string(ucfirst(strtolower(trim($data[0]))));
-						$family = mysql_real_escape_string(ucfirst(strtolower(trim($data[1]))));
-						$acronym = mysql_real_escape_string(strtoupper(trim($data[2])));
-						$native = mysql_real_escape_string(strtolower(trim($data[3])));
-						$c_o_c = mysql_real_escape_string(trim($data[4]));
-						$c_o_w = mysql_real_escape_string(trim($data[5]));
-						$physiognomy = mysql_real_escape_string(strtolower(trim($data[6])));
-						$duration = mysql_real_escape_string(strtolower(trim($data[7])));
-						$common_name = mysql_real_escape_string(strtolower(trim($data[8])));
+						$scientific_name = mysqli_real_escape_string($this->db_link, ucfirst(strtolower(trim($data[0]))));
+						$family = mysqli_real_escape_string($this->db_link, ucfirst(strtolower(trim($data[1]))));
+						$acronym = mysqli_real_escape_string($this->db_link, strtoupper(trim($data[2])));
+						$native = mysqli_real_escape_string($this->db_link, strtolower(trim($data[3])));
+						$c_o_c = mysqli_real_escape_string($this->db_link, trim($data[4]));
+						$c_o_w = mysqli_real_escape_string($this->db_link, trim($data[5]));
+						$physiognomy = mysqli_real_escape_string($this->db_link, strtolower(trim($data[6])));
+						$duration = mysqli_real_escape_string($this->db_link, strtolower(trim($data[7])));
+						$common_name = mysqli_real_escape_string($this->db_link, strtolower(trim($data[8])));
 						// remove any quotes (typically in common names e.g. "Witch's Teeth Lotus")
 						$scientific_name = str_replace("'", "", $scientific_name);
 						$family = str_replace("'", "", $family);

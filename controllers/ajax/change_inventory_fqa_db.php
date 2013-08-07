@@ -1,7 +1,13 @@
 <?php
 if( $_SESSION['valid'] ) {
 	
-	$new_fqa_id = mysql_real_escape_string($_POST['fqa_id']);
+	require('../config/db_config.php');
+	$db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+	if (mysqli_connect_errno($db_link)) {
+		error_log("Failed to connect to MySQL: " . mysqli_connect_error());
+	}	
+	
+	$new_fqa_id = mysqli_real_escape_string($db_link, $_POST['fqa_id']);
 	$assessment = unserialize($_SESSION['assessment']);
 	
 	// determine whether user has selected custom fqa db and get id

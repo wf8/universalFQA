@@ -1,28 +1,33 @@
 <?php
+require('../config/db_config.php');
+$db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+if (mysqli_connect_errno($db_link)) {
+	error_log("Failed to connect to MySQL: " . mysqli_connect_error());
+}
 if (!isset($_POST['site_id'])) {
 	// we need to insert a new site and get its id
-	$site_name = mysql_real_escape_string($_POST['site_name']);
-	$site_city = mysql_real_escape_string($_POST['site_city']);
-	$site_county = mysql_real_escape_string($_POST['site_county']);
-	$site_state = mysql_real_escape_string($_POST['site_state']);
-	$site_country = mysql_real_escape_string($_POST['site_country']);
+	$site_name = mysqli_real_escape_string($db_link, $_POST['site_name']);
+	$site_city = mysqli_real_escape_string($db_link, $_POST['site_city']);
+	$site_county = mysqli_real_escape_string($db_link, $_POST['site_county']);
+	$site_state = mysqli_real_escape_string($db_link, $_POST['site_state']);
+	$site_country = mysqli_real_escape_string($db_link, $_POST['site_country']);
 	$user_id = $_SESSION['user_id'];
 	$site = new Site();
 	$site_id = $site->save_new_site($user_id, $site_name, '', $site_city, $site_county, $site_state, $site_country);
 } else {
-	$site_id = mysql_real_escape_string($_POST['site_id']);
+	$site_id = mysqli_real_escape_string($db_link, $_POST['site_id']);
 }
-$month = mysql_real_escape_string($_POST['month']);
-$day = mysql_real_escape_string($_POST['day']);
-$year = mysql_real_escape_string($_POST['year']);
-$practitioner = mysql_real_escape_string($_POST['practitioner']);
-$latitude = mysql_real_escape_string($_POST['latitude']);
-$longitude = mysql_real_escape_string($_POST['longitude']);
-$public_inventory = mysql_real_escape_string($_POST['public_inventory']);
-$weather_notes = mysql_real_escape_string($_POST['weather_notes']);
-$duration_notes = mysql_real_escape_string($_POST['duration_notes']);
-$community_type_notes = mysql_real_escape_string($_POST['community_notes']);
-$other_notes = mysql_real_escape_string($_POST['other_notes']);
+$month = mysqli_real_escape_string($db_link, $_POST['month']);
+$day = mysqli_real_escape_string($db_link, $_POST['day']);
+$year = mysqli_real_escape_string($db_link, $_POST['year']);
+$practitioner = mysqli_real_escape_string($db_link, $_POST['practitioner']);
+$latitude = mysqli_real_escape_string($db_link, $_POST['latitude']);
+$longitude = mysqli_real_escape_string($db_link, $_POST['longitude']);
+$public_inventory = mysqli_real_escape_string($db_link, $_POST['public_inventory']);
+$weather_notes = mysqli_real_escape_string($db_link, $_POST['weather_notes']);
+$duration_notes = mysqli_real_escape_string($db_link, $_POST['duration_notes']);
+$community_type_notes = mysqli_real_escape_string($db_link, $_POST['community_notes']);
+$other_notes = mysqli_real_escape_string($db_link, $_POST['other_notes']);
  	
 // update session assessment object
 $assessment = unserialize($_SESSION['assessment']);

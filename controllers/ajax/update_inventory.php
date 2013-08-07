@@ -1,16 +1,21 @@
 <?php
-$site_id = mysql_real_escape_string($_POST['site_id']);
-$month = mysql_real_escape_string($_POST['month']);
-$day = mysql_real_escape_string($_POST['day']);
-$year = mysql_real_escape_string($_POST['year']);
-$practitioner = mysql_real_escape_string($_POST['practitioner']);
-$latitude = mysql_real_escape_string($_POST['latitude']);
-$longitude = mysql_real_escape_string($_POST['longitude']);
-$public_inventory = mysql_real_escape_string($_POST['public_inventory']);
-$weather_notes = mysql_real_escape_string($_POST['weather_notes']);
-$duration_notes = mysql_real_escape_string($_POST['duration_notes']);
-$community_type_notes = mysql_real_escape_string($_POST['community_notes']);
-$other_notes = mysql_real_escape_string($_POST['other_notes']);
+require('../config/db_config.php');
+$db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
+if (mysqli_connect_errno($db_link)) {
+	error_log("Failed to connect to MySQL: " . mysqli_connect_error());
+}
+$site_id = mysqli_real_escape_string($db_link, $_POST['site_id']);
+$month = mysqli_real_escape_string($db_link, $_POST['month']);
+$day = mysqli_real_escape_string($db_link, $_POST['day']);
+$year = mysqli_real_escape_string($db_link, $_POST['year']);
+$practitioner = mysqli_real_escape_string($db_link, $_POST['practitioner']);
+$latitude = mysqli_real_escape_string($db_link, $_POST['latitude']);
+$longitude = mysqli_real_escape_string($db_link, $_POST['longitude']);
+$public_inventory = mysqli_real_escape_string($db_link, $_POST['public_inventory']);
+$weather_notes = mysqli_real_escape_string($db_link, $_POST['weather_notes']);
+$duration_notes = mysqli_real_escape_string($db_link, $_POST['duration_notes']);
+$community_type_notes = mysqli_real_escape_string($db_link, $_POST['community_notes']);
+$other_notes = mysqli_real_escape_string($db_link, $_POST['other_notes']);
  	
 // update session assessment object
 $assessment = unserialize($_SESSION['assessment']);
