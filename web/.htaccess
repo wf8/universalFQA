@@ -1,8 +1,4 @@
-DirectoryIndex front_controller.php
-
+Options All -Indexes
 RewriteEngine on
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond $1 !^(front_controller\.php|assets)
-RewriteRule ^(.*)$ front_controller.php/$1 [L]
+RewriteCond %{REQUEST_URI} !(front_controller\.php|assets)
+RewriteRule (.*) /front_controller.php?/$1 [L]
