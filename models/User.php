@@ -61,7 +61,7 @@ class User {
 		if($pass1 != $pass2) 
 			echo "The passwords don't match. Please try again.";
 		else
-		{
+		{		
 			// check that variables are right length
 			if(strlen($email) < 3) {
 				echo "Please enter a valid email address.";
