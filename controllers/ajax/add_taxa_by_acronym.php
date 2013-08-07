@@ -7,7 +7,7 @@ if( $_SESSION['valid'] ) {
 		error_log("Failed to connect to MySQL: " . mysqli_connect_error());
 	}	
 	
-	$acronym = mysql_real_escape_string($db_link, $_POST['species']);
+	$acronym = mysqli_real_escape_string($db_link, $_POST['species']);
 	$assessment = unserialize($_SESSION['assessment']);
 	
 	if ($assessment->add_taxa_by_column_value('acronym', $acronym)) {

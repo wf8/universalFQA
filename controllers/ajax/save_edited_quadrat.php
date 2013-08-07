@@ -4,11 +4,11 @@ $db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
 if (mysqli_connect_errno($db_link)) {
 	error_log("Failed to connect to MySQL: " . mysqli_connect_error());
 }
-$name = trim(mysql_real_escape_string($db_link, $_POST['name']));
-$latitude = trim(mysql_real_escape_string($db_link, $_POST['latitude']));
-$longitude = trim(mysql_real_escape_string($db_link, $_POST['longitude']));
-$bare_ground = trim(mysql_real_escape_string($db_link, $_POST['bare_ground']));
-$water = trim(mysql_real_escape_string($db_link, $_POST['water']));
+$name = trim(mysqli_real_escape_string($db_link, $_POST['name']));
+$latitude = trim(mysqli_real_escape_string($db_link, $_POST['latitude']));
+$longitude = trim(mysqli_real_escape_string($db_link, $_POST['longitude']));
+$bare_ground = trim(mysqli_real_escape_string($db_link, $_POST['bare_ground']));
+$water = trim(mysqli_real_escape_string($db_link, $_POST['water']));
 
 if ($name == '') {
 	echo 'Please enter a name or number for this quadrat.';
