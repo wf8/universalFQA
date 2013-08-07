@@ -28,6 +28,8 @@ else {
 		$custom_fqa->insert_taxa($customized_fqa_id, $original_fqa_id, $fqa_taxa);
 		// get taxa for this db
 		$taxa = $custom_fqa->get_taxa($customized_fqa_id);
+		$customized_name = '';
+		$customized_description = '';
 		require_once('../views/nav_disabled_links.php');
 		require_once('../views/edit_custom_database.php');
 	}

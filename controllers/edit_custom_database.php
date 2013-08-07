@@ -21,8 +21,13 @@ else {
 		$region = $custom_fqa['region_name'];
 		$year = $custom_fqa['publication_year'];
 		$description = $custom_fqa['description'];
-		$customized_name = $custom_fqa['customized_name'];
-		$customized_description = $custom_fqa['customized_description'];
+		$customized_name = '';
+		$customized_description = '';
+		if (isset($custom_fqa['customized_name']))
+			$customized_name = $custom_fqa['customized_name'];
+		if (isset($custom_fqa['customized_description']))
+			$customized_description = $custom_fqa['customized_description'];
+			
 		// get taxa for this db
 		$taxa = $custom_fqas->get_taxa($customized_fqa_id);
 		require_once('../views/nav_disabled_links.php');

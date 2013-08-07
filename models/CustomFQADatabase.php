@@ -119,7 +119,7 @@ class CustomFQADatabase extends FQADatabase {
 		$user_id = $_SESSION['user_id'];
 		$sql = "INSERT INTO customized_fqa (fqa_id, region_name, description, publication_year, created, user_id) VALUES ('$original_fqa_id', '$region', '$description', '$year', '$date', '$user_id')";
 		mysqli_query($this->db_link, $sql);	
-		return mysqli_insert_id();
+		return mysqli_insert_id($this->db_link);
 	}
 	
 	/*

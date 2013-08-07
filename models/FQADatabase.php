@@ -139,7 +139,7 @@ class FQADatabase {
 							$user_id = $_SESSION['user_id'];
 							$sql = "INSERT INTO fqa (region_name, description, publication_year, created, user_id) VALUES ('$region', '$description', '$year', '$date', '$user_id')";
 							mysqli_query($this->db_link, $sql);	
-							$fqa_id = mysqli_insert_id();
+							$fqa_id = mysqli_insert_id($this->db_link);
 						} else {
 							$result = "Error: An FQA database for that region and year already exist.";
 							break;
@@ -214,7 +214,7 @@ class FQADatabase {
 							if ($c_o_w == null)
 								$sql = "INSERT INTO taxa (fqa_id, scientific_name, family, common_name, acronym, c_o_c, native, physiognomy, duration) VALUES ('$fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$native', '$physiognomy', '$duration')";
 							else
-								$sql = "INSERT INTO taxa (fqa_id, scientific_name, family, common_name, acronym, c_o_c, c_o_w, native, physiognomy, duration) VALUES ('$fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$c_o_w', '$native', '$physiognomy', '$duration')";
+								$sql = "INSERT INTO taxa (fqa_id, scientific_name, family, common_name, acronym, c_o_c, c_o_w, native, physiognomy, duration) VALUES ('$fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$c_o_w', '$native', '$physiognomy', '$duration')";					
 							mysqli_query($this->db_link, $sql);
 							$taxa_inserted++;
 						}	
