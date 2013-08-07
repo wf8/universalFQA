@@ -149,7 +149,7 @@ function delete_custom_database( id ) {
  	}
 }
 
-function delete_custom_taxa( id ) {
+function delete_custom_taxa( id, custom_fqa_id ) {
  	if (confirm("Are you sure you want to delete this taxa?")) {
 		$.ajax({
 			url: "/ajax/delete_custom_taxa",
@@ -158,7 +158,7 @@ function delete_custom_taxa( id ) {
 				id: id,
 			},
 			success: function( response ) {
-				location.reload(true);
+				window.location='/edit_custom_database/' + custom_fqa_id;
 			}
 		});
  	}
@@ -224,7 +224,7 @@ function new_custom_taxa( original_fqa_id, custom_fqa_id ) {
 			if (response.indexOf("success") == -1)
 				alert(response);
 			else
-				location.reload(true);
+				window.location='/edit_custom_database/' + custom_fqa_id;
 		}
 	});
 }

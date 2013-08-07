@@ -95,7 +95,7 @@ if (mysqli_num_rows($taxa) == 0) {
 							<td><input class="input-mini" id="physiognomy<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'physiognomy<?php echo $i; ?>', 'physiognomy', <?php echo $taxon_id; ?> );" value="<?php echo $physiognomy; ?>"></td>
 							<td><input class="input-small" id="duration<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'duration<?php echo $i; ?>', 'duration', <?php echo $taxon_id; ?> );" value="<?php echo $duration; ?>"></td>
 							<td><input class="input-medium" id="common_name<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'common_name<?php echo $i; ?>', 'common_name', <?php echo $taxon_id; ?> );" value="<?php echo $common_name; ?>"></td>
-							<td><a onclick="javascript:delete_custom_taxa(<?php echo $taxon_id; ?>);" href="#">Delete</a></td>
+							<td><a onclick="javascript:delete_custom_taxa(<?php echo $taxon_id; ?>, <?php echo $customized_fqa_id; ?>);" href="#">Delete</a></td>
 						</tr>
 <?php
 	}
