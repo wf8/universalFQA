@@ -8,7 +8,7 @@ if (!isset($_POST['site_id'])) {
 	$site_country = mysqli_real_escape_string($db_link, $_POST['site_country']);
 	$user_id = $_SESSION['user_id'];
 	$site = new Site();
-	$site_id = $site->save_new_site($user_id, $site_name, '', $site_city, $site_county, $site_state, $site_country);
+	$site_id = $site->save_first_site($user_id, $site_name, '', $site_city, $site_county, $site_state, $site_country);
 } else {
 	$site_id = mysqli_real_escape_string($db_link, $_POST['site_id']);
 }

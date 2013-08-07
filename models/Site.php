@@ -76,5 +76,23 @@ class Site {
 			echo mysqli_insert_id($this->db_link);
 		}
 	}
+	
+	/*
+	 * function to add a new site when the user has no others
+	 * returns id of new site on success
+	 */
+	public function save_first_site($user_id, $name, $notes, $city, $county, $state, $country) {
+		$this->get_db_link();
+		// check to see if this user already has a site with this name
+		$sql = "SELECT * FROM site WHERE user_id='$user_id' AND name='$name'";
+		$result = mysqli_query($this->db_link, $sql);
+		if (mysqli_num_rows($result) !== 0) {
+			error_log('Error: User already created a site with that name. New site not saved.');
+		} else {
+			$sql = "INSERT INTO site (user_id, name, notes, city, county, state, country) VALUES ('$user_id', '$name', '$notes', '$city', '$county', '$state', '$country')";
+			mysqli_query($this->db_link, $sql);
+			return mysqli_insert_id($this->db_link);
+		}
+	}	
 }
 ?>
