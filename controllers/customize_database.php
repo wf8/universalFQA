@@ -9,6 +9,7 @@ else {
 	$fqa_databases = $fqa->get_fqa($original_fqa_id); 
 	// if database is not found show all databases
 	if (mysqli_num_rows($fqa_databases) == 0) {
+		require_once('../views/nav.php');
 		$fqa_databases = $fqa->get_all();
 		// get this user's custom fqa databases
 		$custom_fqa = new CustomFQADatabase;
@@ -27,6 +28,7 @@ else {
 		$custom_fqa->insert_taxa($customized_fqa_id, $original_fqa_id, $fqa_taxa);
 		// get taxa for this db
 		$taxa = $custom_fqa->get_taxa($customized_fqa_id);
+		require_once('../views/nav_disabled_links.php');
 		require_once('../views/edit_custom_database.php');
 	}
 }

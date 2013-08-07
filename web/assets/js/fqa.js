@@ -201,15 +201,6 @@ function new_custom_taxa( original_fqa_id, custom_fqa_id ) {
 	});
 }
 
-function check_form( url ) {
-	if ( $("#customized_fqa_name").val() == "" )
-		alert("Please enter a name for the customized FQA database.");
-	else if ( $("#customized_fqa_description").val() == "" ) 
-		alert("Please enter a description for the customized FQA database.");
-	else
-		window.location = url;
-}
-
 /**
  * ---------------------------------------------------------
  *

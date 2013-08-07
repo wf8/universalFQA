@@ -25,6 +25,7 @@ else {
 		$customized_description = $custom_fqa['customized_description'];
 		// get taxa for this db
 		$taxa = $custom_fqas->get_taxa($customized_fqa_id);
+		require_once('../views/nav_disabled_links.php');
 		require_once('../views/edit_custom_database.php');
 	}
 }
