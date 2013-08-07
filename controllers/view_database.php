@@ -4,11 +4,6 @@ if( !$_SESSION['valid'] )
 else { 
 	require_once('../views/nav.php');
 	// get the fqa database by id
-	require('../config/db_config.php');
-	$db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
-	if (mysqli_connect_errno($db_link)) {
-		error_log("Failed to connect to MySQL: " . mysqli_connect_error());
-	}
 	$id = mysqli_real_escape_string($db_link, $url_parts[1]);
 	$fqa = new FQADatabase;
 	$fqa_databases = $fqa->get_fqa($id); 
