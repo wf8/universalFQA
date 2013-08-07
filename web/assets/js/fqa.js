@@ -86,9 +86,21 @@ function forgot_password() {
  */
  
 function start_database_upload() {
-	$( "#upload_error" ).html( "Uploading..." );
+	$.blockUI({ 
+		css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        },
+        message: '<img src="/assets/images/loading.gif" width="36" height="36"><h2>Uploading FQA database...</h2>' 
+    }); 
 }
-function stop_database_upload( msg ){	
+function stop_database_upload( msg ){
+	$.unblockUI();	
 	if (msg.indexOf("Error") == -1)
 		window.location='/view_database/' + msg;
 	else
@@ -105,7 +117,23 @@ function download_database() {
  *
  * ---------------------------------------------------------
  */
- 
+
+function block_screen() {
+	$.blockUI({ 
+		css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        },
+        message: '<img src="/assets/images/loading.gif" width="36" height="36"><h2>Loading...</h2>' 
+    }); 
+	$(window).load(function() { $.unblockUI(); });
+}
+
 function delete_custom_database( id ) {
  	if (confirm("Are you sure you want to delete this custom FQA database?")) {
 		$.ajax({

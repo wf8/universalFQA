@@ -1,4 +1,4 @@
-	<script> // $(window).load(function() {    show page   }); </script>
+	<script> block_screen() </script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
@@ -34,7 +34,7 @@
 			<div class="row-fluid">
 				<div class="span12">	
 					<h4>&#187; Species:</h4>
-					<table class="table table-hover">
+					<table class="table">
 						<tr>
 							<td><strong>Scientific Name</strong></td>
 							<td><strong>Family</strong></td>
