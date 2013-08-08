@@ -93,7 +93,7 @@ class Assessment {
 	 */
     protected function get_all_for_user($user_id) {
     	$this->get_db_link();
-	    $sql = "SELECT $this->db_table.*, site.name, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.user_id='$user_id' ORDER BY site.name, $this->db_table.date";
+	    $sql = "SELECT $this->db_table.*, site.name, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.user_id='$user_id' ORDER BY site.name, $this->db_table.date DESC";
 		$results = mysqli_query($this->db_link, $sql);
 		$assessments = array();
 		while ($result = mysqli_fetch_assoc($results)) {
@@ -138,7 +138,7 @@ class Assessment {
 	 */
     protected function get_all_public() {
     	$this->get_db_link();
-	    $sql = "SELECT $this->db_table.*, site.name, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.private='0' ORDER BY site.name, $this->db_table.date";
+	    $sql = "SELECT $this->db_table.*, site.name, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.private='0' ORDER BY site.name, $this->db_table.date DESC";
 		$results = mysqli_query($this->db_link, $sql);			 
 		$assessments = array();
 		while ($result = mysqli_fetch_assoc($results)) {		
