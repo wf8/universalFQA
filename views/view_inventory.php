@@ -9,7 +9,7 @@
 					<br>
 					<h1>Inventory Assessment</h1>
 					<button class="btn btn-info" onclick="javascript:window.location = '/edit_inventory/<?php echo $assessment->id; ?>';return false;">Edit This Inventory</button>
-					<button class="btn btn-info" onClick="download_inventory(<?php echo $assessment->id; ?>);">Download Report</button> 
+					<button class="btn btn-info" onClick="javascript:download_inventory(<?php echo $assessment->id; ?>);">Download Report</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Done</button>
 					<br>
 				</div>
@@ -188,3 +188,6 @@
 		</div>
     </div> 
     <br><br>
+    <form id="download_csv_form" method="post" action="/download_report">
+		<input type="hidden" id="download_csv" name="download_csv" />
+	</form>

@@ -33,22 +33,24 @@ if ($url_parts[0] == 'ajax') {
 	
 // route view requests		
 } else {	
-	
-	// insert header for all views
-	require_once('../views/header.php');
-	if ($url_parts[0] == '') {
-		// load landing page
-		require_once('../views/landing.php');
-	} else if (file_exists('../controllers/' . $url_parts[0] . '.php')) {
-		// load correct controller
-		require_once('../controllers/' . $url_parts[0] . '.php');	
+	if ($url_parts[0] == 'download_report') {	
+		require_once('../views/download_report.php');
 	} else {
-		// default load error page
-		require_once('../views/error.php');
-	}
-	// insert footer for all views
-	require_once('../views/footer.php');
-	
+		// insert header for all views
+		require_once('../views/header.php');
+		if ($url_parts[0] == '') {
+			// load landing page
+			require_once('../views/landing.php');
+		} else if (file_exists('../controllers/' . $url_parts[0] . '.php')) {
+			// load correct controller
+			require_once('../controllers/' . $url_parts[0] . '.php');	
+		} else {
+			// default load error page
+			require_once('../views/error.php');
+		}
+		// insert footer for all views
+		require_once('../views/footer.php');
+	}	
 }
 mysqli_close($db_link);
 ?>

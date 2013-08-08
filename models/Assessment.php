@@ -178,9 +178,47 @@ class Assessment {
 		return $assessments;
     }
 	
-	public function calculate_native_fqi() {
-		return '50.0';
+	/*
+	 *  helper functions for downloading reports
+	 */
+	protected function return_CSV( $data ) {
+		$csv = fopen('temp.csv', 'w');		
+		foreach ($data as $fields) {
+			fputcsv($csv, $fields);
+		}
+		fclose($csv);	
+		return file_get_contents('temp.csv');
 	}
+	
+	protected function prettify_percent( $value ) {
+		if (trim($value) == '') 
+			return '';
+		else
+			return $value . '%';
+	}
+	
+	protected function prettify_value( $value ) {
+		if (trim($value) == '') 
+			return 'n/a';
+		else
+			return $value;
+	}
+	
+	protected function sort_array_of_objects($arr, $var) { 
+	   $tarr = array(); 
+	   $rarr = array(); 
+	   for($i = 0; $i < count($arr); $i++) { 
+		  $element = $arr[$i]; 
+		  $tarr[] = strtolower($element->{$var}); 
+	   } 
+	   reset($tarr); 
+	   asort($tarr); 
+	   $karr = array_keys($tarr); 
+	   for($i = 0; $i < count($tarr); $i++) { 
+		  $rarr[] = $arr[intval($karr[$i])]; 
+	   } 
+	   return $rarr; 
+	} 
 	
 }
 ?>

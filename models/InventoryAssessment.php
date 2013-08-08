@@ -215,5 +215,111 @@ class InventoryAssessment extends Assessment {
 		}
 	}
 	
+	/*
+	 * load all the taxa for this inventory
+	 */
+	public function download() {
+		
+		// build csv array
+		$csv = array();
+		$csv[] = array($this->date);
+		$csv[] = array($this->site->name);
+		$csv[] = array($this->site->city);
+		$csv[] = array($this->site->county);
+		$csv[] = array($this->site->state);
+		$csv[] = array($this->site->country);
+		
+		if ($this->custom_fqa) { 
+			$csv[] = array('Custom FQA DB Name:', $this->fqa->customized_name);
+			$csv[] = array('Custom FQA DB Description:', $this->fqa->customized_description);
+			$csv[] = array('Original FQA DB Region:', $this->fqa->region_name);
+			$csv[] = array('Original FQA DB Publication Year:', $this->fqa->publication_year);
+			$csv[] = array('Original FQA DB Description:', $this->fqa->description);
+		} else {
+			$csv[] = array('FQA DB Region:', $this->fqa->region_name);
+			$csv[] = array('FQA DB Publication Year:', $this->fqa->publication_year);
+			$csv[] = array('FQA DB Description:', $this->fqa->description);
+		}
+		$csv[] = array();
+		$csv[] = array('Pracitioner:', $this->practitioner);
+		$csv[] = array('Latitude:', $this->latitude);
+		$csv[] = array('Longitude:', $this->longitude);
+		$csv[] = array('Weather Notes:', $this->weather_notes);
+		$csv[] = array('Duration Notes:', $this->duration_notes);
+		$csv[] = array('Community Type Notes:', $this->community_type_notes);
+		$csv[] = array('Other Notes:', $this->other_notes);
+		if ($this->private == 'private') 
+			$csv[] = array('Private/Public:', 'Private');
+		else
+			$csv[] = array('Private/Public:', 'Public');
+		$csv[] = array();
+		
+		$csv[] = array('Conservatism-Based Metrics:');
+		$csv[] = array('Total Mean C:', $this->metrics->total_mean_c);
+		$csv[] = array('Native Mean C:', $this->metrics->native_mean_c);
+		$csv[] = array('Native Tree Mean C:', $this->metrics->native_tree_mean_c);
+		$csv[] = array('Native Shrub Mean C:', $this->metrics->native_shrub_mean_c);
+		$csv[] = array('Native Herbaceous Mean C:', $this->metrics->native_herbaceous_mean_c);
+		$csv[] = array('Total FQI:', $this->metrics->total_fqi);
+		$csv[] = array('Native FQI:', $this->metrics->native_fqi);
+		$csv[] = array('Adjusted FQI:', $this->metrics->adjusted_fqi);
+		$csv[] = array('% C value 0:', $this->metrics->percent_c_0);
+		$csv[] = array('% C value 1-3:', $this->metrics->percent_c_1_3);
+		$csv[] = array('% C value 4-6:', $this->metrics->percent_c_4_6);
+		$csv[] = array('% C value 7-10:', $this->metrics->percent_c_7_10);
+		$csv[] = array();
+		
+		$csv[] = array('Species Richness and Wetness:');
+		$csv[] = array('Total Species:', $this->metrics->total_species);
+		$csv[] = array('Native Species:', $this->metrics->native_species, $this->prettify_percent($this->metrics->percent_native_species));
+		$csv[] = array('Non-native Species:', $this->metrics->non_native_species, $this->prettify_percent($this->metrics->percent_non_native_species));
+		$csv[] = array('Mean Wetness:', $this->metrics->mean_wetness);
+		$csv[] = array('Native Mean Wetness:', $this->metrics->native_mean_wetness);
+		$csv[] = array();
+
+		$csv[] = array('Physiognomy Metrics:');
+		$csv[] = array('Tree:', $this->metrics->tree, $this->prettify_percent($this->metrics->percent_tree));
+		$csv[] = array('Shrub:', $this->metrics->shrub, $this->prettify_percent($this->metrics->percent_shrub));
+		$csv[] = array('Vine:', $this->metrics->vine, $this->prettify_percent($this->metrics->percent_vine));
+		$csv[] = array('Forb:', $this->metrics->forb, $this->prettify_percent($this->metrics->percent_forb));
+		$csv[] = array('Grass:', $this->metrics->grass, $this->prettify_percent($this->metrics->percent_grass));
+		$csv[] = array('Sedge:', $this->metrics->sedge, $this->prettify_percent($this->metrics->percent_sedge));
+		$csv[] = array('Rush:', $this->metrics->rush, $this->prettify_percent($this->metrics->percent_rush));
+		$csv[] = array('Fern:', $this->metrics->fern, $this->prettify_percent($this->metrics->percent_fern));
+		$csv[] = array('Bryophyte:', $this->metrics->bryophyte, $this->prettify_percent($this->metrics->percent_bryophyte));
+		$csv[] = array();
+	
+
+		$csv[] = array('Duration Metrics:');
+		$csv[] = array('Annual:', $this->metrics->annual, $this->prettify_percent($this->metrics->percent_annual));
+		$csv[] = array('Perennial:', $this->metrics->perennial, $this->prettify_percent($this->metrics->percent_perennial));
+		$csv[] = array('Biennial:', $this->metrics->biennial, $this->prettify_percent($this->metrics->percent_biennial));
+		$csv[] = array('Native Annual:', $this->metrics->native_annual, $this->prettify_percent($this->metrics->percent_native_annual));
+		$csv[] = array('Native Perennial:', $this->metrics->native_perennial, $this->prettify_percent($this->metrics->percent_native_perennial));
+		$csv[] = array('Native Biennial:', $this->metrics->native_biennial, $this->prettify_percent($this->metrics->percent_native_biennial));
+		$csv[] = array();
+		
+		$csv[] = array('Species:');
+		$csv[] = array('Scientific Name', 'Family', 'Acronym', 'Native?', 'C', 'W', 'Physiognomy', 'Duration', 'Common Name');
+		if (count($this->taxa) == 0) {
+			$csv[] = array('There are no species in this inventory.');
+		} else {
+			$sorted_taxa = $this->sort_array_of_objects($this->taxa, 'scientific_name');
+			foreach ($sorted_taxa as $taxon) {
+				$csv[] = array(
+							$taxon->scientific_name,
+							$this->prettify_value($taxon->family),
+							$this->prettify_value($taxon->acronym),
+							$taxon->native,
+							$taxon->c_o_c,
+							$this->prettify_value($taxon->c_o_w),
+							$this->prettify_value($taxon->physiognomy),
+							$this->prettify_value($taxon->duration),
+							$this->prettify_value($taxon->common_name)
+						);
+			}
+		}
+		return $this->return_CSV($csv);
+	}
 }
 ?>

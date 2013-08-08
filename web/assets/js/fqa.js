@@ -532,6 +532,20 @@ function change_inventory_fqa_db() {
  	}
 }
 
+function download_inventory( id ) {
+	$.ajax({
+		url: "/ajax/download_inventory",
+		type: "POST",
+		data: {
+			id: id,
+		},
+		success: function( response ) {
+			$('#download_csv').val(response);
+			$('#download_csv_form').submit();
+		}
+	});
+}
+
 /**
  * ---------------------------------------------------------
  *
@@ -676,6 +690,20 @@ function toggle_active( quadrat_name ) {
 			}
 		});
  	}
+}
+
+function download_transect( id ) {
+	$.ajax({
+		url: "/ajax/download_transect",
+		type: "POST",
+		data: {
+			id: id,
+		},
+		success: function( response ) {
+			$('#download_csv').val(response);
+			$('#download_csv_form').submit();
+		}
+	});
 }
 
 /**

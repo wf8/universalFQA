@@ -38,7 +38,7 @@ if (count($inventory_assessments) == 0) {
 							<td><?php echo $assessment->date; ?></td>
 							<td><?php echo $assessment->metrics->native_fqi; ?></td>
 							<td><?php echo $assessment->private; ?></td>
-							<td><a href="/view_public_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="/download_inventory/<?php echo $assessment->id; ?>">Download</a></td>
+							<td><a href="/view_public_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="javascript:download_inventory(<?php echo $assessment->id; ?>);">Download</a></td>
 						</tr>
 <?php
 	}
@@ -69,7 +69,7 @@ if (count($transect_assessments) == 0) {
 							<td><?php echo $assessment->date; ?></td>
 							<td><?php echo $assessment->metrics->native_fqi; ?></td>
 							<td><?php echo $assessment->private; ?></td>
-							<td><a href="/view_public_transect/<?php echo $assessment->id; ?>">View</a> | <a href="/download_transect/<?php echo $assessment->id; ?>">Download</a></td>
+							<td><a href="/view_public_transect/<?php echo $assessment->id; ?>">View</a> | <a href="javascript:download_transect(<?php echo $assessment->id; ?>);">Download</a></td>
 						</tr>
 <?php
 	}
@@ -81,3 +81,6 @@ if (count($transect_assessments) == 0) {
 		</div>
     </div> 
     <br><br>
+    <form id="download_csv_form" method="post" action="/download_report">
+		<input type="hidden" id="download_csv" name="download_csv" />
+	</form>    
