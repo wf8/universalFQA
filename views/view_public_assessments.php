@@ -8,7 +8,7 @@
 				<div class="span11">
 					<br>
 					<h1>Public Assessments</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = '/download_public_summary';return false;">Download Summary</button>
+					<button class="btn btn-info" onclick="javascript:public_assessment_summary();">Download Summary</button>
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">View Your Assessments</button>
 				</div>
 			</div>

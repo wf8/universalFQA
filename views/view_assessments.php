@@ -10,7 +10,7 @@
 					<h1>Your Assessments</h1>
 					<button class="btn btn-info" onclick="javascript:window.location = '/new_inventory';return false;">New Inventory</button>
 					<button class="btn btn-info" onclick="javascript:window.location = '/new_transect';return false;">New Transect</button>
-					<button class="btn btn-info" onclick="javascript:window.location = '/new_transect';return false;">Download Summary</button>
+					<button class="btn btn-info" onclick="javascript:assessment_summary();">Download Summary</button>
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_public_assessments';return false;">View All Public Assessments</button>
 				</div>
 			</div>

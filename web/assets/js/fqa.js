@@ -911,3 +911,25 @@ function delete_quadrat( id ) {
 function warn_user() {
 	alert('Please either click Save or Cancel before navigating away from this page.');
 }
+
+function assessment_summary() {
+	$.ajax({
+		url: "/ajax/assessment_summary",
+		type: "POST",
+		success: function( response ) {
+			$('#download_csv').val(response);		
+			$('#download_csv_form').submit();
+		}
+	});
+}
+
+function public_assessment_summary() {
+	$.ajax({
+			url: "/ajax/public_assessment_summary",
+		type: "POST",
+		success: function( response ) {
+			$('#download_csv').val(response);
+			$('#download_csv_form').submit();
+		}
+	});
+}
