@@ -131,6 +131,21 @@ class CustomFQADatabase extends FQADatabase {
 		mysqli_query($this->db_link, $sql);
 		$sql = "DELETE FROM customized_taxa WHERE customized_fqa_id='$id'";
 		mysqli_query($this->db_link, $sql);
+		
+		// get any assessments using the customized fqa and delete them
+		$sql = "SELECT id FROM inventory WHERE fqa_id='$id' AND customized_fqa='1'";
+		$results = mysqli_query($this->db_link, $sql);
+		while ($assessment = mysqli_fetch_assoc($results)) {
+			$inventory = new InventoryAssessment();
+			$inventory->delete($assessment['id']);
+		}
+		$sql = "SELECT id FROM transect WHERE fqa_id='$id' AND customized_fqa='1'";
+		$results = mysqli_query($this->db_link, $sql);
+		while ($assessment = mysqli_fetch_assoc($results)) {
+			$transect = new TransectAssessment();
+			$transect->delete($assessment['id']);
+		}
+		
 	}
 	
 	/*

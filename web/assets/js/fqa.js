@@ -135,7 +135,7 @@ function block_screen() {
 }
 
 function delete_custom_database( id ) {
- 	if (confirm("Are you sure you want to delete this custom FQA database?")) {
+ 	if (confirm("Are you sure you want to delete this custom FQA database? This will also delete any assessments using the custom FQA database.")) {
 		$.ajax({
 			url: "/ajax/delete_custom_database",
 			type: "POST",
