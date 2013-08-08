@@ -216,7 +216,7 @@ class InventoryAssessment extends Assessment {
 	}
 	
 	/*
-	 * load all the taxa for this inventory
+	 *  return a csv report as a string
 	 */
 	public function download() {
 		

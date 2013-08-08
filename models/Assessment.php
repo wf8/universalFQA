@@ -220,5 +220,21 @@ class Assessment {
 	   return $rarr; 
 	} 
 	
+	protected function reverse_sort_array_of_objects($arr, $var) { 
+	   $tarr = array(); 
+	   $rarr = array(); 
+	   for($i = 0; $i < count($arr); $i++) { 
+		  $element = $arr[$i]; 
+		  $tarr[] = strtolower($element->{$var}); 
+	   } 
+	   reset($tarr); 
+	   asort($tarr); 
+	   $karr = array_keys($tarr); 
+	   for($i = count($tarr)-1; $i > -1; $i--) { 
+		  $rarr[] = $arr[intval($karr[$i])]; 
+	   } 
+	   return $rarr; 
+	} 
+	
 }
 ?>

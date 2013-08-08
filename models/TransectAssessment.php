@@ -129,6 +129,240 @@ class TransectAssessment extends Assessment {
 		$sql = "DELETE FROM quadrat_taxa WHERE transect_id='$id'";
 		mysqli_query($this->db_link, $sql);
 	}
+	
+	/*
+	 *  return a csv report as a string
+	 */
+	public function download() {
+		
+		// build csv array
+		$csv = array();
+		$csv[] = array($this->date);
+		$csv[] = array($this->site->name);
+		$csv[] = array($this->site->city);
+		$csv[] = array($this->site->county);
+		$csv[] = array($this->site->state);
+		$csv[] = array($this->site->country);
+		
+		if ($this->custom_fqa) { 
+			$csv[] = array('Custom FQA DB Name:', $this->fqa->customized_name);
+			$csv[] = array('Custom FQA DB Description:', $this->fqa->customized_description);
+			$csv[] = array('Original FQA DB Region:', $this->fqa->region_name);
+			$csv[] = array('Original FQA DB Publication Year:', $this->fqa->publication_year);
+			$csv[] = array('Original FQA DB Description:', $this->fqa->description);
+		} else {
+			$csv[] = array('FQA DB Region:', $this->fqa->region_name);
+			$csv[] = array('FQA DB Publication Year:', $this->fqa->publication_year);
+			$csv[] = array('FQA DB Description:', $this->fqa->description);
+		}
+		$csv[] = array();
+		$csv[] = array('Pracitioner:', $this->practitioner);
+		$csv[] = array('Latitude:', $this->latitude);
+		$csv[] = array('Longitude:', $this->longitude);
+		$csv[] = array('Weather Notes:', $this->weather_notes);
+		$csv[] = array('Duration Notes:', $this->duration_notes);
+		$csv[] = array('Community Type Notes:', $this->community_type_notes);
+		$csv[] = array('Other Notes:', $this->other_notes);
+		if ($this->private == 'private') 
+			$csv[] = array('Private/Public:', 'Private');
+		else
+			$csv[] = array('Private/Public:', 'Public');
+		$csv[] = array();
+		
+		$csv[] = array('Conservatism-Based Metrics:');
+		$csv[] = array('Total Mean C:', $this->metrics->total_mean_c);
+		$csv[] = array('Native Mean C:', $this->metrics->native_mean_c);
+		$csv[] = array('Native Tree Mean C:', $this->metrics->native_tree_mean_c);
+		$csv[] = array('Native Shrub Mean C:', $this->metrics->native_shrub_mean_c);
+		$csv[] = array('Native Herbaceous Mean C:', $this->metrics->native_herbaceous_mean_c);
+		$csv[] = array('Total FQI:', $this->metrics->total_fqi);
+		$csv[] = array('Native FQI:', $this->metrics->native_fqi);
+		$csv[] = array('Cover-weighted FQI:', $this->metrics->cover_weighted_total_fqi);
+		$csv[] = array('Cover-weighted Native FQI:', $this->metrics->cover_weighted_native_fqi);
+		$csv[] = array('Adjusted FQI:', $this->metrics->adjusted_fqi);
+		$csv[] = array('% C value 0:', $this->metrics->percent_c_0);
+		$csv[] = array('% C value 1-3:', $this->metrics->percent_c_1_3);
+		$csv[] = array('% C value 4-6:', $this->metrics->percent_c_4_6);
+		$csv[] = array('% C value 7-10:', $this->metrics->percent_c_7_10);
+		$csv[] = array();	
+		
+		
+		$csv[] = array('Species Richness and Wetness:');
+		$csv[] = array('Total Species:', $this->metrics->total_species);
+		$csv[] = array('Native Species:', $this->metrics->native_species, $this->prettify_percent($this->metrics->percent_native_species));
+		$csv[] = array('Non-native Species:', $this->metrics->non_native_species, $this->prettify_percent($this->metrics->percent_non_native_species));
+		$csv[] = array('Mean Wetness:', $this->metrics->mean_wetness);
+		$csv[] = array('Native Mean Wetness:', $this->metrics->native_mean_wetness);
+		$csv[] = array();
+		/*
+		$csv[] = array('Physiognomy Metrics:');
+		$csv[] = array('Tree:', $this->metrics->tree, $this->prettify_percent($this->metrics->percent_tree));
+		$csv[] = array('Shrub:', $this->metrics->shrub, $this->prettify_percent($this->metrics->percent_shrub));
+		$csv[] = array('Vine:', $this->metrics->vine, $this->prettify_percent($this->metrics->percent_vine));
+		$csv[] = array('Forb:', $this->metrics->forb, $this->prettify_percent($this->metrics->percent_forb));
+		$csv[] = array('Grass:', $this->metrics->grass, $this->prettify_percent($this->metrics->percent_grass));
+		$csv[] = array('Sedge:', $this->metrics->sedge, $this->prettify_percent($this->metrics->percent_sedge));
+		$csv[] = array('Rush:', $this->metrics->rush, $this->prettify_percent($this->metrics->percent_rush));
+		$csv[] = array('Fern:', $this->metrics->fern, $this->prettify_percent($this->metrics->percent_fern));
+		$csv[] = array('Bryophyte:', $this->metrics->bryophyte, $this->prettify_percent($this->metrics->percent_bryophyte));
+		$csv[] = array();
+		*/
+
+		$csv[] = array('Duration Metrics:');
+		$csv[] = array('Annual:', $this->metrics->annual, $this->prettify_percent($this->metrics->percent_annual));
+		$csv[] = array('Perennial:', $this->metrics->perennial, $this->prettify_percent($this->metrics->percent_perennial));
+		$csv[] = array('Biennial:', $this->metrics->biennial, $this->prettify_percent($this->metrics->percent_biennial));
+		$csv[] = array('Native Annual:', $this->metrics->native_annual, $this->prettify_percent($this->metrics->percent_native_annual));
+		$csv[] = array('Native Perennial:', $this->metrics->native_perennial, $this->prettify_percent($this->metrics->percent_native_perennial));
+		$csv[] = array('Native Biennial:', $this->metrics->native_biennial, $this->prettify_percent($this->metrics->percent_native_biennial));
+		$csv[] = array();
+		
+		$csv[] = array('Physiognomic Relative Importance Values:');
+		$csv[] = array('Physiognomy','Frequency','Coverage','Relative Frequency (%)','Relative Coverage (%)','Relative Importance Value');
+		$csv[] = array(
+						'Tree', 
+						$this->metrics->tree, 
+						$this->metrics->tree_coverage,
+						$this->prettify_value($this->metrics->percent_tree),
+						$this->prettify_value($this->metrics->percent_tree_coverage),
+						$this->metrics->tree_riv
+					);
+		$csv[] = array(
+						'Shrub', 
+						$this->metrics->shrub, 
+						$this->metrics->shrub_coverage,
+						$this->prettify_value($this->metrics->percent_shrub),
+						$this->prettify_value($this->metrics->percent_shrub_coverage),
+						$this->metrics->shrub_riv
+					);
+		$csv[] = array(
+						'Vine', 
+						$this->metrics->vine, 
+						$this->metrics->vine_coverage,
+						$this->prettify_value($this->metrics->percent_vine),
+						$this->prettify_value($this->metrics->percent_vine_coverage),
+						$this->metrics->vine_riv
+					);
+		$csv[] = array(
+						'Forb', 
+						$this->metrics->forb, 
+						$this->metrics->forb_coverage,
+						$this->prettify_value($this->metrics->percent_forb),
+						$this->prettify_value($this->metrics->percent_forb_coverage),
+						$this->metrics->forb_riv
+					);
+		$csv[] = array(
+						'Grass', 
+						$this->metrics->grass, 
+						$this->metrics->grass_coverage,
+						$this->prettify_value($this->metrics->percent_grass),
+						$this->prettify_value($this->metrics->percent_grass_coverage),
+						$this->metrics->grass_riv
+					);
+		$csv[] = array(
+						'Sedge', 
+						$this->metrics->sedge, 
+						$this->metrics->sedge_coverage,
+						$this->prettify_value($this->metrics->percent_sedge),
+						$this->prettify_value($this->metrics->percent_sedge_coverage),
+						$this->metrics->sedge_riv
+					);
+		$csv[] = array(
+						'Rush', 
+						$this->metrics->rush, 
+						$this->metrics->rush_coverage,
+						$this->prettify_value($this->metrics->percent_rush),
+						$this->prettify_value($this->metrics->percent_rush_coverage),
+						$this->metrics->rush_riv
+					);
+		$csv[] = array(
+						'Fern', 
+						$this->metrics->fern, 
+						$this->metrics->fern_coverage,
+						$this->prettify_value($this->metrics->percent_fern),
+						$this->prettify_value($this->metrics->percent_fern_coverage),
+						$this->metrics->fern_riv
+					);
+		$csv[] = array(
+						'Bryophyte', 
+						$this->metrics->bryophyte, 
+						$this->metrics->bryophyte_coverage,
+						$this->prettify_value($this->metrics->percent_bryophyte),
+						$this->prettify_value($this->metrics->percent_bryophyte_coverage),
+						$this->metrics->bryophyte_riv
+					);
+		$csv[] = array();
+		
+		$csv[] = array('Species Relative Importance Values:');
+		$csv[] = array('Species','Frequency','Coverage','Relative Frequency (%)','Relative Coverage (%)','Relative Importance Value');
+		$taxa = $this->reverse_sort_array_of_objects($this->metrics->taxa, 'relative_importance_value');
+		foreach ($taxa as $taxon) { 
+			$csv[] = array(
+							$taxon->taxa->scientific_name,
+							$taxon->frequency,
+							$taxon->percent_cover,
+							$taxon->relative_frequency,
+							$taxon->relative_cover,
+							$taxon->relative_importance_value
+						);
+		}
+		$csv[] = array();
+		
+		$csv[] = array('Quadrat Level Metrics:');
+		$csv[] = array('Quadrat','Species Richness','Native Species Richness','Total Mean C','Native Mean C','Total FQI',
+						'Native FQI','Cover-weighted FQI','Cover-weighted Native FQI','Adjusted FQI','Mean Wetness',
+						'Mean Native Wetness','Latitude','Longitude');
+		$quadrats = $this->sort_array_of_objects($this->quadrats, 'name');
+		foreach ($quadrats as $quadrat) { 
+			if ($quadrat->active) { 
+				$csv[] = array(
+								$quadrat->name,
+								$quadrat->metrics->total_species,
+								$quadrat->metrics->native_species,
+								$quadrat->metrics->total_mean_c,
+								$quadrat->metrics->native_mean_c,
+								$quadrat->metrics->total_fqi,
+								$quadrat->metrics->native_fqi,
+								$quadrat->metrics->cover_weighted_total_fqi,
+								$quadrat->metrics->cover_weighted_native_fqi,
+								$quadrat->metrics->adjusted_fqi,
+								$quadrat->metrics->mean_wetness,
+								$quadrat->metrics->native_mean_wetness,
+								$this->prettify_value($quadrat->latitude),
+								$this->prettify_value($quadrat->longitude)
+						);
+			}
+		}
+		$csv[] = array();
+						
+		foreach ($quadrats as $quadrat) { 
+			if ($quadrat->active) { 
+				$csv[] = array('Quadrat ' . $quadrat->name . ' Species:');	
+				$csv[] = array('Scientific Name', 'Family', 'Acronym', '% Cover', 'Native?', 'C', 'W', 'Physiognomy', 'Duration', 'Common Name');
+				if (count($quadrat->taxa) == 0) {
+					$csv[] = array('There are no species in this quadrat.');
+				} else {
+					$sorted_taxa = $this->sort_array_of_objects($quadrat->taxa, 'scientific_name');
+					foreach ($sorted_taxa as $taxon) {
+						$csv[] = array(
+									$taxon->scientific_name,
+									$this->prettify_value($taxon->family),
+									$this->prettify_value($taxon->acronym),
+									$taxon->percent_cover,
+									$taxon->native,
+									$taxon->c_o_c,
+									$this->prettify_value($taxon->c_o_w),
+									$this->prettify_value($taxon->physiognomy),
+									$this->prettify_value($taxon->duration),
+									$this->prettify_value($taxon->common_name)
+								);
+					}
+				}
+				$csv[] = array();
+			}
+		}			
+		return $this->return_CSV($csv);
+	}	
 		
 }
 ?>
