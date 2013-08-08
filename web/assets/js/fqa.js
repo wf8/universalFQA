@@ -676,7 +676,7 @@ function toggle_active( quadrat_name ) {
 	});
 }
 
-	function change_transect_fqa_db() {
+function change_transect_fqa_db() {
  	if (confirm("Are you sure you want to change the FQA database? Some species may not be found in the new database.")) {
 		$.ajax({
 			url: "/ajax/change_transect_fqa_db",
@@ -704,6 +704,17 @@ function download_transect( id ) {
 			$('#download_csv_form').submit();
 		}
 	});
+}
+
+function start_upload_quadrat_string() {
+	if (confirm("Uploading a quadrat string will overwrite any existing quadrats in this transect. Do you want to continue?")) {
+		$( "#upload_error" ).html( "Uploading Quadrat String..." );
+		$('#upload_quadrat_string_form').submit();
+	}
+}
+function stop_upload_quadrat_string( msg ){
+	$( "#upload_error" ).html( msg );
+	update_quadrat_list();
 }
 
 /**
