@@ -45,6 +45,7 @@ class Taxa {
 				$this->physiognomy = $result['physiognomy'];
 				$this->duration = $result['duration'];	
 			}	
+			mysqli_close($this->db_link);
 		}	
 	}
 	

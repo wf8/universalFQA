@@ -62,6 +62,7 @@ class Assessment {
 				$this->site = $site;
 				$this->get_fqa_object();
 			}	
+			mysqli_close($this->db_link);
 		}	
 	}
 	
@@ -130,6 +131,7 @@ class Assessment {
  			$assessment->get_fqa_object();
 			$assessments[] = $assessment; 
 		}
+		mysqli_close($this->db_link);
 		return $assessments;
     }
     
@@ -175,6 +177,7 @@ class Assessment {
  			$assessment->get_fqa_object();	
 			$assessments[] = $assessment; 
 		}
+		mysqli_close($this->db_link);
 		return $assessments;
     }
 	

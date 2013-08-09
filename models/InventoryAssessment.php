@@ -58,6 +58,7 @@ class InventoryAssessment extends Assessment {
 		$sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column='$value' AND $taxa_db.$fqa_column='$this->fqa_id'";
 		$results = mysqli_query($this->db_link, $sql);
 		if (mysqli_num_rows($results) == 0) {
+			mysqli_close($this->db_link);
 			return false;
 		} else {
 			$result = mysqli_fetch_assoc($results);
@@ -80,9 +81,11 @@ class InventoryAssessment extends Assessment {
 			// check to make sure taxa is not already in assessment
 			foreach($this->taxa as $taxon) {
 				if ($taxon->id == $taxa->id) {
+					mysqli_close($this->db_link);
 					return true;
 				}
 			}
+			mysqli_close($this->db_link);
 			$this->taxa[] = $taxa;
 			return true;
 		}	
@@ -126,6 +129,7 @@ class InventoryAssessment extends Assessment {
  			$sql = "INSERT INTO inventory_taxa (inventory_id, site_id, taxa_id) VALUES ('$inventory_id', '$site_id', '$taxa_id')";
  			mysqli_query($this->db_link, $sql);
  		}
+ 		mysqli_close($this->db_link);
 		return $inventory_id;
 	}
 	
@@ -156,6 +160,7 @@ class InventoryAssessment extends Assessment {
  			$sql = "INSERT INTO inventory_taxa (inventory_id, site_id, taxa_id) VALUES ('$this->id', '$site_id', '$taxa_id')";
  			mysqli_query($this->db_link, $sql);
  		}
+ 		mysqli_close($this->db_link);
 	}
 	
 	/*
@@ -167,6 +172,7 @@ class InventoryAssessment extends Assessment {
 		mysqli_query($this->db_link, $sql);
 		$sql = "DELETE FROM inventory WHERE id='$id'";
 		mysqli_query($this->db_link, $sql);
+		mysqli_close($this->db_link);
 	}
 	
 	/*
@@ -213,6 +219,7 @@ class InventoryAssessment extends Assessment {
 			// add object to array
 			$this->taxa[] = $taxa;
 		}
+		mysqli_close($this->db_link);
 	}
 	
 	/*

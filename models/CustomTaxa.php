@@ -46,7 +46,8 @@ class CustomTaxa {
 				$this->c_o_w = $result['c_o_w'];
 				$this->physiognomy = $result['physiognomy'];
 				$this->duration = $result['duration'];	
-			}	
+			}
+			mysqli_close($this->db_link);	
 		}	
 	}
 	
@@ -131,6 +132,7 @@ class CustomTaxa {
 			$sql = "UPDATE customized_taxa SET $col_name = '$value' WHERE id = '$id'";
 		$this->get_db_link();
 		mysqli_query($this->db_link, $sql);
+		mysqli_close($this->db_link);
 		echo "success";	
 	}
 	
@@ -195,9 +197,12 @@ class CustomTaxa {
 			else
 				$sql = "INSERT INTO customized_taxa (customized_fqa_id, fqa_id, scientific_name, family, common_name, acronym, c_o_c, c_o_w, native, physiognomy, duration) VALUES ('$custom_fqa_id', '$original_fqa_id', '$scientific_name', '$family', '$common_name', '$acronym', '$c_o_c', '$c_o_w', '$native', '$physiognomy', '$duration')";
 			mysqli_query($this->db_link, $sql);
+			mysqli_close($this->db_link);
 			echo "success";
-		} else 
+		} else {
+			mysqli_close($this->db_link);
 			echo "Error: a taxa with that scientific name already exists for this database.";
+		}
 	}
 	
 	/*
@@ -207,6 +212,7 @@ class CustomTaxa {
 		$this->get_db_link();
 		$sql = "DELETE FROM customized_taxa WHERE id='$id'";
 		mysqli_query($this->db_link, $sql);
+		mysqli_close($this->db_link);
 	}	
 }
 ?>
