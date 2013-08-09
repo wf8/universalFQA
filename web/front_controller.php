@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+ini_set("include_path",$_SERVER["DOCUMENT_ROOT"]);
 require('../config/db_config.php');
 $db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
 if (mysqli_connect_errno($db_link)) {
