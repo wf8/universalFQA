@@ -24,9 +24,9 @@ if( $_SESSION['valid'] ) {
 		// add old taxa
 		foreach($old_taxa as $old_taxon) {
 			// try to add by sci name, common name, and acronym
-			if (!$quadrat->add_taxa_by_column_value('scientific_name', $old_taxon->scientific_name, $old_taxon->percent_cover)) 
-				if (!$quadrat->add_taxa_by_column_value('common_name', $old_taxon->common_name, $old_taxon->percent_cover)) 
-					if (!$quadrat->add_taxa_by_column_value('acronym', $old_taxon->acronym, $old_taxon->percent_cover)) 
+			if (!$quadrat->add_taxa_by_column_value('scientific_name', $old_taxon->scientific_name, $old_taxon->percent_cover, $db_link)) 
+				if (!$quadrat->add_taxa_by_column_value('common_name', $old_taxon->common_name, $old_taxon->percent_cover, $db_link)) 
+					if (!$quadrat->add_taxa_by_column_value('acronym', $old_taxon->acronym, $old_taxon->percent_cover, $db_link)) 
 						$error .= $old_taxon->scientific_name . ' in Quadrat ' . $quadrat->name . '<br>';
 		}
 	}

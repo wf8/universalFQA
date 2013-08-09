@@ -19,7 +19,7 @@ else {
 	}
 	
 	// make new quadrat object and store in session
-	$quadrat = new Quadrat();
+	$quadrat = new Quadrat(null, $db_link);
 	$quadrat->fqa_id = $assessment->fqa_id;
 	$quadrat->custom_fqa = $assessment->custom_fqa;
 	$_SESSION['quadrat'] = serialize($quadrat);

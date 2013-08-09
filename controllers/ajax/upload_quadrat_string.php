@@ -20,7 +20,7 @@ else {
 			if ( (trim(strtolower($data[0])) == 'quad') && !$constructing_quadrat) {
 				// start a new quadrat
 				$constructing_quadrat = true;
-				$quadrat = new Quadrat();
+				$quadrat = new Quadrat(null, $db_link);
 				$quadrat->fqa_id = $assessment->fqa_id;
 				$quadrat->custom_fqa = $assessment->custom_fqa;
 				$quadrat->name = trim($data[1]);
@@ -30,7 +30,7 @@ else {
 			}
 			if ( (trim(strtolower($data[0])) !== 'acronym') && (trim($data[0]) !== '>') && (trim(strtolower($data[0])) !== 'quad') && $constructing_quadrat) {
 				// taxa to quadrat
-				if (!$quadrat->add_taxa_by_column_value('acronym', $data[0], $data[1]))
+				if (!$quadrat->add_taxa_by_column_value('acronym', $data[0], $data[1], $db_link))
 					$result = $result . 'Acronym not found: ' . $data[0] . '<br>';
 			}
 			if ((trim($data[0]) == '>') && $constructing_quadrat) {

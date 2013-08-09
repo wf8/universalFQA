@@ -13,10 +13,10 @@ class Quadrat {
 	public $percent_bare_ground;
 	public $percent_water;
 		
-	public function __construct( $id = null ) {
+	public function __construct( $id = null, $db_link ) {
 		if ($id !== null) {
 			// load the quadrat taxa
-			$this->get_taxa();
+			$this->get_taxa($db_link);
 			$this->compute_metrics();
 		}
 	}
@@ -45,7 +45,7 @@ class Quadrat {
 	 * return true/false depending on success of adding taxa
 	 * will return true if taxa is already in assessment
 	 */
-	public function add_taxa_by_column_value( $column, $value, $percent_cover ) {
+	public function add_taxa_by_column_value( $column, $value, $percent_cover, $db_link ) {
 		if (trim($value) == '')
 			return false;
 		if ($this->custom_fqa) {
@@ -57,9 +57,8 @@ class Quadrat {
 			$taxa_db = 'taxa';
 			$fqa_column = 'fqa_id';
 		}
-		$this->get_db_link();
 		$sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column='$value' AND $taxa_db.$fqa_column='$this->fqa_id'";
-		$results = mysqli_query($this->db_link, $sql);
+		$results = mysqli_query($db_link, $sql);
 		if (mysqli_num_rows($results) == 0) {
 			return false;
 		} else {
@@ -146,12 +145,11 @@ class Quadrat {
 	/*
 	 * load all the taxa for this quadrat
 	 */
-	public function get_taxa() {
-		$this->get_db_link();
+	public function get_taxa($db_link) {
 		$id = $this->id;
 		// load the inventory taxa
 		$sql = "SELECT * FROM quadrat_taxa WHERE quadrat_id='$id'";
-		$results = mysqli_query($this->db_link, $sql);
+		$results = mysqli_query($db_link, $sql);
 		while ($taxa_to_add = mysqli_fetch_assoc($results)) {
 			// got the taxa id
 			$id_to_add = $taxa_to_add['taxa_id'];
@@ -167,7 +165,7 @@ class Quadrat {
 			}
 			// get the taxa data
 			$sql = "SELECT * FROM $taxa_db WHERE id='$id_to_add'";
-			$results2 = mysqli_query($this->db_link, $sql);
+			$results2 = mysqli_query($db_link, $sql);
 			$result = mysqli_fetch_assoc($results2);
 			// populate taxa object
 			$taxa->id = $result['id'];

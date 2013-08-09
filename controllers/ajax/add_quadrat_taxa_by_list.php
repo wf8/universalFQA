@@ -21,9 +21,9 @@ if( $_SESSION['valid'] ) {
 			// now try to add the taxa
 			if ($taxa !== '' && $percent_cover !== '') {
 				// try to add taxa by all possible columns
-				if (!$quadrat->add_taxa_by_column_value('scientific_name', $taxa, $percent_cover)) {
-					if (!$quadrat->add_taxa_by_column_value('common_name', $taxa, $percent_cover)) {
-						if (!$quadrat->add_taxa_by_column_value('acronym', $taxa, $percent_cover)) {
+				if (!$quadrat->add_taxa_by_column_value('scientific_name', $taxa, $percent_cover, $db_link)) {
+					if (!$quadrat->add_taxa_by_column_value('common_name', $taxa, $percent_cover, $db_link)) {
+						if (!$quadrat->add_taxa_by_column_value('acronym', $taxa, $percent_cover, $db_link)) {
 							$html = $html . $taxa . '<br>';
 							$taxa_not_found = true;
 						}

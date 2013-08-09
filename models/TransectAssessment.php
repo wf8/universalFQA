@@ -44,7 +44,7 @@ class TransectAssessment extends Assessment {
 		$sql = "SELECT * FROM quadrat WHERE transect_id='$this->id'";
 		$results = mysqli_query($this->db_link, $sql);
 		while ($quad = mysqli_fetch_assoc($results)) {
-			$quadrat = new Quadrat();
+			$quadrat = new Quadrat(null, null);
 			$quadrat->id = $quad['id'];
 			$quadrat->transect_id = $this->id;
 			$quadrat->name = $quad['name'];
@@ -55,7 +55,7 @@ class TransectAssessment extends Assessment {
 			$quadrat->percent_water = $quad['percent_water'];
 			$quadrat->fqa_id = $this->fqa_id;
 			$quadrat->custom_fqa = $this->custom_fqa;
-			$quadrat->get_taxa();
+			$quadrat->get_taxa($this->db_link);
 			$quadrat->compute_metrics();
 			// add object to array
 			$this->quadrats[] = $quadrat;
