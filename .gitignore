@@ -1,3 +1,4 @@
 config/db_config.php
 web/temp.csv
 .DS_Store
+web/php_errorlog
