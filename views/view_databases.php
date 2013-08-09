@@ -39,7 +39,7 @@ if (mysqli_num_rows($fqa_databases) == 0) {
 							<td><a href="view_database/<?php echo $fqa_id; ?>"><?php echo $region; ?></a></td>
 							<td><?php echo $year; ?></td>
 							<td><?php echo $description; ?></td>
-							<td><a href="view_database/<?php echo $fqa_id; ?>">View</a> | <a href="customize_database/<?php echo $fqa_id; ?>">Customize</a> | <a href="download_database/<?php echo $fqa_id; ?>">Download</a></td>
+							<td><a href="view_database/<?php echo $fqa_id; ?>">View</a> | <a href="customize_database/<?php echo $fqa_id; ?>">Customize</a> | <a href="javascript:download_database(<?php echo $fqa_id; ?>)">Download</a></td>
 						</tr>
 <?php
 	}
@@ -74,7 +74,7 @@ if (mysqli_num_rows($custom_fqa_databases) == 0) {
 							<td><a href="edit_custom_database/<?php echo $fqa_id; ?>"><?php echo $customized_name; ?></a></td>
 							<td><?php echo $customized_description; ?></td>
 							<td><?php echo $region; ?>, <?php echo $year; ?></td>
-							<td><a href="edit_custom_database/<?php echo $fqa_id; ?>">Edit</a> | <a href="download_custom_database/<?php echo $fqa_id; ?>">Download</a> | <a onclick="javascript:delete_custom_database(<?php echo $fqa_id; ?>);" href="#">Delete</a></td>
+							<td><a href="edit_custom_database/<?php echo $fqa_id; ?>">Edit</a> | <a href="javascript:download_custom_database(<?php echo $fqa_id; ?>);">Download</a> | <a onclick="javascript:delete_custom_database(<?php echo $fqa_id; ?>);" href="#">Delete</a></td>
 						</tr>
 <?php
 	}
@@ -86,3 +86,6 @@ if (mysqli_num_rows($custom_fqa_databases) == 0) {
 		</div>
     </div> 
     <br><br>
+    <form id="download_csv_form" method="post" action="/download_report">
+		<input type="hidden" id="download_csv" name="download_csv" />
+	</form>  

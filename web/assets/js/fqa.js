@@ -107,7 +107,32 @@ function stop_database_upload( msg ){
 		$( "#upload_error" ).html( msg );
 }
  
-function download_database() {
+function download_database( id ) {
+	$.ajax({
+		url: "/ajax/download_database",
+		type: "POST",
+		data: {
+			id: id,
+		},
+		success: function( response ) {
+			$('#download_csv').val(response);
+			$('#download_csv_form').submit();
+		}
+	});
+}
+
+function download_custom_database( id ) {
+	$.ajax({
+		url: "/ajax/download_custom_database",
+		type: "POST",
+		data: {
+			id: id,
+		},
+		success: function( response ) {
+			$('#download_csv').val(response);
+			$('#download_csv_form').submit();
+		}
+	});
 }
 
 /**

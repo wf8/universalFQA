@@ -9,7 +9,7 @@
 					<br>
 					<h1>Public FQA Database</h1>
 					<button class="btn btn-info" onclick="javascript:window.location = '/customize_database/<?php echo $id; ?>';return false;">Customize This Database</button>
-					<button class="btn btn-info" onClick="asdf_changes();">Download</button> 
+					<button class="btn btn-info" onClick="javascript:download_database(<?php echo $id; ?>);">Download</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_databases';return false;">Done</button>
 					<br>
 				</div>
@@ -68,7 +68,10 @@ while ($fqa_taxon = mysqli_fetch_assoc($fqa_taxa)) {
 	else
 		$acronym = $fqa_taxon['acronym'];
 	echo "<td>".$acronym."</td>";
-	echo "<td>".$fqa_taxon['native']."</td>";
+	if ($fqa_taxon['native'] == 1)
+		echo "<td>native</td>";
+	else
+		echo "<td>non-native</td>";
 	echo "<td>".$fqa_taxon['c_o_c']."</td>";
 	if ($fqa_taxon['c_o_w'] == null) {
 		$c_o_w = "n/a";
@@ -124,3 +127,6 @@ while ($fqa_taxon = mysqli_fetch_assoc($fqa_taxa)) {
 		</div>
     </div> 
     <br><br>
+    <form id="download_csv_form" method="post" action="/download_report">
+		<input type="hidden" id="download_csv" name="download_csv" />
+	</form>  
