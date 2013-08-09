@@ -10,7 +10,7 @@
 					<br>
 					<h1>Edit Quadrat</h1>
 					<button class="btn btn-info" onclick="javascript:save_edited_quadrat();return false;">Save Changes</button> 
-					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
+					<button class="btn btn-info" onclick="javascript:window.history.back(-1); $(document).ready(function () {update_quadrat_list(); });">Cancel</button><br>
 				</div>
 			</div>
 			<br>
@@ -108,7 +108,7 @@
 				<div class="span12">				
 					<h4>Finished?</h4>
 					<button class="btn btn-info" onclick="javascript:save_edited_quadrat();return false;">Save Changes</button> 
-					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
+					<button class="btn btn-info" onclick="javascript:window.history.back(-1); $(document).ready(function () {update_quadrat_list(); });">Cancel</button><br>
 				</div>
 			</div>
 		</div>

@@ -740,8 +740,10 @@ function save_new_quadrat() {
 			if (response.indexOf("success") == -1) {
 				alert( response );
 			} else {
-				window.history.back(-1);
-				update_quadrat_list();
+				history.back();
+				$(document).ready(function () {
+  					update_quadrat_list();
+				});
 			}
 		}
 	});
@@ -762,8 +764,10 @@ function save_edited_quadrat() {
 			if (response.indexOf("success") == -1) {
 				alert( response );
 			} else {
-				window.history.back(-1);
-				update_quadrat_list();
+				history.back();
+				$(document).ready(function () {
+  					update_quadrat_list();
+				});
 			}
 		}
 	});
