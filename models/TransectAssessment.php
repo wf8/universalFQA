@@ -22,6 +22,7 @@ class TransectAssessment extends Assessment {
 			$metrics = new TransectMetrics($assessment);
 			$assessment->metrics = $metrics;
 		}
+		mysqli_close($this->db_link);
 		return $assessments;
 	}
 	
@@ -33,6 +34,7 @@ class TransectAssessment extends Assessment {
 			$metrics = new TransectMetrics($assessment);
 			$assessment->metrics = $metrics;
 		}
+		mysqli_close($this->db_link);
 		return $assessments;
 	}
 	
@@ -60,6 +62,7 @@ class TransectAssessment extends Assessment {
 			// add object to array
 			$this->quadrats[] = $quadrat;
 		}
+		mysqli_close($this->db_link);
 	}
 	
 	/*
@@ -82,8 +85,9 @@ class TransectAssessment extends Assessment {
 		$transect_id = mysqli_insert_id($this->db_link);
 		// insert quadrats
 		foreach($this->quadrats as $quadrat) {
- 			$quadrat->save($transect_id);
+ 			$quadrat->save($transect_id, $this->db_link);
  		}
+ 		mysqli_close($this->db_link);
 		return $transect_id;
 	}
 	
@@ -113,8 +117,9 @@ class TransectAssessment extends Assessment {
 		mysqli_query($this->db_link, $sql);
 		// save the new quadrats
 		foreach($this->quadrats as $quadrat) {
- 			$quadrat->save($this->id);
+ 			$quadrat->save($this->id, $this->db_link);
  		}
+ 		mysqli_close($this->db_link);
 	}
 	
 	/*
@@ -128,6 +133,7 @@ class TransectAssessment extends Assessment {
 		mysqli_query($this->db_link, $sql);
 		$sql = "DELETE FROM quadrat_taxa WHERE transect_id='$id'";
 		mysqli_query($this->db_link, $sql);
+		mysqli_close($this->db_link);
 	}
 	
 	/*

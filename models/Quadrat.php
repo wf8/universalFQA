@@ -109,17 +109,16 @@ class Quadrat {
 	 * 
 	 * 
 	 */
-	public function save( $transect_id ) {
-		$this->get_db_link();
+	public function save( $transect_id, $db_link ) {
 		$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground, percent_water) VALUES
 					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground', '$this->percent_water')";
-		mysqli_query($this->db_link, $sql);
-		$this->id = mysqli_insert_id($this->db_link);
+		mysqli_query($db_link, $sql);
+		$this->id = mysqli_insert_id($db_link);
 		// insert each taxon
 		foreach($this->taxa as $taxon) {
  			$sql = "INSERT INTO quadrat_taxa (quadrat_id, transect_id, percent_coverage, taxa_id) VALUES 
  						('$this->id', '$transect_id', '$taxon->percent_cover', '$taxon->id')";
- 			mysqli_query($this->db_link, $sql);
+ 			mysqli_query($db_link, $sql);
  		}	
 	}
 	
@@ -140,6 +139,7 @@ class Quadrat {
 		mysqli_query($this->db_link, $sql);
 		$sql = "DELETE FROM quadrat WHERE id='$id'";
 		mysqli_query($this->db_link, $sql);
+		mysqli_close($this->db_link);
 	}
 	
 	/*
