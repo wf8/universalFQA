@@ -739,7 +739,7 @@ function start_upload_quadrat_string() {
 }
 function stop_upload_quadrat_string( msg ){
 	$( "#upload_error" ).html( msg );
-	update_quadrat_list();
+	$(document).ready( function () { update_quadrat_list(); });
 }
 
 /**

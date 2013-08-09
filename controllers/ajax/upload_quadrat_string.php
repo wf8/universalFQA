@@ -61,6 +61,7 @@ else {
 	if ($new_quadrats) {
 		// add the new quadrats to the assessment in session
 		$assessment->quadrats = $quadrats;
+		$_SESSION['assessment'] = null;
 		$_SESSION['assessment'] = serialize($assessment);
 		if ($result == '')
 			$result = $result . 'Quadrat string successfully uploaded.';
