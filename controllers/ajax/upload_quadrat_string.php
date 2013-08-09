@@ -29,8 +29,21 @@ else {
 				$new_quadrats = true;
 			}
 			if ( (trim(strtolower($data[0])) !== 'acronym') && (trim($data[0]) !== '>') && (trim(strtolower($data[0])) !== 'quad') && $constructing_quadrat) {
-				// taxa to quadrat
-				if (!$quadrat->add_taxa_by_column_value('acronym', $data[0], $data[1], $db_link))
+				// convert coverage vales 1=20, 2=40, 3=60, 4=80, 5=100
+				if ($data[1] == '1')
+					$cover = 20;
+				else if ($data[1] == '2')
+					$cover = 40;
+				else if ($data[1] == '3')
+					$cover = 60;
+				else if ($data[1] == '4')
+					$cover = 80;
+				else if ($data[1] == '5')
+					$cover = 100;
+				else
+					$cover = $data[1];
+				// add taxa to quadrat
+				if (!$quadrat->add_taxa_by_column_value('acronym', $data[0], $cover, $db_link))
 					$result = $result . 'Acronym not found: ' . $data[0] . '<br>';
 			}
 			if ((trim($data[0]) == '>') && $constructing_quadrat) {
