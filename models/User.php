@@ -155,7 +155,8 @@ class User {
 		if (!$result) {
 			echo 'Database error: ' . mysql_error();
 		} else {
-			mail($email, "Universal FQA: Password retrieval", " Your temporary password is: " . $temp_password . " \r\n Please login and set a new password. \r\n http://universalFQA.org");
+			$headers = 'From: fqa@universalfqa.org' . "\r\n";
+			mail($email, "Universal FQA: Password retrieval", " Your temporary password is: " . $temp_password . " \r\n Please login and set a new password. \r\n http://universalFQA.org", $headers);
 			echo "success";
 		}
     }

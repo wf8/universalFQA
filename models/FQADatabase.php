@@ -221,8 +221,9 @@ class FQADatabase {
 					}
 				}
 				if ($result == "") {
+					$headers = 'From: fqa@universalfqa.org' . "\r\n";
 					$message = "Successfully inserted new " . $region . ", " . $year . " FQA database with " . $taxa_inserted . " taxa.";
-					mail('willfreyman@gmail.com', 'FQA: new database', $message);
+					mail('willfreyman@gmail.com', 'FQA: new database', $message, $headers);
 					$result = $fqa_id . "";
 				} else {
 					// delete any partially inserted databases
