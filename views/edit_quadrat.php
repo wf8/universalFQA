@@ -1,4 +1,4 @@
-    <script> window.onload = update_quadrat_species_list(); </script>
+    <script> $(document).ready( function () { update_quadrat_species_list(); }); </script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
