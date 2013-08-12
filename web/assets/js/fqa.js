@@ -583,9 +583,10 @@ function download_inventory( id ) {
 	$.ajax({
 		url: "/ajax/get_assessment_quadrat_list",
 		type: "POST",
+		async: false ,
 		success: function( response ) {
-			$( "#quadrat_list" ).html( response );
-		}
+			 $( "#quadrat_list" ).html( response );
+		},
 	});	
 }
 
@@ -739,7 +740,8 @@ function start_upload_quadrat_string() {
 }
 function stop_upload_quadrat_string( msg ){
 	$( "#upload_error" ).html( msg );
-	$(document).ready( function () { update_quadrat_list(); });
+	//$(document).ready( function () { update_quadrat_list(); });
+	update_quadrat_list();
 }
 
 /**
