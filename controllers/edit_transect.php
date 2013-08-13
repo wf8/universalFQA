@@ -12,8 +12,10 @@ else {
 			// just started editing, so get object out of db
 			$assessment = new TransectAssessment( $url_parts[1] );
 			// check if the inventory exists
-			if (is_null($assessment->id))
+			if (is_null($assessment->id)) {
 				require_once('../views/error.php');
+				exit;
+			}
 		}
 		// get a list of all the fqa databases
 		$fqa = new FQADatabase;

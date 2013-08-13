@@ -399,6 +399,7 @@ function update_species_list() {
 	$.ajax({
 		url: "/ajax/get_assessment_species_list",
 		type: "POST",
+		async: false ,
 		success: function( response ) {
 			$( "#species_list" ).html( response );
 		}
