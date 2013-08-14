@@ -100,12 +100,12 @@
 						<tr>
 							<td>Relative frequency (%)</td>
 							<td>The frequency of this species or physiognomic group divided by the frequency of all species or physiognomic groups.</td>
-							<td>\( \mu_r = 100 \Big(\mu_i \Big/ \mu_t\Big) \)</td>
+							<td>\( \mu_r = 100 \Big(\mu_i \Big/ \sum\limits_{i=0}^{t} \mu_i\Big) \)</td>
 						</tr>
 						<tr>
 							<td>Relative coverage (%)</td>
 							<td>The total coverage of this species or physiognomic group divided by the total coverage of all species or physiognomic groups.</td>
-							<td>\( \gamma_r = 100 \Big(\gamma_i \Big/ \gamma_t\Big) \)</td>
+							<td>\( \gamma_r = 100 \Big(\gamma_i \Big/ \sum\limits_{i=0}^{t} \gamma_i\Big) \)</td>
 						</tr>
 						<tr>
 							<td>Relative importance value</td>

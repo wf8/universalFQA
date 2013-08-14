@@ -20,7 +20,7 @@
 					</ul>
 					<br>
 					<p class="nice-text">
-						Commonly asked questions about the <a href="../">Universal FQA Calculator</a>:
+						Frequently asked questions:
 					</p>
 					<div class="accordion nice-text" id="accordion2">
 						<div class="accordion-group">
@@ -56,7 +56,7 @@
 							</div>
 							<div id="collapseThree" class="accordion-body collapse">
 								<div class="accordion-inner">
-									This site was developed for <a href="http://www.openlands.org/">Openlands</a>, a non-profit conservation group based in Chicago. Use of the site is offered to the public free of charge, and all data will be kept private. Please <a href="/about">contact us</a> if you have more questions.
+									This site was developed for <a href="http://www.openlands.org/">Openlands</a>, a non-profit conservation organization based in Chicago. Use of the site is offered to the public free of charge, and all data will be kept private. Please <a href="/about">contact us</a> if you have more questions.
 								</div>
 							</div>
 						</div>
@@ -69,6 +69,18 @@
 							<div id="collapseFour" class="accordion-body collapse">
 								<div class="accordion-inner">
 									Downloaded reports are CSV (comma-separated values) files that can be easily opened in any spreadsheet application such as Microsoft Excel.
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#collapse5">
+									Other questions?
+								</a>
+							</div>
+							<div id="collapse5" class="accordion-body collapse">
+								<div class="accordion-inner">
+									Please <a href="/about">email</a> me!
 								</div>
 							</div>
 						</div>

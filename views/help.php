@@ -20,13 +20,17 @@
 					</ul>
 					<br>
 					<p class="nice-text">
-						Here is an introduction to the <a href="../">Universal Floristic Quality Assessment (FQA) Calculator</a>.
+						Floristic Quality Assessments (FQAs) are measurements of a natural area's habitat condition or quality. FQAs are widely used by government agencies and conservation groups to inform land management decisions.
 					</p>
 					<p class="nice-text">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis erat lectus. Proin interdum magna nunc, vitae vehicula lacus volutpat non. Curabitur egestas nunc mi, at consequat mauris ornare id. Donec laoreet, enim at sollicitudin tristique, ligula mi imperdiet dolor, id ullamcorper felis velit ac mauris. Nam nec velit sed libero fringilla tempus ac at lectus. Donec laoreet laoreet nisi at porta. Aliquam enim enim, pulvinar et dolor tincidunt, lobortis ultricies odio. Pellentesque tincidunt tortor odio, porttitor bibendum magna ultrices dapibus. Quisque consequat mattis justo quis pulvinar.
+						This web-based tool calculates site inventory and transect FQAs. FQA databases published for a number of geographic regions have already been imported into the website, and users can import and customize other FQA databases as needed.					
 					</p>
 					<p class="nice-text">
-Donec leo lectus, interdum et nunc vulputate, porttitor ultrices lacus. Phasellus ac elit scelerisque, luctus velit at, sagittis augue. Quisque tempor leo non feugiat posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce non nisi facilisis dolor iaculis accumsan quis nec elit. Curabitur mattis ligula nec purus lacinia, ut fringilla lectus congue. Quisque ut nunc eu magna auctor accumsan. Nullam convallis vehicula justo, a condimentum turpis bibendum quis. Curabitur eget neque vitae arcu consectetur convallis. Donec tristique, dui nec posuere sollicitudin, sem nisi condimentum purus, a pharetra justo eros eu risus. Aliquam tempus metus erat, eu vulputate purus vehicula id. Ut vel vestibulum dui. Suspendisse in lectus.
+						For more information, see:<br>
+						<ul>
+							<li><a href="/help/faq">Frequently Asked Questions</a></li>
+							<li><a href="/help/terminology">Terminology and Calculations</a></li>
+						</ul>
 					</p>
 					<br>
 				</div>
