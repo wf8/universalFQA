@@ -15,7 +15,7 @@
 				
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="/help">Introduction</a></li>
-						<li><a href="/help/fqa">FQA</a></li>
+						<li><a href="/help/faq">FAQ</a></li>
 						<li><a href="/help/terminology">Terminology</a></li>
 					</ul>
 					<br>
