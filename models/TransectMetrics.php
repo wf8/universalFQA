@@ -25,6 +25,57 @@ class TransectMetrics extends QuadratMetrics {
 				if ($quadrat->metrics->duration)
 					$this->duration = true;
 				
+				// see if need to insert 'percent bare ground' into metric taxa
+				// so that it is included in species RIV
+				$found = false;
+				if ($quadrat->percent_bare_ground !== null) {
+					foreach ($this->taxa as $metric_taxon) {
+						if ($metric_taxon->taxa->id == 'percent_bare_ground') {
+							// update frequency and coverage
+							$metric_taxon->frequency++;
+							$metric_taxon->coverage += $quadrat->percent_bare_ground;
+							$found = true;
+							break;
+						}
+					}
+					if (!$found) {
+						// make new TransectMetricsTaxa
+						$metric_taxon = new TransectMetricsTaxa();
+						$metric_taxon->frequency = 1;
+						$metric_taxon->coverage = $quadrat->percent_bare_ground;
+						// make empty Taxa object
+						$metric_taxon->taxa = new Taxa();
+						$metric_taxon->taxa->id = 'percent_bare_ground';
+						$metric_taxon->taxa->scientific_name = 'Bare ground';
+						$this->taxa[] = $metric_taxon;
+					}
+				}
+			
+				// insert 'percent water' if need be
+				$found = false;	
+				if ($quadrat->percent_water !== null) {
+					foreach ($this->taxa as $metric_taxon) {
+						if ($metric_taxon->taxa->id == 'percent_water') {
+							// update frequency and coverage
+							$metric_taxon->frequency++;
+							$metric_taxon->coverage += $quadrat->percent_water;
+							$found = true;
+							break;
+						}
+					}
+					if (!$found) {
+						// make new TransectMetricsTaxa
+						$metric_taxon = new TransectMetricsTaxa();
+						$metric_taxon->frequency = 1;
+						$metric_taxon->coverage = $quadrat->percent_water;
+						// make empty Taxa object
+						$metric_taxon->taxa = new Taxa();
+						$metric_taxon->taxa->id = 'percent_water';
+						$metric_taxon->taxa->scientific_name = 'Water';
+						$this->taxa[] = $metric_taxon;
+					}
+				}
+
 				foreach ($quadrat->taxa as $taxon) {
 					$this->total_frequency++;
 					// check to see if this taxa is already in the transect metrics

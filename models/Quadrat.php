@@ -110,8 +110,21 @@ class Quadrat {
 	 * 
 	 */
 	public function save( $transect_id, $db_link ) {
-		$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground, percent_water) VALUES
+		if ($this->percent_bare_ground !== '' && $this->percent_water !== '')
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground, percent_water) VALUES
 					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground', '$this->percent_water')";
+		if ($this->percent_bare_ground == '' && $this->percent_water !== '')
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_water) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_water')";
+		
+		if ($this->percent_bare_ground !== '' && $this->percent_water == '')
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground')";
+		
+		if ($this->percent_bare_ground == '' && $this->percent_water == '')
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude')";
+		
 		mysqli_query($db_link, $sql);
 		$this->id = mysqli_insert_id($db_link);
 		// insert each taxon

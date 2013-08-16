@@ -17,13 +17,13 @@
 				<div class="span12">
 					<label class="small-text">Quadrat Number or Name: <font class="red">*</font></label>
 					<input class="field" type="text" id="name" value="" maxlength="256" required />
- 					<label class="small-text">Latitude:</label>
+ 					<label class="small-text">Latitude: (optional)</label>
 					<input class="field" type="text" id="latitude" value="" maxlength="256" /><br>
- 					<label class="small-text">Longitude:</label>
+ 					<label class="small-text">Longitude: (optional)</label>
 					<input class="field" type="text" id="longitude" value="" maxlength="256" /><br>
-					<label class="small-text">% Bare Ground:</label>
+					<label class="small-text">% Bare Ground: (optional)</label>
 					<input class="field" type="text" id="bare_ground" value="" maxlength="3" /><br>
- 					<label class="small-text">% Water:</label>
+ 					<label class="small-text">% Water: (optional)</label>
 					<input class="field" type="text" id="water" value="" maxlength="3" /><br>						
 				</div>
 			</div>

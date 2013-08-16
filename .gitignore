@@ -3,3 +3,4 @@ web/temp.csv
 .DS_Store
 web/php_errorlog
 web/assets/js/MathJax/
+*.swp
