@@ -74,6 +74,18 @@
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion40" href="#collapseFour0">
+									What are Transect Strings?
+								</a>
+							</div>
+							<div id="collapseFour0" class="accordion-body collapse">
+								<div class="accordion-inner">
+								Transect Strings are specially formatted files used to export transect data from the original FQA software developed in the 1990's. If users have any of these files they can import them into the Universal FQA Calculator when creating a transect assessment.
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#collapse5">
 									Other questions?
 								</a>
