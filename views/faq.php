@@ -38,6 +38,19 @@
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse11">
+									For transect quadrats, how are % bare ground and % water included in the calculations?
+								</a>
+							</div>
+							<div id="collapse11" class="accordion-body collapse">
+								<div class="accordion-inner">
+									If % bare ground and/or % water are included in a transect's quadrat, they will be included in the species-level Relative Importance Value calculations for the entire transect. This is helpful to indicate the relative importance of bare ground or water compared to each species.
+								</div>
+							</div>
+						</div>
+
+						<div class="accordion-group">
+							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
 									Why are some details about my assessment shown as n/a?
 								</a>
@@ -50,7 +63,7 @@
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
 									Who runs this site? How safe is my data?
 								</a>
 							</div>
@@ -62,7 +75,7 @@
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
 									What format are the downloaded reports in?
 								</a>
 							</div>
@@ -74,19 +87,19 @@
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion40" href="#collapseFour0">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour0">
 									What are Transect Strings?
 								</a>
 							</div>
 							<div id="collapseFour0" class="accordion-body collapse">
 								<div class="accordion-inner">
-								Transect Strings are specially formatted files used to export transect data from the original FQA software developed in the 1990's. If users have any of these files they can import them into the Universal FQA Calculator when creating a transect assessment.
+								Transect Strings are specially formatted files used to export transect data from the original FQA software developed by Conservation Design Forum in 2000. If users have any of these files they can import them into the Universal FQA Calculator when creating a transect assessment.
 								</div>
 							</div>
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#collapse5">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse5">
 									Other questions?
 								</a>
 							</div>
