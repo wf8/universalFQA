@@ -123,6 +123,18 @@
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseCite">
+									How do I cite the use of this computer program?
+								</a>
+							</div>
+							<div id="collapseCite" class="accordion-body collapse">
+								<div class="accordion-inner">
+									Freyman, W.A. and L.A. Masters. 2013. <em>The Universal Floristic Quality Assessment (FQA) Calculator</em> [Computer program]. Available at http://universalFQA.org (Accessed date)
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse5">
 									Other questions?
 								</a>

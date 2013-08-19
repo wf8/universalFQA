@@ -28,6 +28,10 @@
 					<p class="nice-text">
 						Photo of <em>Sisyrinchium angustifolium</em> &copy; <a href="http://www.flickr.com/photos/lc10s/">Lisa Culp</a>. Used with permission.
 					</p>
+					<p class="nice-text">
+						Citation:<br>
+						Freyman, W.A. and L.A. Masters. 2013. <em>The Universal Floristic Quality Assessment (FQA) Calculator</em> [Computer program]. Available at http://universalFQA.org (Accessed date)
+					</p>
 					<br>
 					<button class="btn btn-info" onclick="javascript: window.history.back();">OK</button>
 				</div>
