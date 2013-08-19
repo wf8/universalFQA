@@ -3,6 +3,7 @@ $site_id = mysqli_real_escape_string($db_link, $_POST['site_id']);
 $month = mysqli_real_escape_string($db_link, $_POST['month']);
 $day = mysqli_real_escape_string($db_link, $_POST['day']);
 $year = mysqli_real_escape_string($db_link, $_POST['year']);
+$name = mysqli_real_escape_string($db_link, $_POST['name']);
 $practitioner = mysqli_real_escape_string($db_link, $_POST['practitioner']);
 $latitude = mysqli_real_escape_string($db_link, $_POST['latitude']);
 $longitude = mysqli_real_escape_string($db_link, $_POST['longitude']);
@@ -25,6 +26,7 @@ if ($public_inventory == 'public')
 else
 	$assessment->private = 1;
 $assessment->practitioner = $practitioner;
+$assessment->name = $name;
 $assessment->latitude = $latitude;
 $assessment->longitude = $longitude;
 $assessment->weather_notes = $weather_notes;

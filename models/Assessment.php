@@ -9,6 +9,7 @@ class Assessment {
 	public $custom_fqa;
 	public $date;
 	public $private;
+	public $name;
 	public $practitioner;
  	public $latitude;
  	public $longitude;
@@ -29,7 +30,7 @@ class Assessment {
 			$this->id = $id;
 			// load all data for this assessment
 			$this->get_db_link();
-			$sql = "SELECT $this->db_table.*, site.name, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.id='$id'";
+			$sql = "SELECT $this->db_table.*, site.name AS sitename, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.id='$id'";
 			$results = mysqli_query($this->db_link, $sql);
 			if (mysqli_num_rows($results) == 0) {
 				$this->id = null;
@@ -43,6 +44,7 @@ class Assessment {
 					$this->private = 'private';
 				else
 					$this->private = 'public';
+				$this->name = $result['name'];
 				$this->practitioner = $result['practitioner'];
 				$this->latitude = $result['latitude'];
 				$this->longitude = $result['longitude'];
@@ -52,7 +54,7 @@ class Assessment {
 				$this->other_notes = $result['other_notes'];	
 				$site = new Site();
 				$site->id = $result['site_id'];
-				$site->name = $result['name'];
+				$site->name = $result['sitename'];
 				$site->location = $result['location'];
 				$site->city = $result['city'];
 				$site->county = $result['county'];
@@ -94,7 +96,7 @@ class Assessment {
 	 */
     protected function get_all_for_user($user_id) {
     	$this->get_db_link();
-	    $sql = "SELECT $this->db_table.*, site.name, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.user_id='$user_id' ORDER BY site.name, $this->db_table.date DESC";
+	    $sql = "SELECT $this->db_table.*, site.name AS sitename, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.user_id='$user_id' ORDER BY $this->db_table.date DESC, site.name ASC";
 		$results = mysqli_query($this->db_link, $sql);
 		$assessments = array();
 		while ($result = mysqli_fetch_assoc($results)) {
@@ -111,6 +113,7 @@ class Assessment {
 				$assessment->private = 'private';
 			else
 				$assessment->private = 'public';
+			$assessment->name = $result['name'];
 	 		$assessment->practitioner = $result['practitioner'];
  	 		$assessment->latitude = $result['latitude'];
  	 		$assessment->longitude = $result['longitude'];
@@ -120,7 +123,7 @@ class Assessment {
  			$assessment->other_notes = $result['other_notes'];	
  			$site = new Site();
  			$site->id = $result['site_id'];
- 			$site->name = $result['name'];
+ 			$site->name = $result['sitename'];
  			$site->location = $result['location'];
  			$site->city = $result['city'];
  			$site->county = $result['county'];
@@ -140,7 +143,7 @@ class Assessment {
 	 */
     protected function get_all_public() {
     	$this->get_db_link();
-	    $sql = "SELECT $this->db_table.*, site.name, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.private='0' ORDER BY site.name, $this->db_table.date DESC";
+	    $sql = "SELECT $this->db_table.*, site.name AS sitename, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.private='0' ORDER BY $this->db_table.date DESC, site.name ASC";
 		$results = mysqli_query($this->db_link, $sql);			 
 		$assessments = array();
 		while ($result = mysqli_fetch_assoc($results)) {		
@@ -157,6 +160,7 @@ class Assessment {
 				$assessment->private = 'private';
 			else
 				$assessment->private = 'public';
+			$assessment->name = $result['name'];
 	 		$assessment->practitioner = $result['practitioner'];
  	 		$assessment->latitude = $result['latitude'];
  	 		$assessment->longitude = $result['longitude'];
@@ -166,7 +170,7 @@ class Assessment {
  			$assessment->other_notes = $result['other_notes'];		
  			$site = new Site();
  			$site->id = $result['site_id'];
- 			$site->name = $result['name'];
+ 			$site->name = $result['sitename'];
  			$site->location = $result['location'];
  			$site->city = $result['city'];
  			$site->county = $result['county'];
@@ -226,7 +230,7 @@ class Assessment {
 	protected function reverse_sort_array_of_objects($arr, $var) { 
 	   $tarr = array(); 
 	   $rarr = array(); 
-	   for($i = 0; $i < count($arr); $i++) { 
+	   for($i = 0; $i < count($arr); $i++) {
 		  $element = $arr[$i]; 
 		  $tarr[] = strtolower($element->{$var}); 
 	   } 

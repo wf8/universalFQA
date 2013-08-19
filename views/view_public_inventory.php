@@ -15,6 +15,11 @@
 			</div>
 			<br>
 			<div class="row-fluid">
+				<div class="span12">
+					<h3><?php echo $assessment->name; ?></h3>
+				</div>
+			</div>
+			<div class="row-fluid">
 				<div class="span6">
 					<h4>&#187; Date & Location:</h4>
 					<strong><?php echo $assessment->date; ?><br>

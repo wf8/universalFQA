@@ -65,8 +65,10 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span6">
-					<label class="small-text">Practitioner:</label>
-					<input class="input-medium" type="text" id="practitioner" value="<?php echo $assessment->practitioner; ?>" maxlength="256" /><br>
+					<label class="small-text">Assessment Name: <font class="red">*</font></label>
+					<input class="input-large" type="text" id="name" value="<?php echo $assessment->name; ?>" maxlength="256" /><br>
+					<label class="small-text">Practitioner: <font class="red">*</font></label>
+					<input class="input-large" type="text" id="practitioner" value="<?php echo $assessment->practitioner; ?>" maxlength="256" /><br>
  					<label class="small-text">Latitude:</label>
 					<input class="input-medium" type="text" id="latitude" value="<?php echo $assessment->latitude; ?>" maxlength="256" /><br>
  					<label class="small-text">Longitude:</label>

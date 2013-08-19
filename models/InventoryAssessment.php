@@ -117,9 +117,9 @@ class InventoryAssessment extends Assessment {
 			$custom = 1;
 		else
 			$custom = 0;
-		$sql = "INSERT INTO inventory (user_id, fqa_id, customized_fqa, site_id, date, private, practitioner, latitude, longitude,
+		$sql = "INSERT INTO inventory (user_id, fqa_id, customized_fqa, site_id, date, private, name, practitioner, latitude, longitude,
 		weather_notes, duration_notes, community_type_notes, other_notes) VALUES ('$user_id', '$this->fqa_id', '$custom', '$site_id', 
-		'$this->date', '$this->private', '$this->practitioner', '$this->latitude', '$this->longitude', '$this->weather_notes', '$this->duration_notes', 
+		'$this->date', '$this->private', '$this->name', '$this->practitioner', '$this->latitude', '$this->longitude', '$this->weather_notes', '$this->duration_notes', 
 		'$this->community_type_notes', '$this->other_notes')";
 		mysqli_query($this->db_link, $sql);
 		$inventory_id = mysqli_insert_id($this->db_link);
@@ -145,7 +145,7 @@ class InventoryAssessment extends Assessment {
 			$custom = 0;
 		$site_id = $this->site->id;
 		$sql = "UPDATE inventory SET fqa_id = '$this->fqa_id', customized_fqa = '$custom', site_id = '$site_id', date = '$this->date', private = '$this->private', 
-		practitioner = '$this->practitioner', latitude = '$this->latitude', longitude = '$this->longitude',
+		practitioner = '$this->practitioner', name = '$this->name', latitude = '$this->latitude', longitude = '$this->longitude',
 		weather_notes = '$this->weather_notes', duration_notes = '$this->duration_notes', community_type_notes = '$this->community_type_notes', 
 		other_notes = '$this->other_notes' WHERE id = '$this->id'";
 		mysqli_query($this->db_link, $sql);
@@ -229,6 +229,7 @@ class InventoryAssessment extends Assessment {
 		
 		// build csv array
 		$csv = array();
+		$csv[] = array($this->name);
 		$csv[] = array($this->date);
 		$csv[] = array($this->site->name);
 		$csv[] = array($this->site->city);
