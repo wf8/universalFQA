@@ -136,84 +136,83 @@ class TransectMetrics extends QuadratMetrics {
 								}
 							}
 						}
-						
-						if ($quadrat->metrics->physiognomy) {
-						
-							switch ($taxon->physiognomy) {
-								case 'tree':
-									$this->physiognomy = true;
-									$this->tree++;
-									if ($taxon->native == 'native') {
-										$this->native_tree_c += $taxon->c_o_c;
-										$this->native_tree++;
-									}
-									break;
-								case 'shrub':
-									$this->physiognomy = true;
-									$this->shrub++;
-									if ($taxon->native == 'native') {
-										$this->native_shrub_c += $taxon->c_o_c;
-										$this->native_shrub++;
-									}
-									break;
-								case 'vine':
-									$this->physiognomy = true;
-									$this->vine++;
-									if ($taxon->native == 'native') {
-										$this->native_herbaceous_c += $taxon->c_o_c;
-										$this->native_herbaceous++;
-									}
-									break;
-								case 'forb':
-									$this->physiognomy = true;
-									$this->forb++;
-									if ($taxon->native == 'native') {
-										$this->native_herbaceous_c += $taxon->c_o_c;
-										$this->native_herbaceous++;
-									}
-									break;
-								case 'grass':
-									$this->physiognomy = true;
-									$this->grass++;
-									if ($taxon->native == 'native') {
-										$this->native_herbaceous_c += $taxon->c_o_c;
-										$this->native_herbaceous++;
-									}
-									break;
-								case 'sedge':
-									$this->physiognomy = true;
-									$this->sedge++;
-									if ($taxon->native == 'native') {
-										$this->native_herbaceous_c += $taxon->c_o_c;
-										$this->native_herbaceous++;
-									}
-									break;
-								case 'rush':
-									$this->physiognomy = true;
-									$this->rush++;
-									if ($taxon->native == 'native') {
-										$this->native_herbaceous_c += $taxon->c_o_c;
-										$this->native_herbaceous++;
-									}
-									break;
-								case 'fern':
-									$this->physiognomy = true;
-									$this->fern++;
-									if ($taxon->native == 'native') {
-										$this->native_herbaceous_c += $taxon->c_o_c;
-										$this->native_herbaceous++;
-									}
-									break;
-								case 'bryophyte':
-									$this->physiognomy = true;
-									$this->bryophyte++;
-									if ($taxon->native == 'native') {
-										$this->native_herbaceous_c += $taxon->c_o_c;
-										$this->native_herbaceous++;
-									}
-									break;
-							}
-						}			
+					}						
+					if ($quadrat->metrics->physiognomy) {
+					
+						switch ($taxon->physiognomy) {
+							case 'tree':
+								$this->physiognomy = true;
+								$this->tree++;
+								if ($taxon->native == 'native') {
+									$this->native_tree_c += $taxon->c_o_c;
+									$this->native_tree++;
+								}
+								break;
+							case 'shrub':
+								$this->physiognomy = true;
+								$this->shrub++;
+								if ($taxon->native == 'native') {
+									$this->native_shrub_c += $taxon->c_o_c;
+									$this->native_shrub++;
+								}
+								break;
+							case 'vine':
+								$this->physiognomy = true;
+								$this->vine++;
+								if ($taxon->native == 'native') {
+									$this->native_vine_c += $taxon->c_o_c;
+									$this->native_vine++;
+								}
+								break;
+							case 'forb':
+								$this->physiognomy = true;
+								$this->forb++;
+								if ($taxon->native == 'native') {
+									$this->native_forb_c += $taxon->c_o_c;
+									$this->native_forb++;
+								}
+								break;
+							case 'grass':
+								$this->physiognomy = true;
+								$this->grass++;
+								if ($taxon->native == 'native') {
+									$this->native_grass_c += $taxon->c_o_c;
+									$this->native_grass++;
+								}
+								break;
+							case 'sedge':
+								$this->physiognomy = true;
+								$this->sedge++;
+								if ($taxon->native == 'native') {
+									$this->native_sedge_c += $taxon->c_o_c;
+									$this->native_sedge++;
+								}
+								break;
+							case 'rush':
+								$this->physiognomy = true;
+								$this->rush++;
+								if ($taxon->native == 'native') {
+									$this->native_rush_c += $taxon->c_o_c;
+									$this->native_rush++;
+								}
+								break;
+							case 'fern':
+								$this->physiognomy = true;
+								$this->fern++;
+								if ($taxon->native == 'native') {
+									$this->native_rush_c += $taxon->c_o_c;
+									$this->native_rush++;
+								}
+								break;
+							case 'bryophyte':
+								$this->physiognomy = true;
+								$this->bryophyte++;
+								if ($taxon->native == 'native') {
+									$this->native_bryophyte_c += $taxon->c_o_c;
+									$this->native_bryophyte++;
+								}
+								break;
+						}
 					}
 				}
 			}

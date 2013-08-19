@@ -264,9 +264,6 @@ class InventoryAssessment extends Assessment {
 		$csv[] = array('Conservatism-Based Metrics:');
 		$csv[] = array('Total Mean C:', $this->metrics->total_mean_c);
 		$csv[] = array('Native Mean C:', $this->metrics->native_mean_c);
-		$csv[] = array('Native Tree Mean C:', $this->metrics->native_tree_mean_c);
-		$csv[] = array('Native Shrub Mean C:', $this->metrics->native_shrub_mean_c);
-		$csv[] = array('Native Herbaceous Mean C:', $this->metrics->native_herbaceous_mean_c);
 		$csv[] = array('Total FQI:', $this->metrics->total_fqi);
 		$csv[] = array('Native FQI:', $this->metrics->native_fqi);
 		$csv[] = array('Adjusted FQI:', $this->metrics->adjusted_fqi);
@@ -274,6 +271,9 @@ class InventoryAssessment extends Assessment {
 		$csv[] = array('% C value 1-3:', $this->metrics->percent_c_1_3);
 		$csv[] = array('% C value 4-6:', $this->metrics->percent_c_4_6);
 		$csv[] = array('% C value 7-10:', $this->metrics->percent_c_7_10);
+		$csv[] = array('Native Tree Mean C:', $this->metrics->native_tree_mean_c);
+		$csv[] = array('Native Shrub Mean C:', $this->metrics->native_shrub_mean_c);
+		$csv[] = array('Native Herbaceous Mean C:', $this->metrics->native_herbaceous_mean_c);
 		$csv[] = array();
 		
 		$csv[] = array('Species Richness and Wetness:');

@@ -178,9 +178,6 @@ class TransectAssessment extends Assessment {
 		$csv[] = array('Conservatism-Based Metrics:');
 		$csv[] = array('Total Mean C:', $this->metrics->total_mean_c);
 		$csv[] = array('Native Mean C:', $this->metrics->native_mean_c);
-		$csv[] = array('Native Tree Mean C:', $this->metrics->native_tree_mean_c);
-		$csv[] = array('Native Shrub Mean C:', $this->metrics->native_shrub_mean_c);
-		$csv[] = array('Native Herbaceous Mean C:', $this->metrics->native_herbaceous_mean_c);
 		$csv[] = array('Total FQI:', $this->metrics->total_fqi);
 		$csv[] = array('Native FQI:', $this->metrics->native_fqi);
 		$csv[] = array('Cover-weighted FQI:', $this->metrics->cover_weighted_total_fqi);

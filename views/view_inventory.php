@@ -80,9 +80,6 @@
 					<h4>&#187; Conservatism-Based Metrics:</h4>
 					Total Mean C: <strong><?php echo $assessment->metrics->total_mean_c; ?></strong><br>
 					Native Mean C: <strong><?php echo $assessment->metrics->native_mean_c; ?></strong><br>
-					Native Tree Mean C: <strong><?php echo $assessment->metrics->native_tree_mean_c; ?></strong><br>
-					Native Shrub Mean C: <strong><?php echo $assessment->metrics->native_shrub_mean_c; ?></strong><br>
-					Native Herbaceous Mean C: <strong><?php echo $assessment->metrics->native_herbaceous_mean_c; ?></strong><br>
 					Total FQI: <strong><?php echo $assessment->metrics->total_fqi; ?></strong><br>
 					Native FQI: <strong><?php echo $assessment->metrics->native_fqi; ?></strong><br>
 					Adjusted FQI: <strong><?php echo $assessment->metrics->adjusted_fqi; ?></strong><br>
@@ -90,6 +87,9 @@
 					% C value 1-3:  <strong><?php echo $assessment->metrics->percent_c_1_3; ?>%</strong><br>
 					% C value 4-6:  <strong><?php echo $assessment->metrics->percent_c_4_6; ?>%</strong><br>
 					% C value 7-10:  <strong><?php echo $assessment->metrics->percent_c_7_10; ?>%</strong><br>
+					Native Tree Mean C: <strong><?php echo $assessment->metrics->native_tree_mean_c; ?></strong><br>
+					Native Shrub Mean C: <strong><?php echo $assessment->metrics->native_shrub_mean_c; ?></strong><br>
+					Native Herbaceous Mean C: <strong><?php echo $assessment->metrics->native_herbaceous_mean_c; ?></strong><br>
 				</div>
 				<div class="span3">	
 					<h4>&#187; Species Richness and Wetness:</h4>

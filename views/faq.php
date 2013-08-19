@@ -63,6 +63,18 @@
 
 						<div class="accordion-group">
 							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse12">
+									For transect quadrats, can I use the Braun-Blanquet cover abundance scale?
+								</a>
+							</div>
+							<div id="collapse12" class="accordion-body collapse">
+								<div class="accordion-inner">
+									Yes, cover values can be either 1-5 using the Braun-Blanquet scale, or 1-100 representing % cover. The type of cover values used should be consistent throughout the transect assessment.
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
 									Why are some details about my assessment shown as n/a?
 								</a>
@@ -81,7 +93,7 @@
 							</div>
 							<div id="collapseThree" class="accordion-body collapse">
 								<div class="accordion-inner">
-									This site was developed for <a href="http://www.openlands.org/">Openlands</a>, a non-profit conservation organization based in Chicago. Use of the site is offered to the public free of charge, and all data will be kept private. Please <a href="/about">contact us</a> if you have more questions.
+									This site was developed for <a href="http://www.openlands.org/">Openlands</a>, a non-profit conservation organization based in Chicago. Use of the site is offered to the public free of charge, and all data will be kept secure. Please <a href="/about">contact us</a> if you have more questions.
 								</div>
 							</div>
 						</div>
