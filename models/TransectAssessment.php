@@ -306,7 +306,7 @@ class TransectAssessment extends Assessment {
 			$csv[] = array(
 							$taxon->taxa->scientific_name,
 							$taxon->frequency,
-							$taxon->percent_cover,
+							$taxon->coverage,
 							$taxon->relative_frequency,
 							$taxon->relative_cover,
 							$taxon->relative_importance_value

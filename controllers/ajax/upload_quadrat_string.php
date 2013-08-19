@@ -30,6 +30,7 @@ else {
 			}
 			if ( (trim(strtolower($data[0])) !== 'acronym') && (trim($data[0]) !== '>') && (trim(strtolower($data[0])) !== 'quad') && $constructing_quadrat) {
 				// convert coverage vales 1=20, 2=40, 3=60, 4=80, 5=100
+				/*
 				if ($data[1] == '1')
 					$cover = 20;
 				else if ($data[1] == '2')
@@ -42,6 +43,9 @@ else {
 					$cover = 100;
 				else
 					$cover = $data[1];
+				*/
+				// do not convert braun-blanquet cover values!
+				$cover = $data[1];
 				// add taxa to quadrat
 				if (!$quadrat->add_taxa_by_column_value('acronym', $data[0], $cover, $db_link))
 					$result = $result . 'Acronym not found: ' . $data[0] . '<br>';

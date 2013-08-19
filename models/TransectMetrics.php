@@ -13,7 +13,7 @@ class TransectMetrics extends QuadratMetrics {
 		Metrics::__construct( $transect );
 		
 		$quadrats = $transect->quadrats;
-		
+
 		foreach( $quadrats as $quadrat ) {
 		
 			if ($quadrat->active) {
@@ -224,11 +224,11 @@ class TransectMetrics extends QuadratMetrics {
 		// and calculate total coverage
 		foreach ($this->taxa as $metric_taxon) {
 			$metric_taxon->percent_cover = round($metric_taxon->coverage / $metric_taxon->frequency, 1);
-			
-			$this->total_coverage += $metric_taxon->percent_cover;
+			$this->total_coverage += $metric_taxon->coverage;
+			$this->total_percent_cover += $metric_taxon->percent_cover;
 			$this->sum_total_c_times_coverage += ($metric_taxon->percent_cover * $metric_taxon->taxa->c_o_c);
 			if ($metric_taxon->taxa->native == 'native') {
-				$this->native_coverage += $metric_taxon->percent_cover;
+				$this->native_percent_cover += $metric_taxon->percent_cover;
 				$this->sum_native_c_times_coverage += ($metric_taxon->percent_cover * $metric_taxon->taxa->c_o_c);
 			}
 			
@@ -236,31 +236,31 @@ class TransectMetrics extends QuadratMetrics {
 				// now compute physiognomy coverage
 				switch ($metric_taxon->taxa->physiognomy) {
 					case 'tree':
-						$this->tree_coverage += $metric_taxon->percent_cover;
+						$this->tree_coverage += $metric_taxon->coverage;
 						break;
 					case 'shrub':
-						$this->shrub_coverage += $metric_taxon->percent_cover;
+						$this->shrub_coverage += $metric_taxon->coverage;
 						break;
 					case 'vine':
-						$this->vine_coverage += $metric_taxon->percent_cover;
+						$this->vine_coverage += $metric_taxon->coverage;
 						break;
 					case 'forb':
-						$this->forb_coverage += $metric_taxon->percent_cover;
+						$this->forb_coverage += $metric_taxon->coverage;
 						break;
 					case 'grass':
-						$this->grass_coverage += $metric_taxon->percent_cover;
+						$this->grass_coverage += $metric_taxon->coverage;
 						break;
 					case 'sedge':
-						$this->sedge_coverage += $metric_taxon->percent_cover;
+						$this->sedge_coverage += $metric_taxon->coverage;
 						break;
 					case 'rush':
-						$this->rush_coverage += $metric_taxon->percent_cover;
+						$this->rush_coverage += $metric_taxon->coverage;
 						break;
 					case 'fern':
-						$this->fern_coverage += $metric_taxon->percent_cover;
+						$this->fern_coverage += $metric_taxon->coverage;
 						break;
 					case 'bryophyte':
-						$this->bryophyte_coverage += $metric_taxon->percent_cover;
+						$this->bryophyte_coverage += $metric_taxon->coverage;
 						break;
 				}
 			}
@@ -268,7 +268,7 @@ class TransectMetrics extends QuadratMetrics {
 		
 		// now calculate RIVs for each species
 		foreach ($this->taxa as $metric_taxon) {
-			$metric_taxon->relative_cover = round(100 * $metric_taxon->percent_cover / $this->total_coverage, 1);
+			$metric_taxon->relative_cover = round(100 * $metric_taxon->coverage / $this->total_coverage, 1);
 			$metric_taxon->relative_frequency = round(100 * $metric_taxon->frequency / $this->total_frequency, 1);
 			$metric_taxon->relative_importance_value = round( ($metric_taxon->relative_cover + $metric_taxon->relative_frequency)/2, 1);
 		}
@@ -417,8 +417,8 @@ class TransectMetrics extends QuadratMetrics {
 		if ($this->native_species > 0) {
 			$this->native_mean_c = round(($this->native_c / $this->native_species),1);
 			$this->native_fqi = round(($this->native_mean_c * sqrt( $this->native_species ) ), 1);
-			if ($this->native_coverage > 0) {
-				$this->cover_weighted_native_mean_c = round( $this->sum_native_c_times_coverage / $this->native_coverage , 1 );
+			if ($this->native_percent_cover > 0) {
+				$this->cover_weighted_native_mean_c = round( $this->sum_native_c_times_coverage / $this->native_percent_cover , 1 );
 				$this->cover_weighted_native_fqi = round( ($this->cover_weighted_native_mean_c * sqrt( $this->native_species )), 1);
 			}
 		}
@@ -437,8 +437,8 @@ class TransectMetrics extends QuadratMetrics {
 			$this->total_fqi = round(( $this->total_mean_c * sqrt( $this->total_species ) ), 1);
 			$this->adjusted_fqi = round( ( ( $this->native_mean_c / 10 ) * ( sqrt( $this->native_species ) / sqrt( $this->total_species ) ) * 100 ), 1);
 			
-			if ($this->total_coverage > 0) {
-				$this->cover_weighted_total_mean_c = round( $this->sum_total_c_times_coverage / $this->total_coverage , 1 );
+			if ($this->total_percent_cover > 0) {
+				$this->cover_weighted_total_mean_c = round( $this->sum_total_c_times_coverage / $this->total_percent_cover , 1 );
 				$this->cover_weighted_total_fqi = round( ($this->cover_weighted_total_mean_c * sqrt( $this->total_species )), 1);
 			}
 		}

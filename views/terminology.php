@@ -58,17 +58,17 @@
 						<tr>
 							<td>Total FQI</td>
 							<td>Floristic quality index: total mean C multiplied by the square root of the total species richness.</td>
-							<td>\( FQI_t = \overline{C_t} \sqrt{N_t} \)</td>
+							<td>\( I_t = \overline{C_t} \sqrt{N_t} \)</td>
 						</tr>
 						<tr>
 							<td>Native FQI</td>
 							<td>Floristic quality index: native mean C multiplied by the square root of the native species richness.</td>
-							<td>\( FQI_n = \overline{C_n} \sqrt{N_n} \)</td>
+							<td>\( I_n = \overline{C_n} \sqrt{N_n} \)</td>
 						</tr>
 						<tr>
 							<td>Adjusted FQI</td>
 							<td>Adjusted floristic quality index: 100 multiplied by the native mean C divided by 10 and multiplied by the square root of the native species richness divided by total species richess.</td>
-							<td>\( AFQI_t = 100 \Big(\frac{\overline{C_n}}{10}\Big) \Big(\frac{\sqrt{N_n}}{\sqrt{N_t}}\Big) \)</td>
+							<td>\( I' = 100 \Big(\frac{\overline{C_n}}{10}\Big) \Big(\frac{\sqrt{N_n}}{\sqrt{N_t}}\Big) \)</td>
 						</tr>
 					</table>
 					<br>
@@ -78,24 +78,34 @@
 					<table class="table nice-text">
 						<tr><td><strong>Term</strong></td><td><strong>Description</strong></td><td><strong>Calculation</strong></td><tr>
 						<tr>
-							<td>Cover-weighted mean C</td>
+							<td>Quadrat-level cover-weighted mean C</td>
 							<td>The sum of each native and non-native species' conservatism coefficient multiplied by its cover divided by the total cover for all species.</td>
 							<td>\( \overline{C_{t{\gamma}}} = \sum\limits_{i=0}^{t} C_i \gamma_i \Big/ \sum\limits_{i=0}^{t} \gamma_i \)</td>
 						</tr>
 						<tr>
-							<td>Cover-weighted native mean C</td>
+							<td>Quadrat-level cover-weighted native mean C</td>
 							<td>The sum of each native species' conservatism coefficient multiplied by its cover divided by the total cover for all native species.</td>
 							<td>\( \overline{C_{n{\gamma}}} = \sum\limits_{i=0}^{n} C_i \gamma_i \Big/ \sum\limits_{i=0}^{n} \gamma_i \)</td>
 						</tr>
 						<tr>
+							<td>Transect-level cover-weighted mean C</td>
+							<td>The sum of each native and non-native species' conservatism coefficient multiplied by its mean cover divided by the sum of each species' mean cover.</td>
+							<td>\( \overline{C_{t{\gamma}}} = \sum\limits_{i=0}^{t} C_i \overline{\gamma_i} \Big/ \sum\limits_{i=0}^{t} \overline{\gamma_i} \)</td>
+						</tr>
+						<tr>
+							<td>Transect-level cover-weighted native mean C</td>
+							<td>The sum of each native species' conservatism coefficient multiplied by its mean cover divided by the sum of each native species' mean cover.</td>
+							<td>\( \overline{C_{n{\gamma}}} = \sum\limits_{i=0}^{n} C_i \overline{\gamma_i} \Big/ \sum\limits_{i=0}^{n} \overline{\gamma_i} \)</td>
+						</tr>
+						<tr>
 							<td>Cover-weighted FQI</td>
 							<td>Cover-weighted total mean C multiplied by the square root of the total species richness.</td>
-							<td>\( FQI_{t{\gamma}} = \overline{C_{t{\gamma}}} \sqrt{N_t} \)</td>
+							<td>\( I_{t{\gamma}} = \overline{C_{t{\gamma}}} \sqrt{N_t} \)</td>
 						</tr>
 						<tr>
 							<td>Cover-weighted Native FQI</td>
 							<td>Cover-weighted native mean C multiplied by the square root of the native species richness.</td>
-							<td>\( FQI_{n{\gamma}} = \overline{C_{n{\gamma}}} \sqrt{N_n} \)</td>
+							<td>\( I_{n{\gamma}} = \overline{C_{n{\gamma}}} \sqrt{N_n} \)</td>
 						</tr>
 						<tr>
 							<td>Relative frequency (%)</td>

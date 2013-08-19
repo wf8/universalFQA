@@ -275,7 +275,7 @@
 							<tr>
 								<td><?php echo $taxon->taxa->scientific_name; ?></td>
 								<td><?php echo $taxon->frequency; ?></td>
-								<td><?php echo $taxon->percent_cover; ?></td>
+								<td><?php echo $taxon->coverage; ?></td>
 								<td><?php echo $taxon->relative_frequency; ?></td>
 								<td><?php echo $taxon->relative_cover; ?></td>
 								<td><?php echo $taxon->relative_importance_value; ?></td>

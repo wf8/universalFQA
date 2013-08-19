@@ -25,6 +25,18 @@
 					<div class="accordion nice-text" id="accordion2">
 						<div class="accordion-group">
 							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse00">
+									How do I use the FQA Calculator out in the field?
+								</a>
+							</div>
+							<div id="collapse00" class="accordion-body collapse">
+								<div class="accordion-inner">
+									This site has been designed using components that are responsive to different devices and screen resolutions, including tablets and smartphones. As long as you have a network connection, you can use the FQA Calculator in the field or in the office.
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
 									Who can see my assessments?
 								</a>
