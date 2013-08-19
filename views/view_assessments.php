@@ -1,3 +1,4 @@
+    <script src="assets/js/sorttable.js"></script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
@@ -17,7 +18,7 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<h2>Your Inventory Assessments</h2>
-					<table class="table table-hover">
+					<table class="table table-hover sortable">
 						<tr>
 							<td><strong>Site</strong></td>
 							<td><strong>Date</strong></td>
@@ -48,7 +49,7 @@ if (count($inventory_assessments) == 0) {
 ?>
 					</table>
 					<h2>Your Transect Assessments</h2>
-					<table class="table table-hover">
+					<table class="table table-hover sortable">
 						<tr>
 							<td><strong>Site</strong></td>
 							<td><strong>Date</strong></td>

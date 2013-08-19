@@ -1,4 +1,5 @@
-    <div class="container padding-top">
+	<script src="assets/js/sorttable.js"></script>
+	<div class="container padding-top"> 
 		<div class="nice_margins">
 			<div class="row-fluid">
 				<div class="span1">
@@ -14,7 +15,7 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<h2>Public Databases</h2>
-					<table class="table table-hover">
+					<table class="table table-hover sortable">
 						<tr>
 							<td><strong>Region</strong></td>
 							<td><strong>Year Published</strong></td>
@@ -48,7 +49,7 @@ if (mysqli_num_rows($fqa_databases) == 0) {
 						</tr>
 					</table>
 					<h2>Your Customized Databases</h2>
-					<table class="table table-hover">
+					<table class="table table-hover sortable">
 						<tr>
 							<td><strong>Name</strong></td>
 							<td><strong>Description</strong></td>
