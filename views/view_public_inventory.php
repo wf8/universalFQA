@@ -91,10 +91,11 @@
 					Native Herbaceous Mean C: <strong><?php echo $assessment->metrics->native_herbaceous_mean_c; ?></strong><br>
 				</div>
 				<div class="span3">	
-					<h4>&#187; Species Richness and Wetness:</h4>
+					<h4>&#187; Species Richness:</h4>
 					Total Species: <strong><?php echo $assessment->metrics->total_species; ?></strong><br>
 					Native Species: <strong><?php echo $assessment->metrics->native_species; ?> <?php echo prettify_percent($assessment->metrics->percent_native_species); ?></strong><br>
-					Non-native Species: <strong><?php echo $assessment->metrics->non_native_species; ?> <?php echo prettify_percent($assessment->metrics->percent_non_native_species); ?></strong><br>
+					Non-native Species: <strong><?php echo $assessment->metrics->non_native_species; ?> <?php echo prettify_percent($assessment->metrics->percent_non_native_species); ?></strong><br><br>
+					<h4>&#187; Species Wetness:</h4>
 					Mean Wetness: <strong><?php echo $assessment->metrics->mean_wetness; ?></strong><br>
 					Native Mean Wetness: <strong><?php echo $assessment->metrics->native_mean_wetness; ?></strong><br>
 				</div>

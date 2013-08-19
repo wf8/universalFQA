@@ -190,10 +190,13 @@ class TransectAssessment extends Assessment {
 		$csv[] = array();	
 		
 		
-		$csv[] = array('Species Richness and Wetness:');
+		$csv[] = array('Species Richness:');
 		$csv[] = array('Total Species:', $this->metrics->total_species);
 		$csv[] = array('Native Species:', $this->metrics->native_species, $this->prettify_percent($this->metrics->percent_native_species));
 		$csv[] = array('Non-native Species:', $this->metrics->non_native_species, $this->prettify_percent($this->metrics->percent_non_native_species));
+		$csv[] = array();
+
+		$csv[] = array('Species Wetness:');
 		$csv[] = array('Mean Wetness:', $this->metrics->mean_wetness);
 		$csv[] = array('Native Mean Wetness:', $this->metrics->native_mean_wetness);
 		$csv[] = array();
