@@ -50,6 +50,18 @@
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseAFQA">
+									What is Adjusted FQI?
+								</a>
+							</div>
+							<div id="collapseAFQA" class="accordion-body collapse">
+								<div class="accordion-inner">
+									This is a variation of FQI that reduces the effect of species richness on FQI and has been found useful to compare degraded sites. Please see:<br>Miller, S.J., and D.H. Wardrop. 2006. <em>Adapting the Floristic Quality Assessment Index to Indicate Anthropogenic Disturbance in Central Pennsylvania Wetlands.</em> Ecological Indicators 6 (2) (April): 313–326.
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse11">
 									For transect quadrats, how are % bare ground and % water included in the calculations?
 								</a>
