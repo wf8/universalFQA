@@ -226,78 +226,22 @@ class TransectAssessment extends Assessment {
 		
 		$csv[] = array('Physiognomic Relative Importance Values:');
 		$csv[] = array('Physiognomy','Frequency','Coverage','Relative Frequency (%)','Relative Coverage (%)','Relative Importance Value');
-		$csv[] = array(
-						'Tree', 
-						$this->metrics->tree, 
-						$this->metrics->tree_coverage,
-						$this->prettify_value($this->metrics->percent_tree),
-						$this->prettify_value($this->metrics->percent_tree_coverage),
-						$this->metrics->tree_riv
-					);
-		$csv[] = array(
-						'Shrub', 
-						$this->metrics->shrub, 
-						$this->metrics->shrub_coverage,
-						$this->prettify_value($this->metrics->percent_shrub),
-						$this->prettify_value($this->metrics->percent_shrub_coverage),
-						$this->metrics->shrub_riv
-					);
-		$csv[] = array(
-						'Vine', 
-						$this->metrics->vine, 
-						$this->metrics->vine_coverage,
-						$this->prettify_value($this->metrics->percent_vine),
-						$this->prettify_value($this->metrics->percent_vine_coverage),
-						$this->metrics->vine_riv
-					);
-		$csv[] = array(
-						'Forb', 
-						$this->metrics->forb, 
-						$this->metrics->forb_coverage,
-						$this->prettify_value($this->metrics->percent_forb),
-						$this->prettify_value($this->metrics->percent_forb_coverage),
-						$this->metrics->forb_riv
-					);
-		$csv[] = array(
-						'Grass', 
-						$this->metrics->grass, 
-						$this->metrics->grass_coverage,
-						$this->prettify_value($this->metrics->percent_grass),
-						$this->prettify_value($this->metrics->percent_grass_coverage),
-						$this->metrics->grass_riv
-					);
-		$csv[] = array(
-						'Sedge', 
-						$this->metrics->sedge, 
-						$this->metrics->sedge_coverage,
-						$this->prettify_value($this->metrics->percent_sedge),
-						$this->prettify_value($this->metrics->percent_sedge_coverage),
-						$this->metrics->sedge_riv
-					);
-		$csv[] = array(
-						'Rush', 
-						$this->metrics->rush, 
-						$this->metrics->rush_coverage,
-						$this->prettify_value($this->metrics->percent_rush),
-						$this->prettify_value($this->metrics->percent_rush_coverage),
-						$this->metrics->rush_riv
-					);
-		$csv[] = array(
-						'Fern', 
-						$this->metrics->fern, 
-						$this->metrics->fern_coverage,
-						$this->prettify_value($this->metrics->percent_fern),
-						$this->prettify_value($this->metrics->percent_fern_coverage),
-						$this->metrics->fern_riv
-					);
-		$csv[] = array(
-						'Bryophyte', 
-						$this->metrics->bryophyte, 
-						$this->metrics->bryophyte_coverage,
-						$this->prettify_value($this->metrics->percent_bryophyte),
-						$this->prettify_value($this->metrics->percent_bryophyte_coverage),
-						$this->metrics->bryophyte_riv
-					);
+							
+		$riv = $this->reverse_sort_array_of_arrays($this->metrics->riv, 'riv');
+						
+		foreach ($riv as $phys) { 
+			if (trim($phys['riv']) !== '0') {
+				$csv[] = array(
+					$phys['physiognomy'], 
+					$phys['frequency'], 
+					$phys['coverage'],
+					$phys['relative frequency'],
+					$phys['relative coverage'],
+					$phys['riv']
+				);
+			}
+		}
+
 		$csv[] = array();
 		
 		$csv[] = array('Species Relative Importance Values:');
@@ -370,6 +314,22 @@ class TransectAssessment extends Assessment {
 		}			
 		return $this->return_CSV($csv);
 	}	
+	
+	private function reverse_sort_array_of_arrays($arr, $var) { 
+		   $tarr = array(); 
+		   $rarr = array(); 
+		   for($i = 0; $i < count($arr); $i++) { 
+			  $element = $arr[$i]; 
+			  $tarr[] = strtolower($element[$var]); 
+		   } 
+		   reset($tarr); 
+		   asort($tarr); 
+		   $karr = array_keys($tarr); 
+		   for($i = count($tarr)-1; $i > -1; $i--) { 
+			  $rarr[] = $arr[intval($karr[$i])]; 
+		   } 
+		   return $rarr; 
+	} 
 		
 }
 ?>

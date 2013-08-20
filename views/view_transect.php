@@ -149,95 +149,6 @@
 							<td><strong>Relative Importance Value</strong></td>
 						</tr>
 						<!-- show descending in order of RIV -->
-						<tr>
-							<td>Tree</td>
-							<td><?php echo $assessment->metrics->tree; ?></td>
-							<td><?php echo $assessment->metrics->tree_coverage; ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_tree); ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_tree_coverage); ?></td>
-							<td><?php echo $assessment->metrics->tree_riv; ?></td>
-						</tr>
-						<tr>
-							<td>Shrub</td>
-							<td><?php echo $assessment->metrics->shrub; ?></td>
-							<td><?php echo $assessment->metrics->shrub_coverage; ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_shrub); ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_shrub_coverage); ?></td>
-							<td><?php echo $assessment->metrics->shrub_riv; ?></td>
-						</tr>
-						<tr>
-							<td>Vine</td>
-							<td><?php echo $assessment->metrics->vine; ?></td>
-							<td><?php echo $assessment->metrics->vine_coverage; ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_vine); ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_vine_coverage); ?></td>
-							<td><?php echo $assessment->metrics->vine_riv; ?></td>
-						</tr>
-						<tr>
-							<td>Forb</td>
-							<td><?php echo $assessment->metrics->forb; ?></td>
-							<td><?php echo $assessment->metrics->forb_coverage; ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_forb); ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_forb_coverage); ?></td>
-							<td><?php echo $assessment->metrics->forb_riv; ?></td>
-						</tr>
-						<tr>
-							<td>Grass</td>
-							<td><?php echo $assessment->metrics->grass; ?></td>
-							<td><?php echo $assessment->metrics->grass_coverage; ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_grass); ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_grass_coverage); ?></td>
-							<td><?php echo $assessment->metrics->grass_riv; ?></td>
-						</tr>
-						<tr>
-							<td>Sedge</td>
-							<td><?php echo $assessment->metrics->sedge; ?></td>
-							<td><?php echo $assessment->metrics->sedge_coverage; ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_sedge); ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_sedge_coverage); ?></td>
-							<td><?php echo $assessment->metrics->sedge_riv; ?></td>
-						</tr>
-						<tr>
-							<td>Rush</td>
-							<td><?php echo $assessment->metrics->rush; ?></td>
-							<td><?php echo $assessment->metrics->rush_coverage; ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_rush); ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_rush_coverage); ?></td>
-							<td><?php echo $assessment->metrics->rush_riv; ?></td>
-						</tr>
-						<tr>
-							<td>Fern</td>
-							<td><?php echo $assessment->metrics->fern; ?></td>
-							<td><?php echo $assessment->metrics->fern_coverage; ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_fern); ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_fern_coverage); ?></td>
-							<td><?php echo $assessment->metrics->fern_riv; ?></td>
-						</tr>
-						<tr>
-							<td>Bryophyte</td>
-							<td><?php echo $assessment->metrics->bryophyte; ?></td>
-							<td><?php echo $assessment->metrics->bryophyte_coverage; ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_bryophyte); ?></td>
-							<td><?php echo prettify_value($assessment->metrics->percent_bryophyte_coverage); ?></td>
-							<td><?php echo $assessment->metrics->bryophyte_riv; ?></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<br>
-			<div class="row-fluid">
-				<div class="span12">
-					<h4>&#187; Species Relative Importance Values:</h4>
-					<table class="table table-hover">
-						<tr>
-							<td><strong>Species</strong></td>
-							<td><strong>Frequency</strong></td>
-							<td><strong>Coverage</strong></td>
-							<td><strong>Relative Frequency (%)</strong></td>
-							<td><strong>Relative Coverage (%)</strong></td>
-							<td><strong>Relative Importance Value</strong></td>
-						</tr>
-						<!-- show descending in order of RIV -->
 						<?php
 						
 							function sort_array_of_objects($arr, $var) { 
@@ -270,6 +181,60 @@
 							   } 
 							   return $rarr; 
 							} 
+							function reverse_sort_array_of_arrays($arr, $var) { 
+							   $tarr = array(); 
+							   $rarr = array(); 
+							   for($i = 0; $i < count($arr); $i++) { 
+								  $element = $arr[$i]; 
+								  $tarr[] = strtolower($element[$var]); 
+							   } 
+							   reset($tarr); 
+							   asort($tarr); 
+							   $karr = array_keys($tarr); 
+							   for($i = count($tarr)-1; $i > -1; $i--) { 
+								  $rarr[] = $arr[intval($karr[$i])]; 
+							   } 
+							   return $rarr; 
+							} 
+							
+							$riv = reverse_sort_array_of_arrays($assessment->metrics->riv, 'riv');
+						
+							foreach ($riv as $phys) { 
+								if (trim($phys['riv']) !== '0') {
+						?>
+							<tr>
+								<td><?php echo $phys['physiognomy']; ?></td>
+								<td><?php echo $phys['frequency']; ?></td>
+								<td><?php echo $phys['coverage']; ?></td>
+								<td><?php echo $phys['relative frequency']; ?></td>
+								<td><?php echo $phys['relative coverage']; ?></td>
+								<td><?php echo $phys['riv']; ?></td>
+							</tr>
+						<?php
+								}
+							}
+							
+						?>
+
+					</table>
+				</div>
+			</div>
+			<br>
+			<div class="row-fluid">
+				<div class="span12">
+					<h4>&#187; Species Relative Importance Values:</h4>
+					<table class="table table-hover">
+						<tr>
+							<td><strong>Species</strong></td>
+							<td><strong>Frequency</strong></td>
+							<td><strong>Coverage</strong></td>
+							<td><strong>Relative Frequency (%)</strong></td>
+							<td><strong>Relative Coverage (%)</strong></td>
+							<td><strong>Relative Importance Value</strong></td>
+						</tr>
+						<!-- show descending in order of RIV -->
+						<?php
+						
 							
 							$taxa = reverse_sort_array_of_objects($assessment->metrics->taxa, 'relative_importance_value');
 						
