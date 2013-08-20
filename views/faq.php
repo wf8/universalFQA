@@ -112,12 +112,12 @@
 						<div class="accordion-group">
 							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour0">
-									What are Transect Strings?
+									What are Transect Strings and Inventory Strings?
 								</a>
 							</div>
 							<div id="collapseFour0" class="accordion-body collapse">
 								<div class="accordion-inner">
-								Transect Strings are specially formatted files used to export transect data from the original FQA software developed by Conservation Design Forum in 2000. If users have any of these files they can import them into the Universal FQA Calculator when creating a transect assessment.
+								Transect Strings and Inventory Strings are specially formatted files used to export data from the original FQA software developed by the Conservation Design Forum in 2000. If users have any of these files they can import them into the Universal FQA Calculator when creating an assessment.
 								</div>
 							</div>
 						</div>

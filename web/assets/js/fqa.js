@@ -587,6 +587,16 @@ function download_inventory( id ) {
 	});
 }
 
+function start_upload_inventory_string() {
+		$( "#upload_error" ).html( "Uploading Inventory String..." );
+		$('#upload_inventory_string_form').submit();
+}
+function stop_upload_inventory_string( msg ){
+	$( "#upload_error" ).html( msg );
+	//$(document).ready( function () { update_quadrat_list(); });
+	update_species_list();
+}
+
 /**
  * ---------------------------------------------------------
  *

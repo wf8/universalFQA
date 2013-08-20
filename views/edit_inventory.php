@@ -203,6 +203,13 @@
 </table>
 					</div>
 					<button class="btn btn-info" onclick="javascript:remove_taxa();return false;">Remove Selected Species</button>
+					<br><br><br><br>
+					<form id="upload_inventory_string_form" action="/ajax/upload_inventory_string" method="post" enctype="multipart/form-data" target="upload_target">
+						<input type="file" id="upload_file" name="upload_file"><br>
+					</form>
+					<button onclick="javascript:start_upload_inventory_string();" class="btn btn-info">Upload Inventory String</button> (optional)
+					<br><br>
+					<div id="upload_error"></div>
 				</div>
 			</div>
 			<br><br>
@@ -216,3 +223,4 @@
 		</div>
     </div> 
     <br><br>
+    <iframe id="upload_target" name="upload_target" src="#"></iframe>

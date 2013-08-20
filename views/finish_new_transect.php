@@ -105,7 +105,7 @@
 					<form id="upload_quadrat_string_form" action="/ajax/upload_quadrat_string" method="post" enctype="multipart/form-data" target="upload_target">
 						<input type="file" id="upload_file" name="upload_file"><br>
 					</form>
-					<button onclick="javascript:start_upload_quadrat_string();" class="btn btn-info">Upload Quadrat String</button>
+					<button onclick="javascript:start_upload_quadrat_string();" class="btn btn-info">Upload Quadrat String</button> (optional)
 					<br><br>
 					<div id="upload_error"></div>
 				</div>
