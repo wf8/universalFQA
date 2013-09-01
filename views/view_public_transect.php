@@ -321,7 +321,7 @@
 							} 
 						?>
 						<tr>
-							<td>Average</td>
+							<td><strong>Average</strong></td>
 							<td><?php echo $assessment->metrics->avg_total_species; ?></td>
 							<td><?php echo $assessment->metrics->avg_native_species; ?></td>
 							<td><?php echo $assessment->metrics->avg_total_mean_c; ?></td>
@@ -337,7 +337,7 @@
 							<td>n/a</td>
 						</tr>
 						<tr>
-							<td>Standard Deviation</td>
+							<td><strong>Standard Deviation</strong></td>
 							<td><?php echo $assessment->metrics->sd_total_species; ?></td>
 							<td><?php echo $assessment->metrics->sd_native_species; ?></td>
 							<td><?php echo $assessment->metrics->sd_total_mean_c; ?></td>
