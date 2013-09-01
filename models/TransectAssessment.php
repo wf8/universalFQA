@@ -284,6 +284,38 @@ class TransectAssessment extends Assessment {
 						);
 			}
 		}
+		$csv[] = array(
+						'Average',
+						$this->metrics->avg_total_species,
+						$this->metrics->avg_native_species,
+						$this->metrics->avg_total_mean_c,
+						$this->metrics->avg_native_mean_c,
+						$this->metrics->avg_total_fqi,
+						$this->metrics->avg_native_fqi,
+						$this->metrics->avg_cover_weighted_total_fqi,
+						$this->metrics->avg_cover_weighted_native_fqi,
+						$this->metrics->avg_adjusted_fqi,
+						$this->metrics->avg_mean_wetness,
+						$this->metrics->avg_native_mean_wetness,
+						'n/a',
+						'n/a'
+				);
+		$csv[] = array(
+						'Standard Deviation',
+						$this->metrics->sd_total_species,
+						$this->metrics->sd_native_species,
+						$this->metrics->sd_total_mean_c,
+						$this->metrics->sd_native_mean_c,
+						$this->metrics->sd_total_fqi,
+						$this->metrics->sd_native_fqi,
+						$this->metrics->sd_cover_weighted_total_fqi,
+						$this->metrics->sd_cover_weighted_native_fqi,
+						$this->metrics->sd_adjusted_fqi,
+						$this->metrics->sd_mean_wetness,
+						$this->metrics->sd_native_mean_wetness,
+						'n/a',
+						'n/a'
+				);
 		$csv[] = array();
 						
 		foreach ($quadrats as $quadrat) { 
