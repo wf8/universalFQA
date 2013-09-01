@@ -307,6 +307,38 @@
 							 	}
 							} 
 						?>
+						<tr>
+							<td>Average</td>
+							<td><?php echo $assessment->metrics->avg_total_species; ?></td>
+							<td><?php echo $assessment->metrics->avg_native_species; ?></td>
+							<td><?php echo $assessment->metrics->avg_total_mean_c; ?></td>
+							<td><?php echo $assessment->metrics->avg_native_mean_c; ?></td>
+							<td><?php echo $assessment->metrics->avg_total_fqi; ?></td>
+							<td><?php echo $assessment->metrics->avg_native_fqi; ?></td>
+							<td><?php echo $assessment->metrics->avg_cover_weighted_total_fqi; ?></td>
+							<td><?php echo $assessment->metrics->avg_cover_weighted_native_fqi; ?></td>
+							<td><?php echo $assessment->metrics->avg_adjusted_fqi; ?></td>
+							<td><?php echo $assessment->metrics->avg_mean_wetness; ?></td>
+							<td><?php echo $assessment->metrics->avg_native_mean_wetness; ?></td>
+							<td>n/a</td>
+							<td>n/a</td>
+						</tr>
+						<tr>
+							<td>Standard Deviation</td>
+							<td><?php echo $assessment->metrics->sd_total_species; ?></td>
+							<td><?php echo $assessment->metrics->sd_native_species; ?></td>
+							<td><?php echo $assessment->metrics->sd_total_mean_c; ?></td>
+							<td><?php echo $assessment->metrics->sd_native_mean_c; ?></td>
+							<td><?php echo $assessment->metrics->sd_total_fqi; ?></td>
+							<td><?php echo $assessment->metrics->sd_native_fqi; ?></td>
+							<td><?php echo $assessment->metrics->sd_cover_weighted_total_fqi; ?></td>
+							<td><?php echo $assessment->metrics->sd_cover_weighted_native_fqi; ?></td>
+							<td><?php echo $assessment->metrics->sd_adjusted_fqi; ?></td>
+							<td><?php echo $assessment->metrics->sd_mean_wetness; ?></td>
+							<td><?php echo $assessment->metrics->sd_native_mean_wetness; ?></td>
+							<td>n/a</td>
+							<td>n/a</td>
+						</tr>
 					</table>
 				</div>
 			</div>

@@ -104,7 +104,31 @@ class TransectMetrics extends QuadratMetrics {
 	public $native_rush_riv = 0;
 	public $native_fern_riv = 0;
 	public $native_bryophyte_riv = 0;
-	
+
+	public $avg_total_species = 0;
+	public $avg_native_species = 0;
+	public $avg_total_mean_c = 0;
+	public $avg_native_mean_c = 0;
+	public $avg_total_fqi = 0;
+	public $avg_native_fqi = 0;
+	public $avg_cover_weighted_total_fqi = 0;
+	public $avg_cover_weighted_native_fqi = 0;
+	public $avg_adjusted_fqi = 0;
+	public $avg_mean_wetness = 0;
+	public $avg_native_mean_wetness = 0;
+
+	public $sd_total_species = 0;
+	public $sd_native_species = 0;
+	public $sd_total_mean_c = 0;
+	public $sd_native_mean_c = 0;
+	public $sd_total_fqi = 0;
+	public $sd_native_fqi = 0;
+	public $sd_cover_weighted_total_fqi = 0;
+	public $sd_cover_weighted_native_fqi = 0;
+	public $sd_adjusted_fqi = 0;
+	public $sd_mean_wetness = 0;
+	public $sd_native_mean_wetness = 0;
+
 	/*
 	 * constructor
 	 * takes as input a Transect object
@@ -114,6 +138,19 @@ class TransectMetrics extends QuadratMetrics {
 		Metrics::__construct( $transect );
 		
 		$quadrats = $transect->quadrats;
+
+		// arrays to calculate average and SD values of quadrat metrics
+		$ts_array = array();
+		$ns_array = array();
+		$tmc_array = array();
+		$nmc_array = array();
+		$tfqi_array = array();
+		$nfqi_array = array();
+		$cwtfqi_array = array();
+		$cwnfqi_array = array();
+		$afqi_array = array();
+		$mw_array = array();
+		$nmw_array = array();
 
 		foreach( $quadrats as $quadrat ) {
 		
@@ -126,6 +163,18 @@ class TransectMetrics extends QuadratMetrics {
 				if ($quadrat->metrics->duration)
 					$this->duration = true;
 				
+				$ts_array[] = $quadrat->metrics->total_species;
+				$ns_array[] = $quadrat->metrics->native_species;
+				$tmc_array[] = $quadrat->metrics->total_mean_c;
+				$nmc_array[] = $quadrat->metrics->native_mean_c;
+				$tfqi_array[] = $quadrat->metrics->total_fqi;
+				$nfqi_array[] = $quadrat->metrics->native_fqi;
+				$cwtfqi_array[] = $quadrat->metrics->cover_weighted_total_fqi;
+				$cwnfqi_array[] = $quadrat->metrics->cover_weighted_native_fqi;
+				$afqi_array[] = $quadrat->metrics->adjusted_fqi;
+				$mw_array[] = $quadrat->metrics->mean_wetness;
+				$nmw_array[] = $quadrat->metrics->native_mean_wetness;
+
 				// see if need to insert 'percent bare ground' into metric taxa
 				// so that it is included in species RIV
 				$found = false;
@@ -337,7 +386,32 @@ class TransectMetrics extends QuadratMetrics {
 			}
 		}
 		// done looping through quadrats
+	
+		//compute quadrat level averages and SDs
+		$this->avg_total_species = $this->average($ts_array);
+		$this->avg_native_species = $this->average($ns_array);
+		$this->avg_total_mean_c = $this->average($tmc_array);
+		$this->avg_native_mean_c = $this->average($nmc_array);
+		$this->avg_total_fqi = $this->average($tfqi_array);
+		$this->avg_native_fqi = $this->average($nfqi_array);
+		$this->avg_cover_weighted_total_fqi = $this->average($cwtfqi_array);
+		$this->avg_cover_weighted_native_fqi = $this->average($cwnfqi_array);
+		$this->avg_adjusted_fqi = $this->average($afqi_array);
+		$this->avg_mean_wetness = $this->average($mw_array);
+		$this->avg_native_mean_wetness = $this->average($nmw_array);
 		
+		$this->sd_total_species = $this->standard_deviation($ts_array);
+		$this->sd_native_species = $this->standard_deviation($ns_array);
+		$this->sd_total_mean_c = $this->standard_deviation($tmc_array);
+		$this->sd_native_mean_c = $this->standard_deviation($nmc_array);
+		$this->sd_total_fqi = $this->standard_deviation($tfqi_array);
+		$this->sd_native_fqi = $this->standard_deviation($nfqi_array);
+		$this->sd_cover_weighted_total_fqi = $this->standard_deviation($cwtfqi_array);
+		$this->sd_cover_weighted_native_fqi = $this->standard_deviation($cwnfqi_array);
+		$this->sd_adjusted_fqi = $this->standard_deviation($afqi_array);
+		$this->sd_mean_wetness = $this->standard_deviation($mw_array);
+		$this->sd_native_mean_wetness = $this->standard_deviation($nmw_array);
+
 		// now generate average coverage for each taxa
 		// and calculate total coverage
 		foreach ($this->taxa as $metric_taxon) {
@@ -778,6 +852,42 @@ class TransectMetrics extends QuadratMetrics {
 				$this->cover_weighted_total_fqi = round( ($this->cover_weighted_total_mean_c * sqrt( $this->total_species )), 1);
 			}
 		}
-	}	
+	}
+
+	
+	
+	/*
+	 * compute SD of an array of values using Welford's method
+	 */
+	public function standard_deviation( $list ) {
+		$m = 0.0;
+		$s = 0.0;
+		$i = 1;
+		foreach ($list as $value) {
+			$temp_m = $m;
+			$m += ($value - $temp_m) / $i;
+			$s += ($value - $temp_m) * ($value - $m);
+			$i++;
+		}
+		if ($i > 1)
+			return round(sqrt($s / ($i - 1)), 1);
+		else
+			return 0;
+	}
+
+	/*
+	 * compute average of an array
+	 */
+	public function average( $list ) {
+		$i = 0;
+		$m = 0.0;
+		foreach ($list as $value) {
+			$m += $value;
+			$i++;
+		}
+		if ($i > 0) 
+			return round($m / $i, 1);
+	}
+
 }
 ?>
