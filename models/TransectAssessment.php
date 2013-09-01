@@ -245,11 +245,18 @@ class TransectAssessment extends Assessment {
 		$csv[] = array();
 		
 		$csv[] = array('Species Relative Importance Values:');
-		$csv[] = array('Species','Frequency','Coverage','Relative Frequency (%)','Relative Coverage (%)','Relative Importance Value');
+		$csv[] = array('Species','Family','Acronym','Nativity','C','W','Physiognomy','Duration','Frequency','Coverage','Relative Frequency (%)','Relative Coverage (%)','Relative Importance Value');
 		$taxa = $this->reverse_sort_array_of_objects($this->metrics->taxa, 'relative_importance_value');
 		foreach ($taxa as $taxon) { 
 			$csv[] = array(
 							$taxon->taxa->scientific_name,
+							$this->prettify_value($taxon->taxa->family),
+							$this->prettify_value($taxon->taxa->acronym),
+							$this->prettify_value($taxon->taxa->native),
+							$this->prettify_value($taxon->taxa->c_o_c),
+							$this->prettify_value($taxon->taxa->c_o_w),
+							$this->prettify_value($taxon->taxa->physiognomy),
+							$this->prettify_value($taxon->taxa->duration),
 							$taxon->frequency,
 							$taxon->coverage,
 							$taxon->relative_frequency,

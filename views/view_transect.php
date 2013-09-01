@@ -226,6 +226,13 @@
 					<table class="table table-hover">
 						<tr>
 							<td><strong>Species</strong></td>
+							<td><strong>Family</strong></td>
+							<td><strong>Acronym</strong></td>
+							<td><strong>Nativity</strong></td>
+							<td><strong>C</strong></td>
+							<td><strong>W</strong></td>
+							<td><strong>Physiognomy</strong></td>
+							<td><strong>Duration</strong></td>
 							<td><strong>Frequency</strong></td>
 							<td><strong>Coverage</strong></td>
 							<td><strong>Relative Frequency (%)</strong></td>
@@ -243,6 +250,13 @@
 						?>
 							<tr>
 								<td><?php echo $taxon->taxa->scientific_name; ?></td>
+								<td><?php echo prettify_value($taxon->taxa->family); ?></td>
+								<td><?php echo prettify_value($taxon->taxa->acronym); ?></td>
+								<td><?php echo prettify_value($taxon->taxa->native); ?></td>
+								<td><?php echo prettify_value($taxon->taxa->c_o_c); ?></td>
+								<td><?php echo prettify_value($taxon->taxa->c_o_w); ?></td>
+								<td><?php echo prettify_value($taxon->taxa->physiognomy); ?></td>
+								<td><?php echo prettify_value($taxon->taxa->duration); ?></td>
 								<td><?php echo $taxon->frequency; ?></td>
 								<td><?php echo $taxon->coverage; ?></td>
 								<td><?php echo $taxon->relative_frequency; ?></td>
