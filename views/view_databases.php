@@ -10,6 +10,7 @@
 					<br>
 					<h1>FQA Databases</h1>
 					<button class="btn btn-info" onclick="javascript:window.location = 'new_database';return false;">Upload New Public FQA Database</button>
+					<button class="btn btn-info" onclick="javascript:window.location = 'compare_coefficients';return false;">Compare Species Coefficients</button>
 				</div>
 			</div>
 			<div class="row-fluid">

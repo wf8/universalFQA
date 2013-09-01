@@ -254,6 +254,19 @@ function new_custom_taxa( original_fqa_id, custom_fqa_id ) {
 	});
 }
 
+function compare_coefficients() {
+	$.ajax({
+		url: "/ajax/compare_coefficients",
+		type: "POST",
+		data: {
+			species: $("#species").val().trim(),
+		},
+		success: function( response ) { 
+			$( "#results" ).html( response );
+		}
+	});
+}
+
 /**
  * ---------------------------------------------------------
  *
