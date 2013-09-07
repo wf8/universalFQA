@@ -18,3 +18,8 @@
 	<script src="/assets/js/jquery.blockUI.js"></script>
   </head>
   <body>
+  <!--[if lte IE 8]>
+  	<script>
+		alert("Your version of MS Internet Explorer is no longer supported. This site will only work with version 9 and newer.");
+  	</script>
+  <![endif]-->
