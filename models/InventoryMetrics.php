@@ -236,21 +236,15 @@ class InventoryMetrics extends Metrics {
 			if ($native_tree == 0)
 				$this->native_tree_mean_c = 'n/a';
 			else
-				if ($this->native_species > 0) {
-					$this->native_tree_mean_c = round(($native_tree_c / $this->native_species),1);
-				}
+				$this->native_tree_mean_c = round(($native_tree_c / $native_tree),1);
 			if ($native_shrub == 0)
 				$this->native_shrub_mean_c = 'n/a';
 			else
-				if ($this->native_species > 0) {
-					$this->native_shrub_mean_c = round(($native_shrub_c / $this->native_species),1);
-				}
+				$this->native_shrub_mean_c = round(($native_shrub_c / $native_shrub),1);
 			if ( $native_herbaceous == 0 )
 				$this->native_herbaceous_mean_c = 'n/a';
 			else
-				if ($this->native_species > 0) {
-					$this->native_herbaceous_mean_c = round(($native_herbaceous_c / $this->native_species),1);
-				}
+				$this->native_herbaceous_mean_c = round(($native_herbaceous_c / $native_herbaceous),1);
 			if ($this->total_species > 0) {
 				$this->percent_tree = round(100*$this->tree / $this->total_species,1);
 				$this->percent_shrub = round(100*$this->shrub / $this->total_species,1);
