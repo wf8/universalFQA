@@ -28,7 +28,7 @@
 					<input class="input-medium" type="text" id="site_country" value="<?php echo $site->country; ?>" size="23" maxlength="256" />
 					<br><br>
 					<button class="btn btn-info" onClick="save_site_changes(<?php echo $site->id; ?>);">Save Changes</button> 
-					<button class="btn btn-info" onclick="javascript:window.history.back(-1);; $(document).ready(function () {update_quadrat_list(); update_species_list();});">Done</button><br>
+					<button class="btn btn-info" onclick="javascript:window.history.back(-1); $(document).ready(function () {update_quadrat_list(); update_species_list();});">Done</button><br>
 					<font class="red">* required</font>
 				</div>
 			</div>

@@ -810,6 +810,7 @@ function save_new_quadrat() {
 	$.ajax({
 		url: "/ajax/save_new_quadrat",
 		type: "POST",
+		async: false,
 		data: {
 			name: $("#name").val().trim(),
 			latitude: $("#latitude").val().trim(),
@@ -821,9 +822,10 @@ function save_new_quadrat() {
 			if (response.indexOf("success") == -1) {
 				alert( response );
 			} else {
-				history.back();
+				window.history.back(-1);
+				//location.reload();
 				$(document).ready(function () {
-  					update_quadrat_list();
+					update_quadrat_list();
 				});
 			}
 		}

@@ -1,4 +1,11 @@
-    <script> $(document).ready( function () { update_quadrat_list(); });  </script>
+    <script> 
+	    $(window).bind("pageshow", function(event) {
+		if (event.originalEvent.persisted)
+			// catch back-forward cache in safari
+			update_quadrat_list();
+	    });
+	    $(document).ready( function () { update_quadrat_list(); }); 
+    </script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">

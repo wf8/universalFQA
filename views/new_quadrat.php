@@ -8,7 +8,7 @@
 				<div class="span11">
 					<br>
 					<h1>New Quadrat</h1>
-					<button class="btn btn-info" onclick="javascript:save_new_quadrat();return false;">Save</button> 
+					<button class="btn btn-info" onclick="javascript:save_new_quadrat();">Save</button> 
 					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
 				</div>
 			</div>
@@ -106,7 +106,7 @@
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>Finished?</h4>
-					<button class="btn btn-info" onclick="javascript:save_new_quadrat();return false;">Save</button> 
+					<button class="btn btn-info" onclick="javascript:save_new_quadrat();">Save</button> 
 					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
 				</div>
 			</div>
