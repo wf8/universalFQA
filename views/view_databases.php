@@ -41,7 +41,12 @@ if (mysqli_num_rows($fqa_databases) == 0) {
 							<td><a href="view_database/<?php echo $fqa_id; ?>"><?php echo $region; ?></a></td>
 							<td><?php echo $year; ?></td>
 							<td><?php echo $description; ?></td>
-							<td><a href="view_database/<?php echo $fqa_id; ?>">View</a> | <a href="customize_database/<?php echo $fqa_id; ?>">Customize</a> | <a href="javascript:download_database(<?php echo $fqa_id; ?>)">Download</a></td>
+							<td><a href="view_database/<?php echo $fqa_id; ?>">View</a> | 
+							<!-- no customization for WA databases -->
+							<?php if ($fqa_id !== '4' && $fqa_id !== '5' && $fqa_id !== '6') { ?>
+								<a href="customize_database/<?php echo $fqa_id; ?>">Customize</a> | 
+							<?php } ?>
+							<a href="javascript:download_database(<?php echo $fqa_id; ?>)">Download</a></td>
 						</tr>
 <?php
 	}

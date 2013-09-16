@@ -8,7 +8,12 @@
 				<div class="span11">
 					<br>
 					<h1>Public FQA Database</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = '/customize_database/<?php echo $id; ?>';return false;">Customize This Database</button>
+					
+					
+					<!-- no customization for WA databases -->
+					<?php if ($id !== '4' && $id !== '5' && $id !== '6') { ?>
+						<button class="btn btn-info" onclick="javascript:window.location = '/customize_database/<?php echo $id; ?>';return false;">Customize This Database</button>
+					<?php } ?>
 					<button class="btn btn-info" onClick="javascript:download_database(<?php echo $id; ?>);">Download</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_databases';return false;">Done</button>
 					<br>
