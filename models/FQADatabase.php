@@ -21,6 +21,7 @@ class FQADatabase {
 			$this->region_name = $fqa['region_name'];
 			$this->publication_year = $fqa['publication_year'];
 			$this->description = $fqa['description'];
+			mysqli_close($this->db_link);
 		}
 	}
 	
@@ -41,7 +42,8 @@ class FQADatabase {
 	public function get_all() {
 		$this->get_db_link();
 		$sql = "SELECT * FROM fqa WHERE 1 ORDER BY region_name, publication_year";
-		return mysqli_query($this->db_link, $sql);			 
+		return mysqli_query($this->db_link, $sql);		
+		mysqli_close($this->db_link);	 
     }
     
     /*
@@ -51,6 +53,7 @@ class FQADatabase {
 		$this->get_db_link();
     	$sql = "SELECT * FROM fqa WHERE id='$id'";
 		return mysqli_query($this->db_link, $sql);
+		mysqli_close($this->db_link);
 	}
 	
 	/*
@@ -60,6 +63,7 @@ class FQADatabase {
 		$this->get_db_link();
 		$sql = "SELECT * FROM taxa WHERE fqa_id='$id' ORDER BY scientific_name";
 		return mysqli_query($this->db_link, $sql);
+		mysqli_close($this->db_link);
     }
     
     /*
@@ -74,6 +78,7 @@ class FQADatabase {
 			if ($row['scientific_name'] !== '')
     			$array_to_return[] = $row['scientific_name'];
 		}
+		mysqli_close($this->db_link);
 		return $array_to_return;
     }
     
@@ -89,6 +94,7 @@ class FQADatabase {
 			if ($row['acronym'] !== '')
 	    		$array_to_return[] = $row['acronym'];
 		}
+		mysqli_close($this->db_link);
 		return $array_to_return;
     }
     
@@ -106,6 +112,7 @@ class FQADatabase {
 				$common_name = str_replace("'", "", $common_name);
     			$array_to_return[] = $common_name;
 		}
+		mysqli_close($this->db_link);
 		return $array_to_return;
     }
     
@@ -234,6 +241,7 @@ class FQADatabase {
 				}
 			}
 		}
+		mysqli_close($this->db_link);
 		echo '<html><head><script language="javascript" type="text/javascript">';
 		echo 'var result = ' . json_encode($result) . ';';
 		echo 'window.top.window.stop_database_upload(result);';
