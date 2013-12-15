@@ -57,7 +57,7 @@ class Quadrat {
 			$taxa_db = 'taxa';
 			$fqa_column = 'fqa_id';
 		}
-		$sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column='$value' AND $taxa_db.$fqa_column='$this->fqa_id'";
+		$sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column LIKE '%$value%' AND $taxa_db.$fqa_column='$this->fqa_id'";
 		$results = mysqli_query($db_link, $sql);
 		if (mysqli_num_rows($results) == 0) {
 			return false;

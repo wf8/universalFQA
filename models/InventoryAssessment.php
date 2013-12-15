@@ -55,7 +55,7 @@ class InventoryAssessment extends Assessment {
 			$fqa_column = 'fqa_id';
 		}
 		$this->get_db_link();
-		$sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column='$value' AND $taxa_db.$fqa_column='$this->fqa_id'";
+		$sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column LIKE '%$value%' AND $taxa_db.$fqa_column='$this->fqa_id'";
 		$results = mysqli_query($this->db_link, $sql);
 		if (mysqli_num_rows($results) == 0) {
 			mysqli_close($this->db_link);
