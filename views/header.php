@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Universal FQA Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="Universal Floristic Quality Assessment (FQA) Calculator">
     <meta name="author" content="">
 
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
