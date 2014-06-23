@@ -31,6 +31,8 @@
 					<p class="nice-text">
 						Citation:<br>
 						Freyman, W.A. and L.A. Masters. 2013. <em>The Universal Floristic Quality Assessment (FQA) Calculator</em> [Computer program]. Available at http://universalFQA.org (Accessed date)
+                        <br><br>
+                        If you publish an assessment you should also cite the FQA database used to calculate the assessment.
 					</p>
 					<br>
 					<button class="btn btn-info" onclick="javascript: window.history.back();">OK</button>

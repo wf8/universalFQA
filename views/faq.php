@@ -105,7 +105,7 @@
 							</div>
 							<div id="collapseThree" class="accordion-body collapse">
 								<div class="accordion-inner">
-									This site was developed for <a href="http://www.openlands.org/">Openlands</a>, a non-profit conservation organization based in Chicago. Use of the site is offered to the public free of charge, and all data will be kept secure. Please <a href="/about">contact us</a> if you have more questions.
+									This site was developed for <a href="http://www.openlands.org/">Openlands</a>, a non-profit conservation organization based in Chicago, Illinois, USA. Use of the site is offered to the public free of charge, and all data will be kept secure. Your data will not be released or used for advertising, research, or any other purpose. Please <a href="/about">contact us</a> if you have more questions.
 								</div>
 							</div>
 						</div>
@@ -142,6 +142,8 @@
 							<div id="collapseCite" class="accordion-body collapse">
 								<div class="accordion-inner">
 									Freyman, W.A. and L.A. Masters. 2013. <em>The Universal Floristic Quality Assessment (FQA) Calculator</em> [Computer program]. Available at http://universalFQA.org (Accessed date)
+                                    <br><br>
+                                    You should also cite the FQA database used to calculate your assessment.
 								</div>
 							</div>
 						</div>
