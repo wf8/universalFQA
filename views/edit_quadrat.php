@@ -68,8 +68,20 @@
 			<div class="row-fluid">
 				<div class="span12">
 				<h4>To Add Species In Bulk:</h4>
-				List each species (by scientific name, acronym, or common name) and their percent coverage separated by a comma. For example: "Acorus calamus, 20, Alisma subcordatum, 15, Anemone virginiana, 5, etc."<br>
-				<textarea class="input-xxlarge" rows="3" id="taxa_to_add_list"></textarea><br>
+				List each species and their percent coverage separated by a comma. For example: "Acorus calamus, 20, Alisma subcordatum, 15, Anemone virginiana, 5, etc."<br>
+                <label class="radio">
+                    <input type="radio" name="list_type" value="scientific_name" checked>
+                    List of scientific names
+                </label>
+                <label class="radio">
+                    <input type="radio" name="list_type" value="acronym">
+                    List of acronyms
+                </label>
+                <label class="radio">
+                    <input type="radio" name="list_type" value="common_name">
+                    List of common names
+                </label>				
+                <textarea class="input-xxlarge" rows="3" id="taxa_to_add_list"></textarea><br>
 				<button class="btn btn-info" type="button" onclick="javascript:add_quadrat_taxa_by_list();return false;">Add Species</button><br>
 				</div>
 				<div id="species_error" class="red"></div>

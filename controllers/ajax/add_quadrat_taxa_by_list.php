@@ -2,7 +2,8 @@
 if( $_SESSION['valid'] ) {
 	
 	$taxa_list = $_POST['taxa'];
-	$quadrat = unserialize($_SESSION['quadrat']);
+	$list_type = $_POST['list_type'];
+    $quadrat = unserialize($_SESSION['quadrat']);
 	
 	$taxa_array = explode(',', $taxa_list);
 	$html = 'The following taxa were not found in the FQA database:<br>';
@@ -20,15 +21,24 @@ if( $_SESSION['valid'] ) {
 			$percent_cover = $list_item;
 			// now try to add the taxa
 			if ($taxa !== '' && $percent_cover !== '') {
-				// try to add taxa by all possible columns
-				if (!$quadrat->add_taxa_by_column_value('scientific_name', $taxa, $percent_cover, $db_link)) {
-					if (!$quadrat->add_taxa_by_column_value('common_name', $taxa, $percent_cover, $db_link)) {
-						if (!$quadrat->add_taxa_by_column_value('acronym', $taxa, $percent_cover, $db_link)) {
-							$html = $html . $taxa . '<br>';
-							$taxa_not_found = true;
-						}
-					}
-				}
+                if ($list_type == 'scientific_name') {
+                    if (!$quadrat->add_taxa_by_column_value('scientific_name', $taxa, $percent_cover, $db_link)) {
+                        $html = $html . $taxa . '<br>';
+                        $taxa_not_found = true;
+                    }
+                }
+                if ($list_type == 'common_name') {
+                    if (!$quadrat->add_taxa_by_column_value('common_name', $taxa, $percent_cover, $db_link)) {
+                        $html = $html . $taxa . '<br>';
+                        $taxa_not_found = true;
+                    }
+                }
+                if ($list_type == 'acronym') {
+                    if (!$quadrat->add_taxa_by_column_value('acronym', $taxa, $percent_cover, $db_link)) {
+                        $html = $html . $taxa . '<br>';
+                        $taxa_not_found = true;
+                    }
+                }
 			}
 		}
 		$i++;

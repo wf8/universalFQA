@@ -390,8 +390,9 @@ function add_taxa_by_list() {
 		url: "/ajax/add_taxa_by_list",
 		type: "POST",
 		data: {
-			taxa: $("#taxa_to_add_list").val()
-		},
+			taxa: $("#taxa_to_add_list").val(),
+		    list_type: $('input[name=list_type]:checked').val()
+        },
 		success: function( response ) {
 				$( "#species_error" ).html( response );
 				$("#taxa_to_add_list").val('');
@@ -918,6 +919,7 @@ function add_quadrat_taxa_by_list() {
 		url: "/ajax/add_quadrat_taxa_by_list",
 		type: "POST",
 		data: {
+		    list_type: $('input[name=list_type]:checked').val(),
 			taxa: $("#taxa_to_add_list").val()
 		},
 		success: function( response ) {
