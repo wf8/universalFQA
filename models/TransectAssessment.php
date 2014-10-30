@@ -163,7 +163,7 @@ class TransectAssessment extends Assessment {
 			$csv[] = array('FQA DB Description:', $this->fqa->description);
 		}
 		$csv[] = array();
-		$csv[] = array('Pracitioner:', $this->practitioner);
+		$csv[] = array('Practitioner:', $this->practitioner);
 		$csv[] = array('Latitude:', $this->latitude);
 		$csv[] = array('Longitude:', $this->longitude);
 		$csv[] = array('Weather Notes:', $this->weather_notes);
