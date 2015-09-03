@@ -55,40 +55,44 @@ class InventoryAssessment extends Assessment {
 			$fqa_column = 'fqa_id';
 		}
 		$this->get_db_link();
-		$sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column LIKE '%$value%' AND $taxa_db.$fqa_column='$this->fqa_id'";
+		$sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column LIKE '$value' AND $taxa_db.$fqa_column='$this->fqa_id'";
 		$results = mysqli_query($this->db_link, $sql);
 		if (mysqli_num_rows($results) == 0) {
-			mysqli_close($this->db_link);
-			return false;
-		} else {
-			$result = mysqli_fetch_assoc($results);
-			$taxa->id = $result['id'];
-			
-			$taxa->fqa_id = $result['fqa_id'];
-			$taxa->scientific_name = $result['scientific_name'];
-			if ($result['native'] == 1)
-				$taxa->native = 'native';
-			else
-				$taxa->native = 'non-native';
-			$taxa->family = $result['family'];
-			$taxa->common_name = $result['common_name'];
-			$taxa->acronym = $result['acronym'];
-			$taxa->c_o_c = $result['c_o_c'];
-			$taxa->c_o_w = $result['c_o_w'];
-			$taxa->physiognomy = $result['physiognomy'];
-			$taxa->duration = $result['duration'];
-			
-			// check to make sure taxa is not already in assessment
-			foreach($this->taxa as $taxon) {
-				if ($taxon->id == $taxa->id) {
-					mysqli_close($this->db_link);
-					return true;
-				}
-			}
-			mysqli_close($this->db_link);
-			$this->taxa[] = $taxa;
-			return true;
-		}	
+            $sql = "SELECT * FROM $taxa_db WHERE $taxa_db.$column LIKE '%$value%' AND $taxa_db.$fqa_column='$this->fqa_id'";
+            $results = mysqli_query($this->db_link, $sql);
+            if (mysqli_num_rows($results) == 0) {
+                mysqli_close($this->db_link);
+                return false;
+            }
+		}
+
+        $result = mysqli_fetch_assoc($results);
+        $taxa->id = $result['id'];
+        
+        $taxa->fqa_id = $result['fqa_id'];
+        $taxa->scientific_name = $result['scientific_name'];
+        if ($result['native'] == 1)
+            $taxa->native = 'native';
+        else
+            $taxa->native = 'non-native';
+        $taxa->family = $result['family'];
+        $taxa->common_name = $result['common_name'];
+        $taxa->acronym = $result['acronym'];
+        $taxa->c_o_c = $result['c_o_c'];
+        $taxa->c_o_w = $result['c_o_w'];
+        $taxa->physiognomy = $result['physiognomy'];
+        $taxa->duration = $result['duration'];
+        
+        // check to make sure taxa is not already in assessment
+        foreach($this->taxa as $taxon) {
+            if ($taxon->id == $taxa->id) {
+                mysqli_close($this->db_link);
+                return true;
+            }
+        }
+        mysqli_close($this->db_link);
+        $this->taxa[] = $taxa;
+        return true;
 	}
 	
 	/*

@@ -9,7 +9,7 @@
           		<a class="brand" href="../">Universal FQA</a>
           		<div class="nav-collapse collapse pull-right">
             		<ul class="nav pull-right">
-              			<li><a href="login">Login / Register</a></li>
+    <!--          			<li><a href="login">Login / Register</a></li> -->
             		</ul>
           		</div>
         	</div>
@@ -33,7 +33,8 @@
 					This web-based tool calculates site inventory and transect FQAs. FQA databases published for a number of geographic regions have already been imported into the website, and users can import and customize other FQA databases as needed. 
 					</p>
 					<p class="nice-text">
-					Use this tool at home or out in the field on your tablet or phone. To get started, register a free account <a href="login">here</a>.
+                <!--    <text style="color:red" class="text-danger">The Universal FQA Calculator will be unavailable 12-7 PM PST 12/30/14 for maintenance. Sorry for the inconvenience, but we'll be back up soon.</text> -->
+					Use this tool at home or out in the field on your tablet or phone. To get started, register a free account <a href="login">here</a>. 
 					</p>
 					<button class="btn btn-info" onclick="window.location='login';">Login / Register</button> 
 				</div>
