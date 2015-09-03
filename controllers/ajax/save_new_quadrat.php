@@ -10,6 +10,11 @@ if ($name == '') {
 	exit;
 }
 
+if (!ctype_alnum($name)) {
+    echo 'The quadrat name can only contain alphanumeric characters.';
+    exit;
+}
+
 if ($bare_ground !== '' && ( ($bare_ground < 0 || $bare_ground > 100) || !is_numeric($bare_ground) )) {
 	echo 'Please enter a number between 0 and 100 for Percent Bare Ground.';
 	exit;
