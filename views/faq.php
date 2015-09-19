@@ -135,6 +135,30 @@
 						</div>
 						<div class="accordion-group">
 							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseAPI">
+									How do I use the API to access public data?
+								</a>
+							</div>
+							<div id="collapseAPI" class="accordion-body collapse">
+								<div class="accordion-inner">
+                                Data for all FQA databases and public assessments can be accessed through a RESTful web API that returns JSON.<br><br>
+                                To list all FQA databases:<br>
+                                <a href="http://universalfqa.org/get/database/">http://universalfqa.org/get/database/</a><br>
+                                To download a specific FQA database:<br>
+                                <a href="http://universalfqa.org/get/database/1">http://universalfqa.org/get/database/1</a><br>
+                                To list all public inventory assessments using a certain FQA database:<br>
+                                <a href="http://universalfqa.org/get/database/1/inventory">http://universalfqa.org/get/database/1/inventory</a><br>
+                                To list all public transect assessments using a certain FQA database:<br>
+                                <a href="http://universalfqa.org/get/database/1/transect">http://universalfqa.org/get/database/1/transect</a><br>
+                                To download a specific public inventory assessment:<br>
+                                <a href="http://universalfqa.org/get/inventory/2629">http://universalfqa.org/get/inventory/2629</a><br>
+                                To download a specific public transect assessment:<br>
+                                <a href="http://universalfqa.org/get/transect/1082">http://universalfqa.org/get/transect/1082</a><br>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseCite">
 									How do I cite the use of this computer program?
 								</a>
