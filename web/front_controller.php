@@ -18,8 +18,31 @@ ini_set('session.bug_compat_42', 0);
 // parse url
 $url_parts = array_slice(explode('/',$_SERVER['REQUEST_URI']), 1);
 
+// route API requests
+if ($url_parts[0] == 'get') {
+
+    if ($url_parts[1] == 'database') {
+        if (count($url_parts) < 4) {
+            // get/database/ or get/database/id
+            if ($url_parts[2] != '')
+                $_SESSION['id'] = $url_parts[2];
+            require_once('../controllers/api/download_database.php');
+        } else {
+            // get/database/id/inventory or get/database/id/transect
+            $_SESSION['database_id'] = $url_parts[2];
+            $_SESSION['assessment_type'] = $url_parts[3];
+            require_once('../controllers/api/list_assessments.php');
+        }
+    } else if (count($url_parts) == 3 && ($url_parts[1] == 'inventory' || $url_parts[1] == 'transect')) {
+        $_SESSION['assessment_type'] = $url_parts[1];
+        $_SESSION['id'] = $url_parts[2];
+        require_once('../controllers/api/download_assessment.php');
+    } else {
+        echo '{ "status" : "error", "message" : "Badly formed URL" }';
+    }
+
 // route ajax requests
-if ($url_parts[0] == 'ajax') {
+} else if ($url_parts[0] == 'ajax') {
 	
 	if (file_exists('../controllers/ajax/' . $url_parts[1] . '.php')) {
 		// load ajax controller

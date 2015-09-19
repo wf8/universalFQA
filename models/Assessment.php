@@ -185,6 +185,53 @@ class Assessment {
 		return $assessments;
     }
 	
+    /*
+	 * return an array with all the public assessments for a given fqa database
+	 */
+    protected function get_all_public_for_fqa($fqa_id) {
+    	$this->get_db_link();
+	    $sql = "SELECT $this->db_table.*, site.name AS sitename, site.location, site.city, site.county, site.state, site.country, site.notes FROM $this->db_table JOIN site ON $this->db_table.site_id = site.id WHERE $this->db_table.private='0' AND $this->db_table.fqa_id='$fqa_id' ORDER BY $this->db_table.date DESC, site.name ASC";
+		$results = mysqli_query($this->db_link, $sql);			 
+		$assessments = array();
+		while ($result = mysqli_fetch_assoc($results)) {		
+			// no type casting so use hack
+			if ($this->db_table == 'inventory')
+				$assessment = new InventoryAssessment();
+			else
+				$assessment = new TransectAssessment();			
+			$assessment->id = $result['id'];
+			$assessment->date = $result['date'];
+			$assessment->fqa_id = $result['fqa_id'];
+			$assessment->custom_fqa = $result['customized_fqa'];
+			if ($result['private'] == 1)
+				$assessment->private = 'private';
+			else
+				$assessment->private = 'public';
+			$assessment->name = $result['name'];
+	 		$assessment->practitioner = $result['practitioner'];
+ 	 		$assessment->latitude = $result['latitude'];
+ 	 		$assessment->longitude = $result['longitude'];
+ 	 		$assessment->weather_notes = $result['weather_notes'];
+ 			$assessment->duration_notes = $result['duration_notes'];
+ 			$assessment->community_type_notes = $result['community_type_notes'];
+ 			$assessment->other_notes = $result['other_notes'];		
+ 			$site = new Site();
+ 			$site->id = $result['site_id'];
+ 			$site->name = $result['sitename'];
+ 			$site->location = $result['location'];
+ 			$site->city = $result['city'];
+ 			$site->county = $result['county'];
+ 			$site->state = $result['state'];
+ 			$site->country = $result['country'];
+ 			$site->notes = $result['notes'];
+ 			$assessment->site = $site;	
+ 			$assessment->get_fqa_object();	
+			$assessments[] = $assessment; 
+		}
+		mysqli_close($this->db_link);
+		return $assessments;
+    }
+
 	/*
 	 *  helper functions for downloading reports
 	 */

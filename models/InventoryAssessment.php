@@ -35,6 +35,17 @@ class InventoryAssessment extends Assessment {
 		}
 		return $assessments;
 	}
+
+	public function get_all_public_for_fqa($fqa_id) {
+		$assessments = Assessment::get_all_public_for_fqa($fqa_id);
+		$this->get_db_link();
+		foreach ($assessments as $assessment) {
+			$assessment->get_taxa();
+			$metrics = new InventoryMetrics($assessment);
+			$assessment->metrics = $metrics;
+		}
+		return $assessments;
+	}
 	
 	/*
 	 * add the taxa to this assessment based on the value of a db column
@@ -230,8 +241,18 @@ class InventoryAssessment extends Assessment {
 	 *  return a csv report as a string
 	 */
 	public function download() {
-		
-		// build csv array
+
+        $csv = $this->get_data_array();
+	    return $this->return_CSV($csv);	
+
+    }
+
+    /*
+     *  return an array containing all the assessment's data
+     */
+    public function get_data_array() {
+
+		// build array
 		$csv = array();
 		$csv[] = array($this->name);
 		$csv[] = array($this->date);
@@ -334,7 +355,7 @@ class InventoryAssessment extends Assessment {
 						);
 			}
 		}
-		return $this->return_CSV($csv);
+		return $csv;
 	}
 }
 ?>

@@ -38,6 +38,18 @@ class TransectAssessment extends Assessment {
 		return $assessments;
 	}
 	
+    public function get_all_public_for_fqa($fqa_id) {
+		$assessments = Assessment::get_all_public_for_fqa($fqa_id);
+		$this->get_db_link();
+		foreach ($assessments as $assessment) {
+			$assessment->get_quadrats();
+			$metrics = new TransectMetrics($assessment);
+			$assessment->metrics = $metrics;
+		}
+		mysqli_close($this->db_link);
+		return $assessments;
+	}
+	
 	/*
 	 * load all the taxa for this inventory
 	 */
@@ -140,7 +152,17 @@ class TransectAssessment extends Assessment {
 	 *  return a csv report as a string
 	 */
 	public function download() {
-		
+	    
+        $data = $this->get_data_array();
+		return $this->return_CSV($data);
+       
+    }
+
+    /*
+     * return an array containing this assessment's data
+     */
+    public function get_data_array() {
+
 		// build csv array
 		$csv = array();
 		$csv[] = array($this->name);
@@ -351,7 +373,7 @@ class TransectAssessment extends Assessment {
 				$csv[] = array();
 			}
 		}			
-		return $this->return_CSV($csv);
+		return $csv;
 	}	
 	
 	private function reverse_sort_array_of_arrays($arr, $var) { 
