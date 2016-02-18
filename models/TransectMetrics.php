@@ -594,26 +594,26 @@ class TransectMetrics extends QuadratMetrics {
 			$this->nonnative_fern_riv = 'n/a';
 			$this->nonnative_bryophyte_riv = 'n/a';
 		} else {
-			if ($this->total_species > 0) {
-				$this->nonnative_percent_tree = round(100*$this->nonnative_tree / $this->total_species,1);
-				$this->nonnative_percent_shrub = round(100*$this->nonnative_shrub / $this->total_species,1);
-				$this->nonnative_percent_vine = round(100*$this->nonnative_vine / $this->total_species,1);
-				$this->nonnative_percent_forb = round(100*$this->nonnative_forb / $this->total_species,1);
-				$this->nonnative_percent_grass = round(100*$this->nonnative_grass / $this->total_species,1);
-				$this->nonnative_percent_sedge = round(100*$this->nonnative_sedge / $this->total_species,1);
-				$this->nonnative_percent_rush = round(100*$this->nonnative_rush / $this->total_species,1);
-				$this->nonnative_percent_fern = round(100*$this->nonnative_fern / $this->total_species,1);
-				$this->nonnative_percent_bryophyte = round(100*$this->nonnative_bryophyte / $this->total_species,1);
+			if ($this->total_frequency > 0) {
+				$this->nonnative_percent_tree = round(100*$this->nonnative_tree / $this->total_frequency,1);
+				$this->nonnative_percent_shrub = round(100*$this->nonnative_shrub / $this->total_frequency,1);
+				$this->nonnative_percent_vine = round(100*$this->nonnative_vine / $this->total_frequency,1);
+				$this->nonnative_percent_forb = round(100*$this->nonnative_forb / $this->total_frequency,1);
+				$this->nonnative_percent_grass = round(100*$this->nonnative_grass / $this->total_frequency,1);
+				$this->nonnative_percent_sedge = round(100*$this->nonnative_sedge / $this->total_frequency,1);
+				$this->nonnative_percent_rush = round(100*$this->nonnative_rush / $this->total_frequency,1);
+				$this->nonnative_percent_fern = round(100*$this->nonnative_fern / $this->total_frequency,1);
+				$this->nonnative_percent_bryophyte = round(100*$this->nonnative_bryophyte / $this->total_frequency,1);
 				
-				$this->native_percent_tree = round(100*$this->native_tree / $this->total_species,1);
-				$this->native_percent_shrub = round(100*$this->native_shrub / $this->total_species,1);
-				$this->native_percent_vine = round(100*$this->native_vine / $this->total_species,1);
-				$this->native_percent_forb = round(100*$this->native_forb / $this->total_species,1);
-				$this->native_percent_grass = round(100*$this->native_grass / $this->total_species,1);
-				$this->native_percent_sedge = round(100*$this->native_sedge / $this->total_species,1);
-				$this->native_percent_rush = round(100*$this->native_rush / $this->total_species,1);
-				$this->native_percent_fern = round(100*$this->native_fern / $this->total_species,1);
-				$this->native_percent_bryophyte = round(100*$this->native_bryophyte / $this->total_species,1);
+				$this->native_percent_tree = round(100*$this->native_tree / $this->total_frequency,1);
+				$this->native_percent_shrub = round(100*$this->native_shrub / $this->total_frequency,1);
+				$this->native_percent_vine = round(100*$this->native_vine / $this->total_frequency,1);
+				$this->native_percent_forb = round(100*$this->native_forb / $this->total_frequency,1);
+				$this->native_percent_grass = round(100*$this->native_grass / $this->total_frequency,1);
+				$this->native_percent_sedge = round(100*$this->native_sedge / $this->total_frequency,1);
+				$this->native_percent_rush = round(100*$this->native_rush / $this->total_frequency,1);
+				$this->native_percent_fern = round(100*$this->native_fern / $this->total_frequency,1);
+				$this->native_percent_bryophyte = round(100*$this->native_bryophyte / $this->total_frequency,1);
 			}
 			if ($this->total_coverage > 0) {	
 				$this->nonnative_percent_tree_coverage = round(100*$this->nonnative_tree_coverage / $this->total_coverage,1);
