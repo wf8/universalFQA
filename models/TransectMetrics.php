@@ -179,6 +179,7 @@ class TransectMetrics extends QuadratMetrics {
 				// so that it is included in species RIV
 				$found = false;
 				if ($quadrat->percent_bare_ground !== null) {
+					$this->total_frequency++;
 					foreach ($this->taxa as $metric_taxon) {
 						if ($metric_taxon->taxa->id == 'percent_bare_ground') {
 							// update frequency and coverage
@@ -204,6 +205,7 @@ class TransectMetrics extends QuadratMetrics {
 				// insert 'percent water' if need be
 				$found = false;	
 				if ($quadrat->percent_water !== null) {
+					$this->total_frequency++;
 					foreach ($this->taxa as $metric_taxon) {
 						if ($metric_taxon->taxa->id == 'percent_water') {
 							// update frequency and coverage
