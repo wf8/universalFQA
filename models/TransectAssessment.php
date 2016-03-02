@@ -200,6 +200,7 @@ class TransectAssessment extends Assessment {
 		
 		$csv[] = array('Conservatism-Based Metrics:');
 		$csv[] = array('Total Mean C:', $this->metrics->total_mean_c);
+        $csv[] = array('Cover-weighted Mean C:', $this->metrics->cover_weighted_total_mean_c);
 		$csv[] = array('Native Mean C:', $this->metrics->native_mean_c);
 		$csv[] = array('Total FQI:', $this->metrics->total_fqi);
 		$csv[] = array('Native FQI:', $this->metrics->native_fqi);

@@ -90,6 +90,7 @@
 				<div class="span4">
 					<h4>&#187; Conservatism-Based Metrics:</h4>
 					Total Mean C: <strong><?php echo $assessment->metrics->total_mean_c; ?></strong><br>
+                    Cover-weighted Mean C: <strong><?php echo $assessment->metrics->cover_weighted_total_mean_c; ?></strong><br>
 					Native Mean C: <strong><?php echo $assessment->metrics->native_mean_c; ?></strong><br>
 					Total FQI: <strong><?php echo $assessment->metrics->total_fqi; ?></strong><br>
 					Native FQI: <strong><?php echo $assessment->metrics->native_fqi; ?></strong><br>
