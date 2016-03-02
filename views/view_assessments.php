@@ -25,7 +25,7 @@
 							<td><strong>Site</strong></td>
 							<td><strong>Practitioner</strong></td>
 							<td><strong>FQA Database</strong></td>
-							<td><strong>Native FQI</strong></td>
+							<!-- <td><strong>Native FQI</strong></td> -->
 							<td><strong>Public / Private</strong></td>
 							<td><strong>Options</strong></td>							
 						</tr>
@@ -49,7 +49,7 @@ if (count($inventory_assessments) == 0) {
 							<?php } else { ?>
 								<td><?php echo $assessment->fqa->region_name . ', ' . $assessment->fqa->publication_year; ?></td>
 							<?php } ?>
-							<td><?php echo $assessment->metrics->native_fqi; ?></td>
+							<!-- <td><?php //echo $assessment->metrics->native_fqi; ?></td> -->
 							<td><?php echo $assessment->private; ?></td>
 							<td><a href="/view_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="/edit_inventory/<?php echo $assessment->id; ?>">Edit</a> | <a href="javascript:download_inventory(<?php echo $assessment->id; ?>);">Download</a> | <a href="javascript:delete_inventory(<?php echo $assessment->id; ?>);">Delete</a></td>
 						</tr>
@@ -66,7 +66,7 @@ if (count($inventory_assessments) == 0) {
 							<td><strong>Site</strong></td>
 							<td><strong>Practitioner</strong></td>
 							<td><strong>FQA Database</strong></td>
-							<td><strong>Native FQI</strong></td>
+							<!-- <td><strong>Native FQI</strong></td> -->
 							<td><strong>Public / Private</strong></td>
 							<td><strong>Options</strong></td>							
 						</tr>
@@ -90,7 +90,7 @@ if (count($transect_assessments) == 0) {
 							<?php } else { ?>
 								<td><?php echo $assessment->fqa->region_name . ', ' . $assessment->fqa->publication_year; ?></td>
 							<?php } ?>
-							<td><?php echo $assessment->metrics->native_fqi; ?></td>
+							<!-- <td><?php //echo $assessment->metrics->native_fqi; ?></td> -->
 							<td><?php echo $assessment->private; ?></td>
 							<td><a href="/view_transect/<?php echo $assessment->id; ?>">View</a> | <a href="/edit_transect/<?php echo $assessment->id; ?>">Edit</a> | <a href="javascript:download_transect(<?php echo $assessment->id; ?>);">Download</a> | <a href="javascript:delete_transect(<?php echo $assessment->id; ?>);">Delete</a></td>
 						</tr>

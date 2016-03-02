@@ -23,7 +23,7 @@
 							<td><strong>Site</strong></td>
 							<td><strong>Practitioner</strong></td>
 							<td><strong>FQA Database</strong></td>
-							<td><strong>Native FQI</strong></td>
+							<!--<td><strong>Native FQI</strong></td>-->
 							<td><strong>Options</strong></td>							
 						</tr>
 <?php
@@ -46,7 +46,7 @@ if (count($inventory_assessments) == 0) {
 							<?php } else { ?>
 								<td><?php echo $assessment->fqa->region_name . ', ' . $assessment->fqa->publication_year; ?></td>
 							<?php } ?>
-							<td><?php echo $assessment->metrics->native_fqi; ?></td>
+							<!--<td><?php //echo $assessment->metrics->native_fqi; ?></td>-->
 							<td><a href="/view_public_inventory/<?php echo $assessment->id; ?>">View</a> | <a href="javascript:download_inventory(<?php echo $assessment->id; ?>);">Download</a></td>
 						</tr>
 <?php
@@ -62,7 +62,7 @@ if (count($inventory_assessments) == 0) {
 							<td><strong>Site</strong></td>
 							<td><strong>Practitioner</strong></td>
 							<td><strong>FQA Database</strong></td>
-							<td><strong>Native FQI</strong></td>
+							<!--<td><strong>Native FQI</strong></td>-->
 							<td><strong>Options</strong></td>							
 						</tr>
 <?php
@@ -85,7 +85,7 @@ if (count($transect_assessments) == 0) {
 							<?php } else { ?>
 								<td><?php echo $assessment->fqa->region_name . ', ' . $assessment->fqa->publication_year; ?></td>
 							<?php } ?>
-							<td><?php echo $assessment->metrics->native_fqi; ?></td>
+							<!-- <td><?php //echo $assessment->metrics->native_fqi; ?></td> -->
 							<td><a href="/view_public_transect/<?php echo $assessment->id; ?>">View</a> | <a href="javascript:download_transect(<?php echo $assessment->id; ?>);">Download</a></td>
 						</tr>
 <?php
