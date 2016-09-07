@@ -165,7 +165,7 @@
 							</div>
 							<div id="collapseCite" class="accordion-body collapse">
 								<div class="accordion-inner">
-                                    Freyman, W.A., L.A. Masters, and S. Packard. 2015. The Universal Floristic Quality Assessment (FQA) Calculator: an online tool for ecological assessment and monitoring. In press, <em>Methods in Ecology and Evolution</em>
+                                    Freyman, W.A., L.A. Masters, and S. Packard. 2016. The Universal Floristic Quality Assessment (FQA) Calculator: an online tool for ecological assessment and monitoring. <em>Methods in Ecology and Evolution</em> 7(3): 380–383
 									<!-- Freyman, W.A. and L.A. Masters. 2013. <em>The Universal Floristic Quality Assessment (FQA) Calculator</em> [Computer program]. Available at http://universalFQA.org (Accessed date) -->
                                     <br><br>
                                     Read the article <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12491/abstract">here</a>. You should also cite the FQA database used to calculate your assessment.
