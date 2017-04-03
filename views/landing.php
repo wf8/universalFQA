@@ -35,10 +35,12 @@
                     Read our recently published <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12491/full">article in <i>Methods in Ecology and Evolution</i></a>!
 					</p>
 					<p class="nice-text">
-                <!--    <text style="color:red" class="text-danger">The Universal FQA Calculator will be unavailable 12-7 PM PST 12/30/14 for maintenance. Sorry for the inconvenience, but we'll be back up soon.</text> -->
+                   <!--  <text style="color:red" class="text-danger">The Universal FQA Calculator will be unavailable Monday April 3, 2017 9 AM - 2 PM PST for maintenance. Sorry for the inconvenience, but we'll be back up soon.</text> -->
 					Use this tool at home or out in the field on your tablet or phone. To get started, register a free account <a href="login">here</a>. 
 					</p>
+                    <!-- <p class="nice-text"><text style="color:red" class="text-danger">The Universal FQA Calculator will be unavailable Friday March 17, 2017 9 AM - noon PST for maintenance.</text></p> -->
 					<button class="btn btn-info" onclick="window.location='login';">Login / Register</button> 
+            
 				</div>
 			</div>
 			

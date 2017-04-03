@@ -37,7 +37,7 @@
 					<h4>&#187; 2. Format the spreadsheet to upload:</h4>
 					
 					<p>
-					Format the database into a comma-separated file (CSV) spreadsheet file.
+					Format the database into a comma-separated file (CSV) spreadsheet file. <strong>Please use only basic alphanumeric characters.</strong> Accented letters, apostrophes, and mathematical symbols may cause issues.
 					</p>
 					<p>
 					The columns should be organized as follows:
