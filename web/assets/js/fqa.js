@@ -637,6 +637,7 @@ function save_new_transect() {
 		alert("Please enter the practitioner.");
 	else {
 		var public_inv = $('input[name=publicOrPrivate]:checked', '#public_inventory').val();
+		var transect_type_val = $('input[name=transectType]:checked', '#transect_type').val();
 		if ($("#site_select").length) {
 			// user has selected an existing site
 			$.ajax({
@@ -655,7 +656,13 @@ function save_new_transect() {
 					weather_notes: $("#weather_notes").val().trim(),
 					duration_notes: $("#duration_notes").val().trim(),
 					community_notes: $("#community_notes").val().trim(),
-					other_notes: $("#other_notes").val().trim()
+					other_notes: $("#other_notes").val().trim(),
+					transect_type: transect_type_val,
+					plot_size: $("#plot_size").val().trim(),
+					subplot_size: $("#subplot_size").val().trim(),
+					transect_length: $("#transect_length").val().trim(),
+					transect_description: $("#transect_description").val().trim(),
+					cover_method_name: $("#cover_method").val().trim()
 				},
 				success: function( response ) { 
 						window.location = '/view_transect/' + response;
@@ -687,7 +694,13 @@ function save_new_transect() {
 						weather_notes: $("#weather_notes").val().trim(),
 						duration_notes: $("#duration_notes").val().trim(),
 						community_notes: $("#community_notes").val().trim(),
-						other_notes: $("#other_notes").val().trim()
+						other_notes: $("#other_notes").val().trim(),
+						transect_type: transect_type_val,
+						plot_size: $("#plot_size").val().trim(),
+						subplot_size: $("#subplot_size").val().trim(),
+						transect_length: $("#transect_length").val().trim(),
+						transect_description: $("#transect_description").val().trim(),
+						cover_method_name: $("#cover_method").val().trim()
 					},
 					success: function( response ) { 
 							window.location = '/view_transect/' + response;
@@ -705,6 +718,7 @@ function update_transect() {
 		alert("Please enter the practitioner.");
 	else {
 		var public_inv = $('input[name=publicOrPrivate]:checked', '#public_inventory').val();
+		var transect_type_val = $('input[name=transectType]:checked', '#transect_type').val();
 		$.ajax({
 			url: "/ajax/update_transect",
 			type: "POST",
@@ -721,7 +735,13 @@ function update_transect() {
 				weather_notes: $("#weather_notes").val().trim(),
 				duration_notes: $("#duration_notes").val().trim(),
 				community_notes: $("#community_notes").val().trim(),
-				other_notes: $("#other_notes").val().trim()
+				other_notes: $("#other_notes").val().trim(),
+				transect_type: transect_type_val,
+				plot_size: $("#plot_size").val().trim(),
+				subplot_size: $("#subplot_size").val().trim(),
+				transect_length: $("#transect_length").val().trim(),
+				transect_description: $("#transect_description").val().trim(),
+				cover_method_name: $("#cover_method").val().trim()
 			},
 			success: function( response ) { 
 					window.location = '/view_transect/' + response;

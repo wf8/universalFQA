@@ -55,7 +55,7 @@
 			</div>
 			<br>
 			<div class="row-fluid">
-				<div class="span12">
+				<div class="span6">
 					<h4>&#187; Details:</h4>			
 					Practitioner: <strong><?php echo $assessment->practitioner; ?></strong><br>
  					Latitude: <?php echo $assessment->latitude; ?><br>
@@ -69,6 +69,15 @@
  					<?php } else { ?>
  					This assessment is <strong>public</strong> (viewable by all users of this website).<br>
  					<?php } ?>
+ 				</div>
+				<div class="span6">
+					<h4>&#187; Sample Design:</h4>			
+					Transect or Plot: <strong><?php echo $assessment->transect_type; ?></strong><br>
+ 					Plot Size: <?php echo $assessment->plot_size; ?><br>
+ 					Subplot Size: <?php echo $assessment->subplot_size; ?><br>
+					Transect Length: <?php echo $assessment->transect_length; ?><br>
+ 					Description: <?php echo $assessment->transect_description; ?><br>
+ 					Cover Method: <?php echo $assessment->cover_method_name; ?><br>
  				</div>
  			</div>
 			<br>

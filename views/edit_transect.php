@@ -4,7 +4,10 @@
 			// catch back-forward cache in safari
 			update_quadrat_list();
 	    });
-	    $(document).ready( function () { update_quadrat_list(); }); 
+			$(document).ready( function () { 
+				$( document ).tooltip();
+				update_quadrat_list();
+			}); 
     </script>
     <div class="container padding-top">
 		<div class="nice_margins">
@@ -15,7 +18,7 @@
 				</div>
 				<div class="span11">
 					<br>
-					<h1>Edit Transect Assessment</h1>
+					<h1>Edit Transect/Plot Assessment</h1>
 					<button class="btn btn-info" onclick="javascript:update_transect();return false;">Save Changes and View Results</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Cancel</button><br>
 				</div>
@@ -69,7 +72,7 @@
 				</div>	
 				<?php require('../views/site_selector_editing_assessments.php'); ?>		
 			</div>
-			<br>
+			<hr style="height:1pt;"/>
 			<div class="row-fluid">
 				<div class="span6">
 					<label class="small-text">Assessment Name: <font class="red">*</font></label>
@@ -114,11 +117,58 @@
 					<textarea rows="3" id="other_notes"><?php echo $assessment->other_notes; ?></textarea><br>
  				</div>
  			</div>
-			<br>
+			<hr style="height:1pt;"/>
+			<div class="row-fluid">
+				<div class="span6">
+					<form id="transect_type">
+						<?php if (empty($assessment->transect_type) OR ($assessment->transect_type === 'Transect')) { ?>
+						<label class="radio" title="Add Help Text and Image">
+								<input type="radio" name="transectType" value="Transect" checked>
+								Transect
+						</label>
+						<label class="radio">
+								<input type="radio" name="transectType" value="Plot">
+								Plot
+						</label>
+						<?php } else { ?>
+						<label class="radio" title="Add Help Text and Image">
+								<input type="radio" name="transectType" value="Transect">
+								Transect
+						</label>
+						<label class="radio">
+								<input type="radio" name="transectType" value="Plot" checked>
+								Plot
+						</label>
+						<?php } ?>
+					</form>
+					<label class="small-text">Plot Size:</label>
+					<input class="input-medium" type="text" id="plot_size" value="<?php echo $assessment->plot_size; ?>" maxlength="256" /><br>
+					<label class="small-text">Quadrat/Subplot Size:</label>
+					<input class="input-medium" type="text" id="subplot_size" value="<?php echo $assessment->subplot_size; ?>" maxlength="256" /><br>
+					<label class="small-text">Transect Length:</label>
+					<input class="input-medium" type="text" id="transect_length" value="<?php echo $assessment->transect_length; ?>" maxlength="256" /><br>
+					<label class="small-text">Description:</label>
+					<textarea rows="3" id="transect_description"><?php echo $assessment->transect_description; ?></textarea><br>
+					<label class="small-text">Cover Method:</label>
+					<select id="cover_method">
+						<?php
+						$cover_methods = TransectAssessment::get_cover_methods();
+						$selected_cover_method = $assessment->cover_method_name;
+						foreach ($cover_methods as $cover_method_item) {
+							if ($cover_method_item === $selected_cover_method) {
+								echo '<option selected>' . $cover_method_item . '</option>';
+							} else {
+								echo '<option>' . $cover_method_item . '</option>';
+							}
+						}
+						?>
+					</select>
+ 				</div>
+			</div>
+			<hr style="height:1pt;"/>
 			<div class="row-fluid">
 				<div class="span12">
-					<br>
-					<h3>FQA Database:</h3>
+				<h3>FQA Database:</h3>
 					<form class="form-inline">
 						<select id="fqa_select">
 						<?php
@@ -151,6 +201,7 @@
 					<div id="species_error" class="red"></div>
 				</div>
 			</div>
+			<hr style="height:1pt;"/>
 			<div class="row-fluid">
 				<div class="span12">	
 					<h3>Quadrats:</h3>

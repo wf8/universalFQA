@@ -7,7 +7,7 @@
 				</div>
 				<div class="span11">
 					<br>
-					<h1>New Transect Assessment</h1>
+					<h1>New Transect/Plot Assessment</h1>
 				</div>
 			</div>
 			<br>

@@ -7,7 +7,7 @@
 				</div>
 				<div class="span11">
 					<br>
-					<h1>Public Transect Assessment</h1>
+					<h1>Public Transect/Plot Assessment</h1>
 					<button class="btn btn-info" onClick="javascript:download_transect(<?php echo $assessment->id; ?>);">Download Report</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_public_assessments';return false;">Done</button>
 					<br>

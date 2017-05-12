@@ -2,11 +2,25 @@
 class TransectAssessment extends Assessment {
 
 	protected $db_table = 'transect';
+	public $transect_type;
+	public $plot_size;
+	public $subplot_size;
+	public $transect_length;
+	public $transect_description;
+	public $cover_method_name;
 	public $quadrats = array(); // an array of Quadrat objects
 	
 	public function __construct( $id = null ) {
 		Assessment::__construct( $id );
 		if ($id !== null) {
+			$result = $this->result;
+			$this->transect_type = $result['transect_type'];
+			$this->plot_size = $result['plot_size'];
+			$this->subplot_size = $result['subplot_size'];
+			$this->transect_length = $result['transect_length'];
+			$this->transect_description = $result['transect_description'];
+			$this->cover_method_name = $result['cover_method_name'];
+      
 			// load the transect quadrats
 			$this->get_quadrats();
 			$metrics = new TransectMetrics($this);
@@ -90,18 +104,19 @@ class TransectAssessment extends Assessment {
 		else
 			$custom = 0;
 		$sql = "INSERT INTO transect (user_id, fqa_id, customized_fqa, site_id, date, private, name, practitioner, latitude, longitude,
-		weather_notes, duration_notes, community_type_notes, other_notes) VALUES ('$user_id', '$this->fqa_id', '$custom', '$site_id', 
-		'$this->date', '$this->private', '$this->name', '$this->practitioner', '$this->latitude', '$this->longitude', '$this->weather_notes', '$this->duration_notes', 
-		'$this->community_type_notes', '$this->other_notes')";
-		mysqli_query($this->db_link, $sql);
-		$transect_id = mysqli_insert_id($this->db_link);
-		// insert quadrats
-		foreach($this->quadrats as $quadrat) {
- 			$quadrat->save($transect_id, $this->db_link);
- 		}
- 		mysqli_close($this->db_link);
-		return $transect_id;
-	}
+    weather_notes, duration_notes, community_type_notes, other_notes, transect_type, plot_size, subplot_size, transect_length, transect_description, cover_method_name) 
+    VALUES ('$user_id', '$this->fqa_id', '$custom', '$site_id', '$this->date', '$this->private', '$this->name', '$this->practitioner', 
+    '$this->latitude', '$this->longitude', '$this->weather_notes', '$this->duration_notes', '$this->community_type_notes', '$this->other_notes', 
+    '$this->transect_type', '$this->plot_size', '$this->subplot_size', '$this->transect_length', '$this->transect_description', '$this->cover_method_name')";
+    mysqli_query($this->db_link, $sql);
+    $transect_id = mysqli_insert_id($this->db_link);
+    // insert quadrats
+    foreach($this->quadrats as $quadrat) {
+      $quadrat->save($transect_id, $this->db_link);
+    }
+    mysqli_close($this->db_link);
+    return $transect_id;
+  }
 	
 	/*
 	 * updates existing transect assessment
@@ -117,7 +132,8 @@ class TransectAssessment extends Assessment {
 		$sql = "UPDATE transect SET fqa_id = '$this->fqa_id', customized_fqa = '$custom', site_id = '$site_id', date = '$this->date', private = '$this->private', 
 		practitioner = '$this->practitioner', name = '$this->name', latitude = '$this->latitude', longitude = '$this->longitude',
 		weather_notes = '$this->weather_notes', duration_notes = '$this->duration_notes', community_type_notes = '$this->community_type_notes', 
-		other_notes = '$this->other_notes' WHERE id = '$this->id'";
+		other_notes = '$this->other_notes', transect_type = '$this->transect_type', plot_size = '$this->plot_size', subplot_size = '$this->subplot_size',
+		transect_length = '$this->transect_length', transect_description = '$this->transect_description', cover_method_name = '$this->cover_method_name' WHERE id = '$this->id'";
 		mysqli_query($this->db_link, $sql);
 		$inventory_id = mysqli_insert_id($this->db_link);
 		
@@ -146,6 +162,20 @@ class TransectAssessment extends Assessment {
 		$sql = "DELETE FROM quadrat_taxa WHERE transect_id='$id'";
 		mysqli_query($this->db_link, $sql);
 		mysqli_close($this->db_link);
+	}
+  
+	public static function get_cover_methods() {
+		$cover_methods = array(    
+						'Not Specified',
+						'Braun-Blanquet',
+						'PLOTS2 Braun-Blanquet',
+						'Modified Braun-Blanquet 7-pt scale',
+						'Carolina Vegetation Survey',
+						'Daubenmire 1959',
+						'Domin',
+						'U.S. Forest Service ECODATA',
+					);
+		return $cover_methods;
 	}
 	
 	/*
@@ -192,6 +222,13 @@ class TransectAssessment extends Assessment {
 		$csv[] = array('Duration Notes:', $this->duration_notes);
 		$csv[] = array('Community Type Notes:', $this->community_type_notes);
 		$csv[] = array('Other Notes:', $this->other_notes);
+		$csv[] = array('Type:', empty($this->transect_type) ? 'Transect' : $this->transect_type);
+		$csv[] = array('Plot Size:', $this->plot_size);
+		$csv[] = array('Subplot Size:', $this->subplot_size);
+		$csv[] = array('Transect Length:', $this->transect_length);
+		$csv[] = array('Transect Description:', $this->transect_description);
+		$csv[] = array('Cover Method:', $this->cover_method_name);
+
 		if ($this->private == 'private') 
 			$csv[] = array('Private/Public:', 'Private');
 		else

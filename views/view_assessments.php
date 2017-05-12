@@ -10,7 +10,7 @@
 					<br>
 					<h1>Your Assessments</h1>
 					<button class="btn btn-info" onclick="javascript:window.location = '/new_inventory';return false;">New Inventory</button>
-					<button class="btn btn-info" onclick="javascript:window.location = '/new_transect';return false;">New Transect</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/new_transect';return false;">New Transect/Plot</button>
 					<button class="btn btn-info" onclick="javascript:assessment_summary();">Download Summary</button>
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_public_assessments';return false;">View All Public Assessments</button>
 				</div>
@@ -58,7 +58,7 @@ if (count($inventory_assessments) == 0) {
 }
 ?>
 					</table>
-					<h2>Your Transect Assessments</h2>
+					<h2>Your Transect/Plot Assessments</h2>
 					<table class="table table-hover sortable">
 						<tr>
 							<td><strong>Assessment Name</strong></td>
@@ -74,7 +74,7 @@ if (count($inventory_assessments) == 0) {
 if (count($transect_assessments) == 0) {
 ?>
 						<tr>
-							<td colspan="5">You have not made any transect assessments. Click <a href="/new_transect">New Transect</a> to get started.</td> 
+							<td colspan="5">You have not made any transect/plot assessments. Click <a href="/new_transect">New Transect/Plot</a> to get started.</td> 
 						</tr>
 <?php
 } else {

@@ -3,6 +3,7 @@ class Assessment {
 
 	protected $db_link;
 	protected $db_table;
+	protected $result;
 	
 	public $id;
 	public $fqa_id;
@@ -36,6 +37,7 @@ class Assessment {
 				$this->id = null;
 			} else {
 				$result = mysqli_fetch_assoc($results);
+				$this->result = $result;
 				$this->id = $result['id'];
 				$this->fqa_id = $result['fqa_id'];
 				$this->custom_fqa = $result['customized_fqa'];

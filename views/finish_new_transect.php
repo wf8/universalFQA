@@ -4,7 +4,10 @@
 			// catch back-forward cache in safari
 			update_quadrat_list();
 	    });
-	    $(document).ready( function () { update_quadrat_list(); }); 
+			$(document).ready( function () {
+				$( document ).tooltip();
+				update_quadrat_list(); 
+			}); 
     </script>
     <div class="container padding-top">
 		<div class="nice_margins">
@@ -15,12 +18,12 @@
 				</div>
 				<div class="span11">
 					<br>
-					<h1>New Transect Assessment</h1>
+					<h1>New Transect/Plot Assessment</h1>
 					<button class="btn btn-info" onclick="javascript:save_new_transect();return false;">Save and View Results</button>
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Cancel</button><br>
 				</div>
 			</div>
-			<br>
+			<hr style="height:1pt;"/>
 			<div class="row-fluid">
 				<div class="span6">
 					<p>
@@ -66,14 +69,14 @@
 				</div>	
 				<?php require('../views/site_selector.php'); ?>		
 			</div>
-			<br>
+			<hr style="height:1pt;"/>
 			<div class="row-fluid">
 				<div class="span6">
 					<label class="small-text">Assessment Name: <font class="red">*</font></label>
 					<input class="input-large" type="text" id="name" value="" maxlength="256" /><br>
 					<label class="small-text">Practitioner: <font class="red">*</font></label>
 					<input class="input-large" type="text" id="practitioner" value="" maxlength="256" /><br>
- 					<label class="small-text">Latitude:</label>
+					<label class="small-text">Latitude:</label>
 					<input class="input-medium" type="text" id="latitude" value="" maxlength="256" /><br>
  					<label class="small-text">Longitude:</label>
 					<input class="input-medium" type="text" id="longitude" value="" maxlength="256" /><br>
@@ -100,7 +103,44 @@
 					<textarea rows="3" id="other_notes"></textarea><br>
  				</div>
  			</div>
-			<br>
+			<hr style="height:1pt;"/>
+			<div class="row-fluid">
+				<div class="span6">
+				<form id="transect_type">
+					<label class="radio" title="Add Help Text and Image">
+						<input type="radio" name="transectType" value="Transect" checked>
+						Transect
+					</label>
+					<label class="radio">
+						<input type="radio" name="transectType" value="Plot">
+						Plot
+					</label>
+					</form>
+					<label class="small-text">Plot Size:</label>
+					<input class="input-medium" type="text" id="plot_size" value="" maxlength="256" /><br>
+					<label class="small-text">Quadrat/Subplot Size:</label>
+					<input class="input-medium" type="text" id="subplot_size" value="" maxlength="256" /><br>
+					<label class="small-text">Transect Length:</label>
+					<input class="input-medium" type="text" id="transect_length" value="" maxlength="256" /><br>
+					<label class="small-text">Description:</label>
+					<textarea rows="3" id="transect_description"></textarea><br>
+					<label class="small-text">Cover Method:</label>
+					<select id="cover_method">
+					<?php
+						$cover_methods = TransectAssessment::get_cover_methods();
+						$selected_cover_method = 'Not Specified';
+						foreach ($cover_methods as $cover_method_item) {
+							if ($cover_method_item === $selected_cover_method) {
+								echo '<option selected>' . $cover_method_item . '</option>';
+							} else {
+								echo '<option>' . $cover_method_item . '</option>';
+							}
+						}
+					?>
+					</select>
+				</div>
+			</div>
+			<hr style="height:1pt;"/>      
 			<div class="row-fluid">
 				<div class="span12">	
 					<h3>Quadrats:</h3>
@@ -117,7 +157,7 @@
 					<div id="upload_error"></div>
 				</div>
 			</div>
-			<br><br>
+			<hr style="height:1pt;"/>
 			<div class="row-fluid">
 				<div class="span12">				
 					<h4>Finished?</h4>

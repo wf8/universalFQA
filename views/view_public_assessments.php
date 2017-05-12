@@ -54,7 +54,7 @@ if (count($inventory_assessments) == 0) {
 }
 ?>
 					</table>
-					<h2>Public Transect Assessments</h2>
+					<h2>Public Transect/Plot Assessments</h2>
 					<table class="table table-hover sortable">
 						<tr>
 							<td><strong>Assessment Name</strong></td>
@@ -69,7 +69,7 @@ if (count($inventory_assessments) == 0) {
 if (count($transect_assessments) == 0) {
 ?>
 						<tr>
-							<td colspan="5">There are no public transect assessments.</td> 
+							<td colspan="5">There are no public transect/plot assessments.</td> 
 						</tr>
 <?php
 } else {
