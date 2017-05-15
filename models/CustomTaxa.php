@@ -16,6 +16,7 @@ class CustomTaxa {
  	public $physiognomy;
  	public $duration;
  	public $percent_cover;
+	public $cover_range_midpoint;
 
 	/*
 	 * constructor

@@ -1,4 +1,7 @@
 <?php
+
+define ('UFQA_COVER_RANGE_MIDPOINT_DEFAULT', '% Range (Midpt)');
+
 class Quadrat {
 
 	public $taxa = array(); // an array of Taxa or CustomTaxa objects
@@ -45,7 +48,7 @@ class Quadrat {
 	 * return true/false depending on success of adding taxa
 	 * will return true if taxa is already in assessment
 	 */
-	public function add_taxa_by_column_value( $column, $value, $percent_cover, $db_link ) {
+	public function add_taxa_by_column_value( $column, $value, $percent_cover, $cover_range_midpoint, $db_link ) {
 		if (trim($value) == '')
 			return false;
 		if ($this->custom_fqa) {
@@ -78,7 +81,8 @@ class Quadrat {
 			$taxa->c_o_w = $result['c_o_w'];
 			$taxa->physiognomy = $result['physiognomy'];
 			$taxa->duration = $result['duration'];
-			$taxa->percent_cover = $percent_cover;
+			$taxa->percent_cover = !empty($percent_cover) ? $percent_cover : 0;
+			$taxa->cover_range_midpoint = ($cover_range_midpoint === UFQA_COVER_RANGE_MIDPOINT_DEFAULT) ? '' : $cover_range_midpoint;
 			// check to make sure taxa is not already in assessment
 			foreach($this->taxa as $taxon) {
 				if ($taxon->id == $taxa->id) {
@@ -129,8 +133,8 @@ class Quadrat {
 		$this->id = mysqli_insert_id($db_link);
 		// insert each taxon
 		foreach($this->taxa as $taxon) {
- 			$sql = "INSERT INTO quadrat_taxa (quadrat_id, transect_id, percent_coverage, taxa_id) VALUES 
- 						('$this->id', '$transect_id', '$taxon->percent_cover', '$taxon->id')";
+ 			$sql = "INSERT INTO quadrat_taxa (quadrat_id, transect_id, percent_coverage, cover_range_midpoint, taxa_id) VALUES 
+ 						('$this->id', '$transect_id', '$taxon->percent_cover', '$taxon->cover_range_midpoint', '$taxon->id')";
  			mysqli_query($db_link, $sql);
  		}	
 	}
@@ -196,6 +200,7 @@ class Quadrat {
 			$taxa->physiognomy = $result['physiognomy'];
 			$taxa->duration = $result['duration'];
 			$taxa->percent_cover = $taxa_to_add['percent_coverage'];
+			$taxa->cover_range_midpoint = $taxa_to_add['cover_range_midpoint'];
 			// add object to array
 			$this->taxa[] = $taxa;
 		}

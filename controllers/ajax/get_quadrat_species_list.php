@@ -7,6 +7,7 @@ if( $_SESSION['valid'] ) {
 				<td><strong>Family</strong></td>
 				<td><strong>Acronym</strong></td>
 				<td><strong>% Cover</strong></td>
+				<td><strong>Cover Range/Midpoint</strong></td>
 				<td><strong>Native?</strong></td>
 				<td><strong>C</strong></td>
 				<td><strong>W</strong></td>
@@ -24,6 +25,7 @@ if( $_SESSION['valid'] ) {
 			$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
 			$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
 			$html = $html . '<td><input class="input-mini" onChange="update_quadrat_taxa(' . $taxon->id . ', this.value)" type="text" value="' . $taxon->percent_cover . '"></td>';
+			$html = $html . '<td>' . $taxon->cover_range_midpoint . '</td>';
 			$html = $html . '<td>' . $taxon->native . '</td>';
 			$html = $html . '<td>' . $taxon->c_o_c . '</td>';
 			$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';

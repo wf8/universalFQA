@@ -129,7 +129,7 @@
 					<?php
 						$cover_methods = TransectAssessment::get_cover_methods();
 						$selected_cover_method = 'Not Specified';
-						foreach ($cover_methods as $cover_method_item) {
+						foreach ($cover_methods as $cover_method_item => $cover_method_ranges) {
 							if ($cover_method_item === $selected_cover_method) {
 								echo '<option selected>' . $cover_method_item . '</option>';
 							} else {

@@ -883,7 +883,8 @@ function add_quadrat_taxa_by_acronym() {
 		type: "POST",
 		data: {
 			species: $("#acronym").val(),
-			percent_cover: $("#acronym_percent_cover").val()
+			percent_cover: $("#acronym_percent_cover").val(),
+			cover_range_midpoint: $("#acronym_cover_range_midpoint").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
@@ -902,7 +903,8 @@ function add_quadrat_taxa_by_common_name() {
 		type: "POST",
 		data: {
 			species: $("#common_name").val(),
-			percent_cover: $("#common_name_percent_cover").val()
+			percent_cover: $("#common_name_percent_cover").val(),
+			cover_range_midpoint: $("#common_cover_range_midpoint").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
@@ -921,7 +923,8 @@ function add_quadrat_taxa_by_scientific_name() {
 		type: "POST",
 		data: {
 			species: $("#scientific_name").val(),
-			percent_cover: $("#scientific_name_percent_cover").val()
+			percent_cover: $("#scientific_name_percent_cover").val(),
+			cover_range_midpoint: $("#sciname_cover_range_midpoint").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
@@ -1001,6 +1004,9 @@ function clear_add_fields_quadrat() {
 	$("#scientific_name_percent_cover").val('');
 	$("#acronym_percent_cover").val('');
 	$("#common_name_percent_cover").val('');
+	$("#sciname_cover_range_midpoint").val('');
+	$("#acronym_cover_range_midpoint").val('');
+	$("#common_cover_range_midpoint").val('');
 	$("#taxa_to_add_list").val('');
 	$("#species_error").html('');
 }
