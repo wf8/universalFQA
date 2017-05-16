@@ -152,7 +152,7 @@
 					<label class="small-text">Cover Method:</label>
 					<select id="cover_method">
 						<?php
-						$cover_methods = TransectAssessment::get_cover_methods();
+						$cover_methods = Quadrat::get_cover_methods();
 						$selected_cover_method = $assessment->cover_method_name;
 						foreach ($cover_methods as $cover_method_item => $cover_method_ranges) {
 							if ($cover_method_item === $selected_cover_method) {

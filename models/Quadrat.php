@@ -48,7 +48,7 @@ class Quadrat {
 	 * return true/false depending on success of adding taxa
 	 * will return true if taxa is already in assessment
 	 */
-	public function add_taxa_by_column_value( $column, $value, $percent_cover, $cover_range_midpoint, $db_link ) {
+	public function add_taxa_by_column_value( $column, $value, $percent_cover, $cover_range_midpoint, $cover_method_name, $db_link ) {
 		if (trim($value) == '')
 			return false;
 		if ($this->custom_fqa) {
@@ -81,8 +81,21 @@ class Quadrat {
 			$taxa->c_o_w = $result['c_o_w'];
 			$taxa->physiognomy = $result['physiognomy'];
 			$taxa->duration = $result['duration'];
-			$taxa->percent_cover = !empty($percent_cover) ? $percent_cover : 0;
-			$taxa->cover_range_midpoint = ($cover_range_midpoint === UFQA_COVER_RANGE_MIDPOINT_DEFAULT) ? '' : $cover_range_midpoint;
+
+			// If cover method was selected, set the percent cover to the midpoint
+			$taxa->cover_range_midpoint = 'Not Selected';
+			if ($cover_range_midpoint !== UFQA_COVER_RANGE_MIDPOINT_DEFAULT) {
+			  $taxa->cover_range_midpoint = $cover_range_midpoint;
+				$cover_methods = Quadrat::get_cover_methods();
+				$cover_method_list = $cover_methods[$cover_method_name];
+				foreach ($cover_method_list as $cover_method_item) {
+				  if ($cover_range_midpoint == $cover_method_item['display']) {
+			      $percent_cover = $cover_method_item['value'];
+					}
+			  }
+			}
+			
+			$taxa->percent_cover = $percent_cover;
 			// check to make sure taxa is not already in assessment
 			foreach($this->taxa as $taxon) {
 				if ($taxon->id == $taxa->id) {
@@ -204,6 +217,68 @@ class Quadrat {
 			// add object to array
 			$this->taxa[] = $taxa;
 		}
+	}
+	
+	public static function get_cover_methods() {
+		$cover_methods = array(    
+						'Not Specified' => array(),
+						'Braun-Blanquet' => array(array('display' => 'r: single (0.05)', 'value' => 0.05),
+						                          array('display' => '+: few (0.5)', 'value' => 0.5),
+																			array('display' => '1: <5% (2.5)', 'value' => 2.5),
+																			array('display' => '2: 5-25% (15)', 'value' => 15),
+																			array('display' => '3: 25-50% (37.5)', 'value' => 37.5),
+																		  array('display' => '4: 50-75% (62.5)', 'value' => 62.5),
+																			array('display' => '5: 75-100% (87.5)', 'value' => 87.5),
+																			),
+						'PLOTS2 Braun-Blanquet' => array(array('display' => '1: <1% (0.5)', 'value' => 0.5),
+						                                 array('display' => '2: 1-5% (3)', 'value' => 3),
+																						 array('display' => '3: 5-25% (15)', 'value' => 15),
+																						 array('display' => '4: 25-50% (37.5)', 'value' => 37.5),
+																						 array('display' => '5: 50-75% (62.5)', 'value' => 62.5),
+																						 array('display' => '6: 75-100% (87.5)', 'value' => 87.5),
+																						),
+						'Modified Braun-Blanquet 7-pt scale' => array(array('display' => '1: <1% (0.5)', 'value' => 0.5),
+						                                              array('display' => '2: 1-5% (3)', 'value' => 3),
+																													array('display' => '3a: 5-10% (7.5)', 'value' => 7.5),
+																													array('display' => '3b: 10-25% (17.5)', 'value' => 17.5),
+																													array('display' => '4: 25-50% (37.5)', 'value' => 37.5),
+																													array('display' => '5: 50-75% (62.5)', 'value' => 62.5),
+																													array('display' => '6: 75-100% (87.5)', 'value' => 87.5),
+																													),
+						'Carolina Vegetation Survey' => array(array('display' => '1: trace (0.05)', 'value' => 0.05),
+						                                      array('display' => '2: 0.1-1% (0.505)', 'value' => 0.505),
+																									array('display' => '3: 1-2% (1.5)', 'value' => 1.5),
+																									array('display' => '4: 2-5% (3.5)', 'value' => 3.5),
+																									array('display' => '5: 5-10% (7.5)', 'value' => 7.5),
+																									array('display' => '6: 10-25% (17.5)', 'value' => 17.5),
+																									array('display' => '7: 25-50% (37.5', 'value' => 37.5),
+																									array('display' => '8: 50-75% (62.5)', 'value' => 62.5),
+																									array('display' => '9: 75-95% (85)', 'value' => 85),
+																									array('display' => '10: 95-100% (97.5)', 'value' => 97.5),
+																									),
+						'Daubenmire 1959' => array(array('display' => '1: 0-5% (2.5)', 'value' => 2.5),
+						                           array('display' => '2: 5-25% (15)', 'value' => 15),
+																			 array('display' => '3: 25-50% (37.5)', 'value' => 37.5),
+																			 array('display' => '4: 50-75% (62.5)', 'value' => 62.5),
+																			 array('display' => '5: 75-95% (85)', 'value' => 85),
+																			 array('display' => '6: 95-100% (97.5)', 'value' => 97.5),
+																			 ),
+						'Domin' => array(),
+						'U.S. Forest Service ECODATA' => array(array('display' => 'T: <1% (0.5)', 'value' => 0.5),
+																									 array('display' => 'P: 1-4% (3)', 'value' => 3),
+																									 array('display' => '1: 5-14% (10)', 'value' => 10),
+																									 array('display' => '2: 15-24% (20)', 'value' => 20),
+																									 array('display' => '3: 25-34% (30)', 'value' => 30),
+																									 array('display' => '4: 35-44% (40)', 'value' => 40),
+																									 array('display' => '5: 45-54% (50)', 'value' => 50),
+																									 array('display' => '6: 55-64% (60)', 'value' => 60),
+																									 array('display' => '7: 65-74% (70)', 'value' => 70),
+																									 array('display' => '8: 75-84% (80)', 'value' => 80),
+																									 array('display' => '9: 85-94% (90)', 'value' => 90),
+																									 array('display' => '10: 95-100% (98)', 'value' => 98),
+																									),
+					);
+		return $cover_methods;
 	}
 	
 }

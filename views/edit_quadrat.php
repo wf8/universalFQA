@@ -31,6 +31,12 @@
 			<br>
 
 			<div class="row-fluid">
+		  <div class="span12">
+					<h4>Transect/Plot Cover Method:</h4>
+					<span id="cover_method_name"><?php echo $assessment->cover_method_name; ?></span>
+					<br>
+					<br>		
+				</div>	
 				<div class="span12">
 				<h4>To Add Species Individually:</h4>
 				</div>
@@ -43,7 +49,7 @@
 							<input class="input-mini" id="scientific_name_percent_cover" type="text" placeholder="% Cover">
 							<select class="input-medium" id="sciname_cover_range_midpoint">
 							<?php
-								$cover_methods = TransectAssessment::get_cover_methods();
+								$cover_methods = Quadrat::get_cover_methods();
 							  $selected_cover_method = $assessment->cover_method_name;
 								$selected_cover_ranges = $cover_methods[$selected_cover_method];
 								echo '<option selected>'. UFQA_COVER_RANGE_MIDPOINT_DEFAULT . '</option>';
@@ -63,7 +69,7 @@
 							<input class="input-mini" id="acronym_percent_cover" type="text" placeholder="% Cover">
 							<select class="input-medium" id="acronym_cover_range_midpoint">
 							<?php
-								$cover_methods = TransectAssessment::get_cover_methods();
+								$cover_methods = Quadrat::get_cover_methods();
 							  $selected_cover_method = $assessment->cover_method_name;
 								$selected_cover_ranges = $cover_methods[$selected_cover_method];
 								echo '<option selected>'. UFQA_COVER_RANGE_MIDPOINT_DEFAULT . '</option>';
@@ -83,7 +89,7 @@
 							<input class="input-mini" id="common_name_percent_cover" type="text" placeholder="% Cover">
 							<select class="input-medium" id="common_cover_range_midpoint">
 							<?php
-								$cover_methods = TransectAssessment::get_cover_methods();
+								$cover_methods = Quadrat::get_cover_methods();
 							  $selected_cover_method = $assessment->cover_method_name;
 								$selected_cover_ranges = $cover_methods[$selected_cover_method];
 								echo '<option selected>'. UFQA_COVER_RANGE_MIDPOINT_DEFAULT . '</option>';

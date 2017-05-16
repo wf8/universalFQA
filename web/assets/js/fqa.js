@@ -884,7 +884,8 @@ function add_quadrat_taxa_by_acronym() {
 		data: {
 			species: $("#acronym").val(),
 			percent_cover: $("#acronym_percent_cover").val(),
-			cover_range_midpoint: $("#acronym_cover_range_midpoint").val()
+			cover_range_midpoint: $("#acronym_cover_range_midpoint").val(),
+			cover_method_name: $("#cover_method_name").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
@@ -904,7 +905,9 @@ function add_quadrat_taxa_by_common_name() {
 		data: {
 			species: $("#common_name").val(),
 			percent_cover: $("#common_name_percent_cover").val(),
-			cover_range_midpoint: $("#common_cover_range_midpoint").val()
+			cover_range_midpoint: $("#common_cover_range_midpoint").val(),
+			cover_method_name: $("#cover_method_name").val()
+
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
@@ -924,7 +927,8 @@ function add_quadrat_taxa_by_scientific_name() {
 		data: {
 			species: $("#scientific_name").val(),
 			percent_cover: $("#scientific_name_percent_cover").val(),
-			cover_range_midpoint: $("#sciname_cover_range_midpoint").val()
+			cover_range_midpoint: $("#sciname_cover_range_midpoint").val(),
+			cover_method_name: $("#cover_method_name").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
