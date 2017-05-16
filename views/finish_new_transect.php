@@ -140,11 +140,19 @@
 					</select>
 				</div>
 			</div>
+			<br/><br/>
+			<div class="row-fluid">
+				<div class="span12">
+					<button class="btn btn-info" title="Details entered for Transect/Plot will not be saved when adding quadrats. Please save before adding or editing quadrats." onclick="javascript:save_new_transect();return false;">Save Before Adding Quadrats</button> 
+				</div>
+			</div>
 			<hr style="height:1pt;"/>      
 			<div class="row-fluid">
 				<div class="span12">	
 					<h3>Quadrats:</h3>
-					<button class="btn btn-info" onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat</button><br><br>
+					<button class="btn btn-info" onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat/Subplot</button>
+					<button class="btn btn-info" title="Add species for the entire Transect/Plot." onclick="javascript:window.location = '/new_full_plot';return false;">Add Full Plot</button>
+					<br><br>
 					Select which quadrats you want actively included in the FQA calculations. The unselected quadrats will remain saved here if you wish to include them in the future.<br><br>
 					<div id="quadrat_list">
 					</div>

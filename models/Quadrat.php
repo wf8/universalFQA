@@ -2,6 +2,13 @@
 
 define ('UFQA_COVER_RANGE_MIDPOINT_DEFAULT', '% Range (Midpt)');
 
+// Quadrat "Type"
+define ('UFQA_QUADRAT_SUBPLOT', 0);
+define ('UFQA_FULL_PLOT', 1);
+define ('UFQA_OUTSIDE_PLOT', 2);
+
+define ('UFQA_FULL_PLOT_NAME', 'FullPlot');
+
 class Quadrat {
 
 	public $taxa = array(); // an array of Taxa or CustomTaxa objects
@@ -15,6 +22,7 @@ class Quadrat {
 	public $longitude;
 	public $percent_bare_ground;
 	public $percent_water;
+	public $quadrat_type;
 		
 	public function __construct( $id = null, $db_link ) {
 		if ($id !== null) {
@@ -128,19 +136,19 @@ class Quadrat {
 	 */
 	public function save( $transect_id, $db_link ) {
 		if ($this->percent_bare_ground !== '' && $this->percent_water !== '')
-			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground, percent_water) VALUES
-					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground', '$this->percent_water')";
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground, percent_water, quadrat_type) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground', '$this->percent_water', '$this->quadrat_type')";
 		if ($this->percent_bare_ground == '' && $this->percent_water !== '')
-			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_water) VALUES
-					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_water')";
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_water, quadrat_type) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_water', '$this->quadrat_type')";
 		
 		if ($this->percent_bare_ground !== '' && $this->percent_water == '')
-			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground) VALUES
-					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground')";
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground, quadrat_type) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground', '$this->quadrat_type')";
 		
 		if ($this->percent_bare_ground == '' && $this->percent_water == '')
-			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude) VALUES
-					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude')";
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, quadrat_type) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->quadrat_type')";
 		
 		mysqli_query($db_link, $sql);
 		$this->id = mysqli_insert_id($db_link);
@@ -279,6 +287,12 @@ class Quadrat {
 																									),
 					);
 		return $cover_methods;
+	}
+	
+	public static function get_quadrat_types() {
+	  $quadrat_types = array(
+					UFQA_FULL_PLOT => 'Full Plot',
+				);
 	}
 	
 }

@@ -165,6 +165,12 @@
 					</select>
  				</div>
 			</div>
+			<br/><br/>
+			<div class="row-fluid">
+				<div class="span12">
+					<button class="btn btn-info" title="Details updated for Transect/Plot will not be saved when adding or editing quadrats." onclick="javascript:save_new_transect();return false;">Save Before Updating Quadrats</button> 
+				</div>
+			</div>
 			<hr style="height:1pt;"/>
 			<div class="row-fluid">
 				<div class="span12">
@@ -205,7 +211,18 @@
 			<div class="row-fluid">
 				<div class="span12">	
 					<h3>Quadrats:</h3>
-					<button class="btn btn-info" onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat</button><br><br>
+					<button class="btn btn-info" onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat</button>
+					<?php
+					  $quadrats = $assessment->quadrats;
+						$full_plot_button_disabled = '';
+						foreach ($quadrats as $quadrat) {
+							if ($quadrat->quadrat_type === UFQA_FULL_PLOT OR $quadrat->name === UFQA_FULL_PLOT_NAME) {
+								$full_plot_button_disabled = 'disabled';
+							}
+						}
+					?>
+					<button class="btn btn-info" title="Add species for the entire Transect/Plot." <?php echo $full_plot_button_disabled; ?> onclick="javascript:window.location = '/new_full_plot';return false;">Add Full Plot</button>
+					<br><br>
 					Select which quadrats you want actively included in the FQA calculations. The unselected quadrats will remain saved here if you wish to include them in the future.<br><br>
 					<div id="quadrat_list">
 					</div>

@@ -1024,7 +1024,8 @@ function delete_quadrat( id ) {
 				id: id,
 			},
 			success: function( response ) {
-				update_quadrat_list();
+			  location.reload();
+				//update_quadrat_list();
 			}
 		});
  	}

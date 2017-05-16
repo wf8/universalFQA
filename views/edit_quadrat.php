@@ -16,8 +16,14 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
+				  <?php 
+						$name_disabled = '';
+						if ($quadrat->quadrat_type === UFQA_FULL_PLOT) {
+							$name_disabled = 'disabled';
+						}
+					?>
 					<label class="small-text">Quadrat Number or Name: <font class="red">*</font></label>
-					<input class="field" type="text" id="name" value="<?php echo $quadrat->name; ?>" maxlength="256" required />
+					<input class="field" type="text" id="name" value="<?php echo $quadrat->name; ?>" maxlength="256" required <?php echo $name_disabled; ?>/>
  					<label class="small-text">Latitude: (optional)</label>
 					<input class="field" type="text" id="latitude" value="<?php echo $quadrat->latitude; ?>" maxlength="256" /><br>
  					<label class="small-text">Longitude: (optional)</label>
@@ -31,9 +37,9 @@
 			<br>
 
 			<div class="row-fluid">
-		  <div class="span12">
+			  <div class="span12">
 					<h4>Transect/Plot Cover Method:</h4>
-					<span id="cover_method_name"><?php echo $assessment->cover_method_name; ?></span>
+					<input class="input-medium" id="cover_method_name" type="text" value='<?php echo $assessment->cover_method_name; ?>' disabled>
 					<br>
 					<br>		
 				</div>	
