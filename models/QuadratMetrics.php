@@ -130,8 +130,6 @@ class QuadratMetrics extends Metrics {
 	
 		Metrics::__construct( $quadrat );
 		
-		if ($quadrat->quadrat_type !== UFQA_OUTSIDE_PLOT) {
-		
 		$taxa = $quadrat->taxa;
 		
 		foreach( $taxa as $taxon ) {
@@ -437,6 +435,5 @@ class QuadratMetrics extends Metrics {
 			}
 		}	
 	}	
-	} // endif UFQA_OUTSIDE_PLOT
 }
 ?>
