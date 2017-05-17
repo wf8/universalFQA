@@ -30,6 +30,7 @@ class Quadrat {
 			$this->get_taxa($db_link);
 			$this->compute_metrics();
 		}
+		$this->quadrat_type = UFQA_QUADRAT_SUBPLOT;
 	}
 	
 	/*

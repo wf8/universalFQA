@@ -386,6 +386,7 @@
 							<td><strong>Family</strong></td>
 							<td><strong>Acronym</strong></td>
 							<td><strong>% Cover</strong></td>
+							<td><strong>Cover Range (Midpt)</strong></td>
 							<td><strong>Nativity</strong></td>
 							<td><strong>C</strong></td>
 							<td><strong>W</strong></td>
@@ -405,6 +406,7 @@
 									$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
 									$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
 									$html = $html . '<td>' . $taxon->percent_cover . '</td>';
+									$html = $html . '<td>' . $taxon->cover_range_midpoint . '</td>';
 									$html = $html . '<td>' . $taxon->native . '</td>';
 									$html = $html . '<td>' . $taxon->c_o_c . '</td>';
 									$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';

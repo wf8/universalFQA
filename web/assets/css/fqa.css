@@ -38,3 +38,8 @@ body {
 #upload_error {
 	color: red;
 }
+
+input[type="checkbox"] {
+	margin: 0 6px 0;
+	margin-top: 0;
+}

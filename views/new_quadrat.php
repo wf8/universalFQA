@@ -25,6 +25,7 @@
 					<input class="field" type="text" id="bare_ground" value="" maxlength="3" /><br>
  					<label class="small-text">% Water: (optional)</label>
 					<input class="field" type="text" id="water" value="" maxlength="3" /><br>						
+ 					<input class="checkbox" type="checkbox" name="outside_plot" id="outside_plot" title="All Species will be considered outside the Transect/Plot and will not be included in calculations.">Outside Transect/Plot
 				</div>
 			</div>
 			<br>
@@ -35,7 +36,9 @@
 					<input class="input-medium" id="cover_method_name" type="text" value='<?php echo $assessment->cover_method_name; ?>' disabled>
 					<br>
 					<br>		
-				</div>	
+				</div>
+			</div>
+			<div class="row-fluid">
 				<div class="span12">
 				<h4>To Add Species Individually:</h4>
 				</div>

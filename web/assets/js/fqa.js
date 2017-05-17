@@ -828,6 +828,7 @@ function stop_upload_quadrat_string( msg ){
  */
 
 function save_new_quadrat() {
+  var outside_plot_val = $('#outside_plot').is(':checked');
 	$.ajax({
 		url: "/ajax/save_new_quadrat",
 		type: "POST",
@@ -838,6 +839,7 @@ function save_new_quadrat() {
 			longitude: $("#longitude").val().trim(),
 			bare_ground: $("#bare_ground").val().trim(),
 			water: $("#water").val().trim(),
+			outside_plot: outside_plot_val
 		},
 		success: function( response ) { 
 			if (response.indexOf("success") == -1) {
@@ -854,6 +856,7 @@ function save_new_quadrat() {
 }
 
 function save_edited_quadrat() {
+  var outside_plot_val = $('#outside_plot').is(':checked');
 	$.ajax({
 		url: "/ajax/save_edited_quadrat",
 		type: "POST",
@@ -863,6 +866,7 @@ function save_edited_quadrat() {
 			longitude: $("#longitude").val().trim(),
 			bare_ground: $("#bare_ground").val().trim(),
 			water: $("#water").val().trim(),
+			outside_plot: outside_plot_val
 		},
 		success: function( response ) { 
 			if (response.indexOf("success") == -1) {

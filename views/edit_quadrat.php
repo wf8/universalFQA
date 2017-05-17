@@ -31,7 +31,14 @@
 					<label class="small-text">% Bare Ground: (optional)</label>
 					<input class="field" type="text" id="bare_ground" value="<?php echo $quadrat->percent_bare_ground; ?>" maxlength="3" /><br>
  					<label class="small-text">% Water: (optional)</label>
-					<input class="field" type="text" id="water" value="<?php echo $quadrat->percent_water; ?>" maxlength="3" /><br>						
+					<input class="field" type="text" id="water" value="<?php echo $quadrat->percent_water; ?>" maxlength="3" /><br>	
+					<?php
+						$outside_plot = '';
+						if ($quadrat->quadrat_type === UFQA_OUTSIDE_PLOT) {
+							$outside_plot = 'checked';
+						}
+					?>
+ 					<input class="checkbox" type="checkbox" name="outside_plot" id="outside_plot" title="All Species will be considered outside the Transect/Plot and will not be included in calculations." <?php echo $outside_plot; ?>>Outside Transect/Plot
 				</div>
 			</div>
 			<br>
@@ -43,6 +50,8 @@
 					<br>
 					<br>		
 				</div>	
+			</div>
+			<div class="row-fluid">
 				<div class="span12">
 				<h4>To Add Species Individually:</h4>
 				</div>
