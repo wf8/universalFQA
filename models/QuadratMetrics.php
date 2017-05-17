@@ -112,7 +112,9 @@ class QuadratMetrics extends Metrics {
 	protected $native_herbaceous = 0;
 		
 	protected $total_coverage = 0;
+	protected $total_percent_cover = 0;
 	protected $native_coverage = 0;
+	protected $native_percent_cover = 0;
 	protected $sum_total_c_times_coverage = 0;	
 	protected $sum_native_c_times_coverage = 0;
 		
