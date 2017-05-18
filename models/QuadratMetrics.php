@@ -100,6 +100,12 @@ class QuadratMetrics extends Metrics {
 		
 	protected $native_tree_c = 0;
 	protected $native_shrub_c = 0;
+	protected $native_vine_c = 0;
+	protected $native_forb_c = 0;
+	protected $native_grass_c = 0;
+	protected $native_sedge_c = 0;
+	protected $native_rush_c = 0;
+	protected $native_bryophyte_c = 0;
 	protected $native_herbaceous_c = 0;
 		
 	protected $c_0 = 0;
