@@ -8,6 +8,9 @@ class TransectAssessment extends Assessment {
 	public $transect_length;
 	public $transect_description;
 	public $cover_method_name;
+	public $community_type_id;
+	public $environment_description;
+
 	public $quadrats = array(); // an array of Quadrat objects
 	
 	public function __construct( $id = null ) {
@@ -20,7 +23,9 @@ class TransectAssessment extends Assessment {
 			$this->transect_length = $result['transect_length'];
 			$this->transect_description = $result['transect_description'];
 			$this->cover_method_name = $result['cover_method_name'];
-      
+			$this->community_type_id = $result['community_type_id'];
+			$this->environment_description = $result['environment_description'];
+			
 			// load the transect quadrats
 			$this->get_quadrats();
 			$metrics = new TransectMetrics($this);
@@ -104,10 +109,12 @@ class TransectAssessment extends Assessment {
 		else
 			$custom = 0;
 		$sql = "INSERT INTO transect (user_id, fqa_id, customized_fqa, site_id, date, private, name, practitioner, latitude, longitude,
-    weather_notes, duration_notes, community_type_notes, other_notes, transect_type, plot_size, subplot_size, transect_length, transect_description, cover_method_name) 
+    weather_notes, duration_notes, community_type_notes, other_notes, transect_type, plot_size, subplot_size, transect_length, transect_description, cover_method_name,
+		community_type_id, environment_description) 
     VALUES ('$user_id', '$this->fqa_id', '$custom', '$site_id', '$this->date', '$this->private', '$this->name', '$this->practitioner', 
     '$this->latitude', '$this->longitude', '$this->weather_notes', '$this->duration_notes', '$this->community_type_notes', '$this->other_notes', 
-    '$this->transect_type', '$this->plot_size', '$this->subplot_size', '$this->transect_length', '$this->transect_description', '$this->cover_method_name')";
+    '$this->transect_type', '$this->plot_size', '$this->subplot_size', '$this->transect_length', '$this->transect_description', '$this->cover_method_name',
+		'$this->community_type_id', '$this->environment_description')";
     mysqli_query($this->db_link, $sql);
     $transect_id = mysqli_insert_id($this->db_link);
     // insert quadrats
@@ -133,7 +140,8 @@ class TransectAssessment extends Assessment {
 		practitioner = '$this->practitioner', name = '$this->name', latitude = '$this->latitude', longitude = '$this->longitude',
 		weather_notes = '$this->weather_notes', duration_notes = '$this->duration_notes', community_type_notes = '$this->community_type_notes', 
 		other_notes = '$this->other_notes', transect_type = '$this->transect_type', plot_size = '$this->plot_size', subplot_size = '$this->subplot_size',
-		transect_length = '$this->transect_length', transect_description = '$this->transect_description', cover_method_name = '$this->cover_method_name' WHERE id = '$this->id'";
+		transect_length = '$this->transect_length', transect_description = '$this->transect_description', cover_method_name = '$this->cover_method_name',
+		community_type_id = '$this->community_type_id', environment_description = '$this->environment_description' WHERE id = '$this->id'";
 		mysqli_query($this->db_link, $sql);
 		$inventory_id = mysqli_insert_id($this->db_link);
 		
@@ -204,10 +212,12 @@ class TransectAssessment extends Assessment {
 		$csv[] = array('Practitioner:', $this->practitioner);
 		$csv[] = array('Latitude:', $this->latitude);
 		$csv[] = array('Longitude:', $this->longitude);
+		$csv[] = array('Community Type ID:', $this->community_type_id);
+		$csv[] = array('Community Type Notes:', $this->community_type_notes);
 		$csv[] = array('Weather Notes:', $this->weather_notes);
 		$csv[] = array('Duration Notes:', $this->duration_notes);
-		$csv[] = array('Community Type Notes:', $this->community_type_notes);
 		$csv[] = array('Other Notes:', $this->other_notes);
+		$csv[] = array('Environment Description:', $this->environment_description);
 		$csv[] = array('Type:', empty($this->transect_type) ? 'Transect' : $this->transect_type);
 		$csv[] = array('Plot Size:', $this->plot_size);
 		$csv[] = array('Subplot Size:', $this->subplot_size);
