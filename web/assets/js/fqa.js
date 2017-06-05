@@ -662,7 +662,9 @@ function save_new_transect() {
 					subplot_size: $("#subplot_size").val().trim(),
 					transect_length: $("#transect_length").val().trim(),
 					transect_description: $("#transect_description").val().trim(),
-					cover_method_name: $("#cover_method").val().trim()
+					cover_method_name: $("#cover_method").val().trim(),
+					community_type_id: $("#community_type_id").val().trim(),
+					environment_description: $("#environment_description").val().trim()
 				},
 				success: function( response ) { 
 						window.location = '/view_transect/' + response;
