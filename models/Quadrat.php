@@ -6,8 +6,12 @@ define ('UFQA_COVER_RANGE_MIDPOINT_DEFAULT', '% Range (Midpt)');
 define ('UFQA_QUADRAT_SUBPLOT', 0);
 define ('UFQA_FULL_PLOT', 1);
 define ('UFQA_OUTSIDE_PLOT', 2);
+define ('UFQA_REST_OF_PLOT', 3);
 
-define ('UFQA_FULL_PLOT_NAME', 'FullPlot');
+define ('UFQA_DEFAULT_SUBPLOT_NAME', 'QuadratSubplot');
+define ('UFQA_FULL_PLOT_NAME', 'FullTrPlot');
+define ('UFQA_REST_OF_PLOT_NAME', 'RestOfTrPlot');
+define ('UFQA_OUTSIDE_PLOT_NAME', 'OutsideTrPlot');
 
 class Quadrat {
 

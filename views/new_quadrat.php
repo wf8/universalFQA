@@ -15,6 +15,24 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
+					<form id="quadrat_type">
+						<label class="radio">
+							<input type="radio" name="quadratType" value="0" checked>
+							Quadrat/Subplot
+						</label>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="2">
+							Outside Transect/Plot
+						</label>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="3">
+							Rest of Transect/Plot
+						</label>
+					</form>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
 					<label class="small-text">Quadrat Number or Name: <font class="red">*</font></label>
 					<input class="field" type="text" id="name" value="" maxlength="256" required />
  					<label class="small-text">Latitude: (optional)</label>
@@ -24,8 +42,7 @@
 					<label class="small-text">% Bare Ground: (optional)</label>
 					<input class="field" type="text" id="bare_ground" value="" maxlength="3" /><br>
  					<label class="small-text">% Water: (optional)</label>
-					<input class="field" type="text" id="water" value="" maxlength="3" /><br>						
- 					<input class="checkbox" type="checkbox" name="outside_plot" id="outside_plot" title="All Species will be considered outside the Transect/Plot and will not be included in calculations.">Outside Transect/Plot
+					<input class="field" type="text" id="water" value="" maxlength="3" />
 				</div>
 			</div>
 			<br>

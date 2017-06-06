@@ -834,7 +834,7 @@ function stop_upload_quadrat_string( msg ){
  */
 
 function save_new_quadrat() {
-  var outside_plot_val = $('#outside_plot').is(':checked');
+	var quadrat_type_val = $('input[name=quadratType]:checked', '#quadrat_type').val();
 	$.ajax({
 		url: "/ajax/save_new_quadrat",
 		type: "POST",
@@ -845,7 +845,7 @@ function save_new_quadrat() {
 			longitude: $("#longitude").val().trim(),
 			bare_ground: $("#bare_ground").val().trim(),
 			water: $("#water").val().trim(),
-			outside_plot: outside_plot_val
+			quadrat_type: quadrat_type_val
 		},
 		success: function( response ) { 
 			if (response.indexOf("success") == -1) {
@@ -862,7 +862,7 @@ function save_new_quadrat() {
 }
 
 function save_edited_quadrat() {
-  var outside_plot_val = $('#outside_plot').is(':checked');
+	var quadrat_type_val = $('input[name=quadratType]:checked', '#quadrat_type').val();
 	$.ajax({
 		url: "/ajax/save_edited_quadrat",
 		type: "POST",
@@ -872,7 +872,7 @@ function save_edited_quadrat() {
 			longitude: $("#longitude").val().trim(),
 			bare_ground: $("#bare_ground").val().trim(),
 			water: $("#water").val().trim(),
-			outside_plot: outside_plot_val
+			quadrat_type: quadrat_type_val
 		},
 		success: function( response ) { 
 			if (response.indexOf("success") == -1) {

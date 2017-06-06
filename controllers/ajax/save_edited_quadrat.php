@@ -4,7 +4,7 @@ $latitude = trim(mysqli_real_escape_string($db_link, $_POST['latitude']));
 $longitude = trim(mysqli_real_escape_string($db_link, $_POST['longitude']));
 $bare_ground = trim(mysqli_real_escape_string($db_link, $_POST['bare_ground']));
 $water = trim(mysqli_real_escape_string($db_link, $_POST['water']));
-$outside_plot = trim(mysqli_real_escape_string($db_link, $_POST['outside_plot']));
+$quadrat_type = trim(mysqli_real_escape_string($db_link, $_POST['quadrat_type']));
 
 if ($name == '') {
 	echo 'Please enter a name or number for this quadrat.';
@@ -62,9 +62,11 @@ $quadrat->longitude = $longitude;
 $quadrat->percent_bare_ground = $bare_ground;
 $quadrat->percent_water = $water;
 
-if ($outside_plot == 'true') {
+if ($quadrat_type == '2') {
   $quadrat->quadrat_type = UFQA_OUTSIDE_PLOT;
 	$quadrat->active = 0;
+} else if ($quadrat_type == '3') {
+  $quadrat->quadrat_type = UFQA_REST_OF_PLOT;
 }
 
 // update session assessment object

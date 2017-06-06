@@ -16,9 +16,55 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
+					<form id="quadrat_type">
+						<?php if ($quadrat->quadrat_type == UFQA_OUTSIDE_PLOT) { ?>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="0">
+							Quadrat/Subplot
+						</label>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="2" checked>
+							Outside Transect/Plot
+						</label>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="3">
+							Rest of Transect/Plot
+						</label>
+						<?php } else if ($quadrat->quadrat_type == UFQA_REST_OF_PLOT) { ?>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="0">
+							Quadrat/Subplot
+						</label>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="2">
+							Outside Transect/Plot
+						</label>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="3" checked>
+							Rest of Transect/Plot
+						</label>
+						<?php } else { ?>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="0" checked>
+							Quadrat/Subplot
+						</label>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="2">
+							Outside Transect/Plot
+						</label>
+						<label class="radio">
+							<input type="radio" name="quadratType" value="3">
+							Rest of Transect/Plot
+						</label>
+						<?php } ?>
+					</form>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
 				  <?php 
 						$name_disabled = '';
-						if ($quadrat->quadrat_type === UFQA_FULL_PLOT) {
+						if ($quadrat->quadrat_type === UFQA_FULL_PLOT OR $quadrat->quadrat_type === UFQA_OUTSIDE_PLOT OR $quadrat->quadrat_type === UFQA_REST_OF_PLOT) {
 							$name_disabled = 'disabled';
 						}
 					?>
@@ -32,13 +78,6 @@
 					<input class="field" type="text" id="bare_ground" value="<?php echo $quadrat->percent_bare_ground; ?>" maxlength="3" /><br>
  					<label class="small-text">% Water: (optional)</label>
 					<input class="field" type="text" id="water" value="<?php echo $quadrat->percent_water; ?>" maxlength="3" /><br>	
-					<?php
-						$outside_plot = '';
-						if ($quadrat->quadrat_type === UFQA_OUTSIDE_PLOT) {
-							$outside_plot = 'checked';
-						}
-					?>
- 					<input class="checkbox" type="checkbox" name="outside_plot" id="outside_plot" title="All Species will be considered outside the Transect/Plot and will not be included in calculations." <?php echo $outside_plot; ?>>Outside Transect/Plot
 				</div>
 			</div>
 			<br>
