@@ -24,6 +24,7 @@
 				</div>
 			</div>
 			<br>
+			<h3>Date & Location:</h3>
 			<div class="row-fluid">
 				<div class="span6">
 					<p>
@@ -73,6 +74,7 @@
 				<?php require('../views/site_selector_editing_assessments.php'); ?>		
 			</div>
 			<hr style="height:1pt;"/>
+			<h3>Details:</h3>
 			<div class="row-fluid">
 				<div class="span6">
 					<label class="small-text">Assessment Name: <font class="red">*</font></label>
@@ -115,13 +117,14 @@
 					<textarea rows="3" id="weather_notes"><?php echo $assessment->weather_notes; ?></textarea><br>
  					<label class="small-text">Duration Notes:</label>
 					<textarea rows="3" id="duration_notes"><?php echo $assessment->duration_notes; ?></textarea><br>
- 					<label class="small-text">Other Notes:</label>
-					<textarea rows="3" id="other_notes"><?php echo $assessment->other_notes; ?></textarea><br>
  					<label class="small-text">Environmental Description:</label>
 					<textarea rows="3" id="environment_description"><?php echo $assessment->environment_description; ?></textarea><br>
+ 					<label class="small-text">Other Notes:</label>
+					<textarea rows="3" id="other_notes"><?php echo $assessment->other_notes; ?></textarea><br>
  				</div>
  			</div>
 			<hr style="height:1pt;"/>
+			<h3>Transect/Plot Design:</h3>
 			<div class="row-fluid">
 				<div class="span6">
 					<form id="transect_type">
@@ -145,11 +148,11 @@
 						</label>
 						<?php } ?>
 					</form>
-					<label class="small-text">Plot Size:</label>
+					<label class="small-text">Plot Size (Square Meters):</label>
 					<input class="input-medium" type="text" id="plot_size" value="<?php echo $assessment->plot_size; ?>" maxlength="256" /><br>
-					<label class="small-text">Quadrat/Subplot Size:</label>
+					<label class="small-text">Quadrat/Subplot Size (Square Meters):</label>
 					<input class="input-medium" type="text" id="subplot_size" value="<?php echo $assessment->subplot_size; ?>" maxlength="256" /><br>
-					<label class="small-text">Transect Length:</label>
+					<label class="small-text">Transect Length (Meters):</label>
 					<input class="input-medium" type="text" id="transect_length" value="<?php echo $assessment->transect_length; ?>" maxlength="256" /><br>
 					<label class="small-text">Description:</label>
 					<textarea rows="3" id="transect_description"><?php echo $assessment->transect_description; ?></textarea><br>

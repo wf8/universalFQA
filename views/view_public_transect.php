@@ -59,15 +59,26 @@
 					Practitioner: <strong><?php echo $assessment->practitioner; ?></strong><br>
  					Latitude: <?php echo $assessment->latitude; ?><br>
  					Longitude: <?php echo $assessment->longitude; ?><br>
+					Community Type ID: <?php echo $assessment->community_type_id; ?><br>
+ 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
 					Weather Notes: <?php echo $assessment->weather_notes; ?><br>
  					Duration Notes: <?php echo $assessment->duration_notes; ?><br>
- 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
+ 					Environmental Description: <?php echo $assessment->environment_description; ?><br>
  					Other Notes: <?php echo $assessment->other_notes; ?><br>
  					<?php if ($assessment->private == 'private') { ?>
  					This assessment is <strong>private</strong> (viewable only by you).<br>
  					<?php } else { ?>
  					This assessment is <strong>public</strong> (viewable by all users of this website).<br>
  					<?php } ?>
+ 				</div>
+				<div class="span6">
+					<h4>&#187; Transect/Plot Design:</h4>			
+					Transect or Plot: <strong><?php echo $assessment->transect_type; ?></strong><br>
+ 					Plot Size (Square Meters): <?php echo $assessment->plot_size; ?><br>
+ 					Subplot Size (Square Meters): <?php echo $assessment->subplot_size; ?><br>
+					Transect Length (Meters): <?php echo $assessment->transect_length; ?><br>
+ 					Description: <?php echo $assessment->transect_description; ?><br>
+ 					Cover Method: <?php echo $assessment->cover_method_name; ?><br>
  				</div>
  			</div>
 			<br>
