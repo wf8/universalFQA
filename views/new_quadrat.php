@@ -65,13 +65,20 @@
 					<form class="form-inline">
 						<input class="input-medium" id="scientific_name" type="text" placeholder="Scientific Name" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($scientific_names) ?>'>
 						<div class="input-append">
-							<input class="input-mini" id="scientific_name_percent_cover" type="text" placeholder="% Cover">
+							<?php
+								$selected_cover_method = $assessment->cover_method_name;
+								if ($selected_cover_method === UFQA_DEFAULT_COVER_METHOD) {
+									echo '<input class="input-mini" id="scientific_name_percent_cover" type="text" placeholder="% Cover">';
+								} else {
+									echo '<input class="input-mini" id="scientific_name_percent_cover" type="text" placeholder="% Cover" disabled>';					
+								}
+							?>
 							<select class="input-medium" id="sciname_cover_range_midpoint">
 							<?php
 								$cover_methods = Quadrat::get_cover_methods();
 							  $selected_cover_method = $assessment->cover_method_name;
 								$selected_cover_ranges = $cover_methods[$selected_cover_method];
-								echo '<option selected>'. UFQA_COVER_RANGE_MIDPOINT_DEFAULT . '</option>';
+								echo '<option disabled>'. UFQA_COVER_RANGE_MIDPOINT_DEFAULT . '</option>';
 								foreach ($selected_cover_ranges as $cover_method_range) {
 									echo '<option>' . $cover_method_range['display'] . '</option>';
 								}
@@ -85,13 +92,20 @@
 					<form class="form-inline">
 						<input class="input-medium" id="acronym" type="text" placeholder="Acronym" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($acronyms) ?>'>
 						<div class="input-append">
-							<input class="input-mini" id="acronym_percent_cover" type="text" placeholder="% Cover">
+							<?php
+								$selected_cover_method = $assessment->cover_method_name;
+								if ($selected_cover_method === UFQA_DEFAULT_COVER_METHOD) {
+									echo '<input class="input-mini" id="acronym_percent_cover" type="text" placeholder="% Cover">';
+								} else {
+									echo '<input class="input-mini" id="acronym_percent_cover" type="text" placeholder="% Cover" disabled>';					
+								}
+							?>
 							<select class="input-medium" id="acronym_cover_range_midpoint">
 							<?php
 								$cover_methods = Quadrat::get_cover_methods();
 							  $selected_cover_method = $assessment->cover_method_name;
 								$selected_cover_ranges = $cover_methods[$selected_cover_method];
-								echo '<option selected>'. UFQA_COVER_RANGE_MIDPOINT_DEFAULT . '</option>';
+								echo '<option disabled>'. UFQA_COVER_RANGE_MIDPOINT_DEFAULT . '</option>';
 								foreach ($selected_cover_ranges as $cover_method_range) {
 									echo '<option>' . $cover_method_range['display'] . '</option>';
 								}
@@ -105,13 +119,20 @@
 					<form class="form-inline">
 						<input class="input-medium" id="common_name" type="text" placeholder="Common Name" data-provide="typeahead" data-items="10" autocomplete="off" data-source='<?php echo json_encode($common_names) ?>'>
 						<div class="input-append">
-							<input class="input-mini" id="common_name_percent_cover" type="text" placeholder="% Cover">
+							<?php
+								$selected_cover_method = $assessment->cover_method_name;
+								if ($selected_cover_method === UFQA_DEFAULT_COVER_METHOD) {
+									echo '<input class="input-mini" id="common_name_percent_cover" type="text" placeholder="% Cover">';
+								} else {
+									echo '<input class="input-mini" id="common_name_percent_cover" type="text" placeholder="% Cover" disabled>';					
+								}
+							?>
 							<select class="input-medium" id="common_cover_range_midpoint">
 							<?php
 								$cover_methods = Quadrat::get_cover_methods();
 							  $selected_cover_method = $assessment->cover_method_name;
 								$selected_cover_ranges = $cover_methods[$selected_cover_method];
-								echo '<option selected>'. UFQA_COVER_RANGE_MIDPOINT_DEFAULT . '</option>';
+								echo '<option disabled>'. UFQA_COVER_RANGE_MIDPOINT_DEFAULT . '</option>';
 								foreach ($selected_cover_ranges as $cover_method_range) {
 									echo '<option>' . $cover_method_range['display'] . '</option>';
 								}

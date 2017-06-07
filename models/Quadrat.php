@@ -234,7 +234,7 @@ class Quadrat {
 	
 	public static function get_cover_methods() {
 		$cover_methods = array(    
-						'Not Specified' => array(),
+						UFQA_DEFAULT_COVER_METHOD => array(),
 						'Braun-Blanquet' => array(array('display' => 'r: single (0.05)', 'value' => 0.05),
 						                          array('display' => '+: few (0.5)', 'value' => 0.5),
 																			array('display' => '1: <5% (2.5)', 'value' => 2.5),

@@ -1,4 +1,7 @@
 <?php
+
+define ('UFQA_DEFAULT_COVER_METHOD', '% Cover (0 - 100)');
+
 class TransectAssessment extends Assessment {
 
 	protected $db_table = 'transect';

@@ -135,7 +135,7 @@
 					<select id="cover_method">
 					<?php
 						$cover_methods = Quadrat::get_cover_methods();
-						$selected_cover_method = 'Not Specified';
+						$selected_cover_method = UFQA_DEFAULT_COVER_METHOD;
 						foreach ($cover_methods as $cover_method_item => $cover_method_ranges) {
 							if ($cover_method_item === $selected_cover_method) {
 								echo '<option selected>' . $cover_method_item . '</option>';

@@ -24,7 +24,11 @@ if( $_SESSION['valid'] ) {
 			$html = $html . '<td>' . $taxon->scientific_name . '</td>';
 			$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
 			$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
-			$html = $html . '<td><input class="input-mini" onChange="update_quadrat_taxa(' . $taxon->id . ', this.value)" type="text" value="' . $taxon->percent_cover . '"></td>';
+			if ($taxon->cover_range_midpoint === UFQA_COVER_RANGE_MIDPOINT_DEFAULT) {
+				$html = $html . '<td><input class="input-mini" onChange="update_quadrat_taxa(' . $taxon->id . ', this.value)" type="text" value="' . $taxon->percent_cover . '"></td>';
+			} else {
+				$html = $html . '<td><input class="input-mini" onChange="update_quadrat_taxa(' . $taxon->id . ', this.value)" type="text" value="' . $taxon->percent_cover . '" disabled></td>';			
+			}
 			$html = $html . '<td>' . $taxon->cover_range_midpoint . '</td>';
 			$html = $html . '<td>' . $taxon->native . '</td>';
 			$html = $html . '<td>' . $taxon->c_o_c . '</td>';

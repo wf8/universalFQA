@@ -351,6 +351,7 @@ class QuadratMetrics extends Metrics {
 				$this->percent_fern = round(100*$this->fern / $this->total_species,1);
 				$this->percent_bryophyte = round(100*$this->bryophyte / $this->total_species,1);
 				
+				$this->total_coverage = (float)$this->total_coverage;
 				$this->percent_tree_coverage = round(100*$this->tree_coverage / $this->total_coverage,1);
 				$this->percent_shrub_coverage = round(100*$this->shrub_coverage / $this->total_coverage,1);
 				$this->percent_vine_coverage = round(100*$this->vine_coverage / $this->total_coverage,1);
