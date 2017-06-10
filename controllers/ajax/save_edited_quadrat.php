@@ -61,13 +61,11 @@ $quadrat->latitude = $latitude;
 $quadrat->longitude = $longitude;
 $quadrat->percent_bare_ground = $bare_ground;
 $quadrat->percent_water = $water;
-
-if ($quadrat_type == '2') {
-  $quadrat->quadrat_type = UFQA_OUTSIDE_PLOT;
+$quadrat->quadrat_type = $quadrat_type;
+$quadrat->active = 1;
+if ($quadrat_type == UFQA_FULL_PLOT OR $quadrat_type == UFQA_OUTSIDE_PLOT) {
 	$quadrat->active = 0;
-} else if ($quadrat_type == '3') {
-  $quadrat->quadrat_type = UFQA_REST_OF_PLOT;
-}
+} 
 
 // update session assessment object
 $assessment->quadrats[] = $quadrat;

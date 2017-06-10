@@ -78,8 +78,11 @@
  					Plot Size (Square Meters): <?php echo $assessment->plot_size; ?><br>
  					Subplot Size (Square Meters): <?php echo $assessment->subplot_size; ?><br>
 					Transect Length (Meters): <?php echo $assessment->transect_length; ?><br>
- 					Description: <?php echo $assessment->transect_description; ?><br>
- 					Cover Method: <?php echo $assessment->cover_method_name; ?><br>
+ 					Sampling Design Description: <?php echo $assessment->transect_description; ?><br>
+					<?php
+						$cover_method = CoverMethod::get_cover_method($assessment->cover_method_id);
+						echo 'Cover Method: ' . $cover_method->get_name() . '<br>';
+					?>
  				</div>
  			</div>
 			<br>
@@ -404,11 +407,18 @@
 							} else {
 								$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
 								foreach ($sorted_taxa as $taxon) {
+									$cover_method_id = $assessment->cover_method_id;
+									$cover_method = CoverMethod::get_cover_method($cover_method_id);
+									$cover_method_value_name = $cover_method->get_name();
+									$cover_method_values = $cover_method->get_values();
+									if (count($cover_method_values) > 0) {
+										$cover_method_value_name = $cover_method_values[$taxon->cover_method_value_id]->display_name;
+									}
 									$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
 									$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
 									$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
 									$html = $html . '<td>' . $taxon->percent_cover . '</td>';
-									$html = $html . '<td>' . $taxon->cover_range_midpoint . '</td>';
+									$html = $html . '<td>' . $cover_method_value_name . '</td>';
 									$html = $html . '<td>' . $taxon->native . '</td>';
 									$html = $html . '<td>' . $taxon->c_o_c . '</td>';
 									$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';

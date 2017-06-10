@@ -662,7 +662,7 @@ function save_new_transect() {
 					subplot_size: $("#subplot_size").val().trim(),
 					transect_length: $("#transect_length").val().trim(),
 					transect_description: $("#transect_description").val().trim(),
-					cover_method_name: $("#cover_method").val().trim(),
+					cover_method_id: $('#coverMethod option:selected').val(),
 					community_type_id: $("#community_type_id").val().trim(),
 					environment_description: $("#environment_description").val().trim()
 				},
@@ -702,7 +702,7 @@ function save_new_transect() {
 						subplot_size: $("#subplot_size").val().trim(),
 						transect_length: $("#transect_length").val().trim(),
 						transect_description: $("#transect_description").val().trim(),
-						cover_method_name: $("#cover_method").val().trim(),
+						cover_method_id: $('#coverMethod option:selected').val(),
 						community_type_id: $("#community_type_id").val().trim(),
 						environment_description: $("#environment_description").val().trim()
 					},
@@ -745,7 +745,7 @@ function update_transect() {
 				subplot_size: $("#subplot_size").val().trim(),
 				transect_length: $("#transect_length").val().trim(),
 				transect_description: $("#transect_description").val().trim(),
-				cover_method_name: $("#cover_method").val().trim(),
+				cover_method_id: $('#coverMethod option:selected').val(),
 				community_type_id: $("#community_type_id").val().trim(),
 				environment_description: $("#environment_description").val().trim()				
 			},
@@ -894,7 +894,7 @@ function add_quadrat_taxa_by_acronym() {
 		data: {
 			species: $("#acronym").val(),
 			percent_cover: $("#acronym_percent_cover").val(),
-			cover_range_midpoint: $("#acronym_cover_range_midpoint").val(),
+			cover_method_value_id: $("#acronym_cover_value_id").val(),
 			cover_method_name: $("#cover_method_name").val()
 		},
 		success: function( response ) {
@@ -915,9 +915,8 @@ function add_quadrat_taxa_by_common_name() {
 		data: {
 			species: $("#common_name").val(),
 			percent_cover: $("#common_name_percent_cover").val(),
-			cover_range_midpoint: $("#common_cover_range_midpoint").val(),
+			cover_method_value_id: $("#common_cover_value_id").val(),
 			cover_method_name: $("#cover_method_name").val()
-
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
@@ -937,7 +936,7 @@ function add_quadrat_taxa_by_scientific_name() {
 		data: {
 			species: $("#scientific_name").val(),
 			percent_cover: $("#scientific_name_percent_cover").val(),
-			cover_range_midpoint: $("#sciname_cover_range_midpoint").val(),
+			cover_method_value_id: $("#sciname_cover_value_id").val(),
 			cover_method_name: $("#cover_method_name").val()
 		},
 		success: function( response ) {
@@ -1018,9 +1017,9 @@ function clear_add_fields_quadrat() {
 	$("#scientific_name_percent_cover").val('');
 	$("#acronym_percent_cover").val('');
 	$("#common_name_percent_cover").val('');
-	$("#sciname_cover_range_midpoint").val('');
-	$("#acronym_cover_range_midpoint").val('');
-	$("#common_cover_range_midpoint").val('');
+	$("#sciname_cover_value_id").val('');
+	$("#acronym_cover_value_id").val('');
+	$("#common_cover_value_id").val('');
 	$("#taxa_to_add_list").val('');
 	$("#species_error").html('');
 }

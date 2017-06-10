@@ -23,7 +23,8 @@ else {
 	$quadrat->fqa_id = $assessment->fqa_id;
 	$quadrat->custom_fqa = $assessment->custom_fqa;
 	$quadrat->active = 0;
-	$quadrat->name = UFQA_FULL_PLOT_NAME;
+	$quadrat_types = $quadrat->get_quadrat_types();
+	$quadrat->name = $quadrat_types[UFQA_FULL_PLOT]->name;
 	$quadrat->quadrat_type = UFQA_FULL_PLOT;
 	$_SESSION['quadrat'] = serialize($quadrat);
 	

@@ -105,8 +105,10 @@ class Assessment {
 			// no type casting so use hack
 			if ($this->db_table == 'inventory')
 				$assessment = new InventoryAssessment();
-			else
+			else {
 				$assessment = new TransectAssessment();
+				$assessment->load_transect_details($result);
+			}
 			$assessment->id = $result['id'];
 			$assessment->fqa_id = $result['fqa_id'];
 			$assessment->custom_fqa = $result['customized_fqa'];
@@ -152,8 +154,10 @@ class Assessment {
 			// no type casting so use hack
 			if ($this->db_table == 'inventory')
 				$assessment = new InventoryAssessment();
-			else
-				$assessment = new TransectAssessment();			
+			else {
+				$assessment = new TransectAssessment();
+				$assessment->load_transect_details($result);				
+			}
 			$assessment->id = $result['id'];
 			$assessment->date = $result['date'];
 			$assessment->fqa_id = $result['fqa_id'];
@@ -199,8 +203,10 @@ class Assessment {
 			// no type casting so use hack
 			if ($this->db_table == 'inventory')
 				$assessment = new InventoryAssessment();
-			else
-				$assessment = new TransectAssessment();			
+			else {
+				$assessment = new TransectAssessment();
+				$assessment->load_transect_details($result);				
+			}
 			$assessment->id = $result['id'];
 			$assessment->date = $result['date'];
 			$assessment->fqa_id = $result['fqa_id'];

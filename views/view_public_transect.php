@@ -78,7 +78,7 @@
  					Subplot Size (Square Meters): <?php echo $assessment->subplot_size; ?><br>
 					Transect Length (Meters): <?php echo $assessment->transect_length; ?><br>
  					Description: <?php echo $assessment->transect_description; ?><br>
- 					Cover Method: <?php echo $assessment->cover_method_name; ?><br>
+ 					Cover Method: <?php echo $assessment->get_cover_method()->get_name(); ?><br>
  				</div>
  			</div>
 			<br>

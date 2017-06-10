@@ -114,14 +114,8 @@
 			<div class="row-fluid">
 				<div class="span6">
 				<form id="transect_type">
-					<label class="radio" title="Add Help Text and Image">
-						<input type="radio" name="transectType" value="Transect" checked>
-						Transect
-					</label>
-					<label class="radio">
-						<input type="radio" name="transectType" value="Plot">
-						Plot
-					</label>
+					<label class="radio"><input type="radio" name="transectType" value="Transect" checked>Transect</label>
+					<label class="radio"><input type="radio" name="transectType" value="Plot">Plot</label>
 					</form>
 					<label class="small-text">Plot Size (Square Meters):</label>
 					<input class="input-medium" type="text" id="plot_size" value="" maxlength="256" /><br>
@@ -129,18 +123,18 @@
 					<input class="input-medium" type="text" id="subplot_size" value="" maxlength="256" /><br>
 					<label class="small-text">Transect Length (Meters):</label>
 					<input class="input-medium" type="text" id="transect_length" value="" maxlength="256" /><br>
-					<label class="small-text">Description:</label>
+					<label class="small-text">Sampling Design Description:</label>
 					<textarea rows="3" id="transect_description"></textarea><br>
 					<label class="small-text">Cover Method:</label>
-					<select id="cover_method">
 					<?php
-						$cover_methods = Quadrat::get_cover_methods();
-						$selected_cover_method = UFQA_DEFAULT_COVER_METHOD;
-						foreach ($cover_methods as $cover_method_item => $cover_method_ranges) {
-							if ($cover_method_item === $selected_cover_method) {
-								echo '<option selected>' . $cover_method_item . '</option>';
+						$disabled_text = empty($assessment->quadrats) ? '' : 'disabled';
+						echo '<select '. $disabled_text . ' name="coverMethod" id="coverMethod" title="Selectable only when no quadrats/subplots have been saved.">';
+						$cover_methods = CoverMethod::get_cover_methods();
+						foreach ($cover_methods as $cover_method_name => $cover_method) {
+							if (UFQA_DEFAULT_COVER_METHOD === $cover_method->id) {
+								echo '<option value="' . $cover_method->id . '" selected>' . $cover_method_name . '</option>';
 							} else {
-								echo '<option>' . $cover_method_item . '</option>';
+								echo '<option value="' . $cover_method->id . '">' . $cover_method_name . '</option>';
 							}
 						}
 					?>
@@ -158,7 +152,6 @@
 				<div class="span12">	
 					<h3>Quadrats:</h3>
 					<button class="btn btn-info" onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat/Subplot</button>
-					<button class="btn btn-info" title="Add species for the entire Transect/Plot." onclick="javascript:window.location = '/new_full_plot';return false;">Add Full Plot</button>
 					<br><br>
 					Select which quadrats you want actively included in the FQA calculations. The unselected quadrats will remain saved here if you wish to include them in the future.<br><br>
 					<div id="quadrat_list">
