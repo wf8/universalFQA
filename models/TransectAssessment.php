@@ -249,14 +249,14 @@ class TransectAssessment extends Assessment {
 		$csv[] = array('Community Type Notes:', $this->community_type_notes);
 		$csv[] = array('Weather Notes:', $this->weather_notes);
 		$csv[] = array('Duration Notes:', $this->duration_notes);
-		$csv[] = array('Other Notes:', $this->other_notes);
 		$csv[] = array('Environment Description:', $this->environment_description);
+		$csv[] = array('Other Notes:', $this->other_notes);
 		$csv[] = array('Type:', empty($this->transect_type) ? 'Transect' : $this->transect_type);
 		$csv[] = array('Plot Size:', $this->plot_size);
 		$csv[] = array('Subplot Size:', $this->subplot_size);
 		$csv[] = array('Transect Length:', $this->transect_length);
-		$csv[] = array('Transect Description:', $this->transect_description);
-		$csv[] = array('Cover Method:', $this->cover_method->name);  
+		$csv[] = array('Sampling Design Description:', $this->transect_description);
+		$csv[] = array('Cover Method:', $this->get_cover_method()->get_name());  
 
 		if ($this->private == 'private') 
 			$csv[] = array('Private/Public:', 'Private');
@@ -266,7 +266,7 @@ class TransectAssessment extends Assessment {
 		
 		$csv[] = array('Conservatism-Based Metrics:');
 		$csv[] = array('Total Mean C:', $this->metrics->total_mean_c);
-        $csv[] = array('Cover-weighted Mean C:', $this->metrics->cover_weighted_total_mean_c);
+		$csv[] = array('Cover-weighted Mean C:', $this->metrics->cover_weighted_total_mean_c);
 		$csv[] = array('Native Mean C:', $this->metrics->native_mean_c);
 		$csv[] = array('Total FQI:', $this->metrics->total_fqi);
 		$csv[] = array('Native FQI:', $this->metrics->native_fqi);
@@ -417,17 +417,19 @@ class TransectAssessment extends Assessment {
 		foreach ($quadrats as $quadrat) { 
 			if ($quadrat->active) { 
 				$csv[] = array('Quadrat ' . $quadrat->name . ' Species:');	
-				$csv[] = array('Scientific Name', 'Family', 'Acronym', '% Cover', 'Native?', 'C', 'W', 'Physiognomy', 'Duration', 'Common Name');
+				$csv[] = array('Scientific Name', 'Family', 'Acronym', '% Cover', UFQA_COVER_RANGE_MIDPOINT_DEFAULT, 'Native?', 'C', 'W', 'Physiognomy', 'Duration', 'Common Name');
 				if (count($quadrat->taxa) == 0) {
 					$csv[] = array('There are no species in this quadrat.');
 				} else {
 					$sorted_taxa = $this->sort_array_of_objects($quadrat->taxa, 'scientific_name');
 					foreach ($sorted_taxa as $taxon) {
+						$cover_range_midpoint_name = CoverMethod::get_cover_method_value($this->cover_method_id, $taxon->cover_method_value_id)->display_name;
 						$csv[] = array(
 									$taxon->scientific_name,
 									$this->prettify_value($taxon->family),
 									$this->prettify_value($taxon->acronym),
 									$taxon->percent_cover,
+									$cover_range_midpoint_name,
 									$taxon->native,
 									$taxon->c_o_c,
 									$this->prettify_value($taxon->c_o_w),

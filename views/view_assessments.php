@@ -68,6 +68,7 @@ if (count($inventory_assessments) == 0) {
 							<td><strong>FQA Database</strong></td>
 							<!-- <td><strong>Native FQI</strong></td> -->
 							<td><strong>Public / Private</strong></td>
+							<td><strong>Cover Method</strong></td>
 							<td><strong>Options</strong></td>							
 						</tr>
 <?php
@@ -92,6 +93,7 @@ if (count($transect_assessments) == 0) {
 							<?php } ?>
 							<!-- <td><?php //echo $assessment->metrics->native_fqi; ?></td> -->
 							<td><?php echo $assessment->private; ?></td>
+							<td><?php echo $assessment->get_cover_method()->get_name(); ?></td>
 							<td><a href="/view_transect/<?php echo $assessment->id; ?>">View</a> | <a href="/edit_transect/<?php echo $assessment->id; ?>">Edit</a> | <a href="javascript:download_transect(<?php echo $assessment->id; ?>);">Download</a> | <a href="javascript:delete_transect(<?php echo $assessment->id; ?>);">Delete</a></td>
 						</tr>
 <?php

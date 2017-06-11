@@ -24,6 +24,29 @@ class CoverMethod {
 		return $values;
 	}
 	
+	// Used in validation logic for bulk species upload
+	public function get_cover_method_value_for_percent_cover($percent_cover) {
+		$cover_method_value = NULL;
+		$db_link = CoverMethod::get_db_link();
+		$values = $this->load_values($db_link);
+		if (empty($values)) {
+			// This cover method does not have range values defined - just go with % Cover
+			$cover_method_value = new CoverMethodValue();
+			$cover_method_value->id = -1;
+			$cover_method_value->display_name = $this->get_name();
+			$cover_method_value->midpoint_value = $percent_cover;
+		} else {
+			// Assign to the configured range value
+			foreach ($values as $value) {
+				if ($percent_cover == $value->midpoint_value) {
+					$cover_method_value = $value;
+				}
+			}
+		}
+		mysqli_close($db_link);
+		return $cover_method_value;
+	}
+	
 	public static function get_cover_methods() {
 	  $cover_methods = array();
 		$db_link = CoverMethod::get_db_link();
@@ -66,6 +89,11 @@ class CoverMethod {
 				$cover_method_value_return = $cover_method_value;
 			}
 		}
+		if ($cover_method_value_return == NULL) {
+			// This cover method does not have range values defined - just go with % Cover
+			$cover_method_value_return = new CoverMethodValue();
+			$cover_method_value_return->display_name = $cover_method->get_name();
+		}
 		return $cover_method_value_return;
 	}
 
@@ -79,15 +107,17 @@ class CoverMethod {
 	}
 
 	private function load_values($db_link) {
-		$id = $this->id;
-		$sql = "SELECT * FROM cover_method_values WHERE cover_method_id='$id'";
-		$results = mysqli_query($db_link, $sql);
-		while ($cover_method_values = mysqli_fetch_assoc($results)) {
-		  $value = new CoverMethodValue();
-			$value->id = $cover_method_values['id'];
-			$value->display_name = $cover_method_values['display_name'];
-			$value->midpoint_value = $cover_method_values['midpoint_value'];
-			$this->values[$value->id] = $value;
+		if (empty($this->values)) {
+			$id = $this->id;
+			$sql = "SELECT * FROM cover_method_values WHERE cover_method_id='$id'";
+			$results = mysqli_query($db_link, $sql);
+			while ($cover_method_values = mysqli_fetch_assoc($results)) {
+				$value = new CoverMethodValue();
+				$value->id = $cover_method_values['id'];
+				$value->display_name = $cover_method_values['display_name'];
+				$value->midpoint_value = $cover_method_values['midpoint_value'];
+				$this->values[$value->id] = $value;
+			}
 		}
 		return $this->values;
 	}
