@@ -7,10 +7,12 @@ if( $_SESSION['valid'] ) {
 	$assessment = unserialize($_SESSION['assessment']);
 	
 	$taxa_array = explode(',', $taxa_list);
-	$taxa_html = 'The following taxa were not found in the FQA database:<br>';
-	$taxa_not_found = false;
-	$percent_cover_html = 'The following taxa had an invalid cover range midpoint value: <br>';
-	$percent_cover_wrong = false;
+	$taxa_validation_msg = 'The following taxa were not found in the FQA database:<br>';
+	$taxa_fails = '';
+	$taxa_failed = false;
+	$percent_cover_validation_msg = 'The following taxa had an invalid cover range midpoint value: <br>';
+	$percent_cover_fails = '';
+	$percent_cover_failed = false;
 	$i = 0;
 	foreach($taxa_array as $list_item) {
 		$list_item = trim($list_item);
@@ -25,27 +27,27 @@ if( $_SESSION['valid'] ) {
 			$cover_method = $assessment->get_cover_method();
 			$cover_method_value = $cover_method->get_cover_method_value_for_percent_cover($percent_cover);
 			if ($cover_method_value == NULL) {
-				$percent_cover_html .= $taxa . ': '. $percent_cover . '<br>';
-				$percent_cover_wrong = true;
+				$percent_cover_fails .= $taxa . ': '. $percent_cover . '<br>';
+				$percent_cover_failed = true;
 			} else {
 				// add taxa per cover method restrictions
 				if ($taxa !== '' && $percent_cover !== '') {
 					if ($list_type == 'scientific_name') {
 						if (!$quadrat->add_taxa_by_column_value('scientific_name', $taxa, $percent_cover, $cover_method_value->id, $cover_method->get_name(), $db_link)) {
-							$taxa_html = $taxa_html . $taxa . '<br>';
-							$taxa_not_found = true;
+							$taxa_fails .= $taxa . '<br>';
+							$taxa_failed = true;
 						}
 					}
 					if ($list_type == 'common_name') {
 						if (!$quadrat->add_taxa_by_column_value('common_name', $taxa, $percent_cover, $cover_method_value->id, $cover_method->get_name(), $db_link)) {
-							$taxa_html = $taxa_html . $taxa . '<br>';
-							$taxa_not_found = true;
+							$taxa_fails .= $taxa . '<br>';
+							$taxa_failed = true;
 						}
 					}
 					if ($list_type == 'acronym') {
 						if (!$quadrat->add_taxa_by_column_value('acronym', $taxa, $percent_cover, $cover_method_value->id, $cover_method->get_name(), $db_link)) {
-							$taxa_html = $taxa_html . $taxa . '<br>';
-							$taxa_not_found = true;
+							$taxa_fails .= $taxa . '<br>';
+							$taxa_failed = true;
 						}
 					}
 				}
@@ -54,10 +56,10 @@ if( $_SESSION['valid'] ) {
 		$i++;
 	}
 	$_SESSION['quadrat'] = serialize($quadrat);
-	$validation_errors_html = (!empty($taxa_html)) ? $taxa_html : '';
-	$validation_errors_html .= (!empty($percent_cover_html)) ? $percent_cover_html : '';
-	if ($taxa_not_found OR $percent_cover_wrong)
-		echo $validation_errors_html;
+	$validation_error_msg = (!empty($taxa_fails)) ? $taxa_validation_msg . $taxa_fails : '';
+	$validation_error_msg .= (!empty($percent_cover_fails)) ? $percent_cover_validation_msg . $percent_cover_fails : '';
+	if ($taxa_failed OR $percent_cover_failed)
+		echo $validation_error_msg;
 	else
 		echo '';
 }
