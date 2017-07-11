@@ -117,11 +117,11 @@
 					<label class="radio"><input type="radio" name="transectType" value="Transect" checked>Transect</label>
 					<label class="radio"><input type="radio" name="transectType" value="Plot">Plot</label>
 					</form>
-					<label class="small-text">Plot Size (Square Meters):</label>
+					<label class="small-text">Plot Size (m<sup>2</sup>):</label>
 					<input class="input-medium" type="text" id="plot_size" value="" maxlength="256" /><br>
-					<label class="small-text">Quadrat/Subplot Size (Square Meters):</label>
+					<label class="small-text">Quadrat/Subplot Size (m<sup>2</sup>):</label>
 					<input class="input-medium" type="text" id="subplot_size" value="" maxlength="256" /><br>
-					<label class="small-text">Transect Length (Meters):</label>
+					<label class="small-text">Transect Length (m):</label>
 					<input class="input-medium" type="text" id="transect_length" value="" maxlength="256" /><br>
 					<label class="small-text">Sampling Design Description:</label>
 					<textarea rows="3" id="transect_description"></textarea><br>

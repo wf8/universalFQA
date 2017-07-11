@@ -75,9 +75,9 @@
 				<div class="span6">
 					<h4>&#187; Transect/Plot Design:</h4>			
 					Transect or Plot: <strong><?php echo $assessment->transect_type; ?></strong><br>
- 					Plot Size (Square Meters): <?php echo $assessment->plot_size; ?><br>
- 					Subplot Size (Square Meters): <?php echo $assessment->subplot_size; ?><br>
-					Transect Length (Meters): <?php echo $assessment->transect_length; ?><br>
+ 					Plot Size (m<sup>2</sup>): <?php echo $assessment->plot_size; ?><br>
+ 					Subplot Size (m<sup>2</sup>): <?php echo $assessment->subplot_size; ?><br>
+					Transect Length (m): <?php echo $assessment->transect_length; ?><br>
  					Sampling Design Description: <?php echo $assessment->transect_description; ?><br>
 					<?php
 						$cover_method = CoverMethod::get_cover_method($assessment->cover_method_id);
