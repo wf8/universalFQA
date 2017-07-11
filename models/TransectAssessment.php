@@ -251,10 +251,10 @@ class TransectAssessment extends Assessment {
 		$csv[] = array('Duration Notes:', $this->duration_notes);
 		$csv[] = array('Environment Description:', $this->environment_description);
 		$csv[] = array('Other Notes:', $this->other_notes);
-		$csv[] = array('Type:', empty($this->transect_type) ? 'Transect' : $this->transect_type);
-		$csv[] = array('Plot Size:', $this->plot_size);
-		$csv[] = array('Subplot Size:', $this->subplot_size);
-		$csv[] = array('Transect Length:', $this->transect_length);
+		$csv[] = array('Transect/Plot Type:', empty($this->transect_type) ? 'Transect' : $this->transect_type);
+		$csv[] = array('Transect/Plot Size:', $this->plot_size);
+		$csv[] = array('Quadrat/Subplot Size:', $this->subplot_size);
+		$csv[] = array('Transect/Plot Length:', $this->transect_length);
 		$csv[] = array('Sampling Design Description:', $this->transect_description);
 		$csv[] = array('Cover Method:', $this->get_cover_method()->get_name());  
 
@@ -355,8 +355,8 @@ class TransectAssessment extends Assessment {
 		}
 		$csv[] = array();
 		
-		$csv[] = array('Quadrat Level Metrics:');
-		$csv[] = array('Quadrat','Species Richness','Native Species Richness','Total Mean C','Native Mean C','Total FQI',
+		$csv[] = array('Quadrat/Subplot Level Metrics:');
+		$csv[] = array('Quadrat/Subplot','Species Richness','Native Species Richness','Total Mean C','Native Mean C','Total FQI',
 						'Native FQI','Cover-weighted FQI','Cover-weighted Native FQI','Adjusted FQI','Mean Wetness',
 						'Mean Native Wetness','Latitude','Longitude');
 		$quadrats = $this->sort_array_of_objects($this->quadrats, 'name');
@@ -416,7 +416,7 @@ class TransectAssessment extends Assessment {
 						
 		foreach ($quadrats as $quadrat) { 
 			if ($quadrat->active) { 
-				$csv[] = array('Quadrat ' . $quadrat->name . ' Species:');	
+				$csv[] = array('Quadrat/Subplot ' . $quadrat->name . ' Species:');	
 				$csv[] = array('Scientific Name', 'Family', 'Acronym', '% Cover', UFQA_COVER_RANGE_MIDPOINT_DEFAULT, 'Native?', 'C', 'W', 'Physiognomy', 'Duration', 'Common Name');
 				if (count($quadrat->taxa) == 0) {
 					$csv[] = array('There are no species in this quadrat.');

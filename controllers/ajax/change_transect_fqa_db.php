@@ -27,7 +27,7 @@ if( $_SESSION['valid'] ) {
 			if (!$quadrat->add_taxa_by_column_value('scientific_name', $old_taxon->scientific_name, $old_taxon->percent_cover, $db_link)) 
 				if (!$quadrat->add_taxa_by_column_value('common_name', $old_taxon->common_name, $old_taxon->percent_cover, $db_link)) 
 					if (!$quadrat->add_taxa_by_column_value('acronym', $old_taxon->acronym, $old_taxon->percent_cover, $db_link)) 
-						$error .= $old_taxon->scientific_name . ' in Quadrat ' . $quadrat->name . '<br>';
+						$error .= $old_taxon->scientific_name . ' in Quadrat/Subplot ' . $quadrat->name . '<br>';
 		}
 	}
 	$_SESSION['assessment'] = serialize($assessment);

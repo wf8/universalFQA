@@ -8,7 +8,7 @@
 				</div>
 				<div class="span11">
 					<br>
-					<h1>Edit Quadrat</h1>
+					<h1>Edit Quadrat/Subplot</h1>
 					<button class="btn btn-info" onclick="javascript:save_edited_quadrat();return false;">Save Changes</button> 
 					<button class="btn btn-info" onclick="javascript:window.history.back(-1); $(document).ready(function () {update_quadrat_list(); });">Cancel</button><br>
 				</div>
@@ -41,7 +41,7 @@
 							$disabled = 'disabled';
 						}
 					?>
-					<label class="small-text">Quadrat Number or Name: <font class="red">*</font></label>
+					<label class="small-text">Quadrat/Subplot Number or Name: <font class="red">*</font></label>
 					<input class="field" type="text" id="name" value="<?php echo $quadrat->name; ?>" maxlength="256" required <?php echo $disabled; ?>/>
  					<label class="small-text">Latitude: (optional)</label>
 					<input class="field" type="text" id="latitude" value="<?php echo $quadrat->latitude; ?>" maxlength="256" /><br>

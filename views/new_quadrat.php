@@ -23,7 +23,7 @@
 				</div>
 				<div class="span11">
 					<br>
-					<h1>New Quadrat</h1>
+					<h1>New Quadrat/Subplot</h1>
 					<button class="btn btn-info" onclick="javascript:save_new_quadrat();">Save</button> 
 					<button class="btn btn-info" onclick="javascript:window.history.back(-1);return false;">Cancel</button><br>
 				</div>
@@ -49,7 +49,7 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
-					<label class="small-text">Quadrat Number or Name: <font class="red">*</font></label>
+					<label class="small-text">Quadrat/Subplot Number or Name: <font class="red">*</font></label>
 					<input class="field" type="text" id="name" value="" maxlength="256" required />
  					<label class="small-text">Latitude: (optional)</label>
 					<input class="field" type="text" id="latitude" value="" maxlength="256" /><br>

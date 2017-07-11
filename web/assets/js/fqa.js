@@ -815,7 +815,7 @@ function download_transect( id ) {
 
 function start_upload_quadrat_string() {
 	if (confirm("Uploading a quadrat string will overwrite any existing quadrats in this transect. Do you want to continue?")) {
-		$( "#upload_error" ).html( "Uploading Quadrat String..." );
+		$( "#upload_error" ).html( "Uploading Quadrat/Subplot String..." );
 		$('#upload_quadrat_string_form').submit();
 	}
 }

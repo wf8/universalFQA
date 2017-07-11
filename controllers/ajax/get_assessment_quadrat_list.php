@@ -4,14 +4,14 @@ if( $_SESSION['valid'] ) {
 	$assessment = unserialize($_SESSION['assessment']);
 	$html = '<table class="table table-hover"><tr>
 			<td><strong>Active?</strong></td>
-			<td><strong>Quadrat</strong></td>
+			<td><strong>Quadrat/Subplot</strong></td>
 			<td><strong>Species Richness</strong></td>
 			<td><strong>Latitude</strong></td>
 			<td><strong>Longitude</strong></td>
 			<td></td>
 			</tr>';	
 	if (count($assessment->quadrats) == 0) {
-		$html = $html . '<tr><td colspan=6>You have not added any quadrats yet.</td></tr>';
+		$html = $html . '<tr><td colspan=6>You have not added any quadrats/subplots yet.</td></tr>';
 	} else {
 		$sorted_quadrats = sort_array_of_objects($assessment->quadrats, 'name');
 		foreach ($sorted_quadrats as $quadrat) {

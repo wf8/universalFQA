@@ -137,11 +137,11 @@
 								<label class="radio"><input type="radio" name="transectType" value="Plot" checked>Plot</label>
 						<?php } ?>
 					</form>
-					<label class="small-text">Plot Size (m<sup>2</sup>):</label>
+					<label class="small-text">Transect/Plot Size (m<sup>2</sup>):</label>
 					<input class="input-medium" type="text" id="plot_size" value="<?php echo $assessment->plot_size; ?>" maxlength="256" /><br>
 					<label class="small-text">Quadrat/Subplot Size (m<sup>2</sup>):</label>
 					<input class="input-medium" type="text" id="subplot_size" value="<?php echo $assessment->subplot_size; ?>" maxlength="256" /><br>
-					<label class="small-text">Transect Length (m):</label>
+					<label class="small-text">Transect/Plot Length (m):</label>
 					<input class="input-medium" type="text" id="transect_length" value="<?php echo $assessment->transect_length; ?>" maxlength="256" /><br>
 					<label class="small-text">Sampling Design Description:</label>
 					<textarea rows="3" id="transect_description"><?php echo $assessment->transect_description; ?></textarea><br>
@@ -165,7 +165,7 @@
 			<br/>
 			<div class="row-fluid">
 				<div class="span12">
-					<button class="btn btn-info" title="Must save Transect/Plot details before adding or editing quadrats or they will be lost." onclick="javascript:update_transect();return false;">Save Before Updating Quadrats</button> 
+					<button class="btn btn-info" title="Must save Transect/Plot details before adding or editing quadrats/subplots or they will be lost." onclick="javascript:update_transect();return false;">Save Before Updating Quadrats/Subplots</button> 
 				</div>
 			</div>
 			<hr style="height:1pt;"/>
@@ -207,17 +207,17 @@
 			<hr style="height:1pt;"/>
 			<div class="row-fluid">
 				<div class="span12">	
-					<h3>Quadrats:</h3>
+					<h3>Quadrats/Subplots:</h3>
 					<button class="btn btn-info" onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat/Subplot</button>
 					<br><br>
-					Select which quadrats you want actively included in the FQA calculations. The unselected quadrats will remain saved here if you wish to include them in the future.<br><br>
+					Select which quadrats/subplots you want actively included in the FQA calculations. The unselected quadrats/subplots will remain saved here if you wish to include them in the future.<br><br>
 					<div id="quadrat_list">
 					</div>
 					<br><br>
 					<form id="upload_quadrat_string_form" action="/ajax/upload_quadrat_string" method="post" enctype="multipart/form-data" target="upload_target">
 						<input type="file" id="upload_file" name="upload_file"><br>
 					</form>
-					<button onclick="javascript:start_upload_quadrat_string();" class="btn btn-info">Upload Quadrat String</button> (optional)
+					<button onclick="javascript:start_upload_quadrat_string();" class="btn btn-info">Upload Quadrat/Subplot String</button> (optional)
 					<br><br>
 					<div id="upload_error"></div>
 				</div>

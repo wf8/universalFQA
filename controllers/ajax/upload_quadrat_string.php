@@ -68,11 +68,11 @@ else {
 		$_SESSION['assessment'] = null;
 		$_SESSION['assessment'] = serialize($assessment);
 		if ($result == '')
-			$result = $result . 'Quadrat string successfully uploaded.';
+			$result = $result . 'Quadrat/Subplot string successfully uploaded.';
 		else
-			$result = $result . 'Quadrat string uploaded.';
+			$result = $result . 'Quadrat/Subplot string uploaded.';
 	} else
-		$result = 'No quadrats found in quadrat string.';
+		$result = 'No quadrats/subplots found in quadrat/subplot string.';
 }
 echo '<html><head><script language="javascript" type="text/javascript">';
 echo 'var result = ' . json_encode($result) . ';';

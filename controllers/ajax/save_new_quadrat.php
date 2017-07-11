@@ -7,12 +7,12 @@ $water = trim(mysqli_real_escape_string($db_link, $_POST['water']));
 $quadrat_type = trim(mysqli_real_escape_string($db_link, $_POST['quadrat_type']));
 
 if ($name == '') {
-	echo 'Please enter a name or number for this quadrat.';
+	echo 'Please enter a name or number for this quadrat/subplot.';
 	exit;
 }
 
 if (!ctype_alnum($name)) {
-    echo 'The quadrat name can only contain alphanumeric characters.';
+    echo 'The quadrat/subplot name can only contain alphanumeric characters.';
     exit;
 }
 
@@ -30,7 +30,7 @@ if ($water !== '' && ( ($water < 0 || $water > 100) || !is_numeric($water) )) {
 $assessment = unserialize($_SESSION['assessment']);
 foreach ($assessment->quadrats as $quad) {
 	if ($quad->name == $name) {
-		echo 'There is already a quadrat with that name or number. Please enter a different name or number for this quadrat.';
+		echo 'There is already a quadrat/subplot with that name or number. Please enter a different name or number for this quadrat/subplot.';
 		exit;
 	}
 }

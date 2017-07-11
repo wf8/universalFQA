@@ -42,7 +42,7 @@ foreach ($assessment->quadrats as $quad) {
 // check that the quadrat name is unique for this transect
 foreach ($assessment->quadrats as $quad) {
 	if ($quad->name == $name) {
-		echo 'There is already a quadrat with that name or number. Please enter a different name or number for this quadrat.';
+		echo 'There is already a quadrat/subplot with that name or number. Please enter a different name or number for this quadrat/subplot.';
 		exit;
 	}
 }

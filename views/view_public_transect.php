@@ -74,9 +74,9 @@
 				<div class="span6">
 					<h4>&#187; Transect/Plot Design:</h4>			
 					Transect or Plot: <strong><?php echo $assessment->transect_type; ?></strong><br>
- 					Plot Size (m<sup>2</sup>): <?php echo $assessment->plot_size; ?><br>
- 					Subplot Size (m<sup>2</sup>): <?php echo $assessment->subplot_size; ?><br>
-					Transect Length (m): <?php echo $assessment->transect_length; ?><br>
+ 					Transect/Plot Size (m<sup>2</sup>): <?php echo $assessment->plot_size; ?><br>
+ 					Quadrat/Subplot Size (m<sup>2</sup>): <?php echo $assessment->subplot_size; ?><br>
+					Transect/Plot Length (m): <?php echo $assessment->transect_length; ?><br>
  					Description: <?php echo $assessment->transect_description; ?><br>
  					Cover Method: <?php echo $assessment->get_cover_method()->get_name(); ?><br>
  				</div>
@@ -284,11 +284,11 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<h4>&#187; Quadrat Level Metrics:</h4>
+					<h4>&#187; Quadrat/Subplot Level Metrics:</h4>
 
 					<table class="table table-hover">
 						<tr>
-							<td><strong>Quadrat</strong></td>
+							<td><strong>Quadrat/Subplot</strong></td>
 							<td><strong>Species Richness</strong></td>
 							<td><strong>Native Species Richness</strong></td>
 							<td><strong>Total Mean C</strong></td>
@@ -379,7 +379,7 @@
 					
 			<div class="row-fluid">
 				<div class="span12">	
-					<h4>&#187; Quadrat <?php echo $quadrat->name; ?> Species:</h4>
+					<h4>&#187; Quadrat/Subplot <?php echo $quadrat->name; ?> Species:</h4>
 					<table class="table table-hover">
 						<tr>
 							<td><strong>Scientific Name</strong></td>
@@ -397,7 +397,7 @@
 						
 							$html = '';
 							if (count($quadrat->taxa) == 0) {
-								$html = $html . '<tr><td colspan=9>There are no species in this quadrat.</td></tr>';
+								$html = $html . '<tr><td colspan=9>There are no species in this quadrat/subplot.</td></tr>';
 							} else {
 								$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
 								foreach ($sorted_taxa as $taxon) {
@@ -424,7 +424,7 @@
 					}
 				}
 				if ($num_active_quads == 0) {
-					echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats in this transect. </h4></div></div>';
+					echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats/subplots in this transect/plot. </h4></div></div>';
 				}
 				
 			?>
