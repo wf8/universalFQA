@@ -63,7 +63,7 @@ $quadrat->percent_bare_ground = $bare_ground;
 $quadrat->percent_water = $water;
 $quadrat->quadrat_type = $quadrat_type;
 $quadrat->active = 1;
-if ($quadrat_type == UFQA_FULL_PLOT OR $quadrat_type == UFQA_OUTSIDE_PLOT) {
+if ($quadrat_type == UFQA_FULL_PLOT OR $quadrat_type == UFQA_OUTSIDE_PLOT OR $quadrat_type == UFQA_REST_OF_PLOT) {
 	$quadrat->active = 0;
 } 
 

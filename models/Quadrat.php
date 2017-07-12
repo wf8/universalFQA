@@ -23,7 +23,7 @@ class Quadrat {
 	public $percent_water;
 	public $quadrat_type;
 	
-	public $quadrat_types;
+	public $quadrat_types; // transient 
 		
 	public function __construct( $id = null, $db_link ) {
 		if ($id !== null) {
