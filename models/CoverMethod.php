@@ -38,7 +38,8 @@ class CoverMethod {
 		} else {
 			// Assign to the configured range value
 			foreach ($values as $value) {
-				if ($percent_cover == $value->midpoint_value) {
+				$rounded_value = round($value->midpoint_value);
+				if ($percent_cover == $value->midpoint_value OR $percent_cover == intval($value->midpoint_value) OR $percent_cover == intval($rounded_value)) {
 					$cover_method_value = $value;
 				}
 			}

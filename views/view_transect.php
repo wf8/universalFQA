@@ -411,8 +411,9 @@
 									$cover_method = CoverMethod::get_cover_method($cover_method_id);
 									$cover_method_value_name = $cover_method->get_name();
 									$cover_method_values = $cover_method->get_values();
-									if (count($cover_method_values) > 0) {
-										$cover_method_value_name = $cover_method_values[$taxon->cover_method_value_id]->display_name;
+									if (!empty($cover_method_values)) {
+										$cover_method_value = $cover_method->get_cover_method_value_for_percent_cover($taxon->percent_cover);
+										$cover_method_value_name = $cover_method_value->display_name;
 									}
 									$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
 									$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';

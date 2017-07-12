@@ -32,7 +32,7 @@ class TransectAssessment extends Assessment {
 		$this->subplot_size = $result['subplot_size'];
 		$this->transect_length = $result['transect_length'];
 		$this->transect_description = $result['transect_description'];
-		$this->cover_method_id = $result['cover_method_id'];
+		$this->cover_method_id = ($result['cover_method_id'] == NULL) ? UFQA_DEFAULT_COVER_METHOD : $result['cover_method_id'];
 		$this->community_type_id = $result['community_type_id'];
 		$this->environment_description = $result['environment_description'];	
 

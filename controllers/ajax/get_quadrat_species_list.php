@@ -18,15 +18,16 @@ if( $_SESSION['valid'] ) {
 	if (count($quadrat->taxa) == 0) {
 		$html = $html . '<tr><td colspan=11>You have not entered any species yet.</td></tr></table>';
 	} else {
-		$cover_method_values = $assessment->get_cover_method()->get_values();
+		$cover_method = $assessment->get_cover_method();
+		$cover_method_values = $cover_method->get_values();
 		$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
 		foreach ($sorted_taxa as $taxon) {
 			$percent_cover_disabled = '';
-			$cover_method_value_name = $assessment->get_cover_method()->get_name();
+			$cover_method_value_name = $cover_method->get_name();
 			if (!empty($cover_method_values)) {
 				$percent_cover_disabled = 'disabled';
-				$cover_method_value_idx = (isset($taxon->cover_method_value_id) AND $taxon->cover_method_value_id > 0) ? $taxon->cover_method_value_id : 0;
-				$cover_method_value_name = $cover_method_values[$cover_method_value_idx]->display_name;
+				$cover_method_value = $cover_method->get_cover_method_value_for_percent_cover($taxon->percent_cover);
+				$cover_method_value_name = $cover_method_value->display_name;
 			}
 			$html = $html . '<tr><td><input type="checkbox" name="taxa" value="' . $taxon->id . '"></td>';
 			$html = $html . '<td>' . $taxon->scientific_name . '</td>';
