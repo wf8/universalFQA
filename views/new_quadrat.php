@@ -66,7 +66,7 @@
 			<div class="row-fluid">
 			  <div class="span12">
 					<h4>Transect/Plot Cover Method:</h4>
-					<input class="input-medium" id="cover_method_name" type="text" value='<?php echo $assessment->get_cover_method()->get_name(); ?>' disabled>
+					<input class="input-xlarge" id="cover_method_name" type="text" value='<?php echo $assessment->get_cover_method()->get_name(); ?>' disabled>
 					<br>
 					<br>		
 				</div>

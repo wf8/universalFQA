@@ -147,10 +147,14 @@
 					<textarea rows="3" id="transect_description"><?php echo $assessment->transect_description; ?></textarea><br>
 					<label class="small-text">Cover Method:</label>
 					<?php
-						$disabled_text = empty($assessment->quadrats) ? '' : 'disabled';
-						echo '<select '. $disabled_text . ' name="coverMethod" id="coverMethod" title="Selectable only when no quadrats/subplots have been saved.">';
+						$disabled_text = '';
+						foreach ($assessment->quadrats as $quadrat) {
+							if (!empty($quadrat->taxa)) {
+								$disabled_text = 'disabled';
+							}
+						}
+						echo '<select '. $disabled_text . ' name="coverMethod" id="coverMethod" title="Selectable only when no quadrat/subplot species have been saved.">';
 						$cover_methods = CoverMethod::get_cover_methods();
-						echo '<option selected' . count($cover_methods) . '</option>';
 						foreach ($cover_methods as $cover_method_name => $cover_method) {
 							if ($cover_method->id === $assessment->cover_method_id) {
 								echo '<option value="' . $cover_method->id . '" selected>' . $cover_method_name . '</option>';
@@ -208,7 +212,7 @@
 			<div class="row-fluid">
 				<div class="span12">	
 					<h3>Quadrats/Subplots:</h3>
-					<button class="btn btn-info" onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat/Subplot</button>
+					<button class="btn btn-info" title="Add a standard quadrat/subplot or a pseudo quadrat/subplot for adding species to the Full Transect/Plot, Outside the Transect/Plot, or Rest of Transect/Plot." onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat/Subplot</button>
 					<br><br>
 					Select which quadrats/subplots you want actively included in the FQA calculations. The unselected quadrats/subplots will remain saved here if you wish to include them in the future.<br><br>
 					<div id="quadrat_list">
