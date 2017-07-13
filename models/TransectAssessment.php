@@ -11,7 +11,8 @@ class TransectAssessment extends Assessment {
 	public $transect_length;
 	public $transect_description;
 	public $cover_method_id;
-	public $community_type_id;
+	public $community_code;
+	public $community_name;
 	public $environment_description;
 
 	public $quadrats = array(); // an array of Quadrat objects
@@ -33,7 +34,8 @@ class TransectAssessment extends Assessment {
 		$this->transect_length = $result['transect_length'];
 		$this->transect_description = $result['transect_description'];
 		$this->cover_method_id = ($result['cover_method_id'] == NULL) ? UFQA_DEFAULT_COVER_METHOD : $result['cover_method_id'];
-		$this->community_type_id = $result['community_type_id'];
+		$this->community_code = $result['community_code'];
+		$this->community_name = $result['community_name'];
 		$this->environment_description = $result['environment_description'];	
 
 		$this->get_quadrats();
@@ -143,11 +145,11 @@ class TransectAssessment extends Assessment {
 			$custom = 0;
 		$sql = "INSERT INTO transect (user_id, fqa_id, customized_fqa, site_id, date, private, name, practitioner, latitude, longitude,
     weather_notes, duration_notes, community_type_notes, other_notes, transect_type, plot_size, subplot_size, transect_length, transect_description, cover_method_id,
-		community_type_id, environment_description) 
+		community_code, community_name, environment_description) 
     VALUES ('$user_id', '$this->fqa_id', '$custom', '$site_id', '$this->date', '$this->private', '$this->name', '$this->practitioner', 
     '$this->latitude', '$this->longitude', '$this->weather_notes', '$this->duration_notes', '$this->community_type_notes', '$this->other_notes', 
     '$this->transect_type', '$this->plot_size', '$this->subplot_size', '$this->transect_length', '$this->transect_description', '$this->cover_method_id',
-		'$this->community_type_id', '$this->environment_description')";
+		'$this->community_code', '$this->community_name', '$this->environment_description')";
     mysqli_query($this->db_link, $sql);
     $transect_id = mysqli_insert_id($this->db_link);
     // insert quadrats
@@ -174,7 +176,7 @@ class TransectAssessment extends Assessment {
 		weather_notes = '$this->weather_notes', duration_notes = '$this->duration_notes', community_type_notes = '$this->community_type_notes', 
 		other_notes = '$this->other_notes', transect_type = '$this->transect_type', plot_size = '$this->plot_size', subplot_size = '$this->subplot_size',
 		transect_length = '$this->transect_length', transect_description = '$this->transect_description', cover_method_id = '$this->cover_method_id',
-		community_type_id = '$this->community_type_id', environment_description = '$this->environment_description' WHERE id = '$this->id'";
+		community_code = '$this->community_code', community_name = '$this->community_name', environment_description = '$this->environment_description' WHERE id = '$this->id'";
 		mysqli_query($this->db_link, $sql);
 		$inventory_id = mysqli_insert_id($this->db_link);
 		
@@ -245,7 +247,8 @@ class TransectAssessment extends Assessment {
 		$csv[] = array('Practitioner:', $this->practitioner);
 		$csv[] = array('Latitude:', $this->latitude);
 		$csv[] = array('Longitude:', $this->longitude);
-		$csv[] = array('Community Type ID:', $this->community_type_id);
+		$csv[] = array('Community Code:', $this->community_code);
+		$csv[] = array('Community Name:', $this->community_name);
 		$csv[] = array('Community Type Notes:', $this->community_type_notes);
 		$csv[] = array('Weather Notes:', $this->weather_notes);
 		$csv[] = array('Duration Notes:', $this->duration_notes);

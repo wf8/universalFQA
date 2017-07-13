@@ -1,5 +1,21 @@
-    <script> $(document).ready( function () { update_quadrat_species_list(); }); </script>
-    <div class="container padding-top">
+	<script> 
+		$(document).ready( function () { 
+			update_quadrat_species_list(); 
+			$('input[name=quadratType]', '#quadrat_type').click(function(){
+				var id = $('input[name=quadratType]:checked', '#quadrat_type').val();
+				var fixed_quadrat_types = ["<?php echo UFQA_FULL_PLOT; ?>", "<?php echo UFQA_OUTSIDE_PLOT; ?>", "<?php echo UFQA_REST_OF_PLOT; ?>"];
+				var fixed_quadrat_names = ["", "FullTransectPlot", "OutsideTransectPlot", "RestOfTransectPlot"];
+				if (jQuery.inArray(id, fixed_quadrat_types) >= 0) {
+					$('#name').val(fixed_quadrat_names[id]);
+					$('#name').attr("disabled",true);
+				} else {
+					$('#name').val("");
+					$('#name').attr("disabled",false);
+				}
+			});
+		});
+	</script>
+	<div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
 				<div class="span1">

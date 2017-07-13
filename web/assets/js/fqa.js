@@ -663,7 +663,8 @@ function save_new_transect() {
 					transect_length: $("#transect_length").val().trim(),
 					transect_description: $("#transect_description").val().trim(),
 					cover_method_id: $('#coverMethod option:selected').val(),
-					community_type_id: $("#community_type_id").val().trim(),
+					community_code: $("#community_code").val().trim(),
+					community_name: $("#community_name").val().trim(),
 					environment_description: $("#environment_description").val().trim()
 				},
 				success: function( response ) { 
@@ -703,7 +704,8 @@ function save_new_transect() {
 						transect_length: $("#transect_length").val().trim(),
 						transect_description: $("#transect_description").val().trim(),
 						cover_method_id: $('#coverMethod option:selected').val(),
-						community_type_id: $("#community_type_id").val().trim(),
+						community_code: $("#community_code").val().trim(),
+						community_name: $("#community_name").val().trim(),
 						environment_description: $("#environment_description").val().trim()
 					},
 					success: function( response ) { 
@@ -746,7 +748,8 @@ function update_transect() {
 				transect_length: $("#transect_length").val().trim(),
 				transect_description: $("#transect_description").val().trim(),
 				cover_method_id: $('#coverMethod option:selected').val(),
-				community_type_id: $("#community_type_id").val().trim(),
+				community_code: $("#community_code").val().trim(),
+				community_name: $("#community_name").val().trim(),
 				environment_description: $("#environment_description").val().trim()				
 			},
 			success: function( response ) { 

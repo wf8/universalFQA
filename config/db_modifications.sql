@@ -5,7 +5,8 @@ ALTER TABLE `transect` ADD COLUMN `subplot_size` VARCHAR(256) NULL;
 ALTER TABLE `transect` ADD COLUMN `transect_length` VARCHAR(256) NULL;
 ALTER TABLE `transect` ADD COLUMN `transect_description` TEXT NULL;
 ALTER TABLE `transect` ADD COLUMN `cover_method_id` INT NULL DEFAULT 0;
-ALTER TABLE `transect` ADD COLUMN `community_type_id` VARCHAR(256) NULL;
+ALTER TABLE `transect` ADD COLUMN `community_code` VARCHAR(256) NULL;
+ALTER TABLE `transect` ADD COLUMN `community_name` VARCHAR(256) NULL;
 ALTER TABLE `transect` ADD COLUMN `environment_description` TEXT NULL;
 
 ALTER TABLE `quadrat` ADD COLUMN `quadrat_type` INT NOT NULL DEFAULT 0;
@@ -99,5 +100,3 @@ INSERT INTO `quadrat_types` (`id`, `name`, `display_name`) VALUES (0, "QuadratSu
 INSERT INTO `quadrat_types` (`id`, `name`, `display_name`) VALUES (1, "FullTrPlot", "Full Transect/Plot");
 INSERT INTO `quadrat_types` (`id`, `name`, `display_name`) VALUES (2, "OutsideTrPlot", "Outside Transect/Plot");
 INSERT INTO `quadrat_types` (`id`, `name`, `display_name`) VALUES (3, "RestOfTrPlot", "Rest of Transect/Plot");
-
-

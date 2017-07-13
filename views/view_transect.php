@@ -60,10 +60,11 @@
 					Practitioner: <strong><?php echo $assessment->practitioner; ?></strong><br>
  					Latitude: <?php echo $assessment->latitude; ?><br>
  					Longitude: <?php echo $assessment->longitude; ?><br>
-					Community Type ID: <?php echo $assessment->community_type_id; ?><br>
- 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
+					Community Code: <?php echo $assessment->community_code; ?><br>
+					Community Name: <?php echo $assessment->community_name; ?><br>
 					Weather Notes: <?php echo $assessment->weather_notes; ?><br>
  					Duration Notes: <?php echo $assessment->duration_notes; ?><br>
+ 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
  					Environmental Description: <?php echo $assessment->environment_description; ?><br>
  					Other Notes: <?php echo $assessment->other_notes; ?><br>
  					<?php if ($assessment->private == 'private') { ?>

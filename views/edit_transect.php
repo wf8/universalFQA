@@ -85,10 +85,10 @@
 					<input class="input-medium" type="text" id="latitude" value="<?php echo $assessment->latitude; ?>" maxlength="256" /><br>
  					<label class="small-text">Longitude:</label>
 					<input class="input-medium" type="text" id="longitude" value="<?php echo $assessment->longitude; ?>" maxlength="256" /><br>
- 					<label class="small-text">Community Type ID:</label>
-					<input class="input-medium" type="text" id="community_type_id" value="<?php echo $assessment->community_type_id; ?>" maxlength="256" /><br>
- 					<label class="small-text">Community Type Notes:</label>
-					<textarea rows="3" id="community_notes"><?php echo $assessment->community_type_notes; ?></textarea><br>
+ 					<label class="small-text">Community Code:</label>
+					<input class="input-medium" type="text" id="community_code" value="<?php echo $assessment->community_code; ?>" maxlength="256" /><br>
+ 					<label class="small-text">Community Name:</label>
+					<input class="input-xlarge" type="text" id="community_name" value="<?php echo $assessment->community_name; ?>" maxlength="256" /><br>
 					<br>
 					<form id="public_inventory">
 					<?php if ($assessment->private == 'private') { ?>
@@ -117,6 +117,8 @@
 					<textarea rows="3" id="weather_notes"><?php echo $assessment->weather_notes; ?></textarea><br>
  					<label class="small-text">Duration Notes:</label>
 					<textarea rows="3" id="duration_notes"><?php echo $assessment->duration_notes; ?></textarea><br>
+ 					<label class="small-text">Community Type Notes:</label>
+					<textarea rows="3" id="community_notes"><?php echo $assessment->community_type_notes; ?></textarea><br>
  					<label class="small-text">Environmental Description:</label>
 					<textarea rows="3" id="environment_description"><?php echo $assessment->environment_description; ?></textarea><br>
  					<label class="small-text">Other Notes:</label>
