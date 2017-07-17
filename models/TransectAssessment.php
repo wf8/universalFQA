@@ -255,9 +255,9 @@ class TransectAssessment extends Assessment {
 		$csv[] = array('Environment Description:', $this->environment_description);
 		$csv[] = array('Other Notes:', $this->other_notes);
 		$csv[] = array('Transect/Plot Type:', empty($this->transect_type) ? 'Transect' : $this->transect_type);
-		$csv[] = array('Transect/Plot Size:', $this->plot_size);
-		$csv[] = array('Quadrat/Subplot Size:', $this->subplot_size);
-		$csv[] = array('Transect/Plot Length:', $this->transect_length);
+		$csv[] = array('Transect/Plot Size: (m2)', $this->plot_size);
+		$csv[] = array('Quadrat/Subplot Size: (m2)', $this->subplot_size);
+		$csv[] = array('Transect/Plot Length (m):', $this->transect_length);
 		$csv[] = array('Sampling Design Description:', $this->transect_description);
 		$csv[] = array('Cover Method:', $this->get_cover_method()->get_name());  
 
