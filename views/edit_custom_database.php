@@ -1,4 +1,14 @@
-	<script> block_screen() </script>
+    <script> 
+    	block_screen();
+    	$(function () { 
+    		$('#state_prov').searchableOptionList({
+    			maxHeight: '250px'
+    		});
+    		$('#omernik_ecoregion').searchableOptionList({
+    			maxHeight: '250px'
+    		});
+    	}); 
+    </script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
@@ -10,7 +20,7 @@
 					<br>
 					<h1>Edit Custom FQA Database</h1>
 					<button class="btn btn-info" onclick="javascript:done_creating_custom_db();">Done Making Changes</button>
-					<button class="btn btn-info" onclick="javascript:delete_custom_database(<?php echo $customized_fqa_id; ?>);">Delete This Custom FQA Database</button>
+					<button class="btn btn-info" onclick="javascript:delete_custom_database(<?php echo $custom_fqa_id; ?>);">Delete This Custom FQA Database</button>
 					<br>
 				</div>
 			</div>
@@ -19,17 +29,46 @@
 				<div class="span6">
 					<h4>&#187; Customized Database Details:</h4>
 					<label class="small-text">Customized Database Name: <font class="red">*</font></label>
-					<input class="field" type="text" id="customized_fqa_name" value="<?php echo $customized_name; ?>" maxlength="256" required onChange="custom_fqa_update(<?php echo $customized_fqa_id; ?>)" />
+					<input class="field" type="text" id="customized_fqa_name" value="<?php echo $custom_fqa_database->customized_name; ?>" maxlength="256" required onChange="custom_fqa_update(<?php echo $custom_fqa_id; ?>)" />
 					<label class="small-text">Customized Database Description: <font class="red">*</font></label>
-					<input class="field" type="text" id="customized_fqa_description" value="<?php echo $customized_description; ?>" maxlength="256" required onChange="custom_fqa_update(<?php echo $customized_fqa_id; ?>)" />
+					<input class="field" type="text" id="customized_fqa_description" value="<?php echo $custom_fqa_database->customized_description; ?>" maxlength="256" required onChange="custom_fqa_update(<?php echo $custom_fqa_id; ?>)" />
 				</div>
 				<div class="span6">
 					<h4>&#187; Original Database Details:</h4>
-					Region: <?php echo $region; ?><br>
-					Year Published: <?php echo $year; ?><br>
-					Description: <?php echo $description; ?>
+					Region: <?php echo $custom_fqa_database->region_name; ?><br>
+					Year Published: <?php echo $custom_fqa_database->publication_year; ?><br>
+					Description: <?php echo $custom_fqa_database->description; ?>
 				</div>	
 			</div>
+			<br>
+			<label class="small-text">States and/or Provinces: (Select all that apply)</label>
+			<select id="state_prov" name="state_prov[]" multiple="multiple" onchange="custom_fqa_update(<?php echo $custom_fqa_id; ?>)">
+				<?php
+					$current_country = '';
+					foreach ($states_provinces as $state_province) {
+					  $country = $state_province->country;
+						if ($country !== $current_country) {
+							if (!empty($current_country)) {
+								echo '</optgroup>';
+							}
+							echo '<optgroup label="' . $state_province->country_names[$country] . '">';
+						}
+						$selected = isset($custom_fqa_database->state_province_ids[$state_province->id]) ? ' selected' : '';
+						echo '<option value="' . $state_province->id . '"' . $selected . '>' . $state_province->display_name . '</option>';
+						$current_country = $country;
+					}
+				?>
+			</select>
+			<br/>
+			<label class="small-text">Omernik Level 3 Ecoregions: (Select all that apply)</label>
+			<select id="omernik_ecoregion" name="omernik_ecoregion[]" multiple="multiple" style="width:auto;" onchange="custom_fqa_update(<?php echo $custom_fqa_id; ?>)">
+				<?php
+					foreach ($ecoregions as $ecoregion) {
+						$selected = isset($custom_fqa_database->omernik_ecoregion_ids[$ecoregion->id]) ? ' selected' : '';
+						echo '<option value="' . $ecoregion->id . '"' . $selected . '>' . $ecoregion->display_name . '</option>';
+					}
+				?>
+			</select>
 			<br>
 			<div class="row-fluid">
 				<div class="span12">	
@@ -57,7 +96,7 @@
 							<td><input class="input-mini" id="new_physiognomy" type="text" value=""></td>
 							<td><input class="input-small" id="new_duration" type="text" value=""></td>
 							<td><input class="input-medium" id="new_common_name" type="text" value=""></td>
-							<td><a href="javascript:new_custom_taxa( <?php echo $original_fqa_id; ?>, <?php echo $customized_fqa_id; ?> );">Add</a></td>
+							<td><a href="javascript:new_custom_taxa( <?php echo $custom_fqa_database->fqa_id; ?>, <?php echo $custom_fqa_id; ?> );">Add</a></td>
 						</tr>   
 <?php
 if (mysqli_num_rows($taxa) == 0) {
@@ -95,7 +134,7 @@ if (mysqli_num_rows($taxa) == 0) {
 							<td><input class="input-mini" id="physiognomy<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'physiognomy<?php echo $i; ?>', 'physiognomy', <?php echo $taxon_id; ?> );" value="<?php echo $physiognomy; ?>"></td>
 							<td><input class="input-small" id="duration<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'duration<?php echo $i; ?>', 'duration', <?php echo $taxon_id; ?> );" value="<?php echo $duration; ?>"></td>
 							<td><input class="input-medium" id="common_name<?php echo $i; ?>" type="text" onChange="custom_taxa_update( 'common_name<?php echo $i; ?>', 'common_name', <?php echo $taxon_id; ?> );" value="<?php echo $common_name; ?>"></td>
-							<td><a onclick="javascript:delete_custom_taxa(<?php echo $taxon_id; ?>, <?php echo $customized_fqa_id; ?>);" href="#">Delete</a></td>
+							<td><a onclick="javascript:delete_custom_taxa(<?php echo $taxon_id; ?>, <?php echo $custom_fqa_id; ?>);" href="#">Delete</a></td>
 						</tr>
 <?php
 	}
@@ -109,7 +148,7 @@ if (mysqli_num_rows($taxa) == 0) {
 				<div class="span12">				
 					<h4>Finished?</h4>
 					<button class="btn btn-info" onclick="javascript:done_creating_custom_db();">Done Making Changes</button>
-					<button class="btn btn-info" onclick="javascript:delete_custom_database(<?php echo $customized_fqa_id; ?>);">Delete This Custom FQA Database</button>
+					<button class="btn btn-info" onclick="javascript:delete_custom_database(<?php echo $custom_fqa_id; ?>);">Delete This Custom FQA Database</button>
 					<br>
 				</div>
 			</div>

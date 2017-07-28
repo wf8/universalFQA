@@ -25,7 +25,8 @@ if( $_SESSION['valid'] ) {
 	<select id='site_select'>
 <?php
 		foreach($sites as $site) {
-			echo '<option value="'.$site->id.'">'.$site->name.'</option>';
+			$site_location = (!empty($site->city) AND !empty($site->state)) ? ' (' . $site->city . ', ' . $site->state . ')' : '';
+			echo '<option value="'.$site->id.'">'.$site->name . $site_location . '</option>';
 		}
 ?>
 	</select>			

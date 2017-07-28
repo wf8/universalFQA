@@ -3,11 +3,13 @@ if( !$_SESSION['valid'] )
 	require_once('../views/login.php');
 else { 
 	// get customized fqa details
-	$customized_fqa_id = mysqli_real_escape_string($db_link, $url_parts[1]);
+	$states_provinces = StateProvince::get_states_provinces();
+	$ecoregions = OmernikEcoregion::get_omernik_ecoregions();
+	$custom_fqa_id = mysqli_real_escape_string($db_link, $url_parts[1]);
 	$custom_fqas = new CustomFQADatabase;
-	$custom_fqa_databases = $custom_fqas->get_fqa($customized_fqa_id);
+	$custom_fqa_database = $custom_fqas->get_fqa($custom_fqa_id);
 	// if fqa not found redirect user to view all databases
-	if (mysqli_num_rows($custom_fqa_databases) == 0) {
+	if ($custom_fqa_database == NULL) {
 		require_once('../views/nav.php');
 		$fqa = new FQADatabase;
 		$fqa_databases = $fqa->get_all();
@@ -16,20 +18,8 @@ else {
 		// display view
 		require_once('../views/view_databases.php');
 	} else {
-		$custom_fqa = mysqli_fetch_assoc($custom_fqa_databases);
-		$original_fqa_id = $custom_fqa['fqa_id'];
-		$region = $custom_fqa['region_name'];
-		$year = $custom_fqa['publication_year'];
-		$description = $custom_fqa['description'];
-		$customized_name = '';
-		$customized_description = '';
-		if (isset($custom_fqa['customized_name']))
-			$customized_name = $custom_fqa['customized_name'];
-		if (isset($custom_fqa['customized_description']))
-			$customized_description = $custom_fqa['customized_description'];
-			
 		// get taxa for this db
-		$taxa = $custom_fqas->get_taxa($customized_fqa_id);
+		$taxa = $custom_fqa_database->get_taxa($custom_fqa_id);
 		require_once('../views/nav_disabled_links.php');
 		require_once('../views/edit_custom_database.php');
 	}

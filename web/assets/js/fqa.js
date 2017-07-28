@@ -199,13 +199,17 @@ function done_creating_custom_db() {
 }
 
 function custom_fqa_update( custom_fqa_id ) {
+	var state_prov_vals = $("#state_prov").val();
+	var omernik_ecoregion_vals = $("#omernik_ecoregion").val();
 	$.ajax({
 		url: "/ajax/custom_fqa_update",
 		type: "POST",
 		data: {
 			id: custom_fqa_id,
 			name: $("#customized_fqa_name").val(),
-			description: $("#customized_fqa_description").val()
+			description: $("#customized_fqa_description").val(),
+			state_prov: JSON.stringify(state_prov_vals),
+			omernik_ecoregion: JSON.stringify(omernik_ecoregion_vals)
 		},
 		success: function( response ) {
 		}

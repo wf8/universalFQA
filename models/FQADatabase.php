@@ -8,19 +8,28 @@ class FQADatabase {
 	public $publication_year;
 	public $description;
 	
+	// aggregated details shown in select lists 
+	public $selection_display_name;
+	
+	public $state_province_ids = array();
+	public $omernik_ecoregion_ids = array();
+	
 	/*
 	 * constructor
 	 */
 	public function __construct( $id = null ) {
 		if ($id !== null) {
 			$this->get_db_link();
-    		$sql = "SELECT * FROM fqa WHERE id='$id'";
+			$sql = "SELECT * FROM fqa WHERE id='$id'";
 			$fqa_result =  mysqli_query($this->db_link, $sql);
 			$fqa = mysqli_fetch_array($fqa_result);
 			$this->id = $id;
 			$this->region_name = $fqa['region_name'];
 			$this->publication_year = $fqa['publication_year'];
 			$this->description = $fqa['description'];
+			$this->get_states($this->db_link, $id);
+			$this->get_ecoregions($this->db_link, $id);
+			$this->make_selection_display_name($this->region_name);
 			mysqli_close($this->db_link);
 		}
 	}
@@ -42,29 +51,104 @@ class FQADatabase {
 	public function get_all() {
 		$this->get_db_link();
 		$sql = "SELECT * FROM fqa WHERE 1 ORDER BY region_name, publication_year";
-		return mysqli_query($this->db_link, $sql);		
-		mysqli_close($this->db_link);	 
-    }
+		$query_results = mysqli_query($this->db_link, $sql);
+		$return_fqa_databases = array();
+		if (mysqli_num_rows($query_results) !== 0) {
+			while ($fqa_database = mysqli_fetch_assoc($query_results)) {
+				$new_fqa_db = new FQADatabase();
+				$new_fqa_db->id = $fqa_database['id'];
+				$new_fqa_db->region_name = $fqa_database['region_name'];
+				$new_fqa_db->publication_year = $fqa_database['publication_year'];
+				$new_fqa_db->description = $fqa_database['description'];
+				$new_fqa_db->get_states($this->db_link, $new_fqa_db->id);
+				$new_fqa_db->get_ecoregions($this->db_link, $new_fqa_db->id);
+				$new_fqa_db->make_selection_display_name($new_fqa_db->region_name);
+				$return_fqa_databases[$new_fqa_db->id] = $new_fqa_db;
+			}
+		}
+		mysqli_close($this->db_link);
+		return $return_fqa_databases;
+	}
+	
+	public function make_selection_display_name($name) {
+		// Include state codes in the selection display, as configured with the FQA Database
+		$state_codes = array();
+		foreach ($this->state_province_ids as $state_province_id) {
+			 $state_province = StateProvince::get_state_province_by_id($state_province_id['state_id']);
+			 $state_codes[] = $state_province->abbreviation; 
+		}
+		$state_codes = !empty($state_codes) > 0 ? '(' . implode(', ', $state_codes) . ')': '';
+		// Include omernik ecoregio codes in the selection display, as configured with the FQA Database
+		$ecoregion_codes = array();
+		foreach ($this->omernik_ecoregion_ids as $ecoregion_ids) {
+			$omernik_ecoregion = OmernikEcoregion::get_ecoregion_by_id($ecoregion_ids['ecoregion_id']);
+			if ($omernik_ecoregion->ecoregion_number !== $omernik_ecoregion->ecoregion_code) {
+				$ecoregion_codes[] = $omernik_ecoregion->ecoregion_number . '/' . $omernik_ecoregion->ecoregion_code;
+			} else {
+				$ecoregion_codes[] = $omernik_ecoregion->ecoregion_number;
+			}
+		}
+		$ecoregion_codes = !empty($ecoregion_codes) > 0 ? '(Omernik III Ecoregions: ' . implode(', ', $ecoregion_codes) . ')': '';
+		$this->selection_display_name = $name . ' ' . $state_codes . ' ' . $ecoregion_codes . ', ' . $this->publication_year;
+	}
     
     /*
 	 * return a mysql resource for the fqa database with id
 	 */
 	public function get_fqa($id) {
 		$this->get_db_link();
-    	$sql = "SELECT * FROM fqa WHERE id='$id'";
-		return mysqli_query($this->db_link, $sql);
+		$sql = "SELECT * FROM fqa WHERE id='$id'";
+		$query_results = mysqli_query($this->db_link, $sql);
 		mysqli_close($this->db_link);
+		return $query_results;
 	}
 	
+	/*
+	 * return a mysql resource for all the states associated with fqa database id
+	 */
+	public function get_states($db_link, $id, $is_custom_fqa=0) {
+		$sql = "SELECT * FROM fqa_states WHERE fqa_id='$id' AND is_custom_fqa='$is_custom_fqa' ORDER BY state_id";
+		$query_results = mysqli_query($db_link, $sql);
+		if (mysqli_num_rows($query_results) !== 0) {
+			while ($state_prov_row = mysqli_fetch_assoc($query_results)) {
+				$state_prov = array();
+				$state_prov['id'] = $state_prov_row['id'];
+				$state_prov['fqa_id'] = $state_prov_row['fqa_id'];
+				$state_prov['state_id'] = $state_prov_row['state_id'];
+				$this->state_province_ids[$state_prov_row['state_id']] = $state_prov;
+			}
+		}
+		return $this->state_province_ids;
+	}
+
+	/*
+	 * return a mysql resource for all the ecoregions associated with fqa database id
+	 */
+	public function get_ecoregions($db_link, $id, $is_custom_fqa=0) {
+		$sql = "SELECT * FROM fqa_ecoregions WHERE fqa_id='$id' AND is_custom_fqa='$is_custom_fqa' ORDER BY ecoregion_id";
+		$query_results = mysqli_query($db_link, $sql);		
+		if (mysqli_num_rows($query_results) !== 0) {
+			while ($ecoregion_row = mysqli_fetch_assoc($query_results)) {
+				$ecoregion = array();
+				$ecoregion['id'] = $ecoregion_row['id'];
+				$ecoregion['fqa_id'] = $ecoregion_row['fqa_id'];
+				$ecoregion['ecoregion_id'] = $ecoregion_row['ecoregion_id'];
+				$this->omernik_ecoregion_ids[$ecoregion_row['ecoregion_id']] = $ecoregion;
+			}
+		}
+		return $this->omernik_ecoregion_ids;
+	}
+
 	/*
 	 * return a mysql resource for all the taxa associated with fqa database id
 	 */
 	public function get_taxa($id) {
 		$this->get_db_link();
 		$sql = "SELECT * FROM taxa WHERE fqa_id='$id' ORDER BY scientific_name";
-		return mysqli_query($this->db_link, $sql);
+		$retval = mysqli_query($this->db_link, $sql);		
 		mysqli_close($this->db_link);
-    }
+		return $retval;
+  }
     
     /*
 	 * return an array with all scientific names in fqa database id
@@ -120,7 +204,7 @@ class FQADatabase {
 	 * function to import a new fqa database. takes as input region, year, description, and 
 	 * handle to uploaded file
 	 */
-	public function import_new($region, $year, $description, $file) {
+	public function import_new($region, $year, $description, $states, $ecoregions, $file) {
 		$this->get_db_link();
 		$result = "";
 		if (!is_numeric( $year ) || ($year < 1950) || (3000 < $year)) {
@@ -150,6 +234,14 @@ class FQADatabase {
 						} else {
 							$result = "Error: An FQA database for that region and year already exist.";
 							break;
+						}
+						foreach ($states as $state) {
+						  $sql = "INSERT INTO fqa_states (fqa_id, state_id) VALUES ('$fqa_id', '$state')";
+							mysqli_query($this->db_link, $sql);	
+						}
+						foreach ($ecoregions as $ecoregion) {
+						  $sql = "INSERT INTO fqa_ecoregions (fqa_id, ecoregion_id) VALUES ('$fqa_id', '$ecoregion')";
+							mysqli_query($this->db_link, $sql);	
 						}
 					}
 					// skip the header row
@@ -235,6 +327,10 @@ class FQADatabase {
 				} else {
 					// delete any partially inserted databases
 					$sql = "DELETE FROM fqa WHERE id='$fqa_id'";
+					mysqli_query($this->db_link, $sql);
+					$sql = "DELETE FROM fqa_states WHERE fqa_id='$fqa_id'";
+					mysqli_query($this->db_link, $sql);
+					$sql = "DELETE FROM fqa_ecoregions WHERE fqa_id='$fqa_id'";
 					mysqli_query($this->db_link, $sql);
 					$sql = "DELETE FROM taxa WHERE fqa_id='$fqa_id'";
 					mysqli_query($this->db_link, $sql);

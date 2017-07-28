@@ -30,7 +30,9 @@
 					<h4>&#187; Details:</h4>
 					Region: <?php echo $region; ?><br>
 					Year Published: <?php echo $year; ?><br>
-					Description: <?php echo $description; ?>
+					Description: <?php echo $description; ?><br>
+					States: <?php foreach ($states as $state) { echo $state->display_name . '; '; } ?><br>
+					Ecoregions: <?php foreach ($ecoregions as $ecoregion) { echo $ecoregion->display_name . '; '; } ?>
 				</div>	
 				<div class="span6">
 					<h4>&#187; Database Metrics:</h4>

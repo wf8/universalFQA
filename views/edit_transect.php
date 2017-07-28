@@ -1,13 +1,17 @@
     <script> 
-	    $(window).bind("pageshow", function(event) {
-		if (event.originalEvent.persisted)
-			// catch back-forward cache in safari
-			update_quadrat_list();
-	    });
-			$(document).ready( function () { 
-				$( document ).tooltip();
-				update_quadrat_list();
-			}); 
+      $(window).bind("pageshow", function(event) {
+        if (event.originalEvent.persisted)
+          // catch back-forward cache in safari
+          update_quadrat_list();
+        }
+      );
+      $(document).ready( function () { 
+      	$( document ).tooltip();
+      	update_quadrat_list();
+      	$('#fqa_select').searchableOptionList({
+      		maxHeight: '250px'
+      	});
+      }); 
     </script>
     <div class="container padding-top">
 		<div class="nice_margins">
@@ -179,24 +183,20 @@
 				<div class="span12">
 				<h3>FQA Database:</h3>
 					<form class="form-inline">
-						<select id="fqa_select">
+						<select id="fqa_select" name="fqa_select" style="width:auto;">
 						<?php
-						if (mysqli_num_rows($fqa_databases) !== 0) {
-							while ($fqa_database = mysqli_fetch_assoc($fqa_databases)) {
-								$fqa_id = $fqa_database['id'];
-								$region = $fqa_database['region_name'];
-								$year = $fqa_database['publication_year'];
+						if (!empty($fqa_databases)) {
+							foreach ($fqa_databases as $fqa_id => $fqa_database) {
 								if (!$assessment->custom_fqa && $assessment->fqa_id == $fqa_id)
-									echo '<option selected value="' . $fqa_id . '">' . $region . ', ' . $year . '</option>';
+									echo '<option selected value="' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
 								else 
-									echo '<option value="' . $fqa_id . '">' . $region . ', ' . $year . '</option>';
+									echo '<option value="' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
 							}
 						}
-						if (mysqli_num_rows($custom_fqa_databases) !== 0) {
-							while ($fqa_database = mysqli_fetch_assoc($custom_fqa_databases)) {
-								$fqa_id = $fqa_database['id'];
-								$name = $fqa_database['customized_name'];
-								$year = $fqa_database['publication_year'];
+						if (!empty($custom_fqa_databases)) {
+							foreach ($custom_fqa_databases as $fqa_id => $fqa_database) {
+								$name = $fqa_database->customized_name;
+								$year = $fqa_database->publication_year;
 								if ($assessment->custom_fqa && $assessment->fqa_id == $fqa_id)
 									echo '<option selected value="custom' . $fqa_id . '">' . $name . ', ' . $year . '</option>';
 								else 

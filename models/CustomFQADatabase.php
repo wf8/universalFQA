@@ -2,7 +2,6 @@
 class CustomFQADatabase extends FQADatabase {
 	
 	public $fqa_id;
-	public $description;
 	public $customized_name;
 	public $customized_description;
 	
@@ -22,6 +21,9 @@ class CustomFQADatabase extends FQADatabase {
 			$this->description = $fqa['description'];
 			$this->customized_name = $fqa['customized_name'];
 			$this->customized_description = $fqa['customized_description'];
+			$this->get_states($this->db_link, $id, 1);
+			$this->get_ecoregions($this->db_link, $id, 1);
+			$this->make_selection_display_name($this->customized_name);
 		}
 	}
 
@@ -30,17 +32,45 @@ class CustomFQADatabase extends FQADatabase {
 	 */
 	public function get_fqa($id) {
 		$this->get_db_link();
-    	$sql = "SELECT * FROM customized_fqa WHERE id='$id'";
-		return mysqli_query($this->db_link, $sql);
+		$sql = "SELECT * FROM customized_fqa WHERE id='$id'";
+		$fqa_result = mysqli_query($this->db_link, $sql);
+		$custom_fqa = NULL;
+		if (mysqli_num_rows($fqa_result) !== 0) {
+			$fqa_row = mysqli_fetch_array($fqa_result);
+			$custom_fqa = new CustomFQADatabase();
+			$custom_fqa->id = $id;
+			$custom_fqa->fqa_id = $fqa_row['fqa_id'];
+			$custom_fqa->region_name = $fqa_row['region_name'];
+			$custom_fqa->publication_year = $fqa_row['publication_year'];
+			$custom_fqa->description = $fqa_row['description'];
+			$custom_fqa->customized_name = $fqa_row['customized_name'];
+			$custom_fqa->customized_description = $fqa_row['customized_description'];
+			$custom_fqa->get_states($this->db_link, $id, 1);
+			$custom_fqa->get_ecoregions($this->db_link, $id, 1);
+			$custom_fqa->make_selection_display_name($this->customized_name);
+		}
+		return $custom_fqa;
 	}
 	
 	/*
 	 * function to update fqa database details
 	 */
-	public function update($id, $name, $description) {
+	public function update($id, $name, $description, $states, $ecoregions) {
 		$this->get_db_link();
 		$sql = "UPDATE customized_fqa SET customized_name = '$name', customized_description = '$description' WHERE id = '$id'";
 		mysqli_query($this->db_link, $sql);
+		$sql = "DELETE FROM fqa_states WHERE fqa_id = '$id' AND is_custom_fqa = '1'";
+		mysqli_query($this->db_link, $sql);	
+		foreach ($states as $state) {
+		  $sql = "INSERT INTO fqa_states (fqa_id, state_id, is_custom_fqa) VALUES ('$id', '$state', '1')";
+			mysqli_query($this->db_link, $sql);	
+		}
+		$sql = "DELETE FROM fqa_ecoregions WHERE fqa_id = '$id' AND is_custom_fqa = '1'";
+		mysqli_query($this->db_link, $sql);	
+		foreach ($ecoregions as $ecoregion) {
+		  $sql = "INSERT INTO fqa_ecoregions (fqa_id, ecoregion_id, is_custom_fqa) VALUES ('$id', '$ecoregion', '1')";
+			mysqli_query($this->db_link, $sql);	
+		}
 	}
 	
 	/*
@@ -106,7 +136,26 @@ class CustomFQADatabase extends FQADatabase {
     public function get_all_for_user($user_id) {
     	$this->get_db_link();
 	    $sql = "SELECT * FROM customized_fqa WHERE user_id='$user_id' ORDER BY customized_name, region_name, publication_year";
-		return mysqli_query($this->db_link, $sql);			 
+			$query_return = mysqli_query($this->db_link, $sql);
+			$return_fqa_databases = array();
+			if (mysqli_num_rows($query_return) !== 0) {
+				while ($fqa_database = mysqli_fetch_assoc($query_return)) {
+					$new_fqa_db = new CustomFQADatabase();
+					$new_fqa_db->id = $fqa_database['id'];
+					$new_fqa_db->fqa_id = $fqa_database['fqa_id'];
+					$new_fqa_db->region_name = $fqa_database['region_name'];
+					$new_fqa_db->publication_year = $fqa_database['publication_year'];
+					$new_fqa_db->description = $fqa_database['description'];
+					$new_fqa_db->customized_name = $fqa_database['customized_name'];
+					$new_fqa_db->customized_description = $fqa_database['customized_description'];
+					$new_fqa_db->get_states($this->db_link, $new_fqa_db->id, 1);
+					$new_fqa_db->get_ecoregions($this->db_link, $new_fqa_db->id, 1);
+					$new_fqa_db->make_selection_display_name($new_fqa_db->customized_name);
+					$return_fqa_databases[$new_fqa_db->fqa_id] = $new_fqa_db;
+				}
+			}
+			mysqli_close($this->db_link);
+			return $return_fqa_databases;
     }
     
     /*
