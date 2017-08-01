@@ -2,12 +2,7 @@
 if( $_SESSION['valid'] ) {
 	// get the fqa database by id
 	$id = mysqli_real_escape_string($db_link, $_POST['id']);
-	$fqa = new FQADatabase;
-	$fqa_databases = $fqa->get_fqa($id); 
-	$fqa_database = mysqli_fetch_assoc($fqa_databases);
-	$region = $fqa_database['region_name'];
-	$year = $fqa_database['publication_year'];
-	$description = $fqa_database['description'];
+	$fqa = new FQADatabase($id);
 	// get fqa taxa
 	$fqa_taxa = $fqa->get_taxa($id);
 	$total_taxa = 0;
@@ -37,9 +32,10 @@ if( $_SESSION['valid'] ) {
 	
 	// start building csv
 	$csv = array();
-	$csv[] = array($region);
-	$csv[] = array($year);
-	$csv[] = array($description);
+	$csv[] = array($fqa->region_name);
+	$csv[] = array($fqa->publication_year);
+	$csv[] = array($fqa->description);
+	$csv[] = array($fqa->selection_display_name);
 	
 	$csv[] = array();
 	$csv[] = array('Total Species:', $total_taxa);

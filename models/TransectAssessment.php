@@ -238,10 +238,12 @@ class TransectAssessment extends Assessment {
 			$csv[] = array('Original FQA DB Region:', $this->fqa->region_name);
 			$csv[] = array('Original FQA DB Publication Year:', $this->fqa->publication_year);
 			$csv[] = array('Original FQA DB Description:', $this->fqa->description);
+			$csv[] = array('Original FQA DB Selection Name:', $this->fqa->selection_display_name);
 		} else {
 			$csv[] = array('FQA DB Region:', $this->fqa->region_name);
 			$csv[] = array('FQA DB Publication Year:', $this->fqa->publication_year);
 			$csv[] = array('FQA DB Description:', $this->fqa->description);
+			$csv[] = array('FQA DB Selection Name:', $this->fqa->selection_display_name);
 		}
 		$csv[] = array();
 		$csv[] = array('Practitioner:', $this->practitioner);
