@@ -59,7 +59,7 @@ INSERT INTO `cover_method_values` (`cover_method_id`, `display_name`, `midpoint_
 INSERT INTO `cover_method_values` (`cover_method_id`, `display_name`, `midpoint_value`) VALUES (3, "6: 75-100% (87.5)", 87.5);
 
 INSERT INTO `cover_method_values` (`cover_method_id`, `display_name`, `midpoint_value`) VALUES (4, "1: trace (0.05)", 0.05);
-INSERT INTO `cover_method_values` (`cover_method_id`, `display_name`, `midpoint_value`) VALUES (4, "2: 0.1-1% (0.51)", 0.51);
+INSERT INTO `cover_method_values` (`cover_method_id`, `display_name`, `midpoint_value`) VALUES (4, "2: 0.1-1% (0.55)", 0.55);
 INSERT INTO `cover_method_values` (`cover_method_id`, `display_name`, `midpoint_value`) VALUES (4, "3: 1-2% (1.5)", 1.5);
 INSERT INTO `cover_method_values` (`cover_method_id`, `display_name`, `midpoint_value`) VALUES (4, "4: 2-5% (3.5)", 3.5);
 INSERT INTO `cover_method_values` (`cover_method_id`, `display_name`, `midpoint_value`) VALUES (4, "5: 5-10% (7.5)", 7.5);
