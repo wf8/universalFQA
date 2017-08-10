@@ -143,11 +143,11 @@
 								<label class="radio"><input type="radio" name="transectType" value="Plot" checked>Plot</label>
 						<?php } ?>
 					</form>
-					<label class="small-text">Transect/Plot Size (m<sup>2</sup>):</label>
+					<label class="small-text">Plot Size (m<sup>2</sup>):</label>
 					<input class="input-medium" type="text" id="plot_size" value="<?php echo $assessment->plot_size; ?>" maxlength="256" /><br>
 					<label class="small-text">Quadrat/Subplot Size (m<sup>2</sup>):</label>
 					<input class="input-medium" type="text" id="subplot_size" value="<?php echo $assessment->subplot_size; ?>" maxlength="256" /><br>
-					<label class="small-text">Transect/Plot Length (m):</label>
+					<label class="small-text">Transect Length (m):</label>
 					<input class="input-medium" type="text" id="transect_length" value="<?php echo $assessment->transect_length; ?>" maxlength="256" /><br>
 					<label class="small-text">Sampling Design Description:</label>
 					<textarea rows="3" id="transect_description"><?php echo $assessment->transect_description; ?></textarea><br>

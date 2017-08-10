@@ -75,9 +75,9 @@
 				<div class="span6">
 					<h4>&#187; Transect/Plot Design:</h4>			
 					Transect or Plot: <strong><?php echo $assessment->transect_type; ?></strong><br>
- 					Transect/Plot Size (m<sup>2</sup>): <?php echo $assessment->plot_size; ?><br>
+ 					Plot Size (m<sup>2</sup>): <?php echo $assessment->plot_size; ?><br>
  					Quadrat/Subplot Size (m<sup>2</sup>): <?php echo $assessment->subplot_size; ?><br>
-					Transect/Plot Length (m): <?php echo $assessment->transect_length; ?><br>
+					Transect Length (m): <?php echo $assessment->transect_length; ?><br>
  					Description: <?php echo $assessment->transect_description; ?><br>
  					Cover Method: <?php echo $assessment->get_cover_method()->get_name(); ?><br>
  				</div>
