@@ -214,7 +214,7 @@
 			<div class="row-fluid">
 				<div class="span12">	
 					<h3>Quadrats/Subplots:</h3>
-					<button class="btn btn-info" title="Add a standard quadrat/subplot or a pseudo quadrat/subplot for adding species to the Full Transect/Plot, Outside the Transect/Plot, or Rest of Transect/Plot." onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat/Subplot</button>
+					<button class="btn btn-info" onclick="javascript:window.location = '/new_quadrat';return false;">Add New Quadrat/Subplot</button>&nbsp;&nbsp;<span style="display:inline-block;width:700px;vertical-align:middle;">Add a standard quadrat/subplot or a pseudo quadrat/subplot for adding species to the Full Transect/Plot, Outside the Transect/Plot, or Rest of Transect/Plot.</span>
 					<br><br>
 					Select which quadrats/subplots you want actively included in the FQA calculations. The unselected quadrats/subplots will remain saved here if you wish to include them in the future.<br><br>
 					<div id="quadrat_list">
