@@ -151,7 +151,7 @@ class CustomFQADatabase extends FQADatabase {
 					$new_fqa_db->get_states($this->db_link, $new_fqa_db->id, 1);
 					$new_fqa_db->get_ecoregions($this->db_link, $new_fqa_db->id, 1);
 					$new_fqa_db->make_selection_display_name($new_fqa_db->customized_name);
-					$return_fqa_databases[$new_fqa_db->fqa_id] = $new_fqa_db;
+					$return_fqa_databases[$new_fqa_db->id] = $new_fqa_db;
 				}
 			}
 			mysqli_close($this->db_link);
@@ -168,7 +168,9 @@ class CustomFQADatabase extends FQADatabase {
 		$user_id = $_SESSION['user_id'];
 		$sql = "INSERT INTO customized_fqa (fqa_id, region_name, description, publication_year, created, user_id) VALUES ('$original_fqa_id', '$region', '$description', '$year', '$date', '$user_id')";
 		mysqli_query($this->db_link, $sql);	
-		return mysqli_insert_id($this->db_link);
+		$new_id = mysqli_insert_id($this->db_link);
+		$custom_fqa_database = $this->get_fqa($new_id);
+		return $custom_fqa_database;
 	}
 	
 	/*
