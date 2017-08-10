@@ -28,14 +28,14 @@ if( $_SESSION['valid'] ) {
 		foreach($sites as $site) {
 			if ($assessment->site->name == $site->name) {
 				echo '<option selected value="'.$site->id.'">'.$site->name.'</option>';
-				$selected_site = $site->city . ', ' . $site->state;
+				$selected_state = $site->state;
 			} else {
 				echo '<option value="'.$site->id.'">'.$site->name.'</option>';
 			}
 		}
 		echo '</select>';
-		if (!empty($selected_site)) {
-			echo '<p>Saved Site:<br>' . $selected_site . '</p>';
+		if (!empty($selected_state)) {
+			echo '<p>Site State/Province: ' . $selected_state . '</p>';
 		}
 ?>
 	<br>	
