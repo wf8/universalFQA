@@ -82,11 +82,7 @@ class FQADatabase {
 		$ecoregion_codes = array();
 		foreach ($this->omernik_ecoregion_ids as $ecoregion_ids) {
 			$omernik_ecoregion = OmernikEcoregion::get_ecoregion_by_id($ecoregion_ids['ecoregion_id']);
-			if ($omernik_ecoregion->ecoregion_number !== $omernik_ecoregion->ecoregion_code) {
-				$ecoregion_codes[] = $omernik_ecoregion->ecoregion_number . '/' . $omernik_ecoregion->ecoregion_code;
-			} else {
-				$ecoregion_codes[] = $omernik_ecoregion->ecoregion_number;
-			}
+			$ecoregion_codes[] = $omernik_ecoregion->ecoregion_number;
 		}
 		$ecoregion_codes = !empty($ecoregion_codes) > 0 ? '(Omernik III Ecoregions: ' . implode(', ', $ecoregion_codes) . ')': '';
 		$this->selection_display_name = $name . ' ' . $state_codes . ' ' . $ecoregion_codes . ', ' . $this->publication_year;

@@ -198,9 +198,9 @@
 								$name = $fqa_database->customized_name;
 								$year = $fqa_database->publication_year;
 								if ($assessment->custom_fqa && $assessment->fqa_id == $fqa_id)
-									echo '<option selected value="custom' . $fqa_id . '">' . $name . ', ' . $year . '</option>';
+									echo '<option selected value="custom' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
 								else 
-									echo '<option value="custom' . $fqa_id . '">' . $name . ', ' . $year . '</option>';
+									echo '<option value="custom' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
 							}
 						}
 						?>
