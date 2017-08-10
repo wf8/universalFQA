@@ -62,9 +62,9 @@
  					Longitude: <?php echo $assessment->longitude; ?><br>
 					Community Code: <?php echo $assessment->community_code; ?><br>
 					Community Name: <?php echo $assessment->community_name; ?><br>
+ 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
 					Weather Notes: <?php echo $assessment->weather_notes; ?><br>
  					Duration Notes: <?php echo $assessment->duration_notes; ?><br>
- 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
  					Environmental Description: <?php echo $assessment->environment_description; ?><br>
  					Other Notes: <?php echo $assessment->other_notes; ?><br>
  					<?php if ($assessment->private == 'private') { ?>
