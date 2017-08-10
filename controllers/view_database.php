@@ -22,20 +22,10 @@ else {
 		$description = $fqa_database['description'];
 		// get states
 		$states_provinces = StateProvince::get_states_provinces();
-		$states = array();
-		$fqa_states = $fqa->get_states($id);
-		while ($fqa_state = mysqli_fetch_assoc($fqa_states)) {
-		  $state_id = $fqa_state['state_id'];
-			$states[] = $states_provinces[$state_id];
-		}
+		$states = $fqa->get_states($id);
 		// get ecoregions
 		$omernik_ecoregions = OmernikEcoregion::get_omernik_ecoregions();
-		$ecoregions = array();
-		$fqa_ecoregions = $fqa->get_ecoregions($id);
-		while ($fqa_ecoregion = mysqli_fetch_assoc($fqa_ecoregions)) {
-			$ecoregion_id = $fqa_ecoregion['ecoregion_id'];
-			$ecoregions[] = $omernik_ecoregions[$ecoregion_id];
-		}
+		$ecoregions = $fqa->get_ecoregions($id);
 		// get fqa taxa
 		$fqa_taxa = $fqa->get_taxa($id);
 		$total_taxa = 0;

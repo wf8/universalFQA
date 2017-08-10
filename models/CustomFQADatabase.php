@@ -21,8 +21,8 @@ class CustomFQADatabase extends FQADatabase {
 			$this->description = $fqa['description'];
 			$this->customized_name = $fqa['customized_name'];
 			$this->customized_description = $fqa['customized_description'];
-			$this->get_states($this->db_link, $id, 1);
-			$this->get_ecoregions($this->db_link, $id, 1);
+			$this->get_states($id, $this->db_link, 1);
+			$this->get_ecoregions($id, $this->db_link, 1);
 			$this->make_selection_display_name($this->customized_name);
 		}
 	}
@@ -45,8 +45,8 @@ class CustomFQADatabase extends FQADatabase {
 			$custom_fqa->description = $fqa_row['description'];
 			$custom_fqa->customized_name = $fqa_row['customized_name'];
 			$custom_fqa->customized_description = $fqa_row['customized_description'];
-			$custom_fqa->get_states($this->db_link, $id, 1);
-			$custom_fqa->get_ecoregions($this->db_link, $id, 1);
+			$custom_fqa->get_states($id, $this->db_link, 1);
+			$custom_fqa->get_ecoregions($id, $this->db_link, 1);
 			$custom_fqa->make_selection_display_name($this->customized_name);
 		}
 		return $custom_fqa;
@@ -148,8 +148,8 @@ class CustomFQADatabase extends FQADatabase {
 					$new_fqa_db->description = $fqa_database['description'];
 					$new_fqa_db->customized_name = $fqa_database['customized_name'];
 					$new_fqa_db->customized_description = $fqa_database['customized_description'];
-					$new_fqa_db->get_states($this->db_link, $new_fqa_db->id, 1);
-					$new_fqa_db->get_ecoregions($this->db_link, $new_fqa_db->id, 1);
+					$new_fqa_db->get_states($new_fqa_db->id, $this->db_link, 1);
+					$new_fqa_db->get_ecoregions($new_fqa_db->id, $this->db_link, 1);
 					$new_fqa_db->make_selection_display_name($new_fqa_db->customized_name);
 					$return_fqa_databases[$new_fqa_db->id] = $new_fqa_db;
 				}
