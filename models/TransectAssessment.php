@@ -424,7 +424,7 @@ class TransectAssessment extends Assessment {
 				$csv[] = array('Quadrat/Subplot ' . $quadrat->name . ' Species:');	
 				$csv[] = array('Scientific Name', 'Family', 'Acronym', '% Cover', UFQA_COVER_RANGE_MIDPOINT_DEFAULT, 'Native?', 'C', 'W', 'Physiognomy', 'Duration', 'Common Name');
 				if (count($quadrat->taxa) == 0) {
-					$csv[] = array('There are no species in this quadrat.');
+					$csv[] = array('There are no species in this quadrat/subplot.');
 				} else {
 					$sorted_taxa = $this->sort_array_of_objects($quadrat->taxa, 'scientific_name');
 					foreach ($sorted_taxa as $taxon) {
