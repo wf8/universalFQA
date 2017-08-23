@@ -20,10 +20,13 @@
 					</ul>
 					<br>
 					<p class="nice-text">
-						Floristic Quality Assessments (FQAs) are measurements of a natural area's habitat condition or quality. FQAs are widely used by government agencies and conservation groups to inform land management decisions.
+						Floristic Quality Assessments (FQAs) are measurements of either a natural area's (site) habitat condition or quality, or a specific natural community’s condition or quality at a site. FQAs are widely used by government agencies and conservation groups to inform land management decisions.
 					</p>
 					<p class="nice-text">
-						This web-based tool calculates site inventory and transect FQAs. FQA databases published for a number of geographic regions have already been imported into the website, and users can import and customize other FQA databases as needed.					
+						This web-based tool calculates site inventory and transect or plot FQAs. FQA databases published for a number of geographic regions have already been imported into the website, and users can import and customize other FQA databases as needed.
+					</p>
+					<p class="nice-text">
+						Several published applications (among many) for the use of FQAs are found here.
 					</p>
 					<p class="nice-text">
 						For more information, see:<br>
