@@ -283,6 +283,7 @@ function save_site_changes( site_id ) {
 	if ($("#site_name").val().trim() == '') {
 		alert("Please enter a site name.");
 	} else {
+		var omernik_ecoregion_val = $("#omernik_ecoregion").val();
 		$.ajax({
 			url: "/ajax/save_site_changes",
 			type: "POST",
@@ -293,7 +294,8 @@ function save_site_changes( site_id ) {
 				city: $("#site_city").val().trim(),
 				county: $("#site_county").val().trim(),
 				state: $("#site_state").val().trim(),
-				country: $("#site_country").val().trim()
+				country: $("#site_country").val().trim(),
+				omernik_ecoregion: JSON.stringify(omernik_ecoregion_val)
 			},
 			success: function( response ) { 
 					alert("Changes saved!");
@@ -306,6 +308,7 @@ function save_new_site() {
 	if ($("#site_name").val().trim() == '') {
 		alert("Please enter a site name.");
 	} else {
+		var omernik_ecoregion_val = $("#omernik_ecoregion").val();
 		$.ajax({
 			url: "/ajax/save_new_site",
 			type: "POST",
@@ -315,7 +318,8 @@ function save_new_site() {
 				city: $("#site_city").val().trim(),
 				county: $("#site_county").val().trim(),
 				state: $("#site_state").val().trim(),
-				country: $("#site_country").val().trim()
+				country: $("#site_country").val().trim(),
+				omernik_ecoregion: JSON.stringify(omernik_ecoregion_val)
 			},
 			success: function( response ) { 
 				if (response.indexOf("Error") !== -1) 

@@ -33,7 +33,13 @@
 						echo $assessment->site->state; 
 						if (($assessment->site->state !== '' && $assessment->site->country !== '') || ($assessment->site->county !== '' && $assessment->site->country !== ''))
 							echo ', '; 
-						echo $assessment->site->country; 
+						echo $assessment->site->country;
+						echo '<br/>';
+						$ecoregions = '';
+						foreach ($assessment->site->ecoregions as $ecoregion) {
+							$ecoregions .= $ecoregion->display_name . '; ';
+						}
+						echo $ecoregions;
 					?><br>		
 				</div>	
 				<div class="span6">

@@ -108,7 +108,7 @@ CREATE TABLE `fqa_states` (
  `state_id` INT NOT NULL,
  INDEX (`fqa_id`),
  INDEX (`state_id`),
- PRIMARY KEY (`id`, `fqa_id`)
+ PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `states_provinces` (
@@ -234,7 +234,16 @@ CREATE TABLE `fqa_ecoregions` (
  `ecoregion_id` INT NOT NULL,
  INDEX (`fqa_id`),
  INDEX (`ecoregion_id`),
- PRIMARY KEY (`id`, `fqa_id`)
+ PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `site_ecoregions` (
+ `id` INT NOT NULL AUTO_INCREMENT,
+ `site_id` INT NOT NULL,
+ `ecoregion_id` INT NOT NULL,
+ INDEX (`site_id`),
+ INDEX (`ecoregion_id`),
+ PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `omernik_ecoregions` (

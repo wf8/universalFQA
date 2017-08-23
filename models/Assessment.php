@@ -63,6 +63,7 @@ class Assessment {
 				$site->state = $result['state'];
 				$site->country = $result['country'];
 				$site->notes = $result['notes'];
+				$site->ecoregions = $site->get_site_ecoregions($result['site_id'], $this->db_link);
 				$this->site = $site;
 				$this->get_fqa_object();
 			}	
@@ -134,6 +135,7 @@ class Assessment {
  			$site->state = $result['state'];
  			$site->country = $result['country'];
  			$site->notes = $result['notes'];
+			$site->ecoregions = $site->get_site_ecoregions($result['site_id'], $this->db_link);
  			$assessment->site = $site;	
  			$assessment->get_fqa_object();
 			$assessments[] = $assessment; 
@@ -183,6 +185,7 @@ class Assessment {
  			$site->state = $result['state'];
  			$site->country = $result['country'];
  			$site->notes = $result['notes'];
+			$site->ecoregions = $site->get_site_ecoregions($result['site_id'], $this->db_link);
  			$assessment->site = $site;	
  			$assessment->get_fqa_object();	
 			$assessments[] = $assessment; 
@@ -232,6 +235,7 @@ class Assessment {
  			$site->state = $result['state'];
  			$site->country = $result['country'];
  			$site->notes = $result['notes'];
+			$site->ecoregions = $site->get_site_ecoregions($result['site_id'], $this->db_link);
  			$assessment->site = $site;	
  			$assessment->get_fqa_object();	
 			$assessments[] = $assessment; 

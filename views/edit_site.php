@@ -1,3 +1,11 @@
+    <script> 
+    	$(function () { 
+    		$('#omernik_ecoregion').searchableOptionList({
+    			maxHeight: '250px',
+    			allowNullSelection: true
+    		});
+    	}); 
+    </script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
@@ -26,6 +34,22 @@
 					<input class="input-medium" type="text" id="site_state" value="<?php echo $site->state; ?>" size="23" maxlength="256" />
 					<label class="small-text">Country:</label>
 					<input class="input-medium" type="text" id="site_country" value="<?php echo $site->country; ?>" size="23" maxlength="256" />
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span8">
+					<label class="small-text">Omernik Level 3 Ecoregion</label>
+					<select style="width:auto;" id="omernik_ecoregion" name="omernik_ecoregion">
+						<?php
+							foreach ($omernik_ecoregions as $omernik_ecoregion) {
+							  if (isset($site->ecoregions[$omernik_ecoregion->id])) {
+									echo '<option selected value="' . $omernik_ecoregion->id . '">' . $omernik_ecoregion->display_name . '</option>';
+								} else {
+									echo '<option value="' . $omernik_ecoregion->id . '">' . $omernik_ecoregion->display_name . '</option>';
+								}
+							}
+						?>
+					</select>
 					<br><br>
 					<button class="btn btn-info" onClick="save_site_changes(<?php echo $site->id; ?>);">Save Changes</button> 
 					<button class="btn btn-info" onclick="javascript:window.history.back(-1); $(document).ready(function () {update_quadrat_list(); update_species_list();});">Done</button><br>

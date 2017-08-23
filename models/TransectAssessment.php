@@ -231,6 +231,11 @@ class TransectAssessment extends Assessment {
 		$csv[] = array($this->site->county);
 		$csv[] = array($this->site->state);
 		$csv[] = array($this->site->country);
+		$ecoregions = '';
+		foreach ($this->site->ecoregions as $ecoregion) {
+			$ecoregions .= $ecoregion->display_name . ';';
+		}
+		$csv[] = array($ecoregions);
 		
 		if ($this->custom_fqa) { 
 			$csv[] = array('Custom FQA DB Name:', $this->fqa->customized_name);
