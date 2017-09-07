@@ -1,8 +1,7 @@
     <script> 
     	$(function () { 
     		$('#omernik_ecoregion').searchableOptionList({
-    			maxHeight: '250px',
-    			allowNullSelection: true
+    			maxHeight: '250px'
     		});
     	}); 
     </script>
