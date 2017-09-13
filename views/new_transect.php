@@ -21,7 +21,6 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<h3>Select the FQA database:</h3>
-					<label class="small-text">FQA Database:</label>
 					<select id="fqa_select" name="fqa_select" style="width:auto;">
 						<?php
 						foreach ($fqa_databases as $fqa_id => $fqa_database) {
@@ -32,7 +31,20 @@
 						}
 						?>
 					</select><br>
-					<button class="btn btn-info" onclick="javascript:window.location = 'finish_new_transect/' + $('#fqa_select').val();return false;">OK</button>
+					<h3>Select the Cover Method:</h3>
+					<select name="coverMethod" id="coverMethod">
+					<?php
+						$cover_methods = CoverMethod::get_cover_methods();
+						foreach ($cover_methods as $cover_method_name => $cover_method) {
+							if (UFQA_DEFAULT_COVER_METHOD === $cover_method->id) {
+								echo '<option value="' . $cover_method->id . '" selected>' . $cover_method_name . '</option>';
+							} else {
+								echo '<option value="' . $cover_method->id . '">' . $cover_method_name . '</option>';
+							}
+						}
+					?>
+					</select><br/>
+					<button class="btn btn-info" onclick="javascript:window.location = 'finish_new_transect/' + $('#fqa_select').val() + '/' + $('#coverMethod').val();return false;">OK</button>
 					<button class="btn btn-info" onclick="javascript:window.location = 'view_assessments';return false;">Cancel</button>
 				</div>
 			</div>

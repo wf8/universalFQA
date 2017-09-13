@@ -13,6 +13,9 @@ else {
 		$custom_fqa = false;
 	}
 	
+	// get cover method selected
+	$cover_method_id = $url_parts[2];
+
 	// check whether the user has an assessment already started in session
 	if ($_SESSION['assessment'] == null) {
 		$assessment = new TransectAssessment();	
@@ -21,6 +24,7 @@ else {
 	}
 	$assessment->fqa_id = $fqa_id;
 	$assessment->custom_fqa = $custom_fqa;
+	$assessment->cover_method_id = $cover_method_id;
 	$_SESSION['assessment'] = serialize($assessment);
 	
 	// display view

@@ -153,24 +153,14 @@
 					<textarea rows="3" id="transect_description"><?php echo $assessment->transect_description; ?></textarea><br>
 					<label class="small-text">Cover Method:</label>
 					<?php
-						$disabled_text = '';
-						foreach ($assessment->quadrats as $quadrat) {
-							if (!empty($quadrat->taxa)) {
-								$disabled_text = 'disabled';
-							}
-						}
-						echo '<select '. $disabled_text . ' name="coverMethod" id="coverMethod" title="Selectable only when no quadrat/subplot species have been saved.">';
 						$cover_methods = CoverMethod::get_cover_methods();
 						foreach ($cover_methods as $cover_method_name => $cover_method) {
 							if ($cover_method->id === $assessment->cover_method_id) {
-								echo '<option value="' . $cover_method->id . '" selected>' . $cover_method_name . '</option>';
-							} else {
-								echo '<option value="' . $cover_method->id . '">' . $cover_method_name . '</option>';
+								echo '<input class="input-large" type="text" disabled value="' . $cover_method_name . '"</>';
 							}
 						}
-					echo '</select>';
 					?>
- 				</div>
+	 				</div>
 			</div>
 			<br/>
 			<div class="row-fluid">
