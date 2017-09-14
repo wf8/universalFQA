@@ -167,7 +167,7 @@
       <div class="row-fluid">
           <div class="span12">
           <h4>To Add Species In Bulk:</h4>
-          List each species and their percent coverage separated by a comma. For example: "Acorus calamus, 20, Alisma subcordatum, 15, Anemone virginiana, 5, etc."<br>
+          List each species and their cover value separated by a comma. For example: "Acorus calamus, 20, Alisma subcordatum, 15, Anemone virginiana, 5, etc."<br>
           <label class="radio">
               <input type="radio" name="list_type" value="scientific_name" checked>
               List of scientific names
