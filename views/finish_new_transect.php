@@ -128,22 +128,21 @@
 					<label class="small-text">Sampling Design Description:</label>
 					<textarea rows="3" id="transect_description"></textarea><br>
 					<label class="small-text">Cover Method:</label>
+					<select disabled name="cover_method" id="cover_method">
 					<?php
 						$cover_methods = CoverMethod::get_cover_methods();
 						foreach ($cover_methods as $cover_method_name => $cover_method) {
-							if ($cover_method->id === $assessment->cover_method_id) {
-								echo '<input class="input-large" type="text" disabled value="' . $cover_method_name . '"</>';
+							if ($assessment->cover_method_id === $cover_method->id) {
+								echo '<option value="' . $cover_method->id . '" selected>' . $cover_method_name . '</option>';
+							} else {
+								echo '<option value="' . $cover_method->id . '">' . $cover_method_name . '</option>';
 							}
 						}
 					?>
+					</select><br/>
 				</div>
 			</div>
-			<br/><br/>
-			<div class="row-fluid">
-				<div class="span12">
-					<button class="btn btn-info" title="Details entered for Transect/Plot will not be saved when adding quadrats/subplots. Please save before adding or editing." onclick="javascript:save_new_transect();return false;">Save Before Adding Quadrats/Subplots</button> 
-				</div>
-			</div>
+			<br/>
 			<hr style="height:1pt;"/>      
 			<div class="row-fluid">
 				<div class="span12">	

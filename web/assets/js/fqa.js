@@ -670,7 +670,7 @@ function save_new_transect() {
 					subplot_size: $("#subplot_size").val().trim(),
 					transect_length: $("#transect_length").val().trim(),
 					transect_description: $("#transect_description").val().trim(),
-					cover_method_id: $('#coverMethod option:selected').val(),
+					cover_method_id: $('#cover_method option:selected').val(),
 					community_code: $("#community_code").val().trim(),
 					community_name: $("#community_name").val().trim(),
 					environment_description: $("#environment_description").val().trim()
@@ -711,7 +711,7 @@ function save_new_transect() {
 						subplot_size: $("#subplot_size").val().trim(),
 						transect_length: $("#transect_length").val().trim(),
 						transect_description: $("#transect_description").val().trim(),
-						cover_method_id: $('#coverMethod option:selected').val(),
+						cover_method_id: $('#cover_method option:selected').val(),
 						community_code: $("#community_code").val().trim(),
 						community_name: $("#community_name").val().trim(),
 						environment_description: $("#environment_description").val().trim()
@@ -755,7 +755,7 @@ function update_transect() {
 				subplot_size: $("#subplot_size").val().trim(),
 				transect_length: $("#transect_length").val().trim(),
 				transect_description: $("#transect_description").val().trim(),
-				cover_method_id: $('#coverMethod option:selected').val(),
+				cover_method_id: $('#cover_method option:selected').val(),
 				community_code: $("#community_code").val().trim(),
 				community_name: $("#community_name").val().trim(),
 				environment_description: $("#environment_description").val().trim()				

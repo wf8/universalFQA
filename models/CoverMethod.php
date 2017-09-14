@@ -1,4 +1,5 @@
 <?php
+define ('UFQA_DEFAULT_COVER_METHOD', 0);
 
 class CoverMethodValue {
 	public $id;

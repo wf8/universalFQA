@@ -32,7 +32,7 @@
 						?>
 					</select><br>
 					<h3>Select the Cover Method:</h3>
-					<select name="coverMethod" id="coverMethod">
+					<select name="cover_method" id="cover_method">
 					<?php
 						$cover_methods = CoverMethod::get_cover_methods();
 						foreach ($cover_methods as $cover_method_name => $cover_method) {
@@ -44,7 +44,7 @@
 						}
 					?>
 					</select><br/>
-					<button class="btn btn-info" onclick="javascript:window.location = 'finish_new_transect/' + $('#fqa_select').val() + '/' + $('#coverMethod').val();return false;">OK</button>
+					<button class="btn btn-info" onclick="javascript:window.location = 'finish_new_transect/' + $('#fqa_select').val() + '/' + $('#cover_method').val();return false;">OK</button>
 					<button class="btn btn-info" onclick="javascript:window.location = 'view_assessments';return false;">Cancel</button>
 				</div>
 			</div>
