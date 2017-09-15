@@ -47,7 +47,9 @@ else {
 				// do not convert braun-blanquet cover values!
 				$cover = $data[1];
 				// add taxa to quadrat
-				if (!$quadrat->add_taxa_by_column_value('acronym', $data[0], $cover, $db_link))
+				$cover_method = CoverMethod::get_cover_method($assessment->cover_method_id);
+				$cover_method_value = $cover_method->get_cover_method_value_for_percent_cover($cover);
+				if (!$quadrat->add_taxa_by_column_value('acronym', $data[0], $cover, $cover_method_value->id, $cover_method->get_name(), $db_link))
 					$result = $result . 'Acronym not found: ' . $data[0] . '<br>';
 			}
 			if ((trim($data[0]) == '>') && $constructing_quadrat) {
