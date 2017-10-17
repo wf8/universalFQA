@@ -1,4 +1,4 @@
-USE universal_fqa;
+USE fqa_calculator;
 ALTER TABLE `transect` ADD COLUMN `transect_type` VARCHAR(256) NULL;
 ALTER TABLE `transect` ADD COLUMN `plot_size` VARCHAR(256) NULL;
 ALTER TABLE `transect` ADD COLUMN `subplot_size` VARCHAR(256) NULL;

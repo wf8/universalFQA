@@ -48,11 +48,13 @@ foreach ($assessment->quadrats as $quad) {
 }
 
 // check that all the taxa have percent_cover
-foreach ($quadrat->taxa as $taxon) {
-	if ( (trim($taxon->percent_cover) == '') || ($taxon->percent_cover < 0 || $taxon->percent_cover > 100) || !is_numeric($taxon->percent_cover) ) {
-		echo 'Please enter a number between 0 and 100 for Percent Cover.';
-		exit;
-	}
+if ($assessment->cover_method_id == 0) {
+    foreach ($quadrat->taxa as $taxon) {
+        if ( (trim($taxon->percent_cover) == '') || ($taxon->percent_cover < 0 || $taxon->percent_cover > 100) || !is_numeric($taxon->percent_cover) ) {
+            echo 'Please enter a number between 0 and 100 for Percent Cover.';
+            exit;
+        }
+    }
 }
 
 // update session quadrat object

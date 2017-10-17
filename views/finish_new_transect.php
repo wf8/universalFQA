@@ -128,14 +128,14 @@
 					<label class="small-text">Sampling Design Description:</label>
 					<textarea rows="3" id="transect_description"></textarea><br>
 					<label class="small-text">Cover Method:</label>
-					<select disabled name="cover_method" id="cover_method">
+					<select disabled id="cover_method">
 					<?php
 						$cover_methods = CoverMethod::get_cover_methods();
 						foreach ($cover_methods as $cover_method_name => $cover_method) {
 							if ($assessment->cover_method_id === $cover_method->id) {
 								echo '<option value="' . $cover_method->id . '" selected>' . $cover_method_name . '</option>';
 							} else {
-								echo '<option value="' . $cover_method->id . '">' . $cover_method_name . '</option>';
+								//echo '<option value="' . $cover_method->id . '">' . $cover_method_name . '</option>';
 							}
 						}
 					?>
