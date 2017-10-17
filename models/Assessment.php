@@ -3,6 +3,7 @@ class Assessment {
 
 	protected $db_link;
 	protected $db_table;
+	protected $result;
 	
 	public $id;
 	public $fqa_id;
@@ -36,6 +37,7 @@ class Assessment {
 				$this->id = null;
 			} else {
 				$result = mysqli_fetch_assoc($results);
+				$this->result = $result;
 				$this->id = $result['id'];
 				$this->fqa_id = $result['fqa_id'];
 				$this->custom_fqa = $result['customized_fqa'];
@@ -61,6 +63,7 @@ class Assessment {
 				$site->state = $result['state'];
 				$site->country = $result['country'];
 				$site->notes = $result['notes'];
+				$site->ecoregions = $site->get_site_ecoregions($result['site_id'], $this->db_link);
 				$this->site = $site;
 				$this->get_fqa_object();
 			}	
@@ -103,8 +106,10 @@ class Assessment {
 			// no type casting so use hack
 			if ($this->db_table == 'inventory')
 				$assessment = new InventoryAssessment();
-			else
+			else {
 				$assessment = new TransectAssessment();
+				$assessment->load_transect_details($result);
+			}
 			$assessment->id = $result['id'];
 			$assessment->fqa_id = $result['fqa_id'];
 			$assessment->custom_fqa = $result['customized_fqa'];
@@ -130,6 +135,7 @@ class Assessment {
  			$site->state = $result['state'];
  			$site->country = $result['country'];
  			$site->notes = $result['notes'];
+			$site->ecoregions = $site->get_site_ecoregions($result['site_id'], $this->db_link);
  			$assessment->site = $site;	
  			$assessment->get_fqa_object();
 			$assessments[] = $assessment; 
@@ -150,8 +156,10 @@ class Assessment {
 			// no type casting so use hack
 			if ($this->db_table == 'inventory')
 				$assessment = new InventoryAssessment();
-			else
-				$assessment = new TransectAssessment();			
+			else {
+				$assessment = new TransectAssessment();
+				$assessment->load_transect_details($result);				
+			}
 			$assessment->id = $result['id'];
 			$assessment->date = $result['date'];
 			$assessment->fqa_id = $result['fqa_id'];
@@ -177,6 +185,7 @@ class Assessment {
  			$site->state = $result['state'];
  			$site->country = $result['country'];
  			$site->notes = $result['notes'];
+			$site->ecoregions = $site->get_site_ecoregions($result['site_id'], $this->db_link);
  			$assessment->site = $site;	
  			$assessment->get_fqa_object();	
 			$assessments[] = $assessment; 
@@ -197,8 +206,10 @@ class Assessment {
 			// no type casting so use hack
 			if ($this->db_table == 'inventory')
 				$assessment = new InventoryAssessment();
-			else
-				$assessment = new TransectAssessment();			
+			else {
+				$assessment = new TransectAssessment();
+				$assessment->load_transect_details($result);				
+			}
 			$assessment->id = $result['id'];
 			$assessment->date = $result['date'];
 			$assessment->fqa_id = $result['fqa_id'];
@@ -224,6 +235,7 @@ class Assessment {
  			$site->state = $result['state'];
  			$site->country = $result['country'];
  			$site->notes = $result['notes'];
+			$site->ecoregions = $site->get_site_ecoregions($result['site_id'], $this->db_link);
  			$assessment->site = $site;	
  			$assessment->get_fqa_object();	
 			$assessments[] = $assessment; 

@@ -54,7 +54,7 @@ if (count($inventory_assessments) == 0) {
 }
 ?>
 					</table>
-					<h2>Public Transect Assessments</h2>
+					<h2>Public Transect/Plot Assessments</h2>
 					<table class="table table-hover sortable">
 						<tr>
 							<td><strong>Assessment Name</strong></td>
@@ -63,13 +63,14 @@ if (count($inventory_assessments) == 0) {
 							<td><strong>Practitioner</strong></td>
 							<td><strong>FQA Database</strong></td>
 							<!--<td><strong>Native FQI</strong></td>-->
+							<td><strong>Cover Method</strong></td>
 							<td><strong>Options</strong></td>							
 						</tr>
 <?php
 if (count($transect_assessments) == 0) {
 ?>
 						<tr>
-							<td colspan="5">There are no public transect assessments.</td> 
+							<td colspan="5">There are no public transect/plot assessments.</td> 
 						</tr>
 <?php
 } else {
@@ -86,6 +87,7 @@ if (count($transect_assessments) == 0) {
 								<td><?php echo $assessment->fqa->region_name . ', ' . $assessment->fqa->publication_year; ?></td>
 							<?php } ?>
 							<!-- <td><?php //echo $assessment->metrics->native_fqi; ?></td> -->
+							<td><?php echo $assessment->get_cover_method()->get_name(); ?></td>
 							<td><a href="/view_public_transect/<?php echo $assessment->id; ?>">View</a> | <a href="javascript:download_transect(<?php echo $assessment->id; ?>);">Download</a></td>
 						</tr>
 <?php

@@ -24,7 +24,16 @@ $weather_notes = mysqli_real_escape_string($db_link, $_POST['weather_notes']);
 $duration_notes = mysqli_real_escape_string($db_link, $_POST['duration_notes']);
 $community_type_notes = mysqli_real_escape_string($db_link, $_POST['community_notes']);
 $other_notes = mysqli_real_escape_string($db_link, $_POST['other_notes']);
- 	
+$transect_type = mysqli_real_escape_string($db_link, $_POST['transect_type']);
+$plot_size = mysqli_real_escape_string($db_link, $_POST['plot_size']);
+$subplot_size = mysqli_real_escape_string($db_link, $_POST['subplot_size']);
+$transect_length = mysqli_real_escape_string($db_link, $_POST['transect_length']);
+$transect_description = mysqli_real_escape_string($db_link, $_POST['transect_description']);
+$cover_method_id = mysqli_real_escape_string($db_link, $_POST['cover_method_id']);
+$community_code = mysqli_real_escape_string($db_link, $_POST['community_code']);
+$community_name = mysqli_real_escape_string($db_link, $_POST['community_name']);
+$environment_description = mysqli_real_escape_string($db_link, $_POST['environment_description']);
+
 // update session assessment object
 $assessment = unserialize($_SESSION['assessment']);
 if ($month < 10)
@@ -44,6 +53,15 @@ $assessment->weather_notes = $weather_notes;
 $assessment->duration_notes = $duration_notes;
 $assessment->community_type_notes = $community_type_notes;
 $assessment->other_notes = $other_notes;
+$assessment->transect_type = $transect_type;
+$assessment->plot_size = $plot_size;
+$assessment->subplot_size = $subplot_size;
+$assessment->transect_length = $transect_length;
+$assessment->transect_description = $transect_description;
+$assessment->cover_method_id = $cover_method_id;
+$assessment->community_code = $community_code;
+$assessment->community_name = $community_name;
+$assessment->environment_description = $environment_description;
 
 $new_id = $assessment->save($_SESSION['user_id'], $site_id);
 $_SESSION['assessment'] = null;

@@ -199,13 +199,17 @@ function done_creating_custom_db() {
 }
 
 function custom_fqa_update( custom_fqa_id ) {
+	var state_prov_vals = $("#state_prov").val();
+	var omernik_ecoregion_vals = $("#omernik_ecoregion").val();
 	$.ajax({
 		url: "/ajax/custom_fqa_update",
 		type: "POST",
 		data: {
 			id: custom_fqa_id,
 			name: $("#customized_fqa_name").val(),
-			description: $("#customized_fqa_description").val()
+			description: $("#customized_fqa_description").val(),
+			state_prov: JSON.stringify(state_prov_vals),
+			omernik_ecoregion: JSON.stringify(omernik_ecoregion_vals)
 		},
 		success: function( response ) {
 		}
@@ -279,6 +283,7 @@ function save_site_changes( site_id ) {
 	if ($("#site_name").val().trim() == '') {
 		alert("Please enter a site name.");
 	} else {
+		var omernik_ecoregion_val = $("#omernik_ecoregion").val();
 		$.ajax({
 			url: "/ajax/save_site_changes",
 			type: "POST",
@@ -289,7 +294,8 @@ function save_site_changes( site_id ) {
 				city: $("#site_city").val().trim(),
 				county: $("#site_county").val().trim(),
 				state: $("#site_state").val().trim(),
-				country: $("#site_country").val().trim()
+				country: $("#site_country").val().trim(),
+				omernik_ecoregion: JSON.stringify(omernik_ecoregion_val)
 			},
 			success: function( response ) { 
 					alert("Changes saved!");
@@ -302,6 +308,7 @@ function save_new_site() {
 	if ($("#site_name").val().trim() == '') {
 		alert("Please enter a site name.");
 	} else {
+		var omernik_ecoregion_val = $("#omernik_ecoregion").val();
 		$.ajax({
 			url: "/ajax/save_new_site",
 			type: "POST",
@@ -311,7 +318,8 @@ function save_new_site() {
 				city: $("#site_city").val().trim(),
 				county: $("#site_county").val().trim(),
 				state: $("#site_state").val().trim(),
-				country: $("#site_country").val().trim()
+				country: $("#site_country").val().trim(),
+				omernik_ecoregion: JSON.stringify(omernik_ecoregion_val)
 			},
 			success: function( response ) { 
 				if (response.indexOf("Error") !== -1) 
@@ -637,6 +645,7 @@ function save_new_transect() {
 		alert("Please enter the practitioner.");
 	else {
 		var public_inv = $('input[name=publicOrPrivate]:checked', '#public_inventory').val();
+		var transect_type_val = $('input[name=transectType]:checked', '#transect_type').val();
 		if ($("#site_select").length) {
 			// user has selected an existing site
 			$.ajax({
@@ -655,7 +664,16 @@ function save_new_transect() {
 					weather_notes: $("#weather_notes").val().trim(),
 					duration_notes: $("#duration_notes").val().trim(),
 					community_notes: $("#community_notes").val().trim(),
-					other_notes: $("#other_notes").val().trim()
+					other_notes: $("#other_notes").val().trim(),
+					transect_type: transect_type_val,
+					plot_size: $("#plot_size").val().trim(),
+					subplot_size: $("#subplot_size").val().trim(),
+					transect_length: $("#transect_length").val().trim(),
+					transect_description: $("#transect_description").val().trim(),
+					cover_method_id: $('#cover_method option:selected').val(),
+					community_code: $("#community_code").val().trim(),
+					community_name: $("#community_name").val().trim(),
+					environment_description: $("#environment_description").val().trim()
 				},
 				success: function( response ) { 
 						window.location = '/view_transect/' + response;
@@ -687,7 +705,16 @@ function save_new_transect() {
 						weather_notes: $("#weather_notes").val().trim(),
 						duration_notes: $("#duration_notes").val().trim(),
 						community_notes: $("#community_notes").val().trim(),
-						other_notes: $("#other_notes").val().trim()
+						other_notes: $("#other_notes").val().trim(),
+						transect_type: transect_type_val,
+						plot_size: $("#plot_size").val().trim(),
+						subplot_size: $("#subplot_size").val().trim(),
+						transect_length: $("#transect_length").val().trim(),
+						transect_description: $("#transect_description").val().trim(),
+						cover_method_id: $('#cover_method option:selected').val(),
+						community_code: $("#community_code").val().trim(),
+						community_name: $("#community_name").val().trim(),
+						environment_description: $("#environment_description").val().trim()
 					},
 					success: function( response ) { 
 							window.location = '/view_transect/' + response;
@@ -705,6 +732,7 @@ function update_transect() {
 		alert("Please enter the practitioner.");
 	else {
 		var public_inv = $('input[name=publicOrPrivate]:checked', '#public_inventory').val();
+		var transect_type_val = $('input[name=transectType]:checked', '#transect_type').val();
 		$.ajax({
 			url: "/ajax/update_transect",
 			type: "POST",
@@ -721,7 +749,16 @@ function update_transect() {
 				weather_notes: $("#weather_notes").val().trim(),
 				duration_notes: $("#duration_notes").val().trim(),
 				community_notes: $("#community_notes").val().trim(),
-				other_notes: $("#other_notes").val().trim()
+				other_notes: $("#other_notes").val().trim(),
+				transect_type: transect_type_val,
+				plot_size: $("#plot_size").val().trim(),
+				subplot_size: $("#subplot_size").val().trim(),
+				transect_length: $("#transect_length").val().trim(),
+				transect_description: $("#transect_description").val().trim(),
+				cover_method_id: $('#cover_method option:selected').val(),
+				community_code: $("#community_code").val().trim(),
+				community_name: $("#community_name").val().trim(),
+				environment_description: $("#environment_description").val().trim()				
 			},
 			success: function( response ) { 
 					window.location = '/view_transect/' + response;
@@ -789,7 +826,7 @@ function download_transect( id ) {
 
 function start_upload_quadrat_string() {
 	if (confirm("Uploading a quadrat string will overwrite any existing quadrats in this transect. Do you want to continue?")) {
-		$( "#upload_error" ).html( "Uploading Quadrat String..." );
+		$( "#upload_error" ).html( "Uploading Quadrat/Subplot String..." );
 		$('#upload_quadrat_string_form').submit();
 	}
 }
@@ -808,6 +845,7 @@ function stop_upload_quadrat_string( msg ){
  */
 
 function save_new_quadrat() {
+	var quadrat_type_val = $('input[name=quadratType]:checked', '#quadrat_type').val();
 	$.ajax({
 		url: "/ajax/save_new_quadrat",
 		type: "POST",
@@ -818,6 +856,7 @@ function save_new_quadrat() {
 			longitude: $("#longitude").val().trim(),
 			bare_ground: $("#bare_ground").val().trim(),
 			water: $("#water").val().trim(),
+			quadrat_type: quadrat_type_val
 		},
 		success: function( response ) { 
 			if (response.indexOf("success") == -1) {
@@ -834,6 +873,7 @@ function save_new_quadrat() {
 }
 
 function save_edited_quadrat() {
+	var quadrat_type_val = $('input[name=quadratType]:checked', '#quadrat_type').val();
 	$.ajax({
 		url: "/ajax/save_edited_quadrat",
 		type: "POST",
@@ -843,6 +883,7 @@ function save_edited_quadrat() {
 			longitude: $("#longitude").val().trim(),
 			bare_ground: $("#bare_ground").val().trim(),
 			water: $("#water").val().trim(),
+			quadrat_type: quadrat_type_val
 		},
 		success: function( response ) { 
 			if (response.indexOf("success") == -1) {
@@ -863,7 +904,9 @@ function add_quadrat_taxa_by_acronym() {
 		type: "POST",
 		data: {
 			species: $("#acronym").val(),
-			percent_cover: $("#acronym_percent_cover").val()
+			percent_cover: $("#acronym_percent_cover").val(),
+			cover_method_value_id: $("#acronym_cover_value_id").val(),
+			cover_method_name: $("#cover_method_name").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
@@ -882,7 +925,9 @@ function add_quadrat_taxa_by_common_name() {
 		type: "POST",
 		data: {
 			species: $("#common_name").val(),
-			percent_cover: $("#common_name_percent_cover").val()
+			percent_cover: $("#common_name_percent_cover").val(),
+			cover_method_value_id: $("#common_cover_value_id").val(),
+			cover_method_name: $("#cover_method_name").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
@@ -901,7 +946,9 @@ function add_quadrat_taxa_by_scientific_name() {
 		type: "POST",
 		data: {
 			species: $("#scientific_name").val(),
-			percent_cover: $("#scientific_name_percent_cover").val()
+			percent_cover: $("#scientific_name_percent_cover").val(),
+			cover_method_value_id: $("#sciname_cover_value_id").val(),
+			cover_method_name: $("#cover_method_name").val()
 		},
 		success: function( response ) {
 			if (response.indexOf("success") == -1) {
@@ -981,6 +1028,9 @@ function clear_add_fields_quadrat() {
 	$("#scientific_name_percent_cover").val('');
 	$("#acronym_percent_cover").val('');
 	$("#common_name_percent_cover").val('');
+	$("#sciname_cover_value_id").val('');
+	$("#acronym_cover_value_id").val('');
+	$("#common_cover_value_id").val('');
 	$("#taxa_to_add_list").val('');
 	$("#species_error").html('');
 }
@@ -994,7 +1044,8 @@ function delete_quadrat( id ) {
 				id: id,
 			},
 			success: function( response ) {
-				update_quadrat_list();
+			  location.reload();
+				//update_quadrat_list();
 			}
 		});
  	}

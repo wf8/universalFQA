@@ -15,6 +15,7 @@ class Taxa {
  	public $physiognomy;
  	public $duration;
  	public $percent_cover;
+	public $cover_method_value_id;
 
 	/*
 	 * constructor
@@ -43,7 +44,8 @@ class Taxa {
 				$this->c_o_c = $result['c_o_c'];
 				$this->c_o_w = $result['c_o_w'];
 				$this->physiognomy = $result['physiognomy'];
-				$this->duration = $result['duration'];	
+				$this->duration = $result['duration'];
+				$this->cover_method_value_id = $result['cover_method_value_id'];
 			}	
 			mysqli_close($this->db_link);
 		}	

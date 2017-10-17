@@ -7,7 +7,7 @@
 				</div>
 				<div class="span11">
 					<br>
-					<h1>Public Transect Assessment</h1>
+					<h1>Public Transect/Plot Assessment</h1>
 					<button class="btn btn-info" onClick="javascript:download_transect(<?php echo $assessment->id; ?>);">Download Report</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_public_assessments';return false;">Done</button>
 					<br>
@@ -59,15 +59,27 @@
 					Practitioner: <strong><?php echo $assessment->practitioner; ?></strong><br>
  					Latitude: <?php echo $assessment->latitude; ?><br>
  					Longitude: <?php echo $assessment->longitude; ?><br>
+					Community Code: <?php echo $assessment->community_code; ?><br>
+					Community Name: <?php echo $assessment->community_name; ?><br>
 					Weather Notes: <?php echo $assessment->weather_notes; ?><br>
  					Duration Notes: <?php echo $assessment->duration_notes; ?><br>
  					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
+ 					Environmental Description: <?php echo $assessment->environment_description; ?><br>
  					Other Notes: <?php echo $assessment->other_notes; ?><br>
  					<?php if ($assessment->private == 'private') { ?>
  					This assessment is <strong>private</strong> (viewable only by you).<br>
  					<?php } else { ?>
  					This assessment is <strong>public</strong> (viewable by all users of this website).<br>
  					<?php } ?>
+ 				</div>
+				<div class="span6">
+					<h4>&#187; Transect/Plot Design:</h4>			
+					Transect or Plot: <strong><?php echo $assessment->transect_type; ?></strong><br>
+ 					Plot Size (m<sup>2</sup>): <?php echo $assessment->plot_size; ?><br>
+ 					Quadrat/Subplot Size (m<sup>2</sup>): <?php echo $assessment->subplot_size; ?><br>
+					Transect Length (m): <?php echo $assessment->transect_length; ?><br>
+ 					Description: <?php echo $assessment->transect_description; ?><br>
+ 					Cover Method: <?php echo $assessment->get_cover_method()->get_name(); ?><br>
  				</div>
  			</div>
 			<br>
@@ -273,11 +285,11 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<h4>&#187; Quadrat Level Metrics:</h4>
+					<h4>&#187; Quadrat/Subplot Level Metrics:</h4>
 
 					<table class="table table-hover">
 						<tr>
-							<td><strong>Quadrat</strong></td>
+							<td><strong>Quadrat/Subplot</strong></td>
 							<td><strong>Species Richness</strong></td>
 							<td><strong>Native Species Richness</strong></td>
 							<td><strong>Total Mean C</strong></td>
@@ -368,7 +380,7 @@
 					
 			<div class="row-fluid">
 				<div class="span12">	
-					<h4>&#187; Quadrat <?php echo $quadrat->name; ?> Species:</h4>
+					<h4>&#187; Quadrat/Subplot <?php echo $quadrat->name; ?> Species:</h4>
 					<table class="table table-hover">
 						<tr>
 							<td><strong>Scientific Name</strong></td>
@@ -386,7 +398,7 @@
 						
 							$html = '';
 							if (count($quadrat->taxa) == 0) {
-								$html = $html . '<tr><td colspan=9>There are no species in this quadrat.</td></tr>';
+								$html = $html . '<tr><td colspan=9>There are no species in this quadrat/subplot.</td></tr>';
 							} else {
 								$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
 								foreach ($sorted_taxa as $taxon) {
@@ -413,7 +425,7 @@
 					}
 				}
 				if ($num_active_quads == 0) {
-					echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats in this transect. </h4></div></div>';
+					echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats/subplots in this transect/plot. </h4></div></div>';
 				}
 				
 			?>

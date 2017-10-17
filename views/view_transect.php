@@ -7,8 +7,8 @@
 				</div>
 				<div class="span11">
 					<br>
-					<h1>Transect Assessment</h1>
-					<button class="btn btn-info" onclick="javascript:window.location = '/edit_transect/<?php echo $assessment->id; ?>';return false;">Edit This Transect</button>
+					<h1>Transect/Plot Assessment</h1>
+					<button class="btn btn-info" onclick="javascript:window.location = '/edit_transect/<?php echo $assessment->id; ?>';return false;">Edit This Transect/Plot</button>
 					<button class="btn btn-info" onClick="javascript:download_transect(<?php echo $assessment->id; ?>);">Download Report</button> 
 					<button class="btn btn-info" onclick="javascript:window.location = '/view_assessments';return false;">Done</button>
 					<br>
@@ -33,7 +33,13 @@
 						echo $assessment->site->state; 
 						if (($assessment->site->state !== '' && $assessment->site->country !== '') || ($assessment->site->county !== '' && $assessment->site->country !== ''))
 							echo ', '; 
-						echo $assessment->site->country; 
+						echo $assessment->site->country;
+						echo '<br/>';
+						$ecoregions = '';
+						foreach ($assessment->site->ecoregions as $ecoregion) {
+							$ecoregions .= $ecoregion->display_name . '; ';
+						}
+						echo $ecoregions;
 					?><br>		
 				</div>	
 				<div class="span6">
@@ -55,20 +61,35 @@
 			</div>
 			<br>
 			<div class="row-fluid">
-				<div class="span12">
+				<div class="span6">
 					<h4>&#187; Details:</h4>			
 					Practitioner: <strong><?php echo $assessment->practitioner; ?></strong><br>
  					Latitude: <?php echo $assessment->latitude; ?><br>
  					Longitude: <?php echo $assessment->longitude; ?><br>
+					Community Code: <?php echo $assessment->community_code; ?><br>
+					Community Name: <?php echo $assessment->community_name; ?><br>
+ 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
 					Weather Notes: <?php echo $assessment->weather_notes; ?><br>
  					Duration Notes: <?php echo $assessment->duration_notes; ?><br>
- 					Community Type Notes: <?php echo $assessment->community_type_notes; ?><br>
+ 					Environmental Description: <?php echo $assessment->environment_description; ?><br>
  					Other Notes: <?php echo $assessment->other_notes; ?><br>
  					<?php if ($assessment->private == 'private') { ?>
  					This assessment is <strong>private</strong> (viewable only by you).<br>
  					<?php } else { ?>
  					This assessment is <strong>public</strong> (viewable by all users of this website).<br>
  					<?php } ?>
+ 				</div>
+				<div class="span6">
+					<h4>&#187; Transect/Plot Design:</h4>			
+					Transect or Plot: <strong><?php echo $assessment->transect_type; ?></strong><br>
+ 					Plot Size (m<sup>2</sup>): <?php echo $assessment->plot_size; ?><br>
+ 					Quadrat/Subplot Size (m<sup>2</sup>): <?php echo $assessment->subplot_size; ?><br>
+					Transect Length (m): <?php echo $assessment->transect_length; ?><br>
+ 					Sampling Design Description: <?php echo $assessment->transect_description; ?><br>
+					<?php
+						$cover_method = CoverMethod::get_cover_method($assessment->cover_method_id);
+						echo 'Cover Method: ' . $cover_method->get_name() . '<br>';
+					?>
  				</div>
  			</div>
 			<br>
@@ -275,11 +296,11 @@
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
-					<h4>&#187; Quadrat Level Metrics:</h4>
+					<h4>&#187; Quadrat/Subplot Level Metrics:</h4>
 
 					<table class="table table-hover">
 						<tr>
-							<td><strong>Quadrat</strong></td>
+							<td><strong>Quadrat/Subplot</strong></td>
 							<td><strong>Species Richness</strong></td>
 							<td><strong>Native Species Richness</strong></td>
 							<td><strong>Total Mean C</strong></td>
@@ -370,13 +391,14 @@
 					
 			<div class="row-fluid">
 				<div class="span12">	
-					<h4>&#187; Quadrat <?php echo $quadrat->name; ?> Species:</h4>
+					<h4>&#187; Quadrat/Subplot <?php echo $quadrat->name; ?> Species:</h4>
 					<table class="table table-hover">
 						<tr>
 							<td><strong>Scientific Name</strong></td>
 							<td><strong>Family</strong></td>
 							<td><strong>Acronym</strong></td>
 							<td><strong>% Cover</strong></td>
+							<td><strong>Cover Range (Midpt)</strong></td>
 							<td><strong>Nativity</strong></td>
 							<td><strong>C</strong></td>
 							<td><strong>W</strong></td>
@@ -388,14 +410,23 @@
 						
 							$html = '';
 							if (count($quadrat->taxa) == 0) {
-								$html = $html . '<tr><td colspan=9>There are no species in this quadrat.</td></tr>';
+								$html = $html . '<tr><td colspan=9>There are no species in this quadrat/subplot.</td></tr>';
 							} else {
 								$sorted_taxa = sort_array_of_objects($quadrat->taxa, 'scientific_name');
 								foreach ($sorted_taxa as $taxon) {
+									$cover_method_id = $assessment->cover_method_id;
+									$cover_method = CoverMethod::get_cover_method($cover_method_id);
+									$cover_method_value_name = $cover_method->get_name();
+									$cover_method_values = $cover_method->get_values();
+									if (!empty($cover_method_values)) {
+										$cover_method_value = $cover_method->get_cover_method_value_for_percent_cover($taxon->percent_cover);
+										$cover_method_value_name = $cover_method_value->display_name;
+									}
 									$html = $html . '<tr><td>' . $taxon->scientific_name . '</td>';
 									$html = $html . '<td>' . prettify_value($taxon->family) . '</td>';
 									$html = $html . '<td>' . prettify_value($taxon->acronym) . '</td>';
 									$html = $html . '<td>' . $taxon->percent_cover . '</td>';
+									$html = $html . '<td>' . $cover_method_value_name . '</td>';
 									$html = $html . '<td>' . $taxon->native . '</td>';
 									$html = $html . '<td>' . $taxon->c_o_c . '</td>';
 									$html = $html . '<td>' . prettify_value($taxon->c_o_w) . '</td>';
@@ -415,7 +446,7 @@
 					}
 				}
 				if ($num_active_quads == 0) {
-					echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats in this transect. </h4></div></div>';
+					echo '<div class="row-fluid"><div class="span12"><h4>&#187; There are no quadrats/subplots in this transect/plot. </h4></div></div>';
 				}
 				
 			?>

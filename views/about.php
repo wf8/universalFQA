@@ -26,6 +26,9 @@
 						The <a href="../">Universal FQA Calculator</a> is completely free for any user, and was developed for <a href="http://openlands.org">Openlands</a> by <a href="http://breadorpyramid.org">Will Freyman</a>. Questions or comments should be sent to willfreyman at gmail.com.
 					</p>
 					<p class="nice-text">
+						Enhancements to this site were developed by <img src="/assets/images/butterfly.png" height="15" width="22"> <a href="http://www.natureserve.org">NatureServe</a>, a nonprofit conservation organization providing the scientific basis for effective conservation action. 
+					</p>
+					<p class="nice-text">
 						Photo of <em>Sisyrinchium angustifolium</em> &copy; <a href="http://www.flickr.com/photos/lc10s/">Lisa Culp</a>. Used with permission.
 					</p>
 					<p class="nice-text">

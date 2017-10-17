@@ -1,3 +1,13 @@
+    <script>
+      $(function () { 
+        $('#state_prov').searchableOptionList({
+        	maxHeight: '250px'
+        });
+        $('#omernik_ecoregion').searchableOptionList({
+        	maxHeight: '250px'
+        });
+      }); 
+    </script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
@@ -26,6 +36,34 @@
 					<input class="medium" type="text" name="year" value="" maxlength="4" required />
 					<label class="small-text">Description: (Who or what organization developed this database? Provide a citation of the published source if possible.)<font class="red">*</font></label>
 					<input class="medium" type="text" name="description" value="" maxlength="256" required />
+					<label class="small-text">States and/or Provinces: (Select all that apply)</label>
+					<select id="state_prov" name="state_prov[]" multiple="multiple">
+						<?php
+							$states_provinces = StateProvince::get_states_provinces();
+							$current_country = '';
+							foreach ($states_provinces as $state_province) {
+							  $country = $state_province->country;
+								if ($country !== $current_country) {
+									echo '<optgroup label="' . $state_province->country_names[$country] . '">';
+								}
+								echo '<option value="' . $state_province->id . '">' . $state_province->display_name . '</option>';
+								if ($country !== $current_country) {
+									echo '</optgroup>';
+								}
+								$current_country = $country;
+							}
+						?>
+					</select>
+					<br/>
+					<label class="small-text">Omernik Level 3 Ecoregions: (Select all that apply)</label>
+					<select style="width:auto;" id="omernik_ecoregion" name="omernik_ecoregion[]" multiple="multiple">
+						<?php
+							$ecoregions = OmernikEcoregion::get_omernik_ecoregions();
+							foreach ($ecoregions as $ecoregion) {
+								echo '<option value="' . $ecoregion->id . '">' . $ecoregion->display_name . '</option>';
+							}
+						?>
+					</select>
 				</div>
 			</div>
 			<br>

@@ -24,18 +24,17 @@
 							<td><strong>Options</strong></td>
 						</tr>
 <?php
-if (mysqli_num_rows($fqa_databases) == 0) {
+if (empty($fqa_databases)) {
 ?>
 						<tr>
 							<td colspan="4">There are no FQA databases available.</td>
 						</tr>
 <?php
 } else {
-	while ($fqa_database = mysqli_fetch_assoc($fqa_databases)) {
-		$fqa_id = $fqa_database['id'];
-		$region = $fqa_database['region_name'];
-		$year = $fqa_database['publication_year'];
-		$description = $fqa_database['description'];
+	foreach ($fqa_databases as $fqa_id => $fqa_database) {
+		$region = $fqa_database->region_name;
+		$year = $fqa_database->publication_year;
+		$description = $fqa_database->description;
 ?>
 						<tr>
 							<td><a href="view_database/<?php echo $fqa_id; ?>"><?php echo $region; ?></a></td>
@@ -63,19 +62,18 @@ if (mysqli_num_rows($fqa_databases) == 0) {
 							<td><strong>Options</strong></td>
 						</tr>
 <?php
-if (mysqli_num_rows($custom_fqa_databases) == 0) {
+if (empty($custom_fqa_databases)) {
 ?>
 						<tr>
 							<td colspan="4">You have not made any customized FQA databases.</td>
 						</tr>
 <?php
 } else {
-	while ($fqa_database = mysqli_fetch_assoc($custom_fqa_databases)) {
-		$fqa_id = $fqa_database['id'];
-		$customized_name = $fqa_database['customized_name'];
-		$customized_description = $fqa_database['customized_description'];
-		$region = $fqa_database['region_name'];
-		$year = $fqa_database['publication_year'];
+	foreach ($custom_fqa_databases as $fqa_id => $fqa_database) {
+		$customized_name = $fqa_database->customized_name;
+		$customized_description = $fqa_database->customized_description;
+		$region = $fqa_database->region_name;
+		$year = $fqa_database->publication_year;
 ?>
 						<tr>
 							<td><a href="edit_custom_database/<?php echo $fqa_id; ?>"><?php echo $customized_name; ?></a></td>

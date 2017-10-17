@@ -1,3 +1,10 @@
+    <script> 
+      $(function () {
+        $('#fqa_select').searchableOptionList({
+          maxHeight: '250px'
+        });
+      });
+    </script>
     <div class="container padding-top">
 		<div class="nice_margins">
 			<div class="row-fluid">
@@ -7,38 +14,37 @@
 				</div>
 				<div class="span11">
 					<br>
-					<h1>New Transect Assessment</h1>
+					<h1>New Transect/Plot Assessment</h1>
 				</div>
 			</div>
 			<br>
 			<div class="row-fluid">
 				<div class="span12">
 					<h3>Select the FQA database:</h3>
-					<select id="fqa_select">
-<?php
-if (mysqli_num_rows($fqa_databases) !== 0) {
-	while ($fqa_database = mysqli_fetch_assoc($fqa_databases)) {
-		$fqa_id = $fqa_database['id'];
-		$region = $fqa_database['region_name'];
-		$year = $fqa_database['publication_year'];
-?>
-  						<option value="<?php echo $fqa_id; ?>"><?php echo $region; ?>, <?php echo $year; ?></option>
-<?php
-	}
-}
-if (mysqli_num_rows($custom_fqa_databases) !== 0) {
-	while ($fqa_database = mysqli_fetch_assoc($custom_fqa_databases)) {
-		$fqa_id = $fqa_database['id'];
-		$name = $fqa_database['customized_name'];
-		$year = $fqa_database['publication_year'];
-?>
-  						<option value="custom<?php echo $fqa_id; ?>"><?php echo $name; ?>, <?php echo $year; ?></option>
-<?php
-	}
-}
-?>
+					<select id="fqa_select" name="fqa_select" style="width:auto;">
+						<?php
+						foreach ($fqa_databases as $fqa_id => $fqa_database) {
+							echo '<option value="' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
+						}
+						foreach ($custom_fqa_databases as $fqa_id => $fqa_database) {
+							echo '<option value="custom' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
+						}
+						?>
 					</select><br>
-					<button class="btn btn-info" onclick="javascript:window.location = 'finish_new_transect/' + $('#fqa_select').val();return false;">OK</button>
+					<h3>Select the Cover Method:</h3>
+					<select name="cover_method" id="cover_method">
+					<?php
+						$cover_methods = CoverMethod::get_cover_methods();
+						foreach ($cover_methods as $cover_method_name => $cover_method) {
+							if (UFQA_DEFAULT_COVER_METHOD === $cover_method->id) {
+								echo '<option value="' . $cover_method->id . '" selected>' . $cover_method_name . '</option>';
+							} else {
+								echo '<option value="' . $cover_method->id . '">' . $cover_method_name . '</option>';
+							}
+						}
+					?>
+					</select><br/>
+					<button class="btn btn-info" onclick="javascript:window.location = 'finish_new_transect/' + $('#fqa_select').val() + '/' + $('#cover_method').val();return false;">OK</button>
 					<button class="btn btn-info" onclick="javascript:window.location = 'view_assessments';return false;">Cancel</button>
 				</div>
 			</div>

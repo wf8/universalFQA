@@ -100,6 +100,12 @@ class QuadratMetrics extends Metrics {
 		
 	protected $native_tree_c = 0;
 	protected $native_shrub_c = 0;
+	protected $native_vine_c = 0;
+	protected $native_forb_c = 0;
+	protected $native_grass_c = 0;
+	protected $native_sedge_c = 0;
+	protected $native_rush_c = 0;
+	protected $native_bryophyte_c = 0;
 	protected $native_herbaceous_c = 0;
 		
 	protected $c_0 = 0;
@@ -112,7 +118,9 @@ class QuadratMetrics extends Metrics {
 	protected $native_herbaceous = 0;
 		
 	protected $total_coverage = 0;
+	protected $total_percent_cover = 0;
 	protected $native_coverage = 0;
+	protected $native_percent_cover = 0;
 	protected $sum_total_c_times_coverage = 0;	
 	protected $sum_native_c_times_coverage = 0;
 		
@@ -343,6 +351,7 @@ class QuadratMetrics extends Metrics {
 				$this->percent_fern = round(100*$this->fern / $this->total_species,1);
 				$this->percent_bryophyte = round(100*$this->bryophyte / $this->total_species,1);
 				
+				$this->total_coverage = ($this->total_coverage == 0) ? 1 : $this->total_coverage;
 				$this->percent_tree_coverage = round(100*$this->tree_coverage / $this->total_coverage,1);
 				$this->percent_shrub_coverage = round(100*$this->shrub_coverage / $this->total_coverage,1);
 				$this->percent_vine_coverage = round(100*$this->vine_coverage / $this->total_coverage,1);

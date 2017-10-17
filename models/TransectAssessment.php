@@ -1,17 +1,56 @@
 <?php
+
 class TransectAssessment extends Assessment {
 
 	protected $db_table = 'transect';
+	public $transect_type;
+	public $plot_size;
+	public $subplot_size;
+	public $transect_length;
+	public $transect_description;
+	public $cover_method_id;
+	public $community_code;
+	public $community_name;
+	public $environment_description;
+
 	public $quadrats = array(); // an array of Quadrat objects
+	public $cover_method;
 	
 	public function __construct( $id = null ) {
 		Assessment::__construct( $id );
 		if ($id !== null) {
-			// load the transect quadrats
-			$this->get_quadrats();
-			$metrics = new TransectMetrics($this);
-			$this->metrics = $metrics;
+			$result = $this->result;
+			$this->load_transect_details($result);
+			
 		}
+	}
+	
+	public function load_transect_details($result) {
+		$this->transect_type = $result['transect_type'];
+		$this->plot_size = $result['plot_size'];
+		$this->subplot_size = $result['subplot_size'];
+		$this->transect_length = $result['transect_length'];
+		$this->transect_description = $result['transect_description'];
+		//$this->cover_method_id = ($result['cover_method_id'] == NULL) ? UFQA_DEFAULT_COVER_METHOD : $result['cover_method_id'];
+		$this->cover_method_id = ($result['cover_method_id'] == NULL) ? 0 : $result['cover_method_id'];
+		$this->community_code = $result['community_code'];
+		$this->community_name = $result['community_name'];
+		$this->environment_description = $result['environment_description'];	
+
+		$this->get_quadrats();
+		$metrics = new TransectMetrics($this);
+		$this->metrics = $metrics;
+		$cover_method = $this->load_cover_method();
+	}
+	
+	private function load_cover_method() {
+		$cover_method = isset($this->cover_method) ? $this->cover_method : CoverMethod::get_cover_method($this->cover_method_id);
+		return $cover_method;
+	}
+	
+	public function get_cover_method() {
+	  $cover_method =  $this->load_cover_method();
+		return $cover_method;
 	}
 	
 	public function get_all_for_user($user_id) {
@@ -54,27 +93,41 @@ class TransectAssessment extends Assessment {
 	 * load all the taxa for this inventory
 	 */
 	public function get_quadrats() {
-		$this->get_db_link();
-		$sql = "SELECT * FROM quadrat WHERE transect_id='$this->id'";
-		$results = mysqli_query($this->db_link, $sql);
-		while ($quad = mysqli_fetch_assoc($results)) {
-			$quadrat = new Quadrat(null, null);
-			$quadrat->id = $quad['id'];
-			$quadrat->transect_id = $this->id;
-			$quadrat->name = $quad['name'];
-			$quadrat->active = $quad['active'];
-			$quadrat->latitude = $quad['latitude'];
-			$quadrat->longitude = $quad['longitude'];
-			$quadrat->percent_bare_ground = $quad['percent_bare_ground'];
-			$quadrat->percent_water = $quad['percent_water'];
-			$quadrat->fqa_id = $this->fqa_id;
-			$quadrat->custom_fqa = $this->custom_fqa;
-			$quadrat->get_taxa($this->db_link);
-			$quadrat->compute_metrics();
-			// add object to array
-			$this->quadrats[] = $quadrat;
+		if (empty($this->quadrats)) {
+			$this->get_db_link();
+			$sql = "SELECT * FROM quadrat WHERE transect_id='$this->id'";
+			$results = mysqli_query($this->db_link, $sql);
+			while ($quad = mysqli_fetch_assoc($results)) {
+				$quadrat = new Quadrat(null, null);
+				$quadrat->id = $quad['id'];
+				$quadrat->transect_id = $this->id;
+				$quadrat->name = $quad['name'];
+				$quadrat->active = $quad['active'];
+				$quadrat->latitude = $quad['latitude'];
+				$quadrat->longitude = $quad['longitude'];
+				$quadrat->percent_bare_ground = $quad['percent_bare_ground'];
+				$quadrat->percent_water = $quad['percent_water'];
+				$quadrat->quadrat_type = $quad['quadrat_type'];
+				$quadrat->fqa_id = $this->fqa_id;
+				$quadrat->custom_fqa = $this->custom_fqa;
+				$quadrat->get_taxa($this->db_link);
+				$quadrat->compute_metrics();
+				// add object to array
+				$this->quadrats[] = $quadrat;
+			}
+			mysqli_close($this->db_link);
 		}
-		mysqli_close($this->db_link);
+		return $this->quadrats;
+	}
+	
+	public function has_quadrat_type($quadrat_type) {
+		$has_quadrat_type = FALSE;
+		foreach ($this->quadrats as $quadrat) {
+			if ($quadrat->quadrat_type == $quadrat_type) {
+				$has_quadrat_type = TRUE;
+			}
+		}
+		return $has_quadrat_type;
 	}
 	
 	/*
@@ -90,18 +143,21 @@ class TransectAssessment extends Assessment {
 		else
 			$custom = 0;
 		$sql = "INSERT INTO transect (user_id, fqa_id, customized_fqa, site_id, date, private, name, practitioner, latitude, longitude,
-		weather_notes, duration_notes, community_type_notes, other_notes) VALUES ('$user_id', '$this->fqa_id', '$custom', '$site_id', 
-		'$this->date', '$this->private', '$this->name', '$this->practitioner', '$this->latitude', '$this->longitude', '$this->weather_notes', '$this->duration_notes', 
-		'$this->community_type_notes', '$this->other_notes')";
-		mysqli_query($this->db_link, $sql);
-		$transect_id = mysqli_insert_id($this->db_link);
-		// insert quadrats
-		foreach($this->quadrats as $quadrat) {
- 			$quadrat->save($transect_id, $this->db_link);
- 		}
- 		mysqli_close($this->db_link);
-		return $transect_id;
-	}
+    weather_notes, duration_notes, community_type_notes, other_notes, transect_type, plot_size, subplot_size, transect_length, transect_description, cover_method_id,
+		community_code, community_name, environment_description) 
+    VALUES ('$user_id', '$this->fqa_id', '$custom', '$site_id', '$this->date', '$this->private', '$this->name', '$this->practitioner', 
+    '$this->latitude', '$this->longitude', '$this->weather_notes', '$this->duration_notes', '$this->community_type_notes', '$this->other_notes', 
+    '$this->transect_type', '$this->plot_size', '$this->subplot_size', '$this->transect_length', '$this->transect_description', '$this->cover_method_id',
+		'$this->community_code', '$this->community_name', '$this->environment_description')";
+    mysqli_query($this->db_link, $sql);
+    $transect_id = mysqli_insert_id($this->db_link);
+    // insert quadrats
+    foreach($this->quadrats as $quadrat) {
+      $quadrat->save($transect_id, $this->db_link);
+    }
+    mysqli_close($this->db_link);
+    return $transect_id;
+  }
 	
 	/*
 	 * updates existing transect assessment
@@ -117,7 +173,9 @@ class TransectAssessment extends Assessment {
 		$sql = "UPDATE transect SET fqa_id = '$this->fqa_id', customized_fqa = '$custom', site_id = '$site_id', date = '$this->date', private = '$this->private', 
 		practitioner = '$this->practitioner', name = '$this->name', latitude = '$this->latitude', longitude = '$this->longitude',
 		weather_notes = '$this->weather_notes', duration_notes = '$this->duration_notes', community_type_notes = '$this->community_type_notes', 
-		other_notes = '$this->other_notes' WHERE id = '$this->id'";
+		other_notes = '$this->other_notes', transect_type = '$this->transect_type', plot_size = '$this->plot_size', subplot_size = '$this->subplot_size',
+		transect_length = '$this->transect_length', transect_description = '$this->transect_description', cover_method_id = '$this->cover_method_id',
+		community_code = '$this->community_code', community_name = '$this->community_name', environment_description = '$this->environment_description' WHERE id = '$this->id'";
 		mysqli_query($this->db_link, $sql);
 		$inventory_id = mysqli_insert_id($this->db_link);
 		
@@ -147,7 +205,7 @@ class TransectAssessment extends Assessment {
 		mysqli_query($this->db_link, $sql);
 		mysqli_close($this->db_link);
 	}
-	
+  	
 	/*
 	 *  return a csv report as a string
 	 */
@@ -172,6 +230,11 @@ class TransectAssessment extends Assessment {
 		$csv[] = array($this->site->county);
 		$csv[] = array($this->site->state);
 		$csv[] = array($this->site->country);
+		$ecoregions = '';
+		foreach ($this->site->ecoregions as $ecoregion) {
+			$ecoregions .= $ecoregion->display_name . ';';
+		}
+		$csv[] = array($ecoregions);
 		
 		if ($this->custom_fqa) { 
 			$csv[] = array('Custom FQA DB Name:', $this->fqa->customized_name);
@@ -179,19 +242,31 @@ class TransectAssessment extends Assessment {
 			$csv[] = array('Original FQA DB Region:', $this->fqa->region_name);
 			$csv[] = array('Original FQA DB Publication Year:', $this->fqa->publication_year);
 			$csv[] = array('Original FQA DB Description:', $this->fqa->description);
+			$csv[] = array('Original FQA DB Selection Name:', $this->fqa->selection_display_name);
 		} else {
 			$csv[] = array('FQA DB Region:', $this->fqa->region_name);
 			$csv[] = array('FQA DB Publication Year:', $this->fqa->publication_year);
 			$csv[] = array('FQA DB Description:', $this->fqa->description);
+			$csv[] = array('FQA DB Selection Name:', $this->fqa->selection_display_name);
 		}
 		$csv[] = array();
 		$csv[] = array('Practitioner:', $this->practitioner);
 		$csv[] = array('Latitude:', $this->latitude);
 		$csv[] = array('Longitude:', $this->longitude);
+		$csv[] = array('Community Code:', $this->community_code);
+		$csv[] = array('Community Name:', $this->community_name);
+		$csv[] = array('Community Type Notes:', $this->community_type_notes);
 		$csv[] = array('Weather Notes:', $this->weather_notes);
 		$csv[] = array('Duration Notes:', $this->duration_notes);
-		$csv[] = array('Community Type Notes:', $this->community_type_notes);
+		$csv[] = array('Environment Description:', $this->environment_description);
 		$csv[] = array('Other Notes:', $this->other_notes);
+		$csv[] = array('Transect/Plot Type:', empty($this->transect_type) ? 'Transect' : $this->transect_type);
+		$csv[] = array('Plot Size: (m2)', $this->plot_size);
+		$csv[] = array('Quadrat/Subplot Size: (m2)', $this->subplot_size);
+		$csv[] = array('Transect Length (m):', $this->transect_length);
+		$csv[] = array('Sampling Design Description:', $this->transect_description);
+		$csv[] = array('Cover Method:', $this->get_cover_method()->get_name());  
+
 		if ($this->private == 'private') 
 			$csv[] = array('Private/Public:', 'Private');
 		else
@@ -200,7 +275,7 @@ class TransectAssessment extends Assessment {
 		
 		$csv[] = array('Conservatism-Based Metrics:');
 		$csv[] = array('Total Mean C:', $this->metrics->total_mean_c);
-        $csv[] = array('Cover-weighted Mean C:', $this->metrics->cover_weighted_total_mean_c);
+		$csv[] = array('Cover-weighted Mean C:', $this->metrics->cover_weighted_total_mean_c);
 		$csv[] = array('Native Mean C:', $this->metrics->native_mean_c);
 		$csv[] = array('Total FQI:', $this->metrics->total_fqi);
 		$csv[] = array('Native FQI:', $this->metrics->native_fqi);
@@ -289,8 +364,8 @@ class TransectAssessment extends Assessment {
 		}
 		$csv[] = array();
 		
-		$csv[] = array('Quadrat Level Metrics:');
-		$csv[] = array('Quadrat','Species Richness','Native Species Richness','Total Mean C','Native Mean C','Total FQI',
+		$csv[] = array('Quadrat/Subplot Level Metrics:');
+		$csv[] = array('Quadrat/Subplot','Species Richness','Native Species Richness','Total Mean C','Native Mean C','Total FQI',
 						'Native FQI','Cover-weighted FQI','Cover-weighted Native FQI','Adjusted FQI','Mean Wetness',
 						'Mean Native Wetness','Latitude','Longitude');
 		$quadrats = $this->sort_array_of_objects($this->quadrats, 'name');
@@ -350,18 +425,20 @@ class TransectAssessment extends Assessment {
 						
 		foreach ($quadrats as $quadrat) { 
 			if ($quadrat->active) { 
-				$csv[] = array('Quadrat ' . $quadrat->name . ' Species:');	
-				$csv[] = array('Scientific Name', 'Family', 'Acronym', '% Cover', 'Native?', 'C', 'W', 'Physiognomy', 'Duration', 'Common Name');
+				$csv[] = array('Quadrat/Subplot ' . $quadrat->name . ' Species:');	
+				$csv[] = array('Scientific Name', 'Family', 'Acronym', '% Cover', UFQA_COVER_RANGE_MIDPOINT_DEFAULT, 'Native?', 'C', 'W', 'Physiognomy', 'Duration', 'Common Name');
 				if (count($quadrat->taxa) == 0) {
-					$csv[] = array('There are no species in this quadrat.');
+					$csv[] = array('There are no species in this quadrat/subplot.');
 				} else {
 					$sorted_taxa = $this->sort_array_of_objects($quadrat->taxa, 'scientific_name');
 					foreach ($sorted_taxa as $taxon) {
+						$cover_range_midpoint_name = CoverMethod::get_cover_method_value($this->cover_method_id, $taxon->cover_method_value_id)->display_name;
 						$csv[] = array(
 									$taxon->scientific_name,
 									$this->prettify_value($taxon->family),
 									$this->prettify_value($taxon->acronym),
 									$taxon->percent_cover,
+									$cover_range_midpoint_name,
 									$taxon->native,
 									$taxon->c_o_c,
 									$this->prettify_value($taxon->c_o_w),

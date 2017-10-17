@@ -20,6 +20,20 @@ else {
 		$region = $fqa_database['region_name'];
 		$year = $fqa_database['publication_year'];
 		$description = $fqa_database['description'];
+		// get states
+		$states_provinces = StateProvince::get_states_provinces();
+		$state_ids = $fqa->get_states($id);
+		$states = array();
+		foreach ($state_ids as $state_id) {
+			$states[] = $states_provinces[$state_id['state_id']];
+		}
+		// get ecoregions
+		$omernik_ecoregions = OmernikEcoregion::get_omernik_ecoregions();
+		$ecoregion_ids = $fqa->get_ecoregions($id);
+		$ecoregions = array();
+		foreach ($ecoregion_ids as $ecoregion_id) {
+			$ecoregions[] = $omernik_ecoregions[$ecoregion_id['ecoregion_id']];
+		}
 		// get fqa taxa
 		$fqa_taxa = $fqa->get_taxa($id);
 		$total_taxa = 0;

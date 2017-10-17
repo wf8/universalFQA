@@ -1,4 +1,13 @@
 <?php
+
+define ('UFQA_COVER_RANGE_MIDPOINT_DEFAULT', '% Range (Midpt)');
+
+// Quadrat "Type" indices
+define ('UFQA_QUADRAT_SUBPLOT', 0);
+define ('UFQA_FULL_PLOT', 1);
+define ('UFQA_OUTSIDE_PLOT', 2);
+define ('UFQA_REST_OF_PLOT', 3);
+
 class Quadrat {
 
 	public $taxa = array(); // an array of Taxa or CustomTaxa objects
@@ -12,6 +21,9 @@ class Quadrat {
 	public $longitude;
 	public $percent_bare_ground;
 	public $percent_water;
+	public $quadrat_type;
+	
+	public $quadrat_types; // transient 
 		
 	public function __construct( $id = null, $db_link ) {
 		if ($id !== null) {
@@ -45,7 +57,7 @@ class Quadrat {
 	 * return true/false depending on success of adding taxa
 	 * will return true if taxa is already in assessment
 	 */
-	public function add_taxa_by_column_value( $column, $value, $percent_cover, $db_link ) {
+	public function add_taxa_by_column_value( $column, $value, $percent_cover, $cover_method_value_id, $cover_method_name, $db_link ) {
 		if (trim($value) == '')
 			return false;
 		if ($this->custom_fqa) {
@@ -78,6 +90,19 @@ class Quadrat {
 			$taxa->c_o_w = $result['c_o_w'];
 			$taxa->physiognomy = $result['physiognomy'];
 			$taxa->duration = $result['duration'];
+
+			// If a cover method value was selected, set the percent cover to the midpoint
+			if ($cover_method_value_id !== -1) {
+			  $taxa->cover_method_value_id = $cover_method_value_id;
+				$cover_methods = CoverMethod::get_cover_methods();
+				$cover_method = $cover_methods[$cover_method_name];
+				foreach ($cover_method->values as $cover_method_value) {
+				  if ($cover_method_value_id == $cover_method_value->id) {
+			      $percent_cover = $cover_method_value->midpoint_value;
+					}
+			  }
+			}
+			
 			$taxa->percent_cover = $percent_cover;
 			// check to make sure taxa is not already in assessment
 			foreach($this->taxa as $taxon) {
@@ -111,26 +136,27 @@ class Quadrat {
 	 */
 	public function save( $transect_id, $db_link ) {
 		if ($this->percent_bare_ground !== '' && $this->percent_water !== '')
-			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground, percent_water) VALUES
-					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground', '$this->percent_water')";
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground, percent_water, quadrat_type) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground', '$this->percent_water', '$this->quadrat_type')";
 		if ($this->percent_bare_ground == '' && $this->percent_water !== '')
-			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_water) VALUES
-					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_water')";
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_water, quadrat_type) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_water', '$this->quadrat_type')";
 		
 		if ($this->percent_bare_ground !== '' && $this->percent_water == '')
-			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground) VALUES
-					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground')";
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, percent_bare_ground, quadrat_type) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->percent_bare_ground', '$this->quadrat_type')";
 		
 		if ($this->percent_bare_ground == '' && $this->percent_water == '')
-			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude) VALUES
-					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude')";
+			$sql = "INSERT INTO quadrat (transect_id, name, active, latitude, longitude, quadrat_type) VALUES
+					('$transect_id', '$this->name', '$this->active', '$this->latitude', '$this->longitude', '$this->quadrat_type')";
 		
 		mysqli_query($db_link, $sql);
 		$this->id = mysqli_insert_id($db_link);
 		// insert each taxon
 		foreach($this->taxa as $taxon) {
- 			$sql = "INSERT INTO quadrat_taxa (quadrat_id, transect_id, percent_coverage, taxa_id) VALUES 
- 						('$this->id', '$transect_id', '$taxon->percent_cover', '$taxon->id')";
+		  $taxon->cover_method_value_id = (isset($taxon->cover_method_value_id) AND $taxon->cover_method_value_id > 0) ? $taxon->cover_method_value_id : 0;
+ 			$sql = "INSERT INTO quadrat_taxa (quadrat_id, transect_id, taxa_id, percent_coverage, cover_method_value_id) VALUES 
+ 						('$this->id', '$transect_id', '$taxon->id', '$taxon->percent_cover', '$taxon->cover_method_value_id')";
  			mysqli_query($db_link, $sql);
  		}	
 	}
@@ -196,10 +222,36 @@ class Quadrat {
 			$taxa->physiognomy = $result['physiognomy'];
 			$taxa->duration = $result['duration'];
 			$taxa->percent_cover = $taxa_to_add['percent_coverage'];
+			$taxa->cover_method_value_id = $taxa_to_add['cover_method_value_id'];
 			// add object to array
 			$this->taxa[] = $taxa;
 		}
 	}
+		
+	public function get_quadrat_types() {
+		if (empty($this->quadrat_types)) {
+			$quadrat_types = array();
+			$this->get_db_link();
+			$sql = "SELECT * FROM quadrat_types";
+			$results = mysqli_query($this->db_link, $sql);
+			while ($quadrat_type_result = mysqli_fetch_assoc($results)) {
+				$quadrat_type = new QuadratType();
+				$id = $quadrat_type_result['id'];
+				$quadrat_type->id = $id;
+				$quadrat_type->name = $quadrat_type_result['name'];
+				$quadrat_type->display_name = $quadrat_type_result['display_name'];
+				$this->quadrat_types[$id] = $quadrat_type;
+			}
+			mysqli_close($this->db_link);
+		}
+		return $this->quadrat_types;
+	}
 	
+}
+
+class QuadratType {
+	public $id;
+	public $name;
+	public $display_name;
 }
 ?>

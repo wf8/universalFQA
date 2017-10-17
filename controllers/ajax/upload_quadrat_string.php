@@ -47,7 +47,9 @@ else {
 				// do not convert braun-blanquet cover values!
 				$cover = $data[1];
 				// add taxa to quadrat
-				if (!$quadrat->add_taxa_by_column_value('acronym', $data[0], $cover, $db_link))
+				$cover_method = CoverMethod::get_cover_method($assessment->cover_method_id);
+				$cover_method_value = $cover_method->get_cover_method_value_for_percent_cover($cover);
+				if (!$quadrat->add_taxa_by_column_value('acronym', $data[0], $cover, $cover_method_value->id, $cover_method->get_name(), $db_link))
 					$result = $result . 'Acronym not found: ' . $data[0] . '<br>';
 			}
 			if ((trim($data[0]) == '>') && $constructing_quadrat) {
@@ -68,11 +70,11 @@ else {
 		$_SESSION['assessment'] = null;
 		$_SESSION['assessment'] = serialize($assessment);
 		if ($result == '')
-			$result = $result . 'Quadrat string successfully uploaded.';
+			$result = $result . 'Quadrat/Subplot string successfully uploaded.';
 		else
-			$result = $result . 'Quadrat string uploaded.';
+			$result = $result . 'Quadrat/Subplot string uploaded.';
 	} else
-		$result = 'No quadrats found in quadrat string.';
+		$result = 'No quadrats/subplots found in quadrat/subplot string.';
 }
 echo '<html><head><script language="javascript" type="text/javascript">';
 echo 'var result = ' . json_encode($result) . ';';
