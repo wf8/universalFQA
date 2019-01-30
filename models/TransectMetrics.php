@@ -134,7 +134,10 @@ class TransectMetrics extends QuadratMetrics {
 	 * takes as input a Transect object
 	 */
 	public function __construct( $transect ) {
-	
+
+        // memory hack
+        ini_set('memory_limit', '-1');
+
 		Metrics::__construct( $transect );
 		
 		$quadrats = $transect->quadrats;

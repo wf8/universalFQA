@@ -108,36 +108,67 @@
  				</div>
  			</div>
 			<br>
-			<div class="row-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                <h3>FQA Database:</h3>
+                    <form class="form-inline">
+                        <select id="fqa_select" name="fqa_select" style="width:auto;">
+                        <?php
+                        if (!empty($fqa_databases)) {
+                            foreach ($fqa_databases as $fqa_id => $fqa_database) {
+                                if (!$assessment->custom_fqa && $assessment->fqa_id == $fqa_id)
+                                    echo '<option selected value="' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
+                                else
+                                    echo '<option value="' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
+                            }
+                        }
+                        if (!empty($custom_fqa_databases)) {
+                            foreach ($custom_fqa_databases as $fqa_id => $fqa_database) {
+                                $name = $fqa_database->customized_name;
+                                $year = $fqa_database->publication_year;
+                                if ($assessment->custom_fqa && $assessment->fqa_id == $fqa_id)
+                                    echo '<option selected value="custom' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
+                                else
+                                    echo '<option value="custom' . $fqa_id . '">' . $fqa_database->selection_display_name . '</option>';
+                            }
+                        }
+                        ?>
+                        </select>
+                        <button class="btn btn-info" onclick="javascript:change_inventory_fqa_db();return false;">Change FQA Database</button>
+                    </form>
+                    <div id="species_error" class="red"></div>
+                </div>
+            </div>
+			<!--<div class="row-fluid">
 				<div class="span12">
 					<br>
 					<h3>FQA Database:</h3>
 					<form class="form-inline">
 						<select id="fqa_select">
-						<?php
-						if (mysqli_num_rows($fqa_databases) !== 0) {
-							while ($fqa_database = mysqli_fetch_assoc($fqa_databases)) {
-								$fqa_id = $fqa_database['id'];
-								$region = $fqa_database['region_name'];
-								$year = $fqa_database['publication_year'];
-								if (!$assessment->custom_fqa && $assessment->fqa_id == $fqa_id)
-									echo '<option selected value="' . $fqa_id . '">' . $region . ', ' . $year . '</option>';
-								else 
-									echo '<option value="' . $fqa_id . '">' . $region . ', ' . $year . '</option>';
-							}
-						}
-						if (mysqli_num_rows($custom_fqa_databases) !== 0) {
-							while ($fqa_database = mysqli_fetch_assoc($custom_fqa_databases)) {
-								$fqa_id = $fqa_database['id'];
-								$name = $fqa_database['customized_name'];
-								$year = $fqa_database['publication_year'];
-								if ($assessment->custom_fqa && $assessment->fqa_id == $fqa_id)
-									echo '<option selected value="custom' . $fqa_id . '">' . $name . ', ' . $year . '</option>';
-								else 
-									echo '<option value="custom' . $fqa_id . '">' . $name . ', ' . $year . '</option>';
-							}
-						}
-						?>
+#						<?php
+#		    				if (mysqli_num_rows($fqa_databases) !== 0) {
+#							while ($fqa_database = mysqli_fetch_assoc($fqa_databases)) {
+#								$fqa_id = $fqa_database['id'];
+#								$region = $fqa_database['region_name'];
+#								$year = $fqa_database['publication_year'];
+#								if (!$assessment->custom_fqa && $assessment->fqa_id == $fqa_id)
+#									echo '<option selected value="' . $fqa_id . '">' . $region . ', ' . $year . '</option>';
+#								else 
+#									echo '<option value="' . $fqa_id . '">' . $region . ', ' . $year . '</option>';
+#							}
+#						}
+#						if (mysqli_num_rows($custom_fqa_databases) !== 0) {
+#							while ($fqa_database = mysqli_fetch_assoc($custom_fqa_databases)) {
+#								$fqa_id = $fqa_database['id'];
+#								$name = $fqa_database['customized_name'];
+#								$year = $fqa_database['publication_year'];
+#								if ($assessment->custom_fqa && $assessment->fqa_id == $fqa_id)
+#									echo '<option selected value="custom' . $fqa_id . '">' . $name . ', ' . $year . '</option>';
+#								else 
+#									echo '<option value="custom' . $fqa_id . '">' . $name . ', ' . $year . '</option>';
+#							}
+#						}
+#						?>
 						</select>
 						<button class="btn btn-info" onclick="javascript:change_inventory_fqa_db();return false;">Change FQA Database</button>
 					</form>
@@ -145,6 +176,7 @@
 					<h4>To Add Species Individually:</h4>
 				</div>
 			</div>
+            -->
 			<div class="row-fluid">
 				<div class="span4">
 					<label class="small-text">Search by Scientific Name:</label>
