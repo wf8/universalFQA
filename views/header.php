@@ -10,7 +10,7 @@
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="/assets/css/fqa.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href="/assets/css/sol.css" rel="stylesheet" >
     
     <script type="text/javascript" src="/assets/js/jquery-1.9.1.min.js"></script>

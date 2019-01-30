@@ -32,9 +32,9 @@
 					<p class="nice-text">
 						This web-based tool calculates site inventory and transect or plot FQAs. FQA databases published for a number of geographic regions have already been imported into the website, and users can import and customize other FQA databases as needed.
 					</p>
-					<p class="nice-text">
+					<!--<p class="nice-text">
 						Several published applications (among many) for the use of FQAs are found here.
-					</p>
+					</p>-->
 					<p class="nice-text">
 						Read our recently published <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12491/full">article in <i>Methods in Ecology and Evolution</i></a>!
 					</p>
