@@ -365,9 +365,9 @@ class TransectAssessment extends Assessment {
 		$csv[] = array();
 		
 		$csv[] = array('Quadrat/Subplot Level Metrics:');
-		$csv[] = array('Quadrat/Subplot','Species Richness','Native Species Richness','Total Mean C','Native Mean C','Total FQI',
-						'Native FQI','Cover-weighted FQI','Cover-weighted Native FQI','Adjusted FQI','Mean Wetness',
-						'Mean Native Wetness','Latitude','Longitude');
+		$csv[] = array('Quadrat/Subplot','Total Species Richness','Native Species Richness','Total Mean C','Native Mean C','Total FQI',
+						'Native FQI','Cover-weighted FQI','Cover-weighted Native FQI','Adjusted FQI','Total Mean Wetness',
+						'Native Mean Wetness','Latitude','Longitude');
 		$quadrats = $this->sort_array_of_objects($this->quadrats, 'name');
 		foreach ($quadrats as $quadrat) { 
 			if ($quadrat->active) { 
