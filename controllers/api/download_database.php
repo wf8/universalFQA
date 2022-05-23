@@ -4,16 +4,16 @@ if( session_status() != PHP_SESSION_NONE ) {
         // return a list of all fqa databases
         $fqa = new FQADatabase;
         $fqa_databases = $fqa->get_all();
-        if (mysqli_num_rows($fqa_databases) == 0) {
+        if (empty($fqa_databases)) {
             echo '{ "status" : "success", "data" : [] }';
         } else {
             $data = array();
-            while ($fqa_database = mysqli_fetch_assoc($fqa_databases)) {
+            foreach ($fqa_databases as $fqa_id => $fqa_database) {
                 $fqa_data = array();
-                $fqa_data[] = $fqa_database['id'];
-                $fqa_data[] = $fqa_database['region_name'];
-                $fqa_data[] = $fqa_database['publication_year'];
-                $fqa_data[] = $fqa_database['description'];
+                $fqa_data[] = $fqa_database->id;
+                $fqa_data[] = $fqa_database->region_name;
+                $fqa_data[] = $fqa_database->publication_year;
+                $fqa_data[] = $fqa_database->description;
                 $data[] = $fqa_data;
             }
             echo '{ "status" : "success", "data" : ' . json_encode($data) . '}';
