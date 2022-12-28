@@ -93,12 +93,12 @@ class User {
 			if(mysqli_num_rows($result) > 0) 
 				echo "There is already a user registered with that email address.";
 			else {
-				// check for user already registered with the same name
-				$query = "SELECT * FROM user WHERE first_name = '$first_name' AND last_name = '$last_name'";
-				$result = mysqli_query($this->db_link, $query);
-				if (mysqli_num_rows($result) > 0) 
-					echo "There is already a user registered with that name.";
-				else {
+//				// check for user already registered with the same name
+//				$query = "SELECT * FROM user WHERE first_name = '$first_name' AND last_name = '$last_name'";
+//				$result = mysqli_query($this->db_link, $query);
+//				if (mysqli_num_rows($result) > 0) 
+//					echo "There is already a user registered with that name.";
+//				else {
 					// finally insert the new user into database
 					$query = "INSERT INTO user (email, first_name, last_name, password, salt) VALUES ('$email', '$first_name', '$last_name', '$hash', '$salt')";
 					$result = mysqli_query($this->db_link, $query);
@@ -123,7 +123,7 @@ class User {
 						$_SESSION['last_name'] = $last_name;
 						echo "success";
 					}
-				}
+//				}
 			}
 		}
 	}
