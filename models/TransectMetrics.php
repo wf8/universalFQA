@@ -368,11 +368,11 @@ class TransectMetrics extends QuadratMetrics {
 							case 'fern':
 								$this->physiognomy = true;
 								if ($taxon->native == 'native') {
-									$this->native_rush_c += $taxon->c_o_c;
-									$this->native_rush++;
+									$this->native_fern_c += $taxon->c_o_c;
+									$this->native_fern++;
 								} else {
-									$this->nonnative_rush_c += $taxon->c_o_c;
-									$this->nonnative_rush++;
+									$this->nonnative_fern_c += $taxon->c_o_c;
+									$this->nonnative_fern++;
 								}
 								break;
 							case 'bryophyte':
