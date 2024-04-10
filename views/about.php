@@ -23,7 +23,7 @@
 						The <a href="../">Universal Floristic Quality Assessment (FQA) Calculator</a> is an open source project licensed for use under <a href="http://www.gnu.org/licenses/">GPLv3</a>. Get the code on <a href="https://github.com/wf8/universalFQA">GitHub</a>.
 					</p>
 					<p class="nice-text">
-						The <a href="../">Universal FQA Calculator</a> is completely free for any user, and was developed for <a href="http://openlands.org">Openlands</a> by <a href="http://breadorpyramid.org">Will Freyman</a>. Questions or comments should be sent to willfreyman at gmail.com.
+						The <a href="../">Universal FQA Calculator</a> is completely free for any user, and was developed for <a href="http://openlands.org">Openlands</a> by <a href="http://willfreyman.org">Will Freyman</a>. Questions or comments should be sent to willfreyman at gmail.com.
 					</p>
 					<p class="nice-text">
 						Enhancements to this site were developed by <img src="/assets/images/butterfly.png" height="15" width="22"> <a href="http://www.natureserve.org">NatureServe</a>, a nonprofit conservation organization providing the scientific basis for effective conservation action. 

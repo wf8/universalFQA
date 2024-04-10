@@ -79,13 +79,13 @@ class TransectAssessment extends Assessment {
 	
     public function get_all_public_for_fqa($fqa_id) {
 		$assessments = Assessment::get_all_public_for_fqa($fqa_id);
-		$this->get_db_link();
-		foreach ($assessments as $assessment) {
-			$assessment->get_quadrats();
-			$metrics = new TransectMetrics($assessment);
-			$assessment->metrics = $metrics;
-		}
-		mysqli_close($this->db_link);
+		//$this->get_db_link();
+		//foreach ($assessments as $assessment) {
+		//	$assessment->get_quadrats();
+		//	$metrics = new TransectMetrics($assessment);
+		//	$assessment->metrics = $metrics;
+		//}
+		//mysqli_close($this->db_link);
 		return $assessments;
 	}
 	
