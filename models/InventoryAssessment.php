@@ -38,12 +38,12 @@ class InventoryAssessment extends Assessment {
 
 	public function get_all_public_for_fqa($fqa_id) {
 		$assessments = Assessment::get_all_public_for_fqa($fqa_id);
-		$this->get_db_link();
-		foreach ($assessments as $assessment) {
-			$assessment->get_taxa();
-			$metrics = new InventoryMetrics($assessment);
-			$assessment->metrics = $metrics;
-		}
+		//$this->get_db_link();
+		//foreach ($assessments as $assessment) {
+		//	$assessment->get_taxa();
+		//	$metrics = new InventoryMetrics($assessment);
+		//	$assessment->metrics = $metrics;
+		//}
 		return $assessments;
 	}
 	

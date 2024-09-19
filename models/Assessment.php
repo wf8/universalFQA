@@ -108,7 +108,7 @@ class Assessment {
 				$assessment = new InventoryAssessment();
 			else {
 				$assessment = new TransectAssessment();
-				$assessment->load_transect_details($result);
+				//$assessment->load_transect_details($result);
 			}
 			$assessment->id = $result['id'];
 			$assessment->fqa_id = $result['fqa_id'];
@@ -158,7 +158,7 @@ class Assessment {
 				$assessment = new InventoryAssessment();
 			else {
 				$assessment = new TransectAssessment();
-				$assessment->load_transect_details($result);				
+				//$assessment->load_transect_details($result);				
 			}
 			$assessment->id = $result['id'];
 			$assessment->date = $result['date'];
@@ -208,7 +208,7 @@ class Assessment {
 				$assessment = new InventoryAssessment();
 			else {
 				$assessment = new TransectAssessment();
-				$assessment->load_transect_details($result);				
+				//$assessment->load_transect_details($result);				
 			}
 			$assessment->id = $result['id'];
 			$assessment->date = $result['date'];
