@@ -3,13 +3,15 @@ session_start();
 ini_set("include_path",$_SERVER["DOCUMENT_ROOT"]);
 require('../config/db_config.php');
 $db_link = mysqli_connect($db_server, $db_username, $db_password, $db_database);
-if (mysqli_connect_errno($db_link)) {
+if (mysqli_connect_errno()) {
 	error_log("Failed to connect to MySQL: " . mysqli_connect_error());
 }
 
-function __autoload($class_name) {
+//function __autoload($class_name) {
+function load_models($class_name) {
     require_once '../models/' . $class_name . '.php';
 }
+spl_autoload_register('load_models');
 
 // hide unnecessary session side-effect warnings
 ini_set('session.bug_compat_warn', 0);
