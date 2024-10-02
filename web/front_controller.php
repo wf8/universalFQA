@@ -56,7 +56,10 @@ if ($url_parts[0] == 'get') {
 	
 // route view requests		
 } else {	
-	if ($url_parts[0] == 'download_report') {	
+	//if ($url_parts[0] == 'test') {	
+	//	require_once('test.php');
+	//} else 
+    if ($url_parts[0] == 'download_report') {	
 		require_once('../views/download_report.php');
 	} else {
 		// insert header for all views
