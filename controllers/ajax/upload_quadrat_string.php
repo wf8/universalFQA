@@ -16,7 +16,7 @@ else {
 		$constructing_quadrat = false;
 		$quadrat = null;
 		$assessment = unserialize($_SESSION['assessment']);
-		while (($data = fgetcsv($handle, ",")) !== FALSE) {
+		while (($data = fgetcsv($handle, null, ",")) !== FALSE) {
 			if ( (trim(strtolower($data[0])) == 'quad') && !$constructing_quadrat) {
 				// start a new quadrat
 				$constructing_quadrat = true;

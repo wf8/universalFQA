@@ -12,7 +12,7 @@ else {
 	// parse file and save taxa
 	if (($handle = fopen($file['tmp_name'], "r")) !== FALSE) {
 		$assessment = unserialize($_SESSION['assessment']);
-		while (($data = fgetcsv($handle, ",")) !== FALSE) {
+		while (($data = fgetcsv($handle, null, ",")) !== FALSE) {
 			if ( trim(strtolower($data[0])) !== 'acronym') {
 				// add taxa to assessment 
 				if (!$assessment->add_taxa_by_column_value('acronym', $data[0], $db_link))
