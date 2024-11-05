@@ -15,6 +15,16 @@ class TransectMetrics extends QuadratMetrics {
 	public $nonnative_fern = 0;
 	public $nonnative_bryophyte = 0;
 	
+    public $nonnative_tree_c = 0;
+	public $nonnative_shrub_c = 0;
+	public $nonnative_vine_c = 0;
+	public $nonnative_forb_c = 0;
+	public $nonnative_grass_c = 0;
+	public $nonnative_sedge_c = 0;
+	public $nonnative_rush_c = 0;
+	public $nonnative_fern_c = 0;
+	public $nonnative_bryophyte_c = 0;
+	
 	public $nonnative_tree_coverage = 0;
 	public $nonnative_shrub_coverage = 0;
 	public $nonnative_vine_coverage = 0;
@@ -64,6 +74,16 @@ class TransectMetrics extends QuadratMetrics {
 	public $native_rush = 0;
 	public $native_fern = 0;
 	public $native_bryophyte = 0;
+    
+    public $native_tree_c = 0;
+	public $native_shrub_c = 0;
+	public $native_vine_c = 0;
+	public $native_forb_c = 0;
+	public $native_grass_c = 0;
+	public $native_sedge_c = 0;
+	public $native_rush_c = 0;
+	public $native_fern_c = 0;
+	public $native_bryophyte_c = 0;
 	
 	public $native_tree_coverage = 0;
 	public $native_shrub_coverage = 0;
@@ -870,8 +890,8 @@ class TransectMetrics extends QuadratMetrics {
 		$i = 1;
 		foreach ($list as $value) {
 			$temp_m = $m;
-			$m += ($value - $temp_m) / $i;
-			$s += ($value - $temp_m) * ($value - $m);
+			$m += ((float)$value - $temp_m) / $i;
+			$s += ((float)$value - $temp_m) * ((float)$value - $m);
 			$i++;
 		}
 		if ($i > 1)
@@ -887,7 +907,7 @@ class TransectMetrics extends QuadratMetrics {
 		$i = 0;
 		$m = 0.0;
 		foreach ($list as $value) {
-			$m += $value;
+			$m += (float)$value;
 			$i++;
 		}
 		if ($i > 0) 
