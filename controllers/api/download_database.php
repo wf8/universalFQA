@@ -50,7 +50,10 @@ if( session_status() != PHP_SESSION_NONE ) {
             $mean_total_c = round(( $total_c / $total_taxa ), 1);
         if ($native_taxa !== 0)
             $mean_native_c = round(( $native_c / $native_taxa ), 1);
-        $percent_native = round(( $native_taxa / $total_taxa ) * 100, 1);
+        if ($total_taxa !== 0)
+            $percent_native = round(( $native_taxa / $total_taxa ) * 100, 1);
+        else
+            $percent_native = 0;
         $percent_nonnative = 100 - $percent_native;
 
 

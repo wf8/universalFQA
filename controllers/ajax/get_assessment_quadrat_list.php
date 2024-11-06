@@ -10,7 +10,7 @@ if( $_SESSION['valid'] ) {
 			<td><strong>Longitude</strong></td>
 			<td></td>
 			</tr>';	
-	if (isset($assessment->quadrats) AND count($assessment->quadrats) == 0) {
+	if ((isset($assessment->quadrats) AND count($assessment->quadrats) == 0) OR is_null($assessment->quadrats)) {
 		$html = $html . '<tr><td colspan=6>You have not added any quadrats/subplots yet.</td></tr>';
 	} else {
 		$sorted_quadrats = sort_array_of_objects($assessment->quadrats, 'name');
